@@ -241,7 +241,7 @@
 }
 
 #new-price {
-  font-size: 17px;
+  font-size: 16px;
   margin-left: 10px;
   font-weight: bold;
   color: orangered;
@@ -337,7 +337,7 @@
     } */
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   #main-container {
     width: 100%;
     margin-left: 0%;
@@ -375,14 +375,16 @@
 
   #item-name {
     font-size: 13px;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;    
   }
 
   #new-price {
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: normal;
   }
 
   #old-price {
-    font-size: 13px;
+    font-size: 12px;
+    color: gray;
   }
 }
