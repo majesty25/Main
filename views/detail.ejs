@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/detail.css" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <!-- <link rel="stylesheet" href="../css/home.css" /> -->
+    <link rel="stylesheet" href="../css/header.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="header-container"></div>
+    <!-- MAIN HEADER -->
+    <%- include('header')%>
+    <!-- SUB HEADER -->
+    <!-- <div id="subhead"></div> -->
+    <div id="container-main">
+      <div id="left-container">
+        <div id="item-info">
+          <%Object.keys(result).forEach(key => { var row = result[key]; const
+          percentOff = (row.off/100)*row.price; const oldPriceWhole =
+          Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded
+          = oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
+          Math.round((row.stars / total) * 5); %>
+          <div id="main-pic">
+            <img
+              style="width: 100%"
+              src="../font/<%=row.pic%>"
+              alt=""
+              srcset=""
+            />
+          </div>
+
+          <div id="buy-info">
+            <div id="name"><%=row.name%></div>
+            <div id="new-price">GHS <%=row.price%></div>
+            <div id="price">
+              <div id="old-price">GHS <%=oldPriceRounded%></div>
+              <div id="percent-off">-<%=row.off%>%</div>
+            </div>
+            <div id="rate">
+              <%for(let i = 0; i < rate; i++){ %> &starf; <%}%><%for(let i = 0;
+              i < (5 - rate); i++){ %> &star; <%}%>
+              <span>(<%=row.rate%> ratings)</span>
+            </div>
+            <div id="shipping-from">
+              +shipping from <%=row.shipping%> <span id="fav"></span>
+            </div>
+
+            <div id="colors">
+              <button id="color">Sizes</button>
+              <!-- <input type="radio" name="" id="" />
+          <div class="choose-color">Red</div>
+          <input type="radio" name="" id="" />
+          <div class="choose-color">Black</div>
+          <input type="radio" name="" id="" />
+          <div class="choose-color">Blue</div>
+          <input type="radio" name="" id="" />
+          <div class="choose-color">White</div>
+          <input type="radio" name="" id="" />
+          <div class="choose-color">Brown</div>
+          <input type="radio" name="" id="" />
+          <div class="choose-color">Ash</div> -->
+              <button id="hj" class="color" onclick="select()">40</button>
+              <button id="jh" class="color 2">41</button>
+              <button id="jh" class="color 3">42</button>
+              <button id="jh" class="color 3">42</button>
+              <button id="jh" class="color 3">42</button>
+            </div>
+
+            <div id="colors">
+              <!-- <button id="color">Sizes</button>
+          <input type="radio" name="" id="" />
+          <div class="choose-color">XXS</div>
+          <input type="radio" name="" id="" />
+          <div class="choose-color">XS</div>
+          <input type="radio" name="" id="" />
+          <div class="choose-color">XS</div>
+          <input type="radio" name="" id="" />
+          <div class="choose-color">S</div>
+          <input type="radio" name="" id="" />
+          <div class="choose-color">M</div>
+          <input type="radio" name="" id="" /> -->
+              <!-- <div class="choose-color">L</div>
+          <button class="color">XXS</button>
+          <button class="color">XS</button>
+          <button class="color">S</button>
+          <button class="color">M</button>
+          <button class="color">L</button> -->
+            </div>
+
+            <div id="QTY">
+              <button id="qty" class="qty dec" onclick="decreaseQuantity()">
+                -
+              </button>
+              <button id="qty" class="count">1</button>
+              <button id="qty" class="qty inc" onclick="increaseQuantity()">
+                +
+              </button>
+            </div>
+
+            <div id="add">
+              <input id="cnt" type="hidden" name="" value="" />
+              <button id="add-cart">ADD TO CART</button>
+            </div>
+          </div>
+          <!-- <li><%=row.First_name%></li> -->
+          <%})%>
+        </div>
+        <div id="detail">
+          <h5>Detail</h5>
+          <% Object.keys(result).forEach(key => { var row = result[key];%>
+          <%=row.description%> <%})%>
+        </div>
+
+        <div id="further-info">
+          <span id="spec" class="further-info">
+            <div class="further-info-head">SPECIFICATIONS</div>
+            <div class="further-info-content">
+              <% Object.keys(specOutput).forEach(key => { var row =
+              specOutput[key];%>
+              <b><%=row.specName%>:</b> <%=row.specValue%> <%})%>
+            </div>
+          </span>
+
+          <span id="key-feature" class="further-info">
+            <div class="further-info-head">KEY FEATURES</div>
+            <div class="further-info-content">
+              <% Object.keys(specOutput).forEach(key => { var row =
+              specOutput[key];%>
+              <b><%=row.specName%>:</b> <%=row.specValue%> <%})%>
+            </div>
+          </span>
+
+          <span id="package" class="further-info">
+            <div class="further-info-head">WHAT'S IN THE PACKAGE</div>
+            <div class="further-info-content">
+              <% Object.keys(specOutput).forEach(key => { var row =
+              specOutput[key];%>
+              <b><%=row.specName%>:</b> <%=row.specValue%> <%})%>
+            </div>
+          </span>
+        </div>
+
+        <div id="other-pics">
+          <% Object.keys(otherpicsOutput).forEach(key => { var row =
+          otherpicsOutput[key];%>
+          <img
+            id="other-pics-img"
+            src="../font/<%=row.pic%>"
+            alt=""
+            srcset=""
+          />
+          <%})%>
+        </div>
+
+        <div id="further-info">
+          <span>
+            <% Object.keys(specOutput).forEach(key => { var row =
+            specOutput[key];%>
+            <b><%=row.specName%>:</b> <%=row.specValue%> <%})%>
+          </span>
+
+          <span>
+            <% Object.keys(specOutput).forEach(key => { var row =
+            specOutput[key];%>
+            <b><%=row.specName%>:</b> <%=row.specValue%> <%})%>
+          </span>
+
+          <span>
+            <% Object.keys(packageOutput).forEach(key => { var row =
+            packageOutput[key];%>
+            <b><%=row.firstName%>:</b> <%=row.phone%> <%})%>
+          </span>
+        </div>
+      </div>
+      <div id="right-container">
+        <div id="delivery-info">
+          <div id="del-info-1">Delivery information</div>
+          <div id="del-info-2">
+            <i
+              style="font-size: 24px"
+              class="mdi mdi-96px mdi-rotate-0 mdi-truck-fast-outline"
+            ></i>
+            Free and fast delivery when you order within <b>Cape Coast</b>.
+          </div>
+          <div id="del-info-2">
+            <i
+              style="font-size: 24px"
+              class="mdi mdi-96px mdi-rotate-0 mdi-hand-heart-outline"
+            ></i>
+            Parcel is deliverd to you at your door step.
+          </div>
+          <div id="del-info-2">
+            <i
+              style="font-size: 24px"
+              class="mdi mdi-96px mdi-rotate-0 mdi-clock-time-four-outline"
+            ></i>
+            Estimated time of delivery when you order within 24hrs:
+            <b>Fri-03,Dec to Mon-06,Dec</b>
+          </div>
+          <div id="del-info-2">
+            <i
+              style="font-size: 24px"
+              class="mdi mdi-96px mdi-rotate-0 mdi-map-marker-outline"
+            ></i>
+            Current address: <%if (locals.address){ %> <%=address%> <% } else{%>
+            No address Specified <%}%>
+          </div>
+          <div id="del-info-1"></div>
+        </div>
+
+        <div id="delivery-info">
+          <div id="del-info-1">Delivery information</div>
+          <div id="del-info-2">
+            <i
+              style="font-size: 24px"
+              class="mdi mdi-96px mdi-rotate-0 mdi-truck-fast-outline"
+            ></i>
+            Free and fast delivery when you order within <b>Cape Coast</b>.
+          </div>
+          <div id="del-info-2">
+            <i
+              style="font-size: 24px"
+              class="mdi mdi-96px mdi-rotate-0 mdi-hand-heart-outline"
+            ></i>
+            Parcel is deliverd to you at your door step.
+          </div>
+          <div id="del-info-2">
+            <i
+              style="font-size: 24px"
+              class="mdi mdi-96px mdi-rotate-0 mdi-clock-time-four-outline"
+            ></i>
+            Estimated time of delivery when you order within 24hrs:
+            <b>Fri-03,Dec to Mon-06,Dec</b>
+          </div>
+          <div id="del-info-2">
+            <i
+              style="font-size: 24px"
+              class="mdi mdi-96px mdi-rotate-0 mdi-map-marker-outline"
+            ></i>
+            Current address: Cape, UCC
+          </div>
+          <div id="del-info-1"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/detail.js"></script>
+
+<script>
+  document.querySelector(".dec").disabled = true;
+  var counter = 1;
+  let count = document.querySelector(".count");
+  let cnt = document.querySelector("#cnt");
+
+  /*function select(){
+    document.querySelector("#jh").disabled=true;
+    document.querySelector("#hj").disabled=false;
+    document.querySelector("#hj").style.border = "2px navy solid";
+  }*/
+
+  function increaseQuantity() {
+    counter++;
+    cnt.value = counter;
+    count.innerHTML = counter;
+    document.querySelector(".dec").disabled = false;
+    document.querySelector(".dec").style.cursor = "pointer";
+  }
+
+  // if (count.value < 1) {
+  function decreaseQuantity() {
+    counter--;
+    cnt.value = counter;
+    count.innerHTML = counter;
+    if (count.innerHTML < 2) {
+      document.querySelector(".dec").disabled = true;
+      document.querySelector(".dec").style.cursor = "no-drop";
+    }
+  }
+</script>

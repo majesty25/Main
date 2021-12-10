@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/header.css" />
+  <link rel="stylesheet" href="../css/home.css" />
+  <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
+  <link rel="stylesheet" href="../material-icons/css/materialdesignicons.min.css" media="all" />
+  <!-- <link rel="stylesheet" href="css/search.css" /> -->
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="header-container"><%- include('header') %></div>
+
+  <!-- MAIN CONTAINER: THIS CONTAIN ALL THE BODY CONTENT -->
+  <div id="main-container">
+    <!-- THE FIRST SECTION OF THE MAIN PAGE -->
+    <div id="topmost-section">
+      <div id="category">
+        <h1 id="cat-head">
+          <i style="font-size: 24px" class="mdi mdi-96px mdi-rotate-0 mdi-view-list"></i>
+          <span> CATEGORIES</span>
+        </h1>
+        <li id="cat">
+          <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+          Fassion
+        </li>
+        <li id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"></i>Super market</li>
+        <li id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"></i>Phones & Accessories</li>
+        <li id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"></i>Computers</li>
+        <li id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>Home</li>
+        <li id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-spin mdi-rotate-0 mdi-dots-circle"></i>Fassion</li>
+      </div>
+      <div id="topmost-left">
+        <img id="img1"
+          src="../font/delivery-concept-portrait-happy-african-american-delivery-man-red-cloth-holding-box-package-isolated-grey-studio-background-copy-space_1258-1261.jpg"
+          alt="" srcset="" />
+      </div>
+      <div id="topmost-right">
+        <%if (locals.name){ %>
+        <div id="text-1">
+          <div id="user-greeting-1">Hi, <%=name%></div>
+          <div id="user-greeting-1">WELCOME TO EXSALE</div>
+          <div id="user-contact">nyankson25@gmail.com</div>
+          <div id="user-contact">+233555089255</div>
+        </div>
+
+        <%} else{ %>
+
+        <div id="text-2">
+          <div id="user-greeting-1">Hi, cherished Customer</div>
+          <div id="user-greeting-1">WELCOME TO EXSALE</div>
+          <div id="sign">
+            <form action="/login" method="get">
+              <button id="login-btn">Log in</button>
+            </form>
+            <form action="/signup" method="get">
+              <button id="signup-btn">Join</button>
+            </form>
+          </div>
+        </div>
+
+        <%}%>
+
+          <div id="flash-deal">
+            <div class="flash-deals-head">
+              Flash deals
+              <div style="color: red"><%- include('flash')%></div>
+    </div>
+    <div id="flash-deals">
+      <div id="flash-deal-1">
+        <img id="flash-deal-img" src="../font/0ed9e16c7fcf4078981a587643b170d3.jpg" alt="" srcset="" />
+      </div>
+      <div id="flash-deal-1">
+        <img id="flash-deal-img" src="../font/0ed9e16c7fcf4078981a587643b170d3.jpg" alt="" srcset="" />
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <div id="demo">
+    <div id="con">
+      <div id="img-con">
+        <img id="img2" src="../font/shu1.jpg" alt="" srcset="" />
+        <div id="text">CATEGORY 1</div>
+      </div>
+    </div>
+    <div id="con">
+      <div id="img-con">
+        <img id="img2" src="../font/shu2.jpg" alt="" srcset="" />
+        <div id="text">CATEGORY 1</div>
+      </div>
+    </div>
+    <div id="con">
+      <div id="img-con">
+        <img id="img2" src="../font/gettyimages-1025627712-612x612.jpg" alt="" srcset="" />
+        <div id="text">CATEGORY 1</div>
+      </div>
+    </div>
+    <div id="con">
+      <div id="img-con">
+        <img id="img2" src="../font/smartphones-front-back-view-illustration_174496-77.jpg" alt="" srcset="" />
+        <div id="text">CATEGORY 1</div>
+      </div>
+    </div>
+    <div id="con">
+      <div id="img-con">
+        <img id="img2" src="../font/gettyimages-1129225638-2048x2048.jpg" alt="" srcset="" />
+        <div id="text">CATEGORY 1</div>
+      </div>
+    </div>
+    <div id="con">
+      <div id="img-con">
+        <img id="img2" src="../font/gettyimages-1129225638-2048x2048.jpg" alt="" srcset="" />
+        <div id="text">CATEGORY 1</div>
+      </div>
+    </div>
+  </div>
+  <div id="demo1" class="demo">
+    <div id="weekly-deal">Weakly deal</div>
+    <!-- <%=result[2].name%> -->
+
+    <% Object.keys(result).forEach(key => { var row = result[key]; const
+        percentOff = (row.off/100)*row.price; const oldPriceWhole =
+        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
+        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
+        Math.round((row.stars / total) * 5); %>
+    <div id="item">
+      <form action="/detail" method="post">
+        <input type="hidden" name="id" value="<%=row.id%>" />
+        <button id="image-btn">
+          <img id="img1" src="../font/<%=row.pic%>" alt="" srcset="" />
+        </button>
+      </form>
+      <div id="item-name"><%=row.name%></div>
+      <div id="prices">
+        <div id="new-price">GHS <%=row.price%></div>
+        <div id="old-price">GHS <%=oldPriceRounded%></div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">
+          <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
+              < (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
+        </div>
+        <span class="percent-off">-<%=row.off%>%</span>
+      </div>
+    </div>
+    <!-- <li><%=row.First_name%></li> -->
+    <%})%>
+
+    <div id="item">
+      <img id="img1" src="../font/shu1.jpg" alt="" srcset="" />
+      <div id="item-name">Item's name</div>
+      <div id="prices">
+        <div id="new-price">GHS 389</div>
+        <div id="old-price">GHS 413</div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
+        <span class="percent-off">-23%</span>
+      </div>
+    </div>
+    <div id="item">
+      <img id="img1" src="../font/lap4.jpg" alt="" srcset="" />
+      <div id="item-name">Item's name</div>
+      <div id="prices">
+        <div id="new-price">GHS 389</div>
+        <div id="old-price">GHS 413</div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
+        <span class="percent-off">-23%</span>
+      </div>
+    </div>
+
+    <div id="item">
+      <img id="img1" src="../font/LEL.jpg" alt="" srcset="" />
+      <div id="item-name">Item's name</div>
+      <div id="prices">
+        <div id="new-price">GHS 389</div>
+        <div id="old-price">GHS 413</div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
+        <span class="percent-off">-23%</span>
+      </div>
+    </div>
+
+    <div id="item">
+      <img id="img1" src="../font/top2.jpg" alt="" srcset="" />
+      <div id="item-name">Item's name</div>
+      <div id="prices">
+        <div id="new-price">GHS 389</div>
+        <div id="old-price">GHS 413</div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
+        <span class="percent-off">-23%</span>
+      </div>
+    </div>
+
+    <div id="item">
+      <img id="img1" src="../font/table1.jpg" alt="" srcset="" />
+      <div id="item-name">Item's name</div>
+      <div id="prices">
+        <div id="new-price">GHS 389</div>
+        <div id="old-price">GHS 413</div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
+        <span class="percent-off">-23%</span>
+      </div>
+    </div>
+
+    <div id="item">
+      <img id="img1" src="../font/shu5.jpg" alt="" srcset="" />
+      <div id="item-name">Item's name</div>
+      <div id="prices">
+        <div id="new-price">GHS 389</div>
+        <div id="old-price">GHS 413</div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
+        <span class="percent-off">-23%</span>
+      </div>
+    </div>
+
+    <div id="item">
+      <img id="img1" src="../font/gettyimages-1129225638-2048x2048.jpg" alt="" srcset="" />
+      <div id="item-name">Item's name</div>
+      <div id="prices">
+        <div id="new-price">GHS 389</div>
+        <div id="old-price">GHS 413</div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
+        <span class="percent-off">-23%</span>
+      </div>
+    </div>
+
+    <div id="item">
+      <img id="img1" src="../font/gettyimages-958437054-2048x2048.jpg" alt="" srcset="" />
+      <div id="item-name">Item's name</div>
+      <div id="prices">
+        <div id="new-price">GHS 389</div>
+        <div id="old-price">GHS 413</div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
+        <span class="percent-off">-23%</span>
+      </div>
+    </div>
+
+    <div id="item">
+      <img id="img1" src="../font/shu2.jpg" alt="" srcset="" />
+      <div id="item-name">Item's name</div>
+      <div id="prices">
+        <div id="new-price">GHS 389</div>
+        <div id="old-price">GHS 413</div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
+        <span class="percent-off">-23%</span>
+      </div>
+    </div>
+
+    <div id="item">
+      <img id="img1" src="../font/lap5.jpg" alt="" srcset="" />
+      <div id="item-name">Item's name</div>
+      <div id="prices">
+        <div id="new-price">GHS 389</div>
+        <div id="old-price">GHS 413</div>
+      </div>
+
+      <div id="percent-off">
+        <!-- <span class="old-price">GHS 378</span> -->
+        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
+        <span class="percent-off">-23%</span>
+      </div>
+    </div>
+    <!-- <div id="item"></div>
+            <div id="item"></div>
+            <div id="item"></div> -->
+    <!-- <div id="item"></div> -->
+  </div>
+  </div>
+</body>
+
+</html>
+
+<script src="../js/search.js"></script>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <!-- <link rel="stylesheet" href="../css/home.css" /> -->
+    <link rel="stylesheet" href="../css/cart.css" />
+    <link rel="stylesheet" href="../css/side-panel.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include("header")%>
+    <span id="cart-num">Carts(2 items)</span>
+    <div id="main-container">
+      <div id="carts">
+        <span id="cart-item">
+          <div id="cart-sec-1">
+            <span id="cart-img">
+              <img class="cart-img" src="../font/lap5.jpg" alt="" srcset="" />
+            </span>
+            <span id="cart-det">
+              <div id="name-price">
+                <span id="name">item name</span>
+                <span id="price">GHS 3788.00</span>
+                <span id="quantity">X2</span>
+              </div>
+              <div id="add">
+                <button id="qty" class="qty dec" onclick="decreaseQuantity()">
+                  -
+                </button>
+                <button id="qty" class="count">1</button>
+                <button id="qty" class="qty inc" onclick="increaseQuantity()">
+                  +
+                </button>
+              </div>
+            </span>
+          </div>
+          <div id="cart-sec-2">
+            <span id="remove">
+              <button id="remove-btn" type="submit">Remove</button>
+            </span>
+            <span id="status">In stock</span>
+          </div>
+        </span>
+
+        <span id="cart-item">
+          <div id="cart-sec-1">
+            <span id="cart-img">
+              <img class="cart-img" src="../font/lap5.jpg" alt="" srcset="" />
+            </span>
+            <span id="cart-det">
+              <div id="name-price">
+                <span id="name">item name</span>
+                <span id="price">GHS 3788.00</span>
+                <span id="quantity">X2</span>
+              </div>
+              <div id="add">
+                <button id="qty" class="qty dec" onclick="decreaseQuantity()">
+                  -
+                </button>
+                <button id="qty" class="count">1</button>
+                <button id="qty" class="qty inc" onclick="increaseQuantity()">
+                  +
+                </button>
+              </div>
+            </span>
+          </div>
+          <div id="cart-sec-2">
+            <span id="remove">
+              <button id="remove-btn" type="submit">Remove</button>
+            </span>
+            <span id="status">In stock</span>
+          </div>
+        </span>
+
+        <span id="cart-item">
+          <div id="cart-sec-1">
+            <span id="cart-img">
+              <img class="cart-img" src="../font/lap5.jpg" alt="" srcset="" />
+            </span>
+            <span id="cart-det">
+              <div id="name-price">
+                <span id="name">item name</span>
+                <span id="price">GHS 3788.00</span>
+                <span id="quantity">X2</span>
+              </div>
+              <div id="add">
+                <button id="qty" class="qty dec" onclick="decreaseQuantity()">
+                  -
+                </button>
+                <button id="qty" class="count">1</button>
+                <button id="qty" class="qty inc" onclick="increaseQuantity()">
+                  +
+                </button>
+              </div>
+            </span>
+          </div>
+          <div id="cart-sec-2">
+            <span id="remove">
+              <button id="remove-btn" type="submit">Remove</button>
+            </span>
+            <span id="status">In stock</span>
+          </div>
+        </span>
+
+        <span id="checkout-sec">
+          <div id="prepaid">EXSALE prepaid</div>
+          <div id="total">Total: GHS 56387.00</div>
+          <div id="checkout">
+            <button id="checkout-btn" type="submit">Checkout</button>
+          </div>
+        </span>
+      </div>
+      <div id="cart-summary">
+        <span id="cart-summary-head">Cart's summary</span>
+        <span id="price-summary">
+          <div id="price-label">Price(2 items)</div>
+          <div id="price-info">GHS 2783</div>
+        </span>
+
+        <span id="price-summary">
+          <div id="price-label">Delivery fee</div>
+          <div id="price-info">GHS 32.00</div>
+        </span>
+
+        <span id="price-summary">
+          <div id="total-label">Total</div>
+          <div id="price-total">GHS 2883</div>
+        </span>
+
+        <div id="del-address-head">Delivery address</div>
+        <div id="del-address">Cape Coast, UCC, Casford hall, room 54</div>
+        <button id="address-btn" type="submit">Change address</button>
+      </div>
+    </div>
+  </body>
+
+  <script src="../js/search.js"></script>
+</html>
