@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const ItemInfo = require("./classes.js");
+// import {*} from "axios";
 const session = require("express-session");
 const Joi = require("joi");
 const bodyParser = require("body-parser");
@@ -7,6 +9,7 @@ const socket = require("socket.io");
 const Mailer = require("nodemailer");
 const sqlite = require("sqlite3").verbose();
 const path = require("path");
+const { ItemDetailInfo } = require("./classes");
 // const s = require("df");
 
 const conn = new sqlite.Database("./majesty.db");
@@ -42,6 +45,16 @@ app.get("/", (req, res) => {
     if (err) throw err;
     res.render("home", { result, name, id });
   });
+});
+
+app.get("/test", (req, res) => {
+  let y = conn.all("SELECT * FROM item", (err, result) => {
+    if (err) throw err;
+    return result;
+  });
+
+  const ty = new ItemDetailInfo(y);
+  res.send(ty.db(result));
 });
 
 app.post("/detail", (req, res) => {
@@ -110,7 +123,7 @@ app.get("/signup", (req, res) => {
 app.get("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) throw err;
-    res.redirect("/login");
+    res.redirect("/");
   });
 });
 
@@ -136,13 +149,14 @@ app.post("/dashboard", async (req, res) => {
     const sql = `SELECT * FROM users WHERE (email = '${user.email}' AND password = '${user.password}')`;
     conn.all(sql, (err, result) => {
       if (err) {
+        throw err;
       } else if (Object.keys(result).length === 0) {
         req.session.log = "email and password do not match";
         res.redirect("/login");
       } else {
         Object.keys(result).forEach((key) => {
           let row = result[key];
-          conn.all("SELECT * FROM item", async (err, result) => {
+          conn.all("SELECT * FROM item", (err, result) => {
             if (err) throw err;
             req.session.username = row.firstName + " " + row.lastName;
             req.session.address = `${row.region}, ${row.city}, ${row.resAddress}`;
@@ -161,9 +175,38 @@ app.get("/dashboard", (req, res) => {
 
 app.get("/cart", (req, res) => {
   const name = req.session.username;
+  if (req.session.username) {
+    res.render("cart", { name });
+  } else {
+    res.redirect("/login")
+  }
   // const name = "Steve";
-  res.render("cart", { name });
+  
 });
+
+app.get("/my-orders", (req, res) => {
+  if (req.session.username) {
+    res.render("order");
+  } else {
+    res.redirect("/login");
+  }
+});
+
+app.post("/register", (req, res) => {
+  const user = {
+    firstName: req.body.fname,
+    lastName: req.body.lname,
+    email: req.body.email,
+    phone: req.body.phone,
+    city: req.body.city,
+    address: req.body.address,
+    password: req.body.password,
+  };
+  const query = `SELECT * FROM user WHERE email`
+})
+
+app.get("/refer:id")
+
 
 app.get("/search", (req, res) => {
   const name = req.session.username;
