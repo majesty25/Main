@@ -75,13 +75,33 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 #login-btn:hover {
+  background-color: dodgerblue;
+  color: white;
+}
+
+#prepaid-btn {
+  background-color: rgb(228, 227, 227);
+  border-radius: 4px;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding-left: 2px;
+  padding-right: 2px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+}
+
+#prepaid-btn:hover {
   background-color: dodgerblue;
   color: white;
 }
@@ -96,13 +116,34 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 #signup-btn:hover {
+  background-color: rgb(209, 209, 209);
+  color: black;
+}
+
+#invite-btn {
+  background-color: orangered;
+  border-radius: 4px;
+  color: white;
+  border: none;
+  padding: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+}
+
+#invite-btn:hover {
   background-color: rgb(209, 209, 209);
   color: black;
 }
@@ -116,9 +157,13 @@
 
 #user-contact {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  margin-top: 12px;
+  margin-top: 5px;
+  
   font-weight: bold;
   color: orangered;
+  background-color: rgb(241, 241, 241);
+  padding: 5px;
+  border-radius: 15px;
 }
 
 #topmost-right {
@@ -131,7 +176,8 @@
   margin-right: 0.5%;
   justify-content: space-between;
   align-items: stretch;
-  background-color: rgba(199, 194, 194, 0);
+  /* background-color: rgba(199, 194, 194, 0); */
+  background-color: rgb(255, 255, 255);
 }
 #flash-deals {
   /* margin-bottom: 5px; */
@@ -227,6 +273,8 @@
 }
 
 #image-btn {
+  width: 100%;
+  
   border: none;
   padding: 0px;
   margin: 0px;
@@ -240,8 +288,8 @@
   font-size: 16px;
 }
 
-#new-price {
-  font-size: 16px;
+#new-price {  
+  font-size: 16 px;
   margin-left: 10px;
   font-weight: bold;
   color: orangered;
