@@ -1,73 +1,82 @@
 <!-- <div id="header-container"> -->
 <!-- MAIN HEADER -->
+<script>
+  function showAccount() {
+    document.querySelector("#pop").style.display = "block";
+  }
+
+  function hideAccount() {
+    document.querySelector("#pop").style.display = "none";
+  }
+</script>
 <header>
   <!-- <div id="open-nav">&#9776;</div> -->
   <div id="logo">
     <a href="/">
-      <img style="width: 100%" src="../font/log.png" alt="" srcset=""
-    /></a>
+      <img style="width: 100%" src="../font/log.png" alt="" srcset="" /></a>
   </div>
   <form id="search-form" autocomplete="off">
     <div class="autocomplete">
-      <input
-        id="myInput"
-        type="text"
-        name="myCountry"
-        placeholder="I'm looking for..."
-      />
+      <input id="myInput" type="text" name="myCountry" placeholder="I'm looking for..." />
     </div>
     <input type="submit" value="search" />
     <!-- <a href="/"><i style="font-size: 22px; margin-left: 10%;" class="mdi mdi-96px mdi-rotate-60 mdi-help-circle-outline"></i></a> -->
   </form>
-  <a href="/cart"
-    ><i
-      style="font-size: 22px"
-      class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"
-    ></i
-    ><label id="cart-label" for="">3</label></a
-  >
-  <!-- <a href="/"><i class='fab fa-opencart' style='font-size:18px;margin-left: 0px;'></i></a> -->
-  <%if (locals.name){ %>
-  <a href="/"
-    ><i
-      class="far fa-user-circle"
-      style="font-size: 18px; margin-left: 30px"
-    ></i
-  ></a>
-  <% } else { %>
-  <a href="/login"
+  <a href="/cart"><i style="font-size: 22px" class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"></i><label
+      id="cart-label" for="">3 carts</label></a>
+
+
+  <i id="USER" onmouseover="showAccount()" class="far fa-user-circle" style="font-size: 18px; margin-left: 30px"></i>
+
+  <!-- <a href="/login"
     ><i class="far fa-user" style="font-size: 18px; margin-left: 30px"></i
-  ></a>
-  <%}%>
+  ></a> -->
+
 </header>
+
+<div id="pop" onmouseover="showAccount()" onmouseout="hideAccount()">
+  <form action="/" method="get">
+    <button type="submit" id="user-btn"><i style="margin-right: 5px;" class="mdi  mdi-account-outline"></i> Account</button>
+  </form>
+  <form action="my-orders" method="get">
+    <button id="user-btn"><i style="margin-right: 5px;" class="mdi mdi-cart-arrow-down"></i> My orders</button>
+  </form> 
+
+   <form action="my-orders" method="get">
+    <button id="user-btn"><i style="margin-right: 5px;" class="mdi mdi-message-question-outline"></i> Help center</button>
+  </form>
+ 
+  <% if (locals.name){ %>
+    <form action="/logout" method="get">
+      <button id="user-btn"><i style="margin-right: 5px;" class="mdi mdi-logout"></i> Log out</button>
+    </form>
+     
+  <%} else{ %>
+    <form action="/login" method="get">
+      <button id="user-btn"><i style="margin-right: 5px;" class="mdi mdi-login"></i> Log in</button>
+    </form>
+     
+  <%}%>
+  <!-- <button id="user-btn"></button> -->
+</div>
 
 <div id="subhead">
   <%- include("side-panel")%>
   <div id="logo-small">
     <a href="/">
-      <img style="width: 100%" src="../font/log.png" alt="" srcset=""
-    /></a>
+      <img style="width: 100%" src="../font/log.png" alt="" srcset="" /></a>
   </div>
-  <a href="/search"
-    ><i class="fab fa-sistrix" style="font-size: 18px; margin-left: 0px"></i
-  ></a>
-  <a href="/cart"
-    ><i
-      style="font-size: 22px"
-      class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"
-      ><label id="cart-label" for="">3</label></i
-    ></a
-  >
-  <%if (locals.name){ %>
-  <a href="/"
-    ><i
-      class="far fa-user-circle"
-      style="font-size: 18px; margin-left: 30px"
-    ></i
-  ></a>
-  <% } else { %>
-  <a href="/login"
-    ><i class="far fa-user" style="font-size: 18px; margin-left: 30px"></i
-  ></a>
-  <%}%>
+  <a href="/search"><i class="fab fa-sistrix" style="font-size: 18px; margin-left: 0px"></i></a>
+  <a href="/cart"><i style="font-size: 22px" class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"><label id="cart-label"
+        for="">3</label></i></a>
+  <!-- <%if (locals.name){ %> -->
+  <i class="far fa-user-circle" id="USER" style="font-size: 18px; margin-left: 30px"></i>
+
+
+  <!-- <% }
+   else { %> -->
+  <!-- <a href="/login"
+    ><i id="USER" class="far fa-user" style="font-size: 18px; margin-left: 30px"></i
+  ></a> -->
+  <!-- <%}%> -->
 </div>
