@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/header.css" />
     <!-- <link rel="stylesheet" href="../css/home.css" /> -->
     <link rel="stylesheet" href="../css/cart.css" />
-    <link rel="stylesheet" href="../css/side-panel.css" />
+    <!-- <link rel="stylesheet" href="../css/side-panel.css" /> -->
     <title>Document</title>
   </head>
   <body>
@@ -25,8 +25,8 @@
             <span id="cart-det">
               <div id="name-price">
                 <span id="name">item name</span>
-                <span id="price">GHS 3788.00</span>
-                <span id="quantity">X2</span>
+                <span id="price">GHS 3788.00  <span id="quantity">X2</span></span>
+                <!-- <span id="quantity">X2</span> -->
               </div>
               <div id="add">
                 <button id="qty" class="qty dec" onclick="decreaseQuantity()">
@@ -40,10 +40,11 @@
             </span>
           </div>
           <div id="cart-sec-2">
+            
+            <span id="status">In stock</span>
             <span id="remove">
               <button id="remove-btn" type="submit">Remove</button>
             </span>
-            <span id="status">In stock</span>
           </div>
         </span>
 
