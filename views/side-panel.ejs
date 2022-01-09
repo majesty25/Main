@@ -1,175 +1,149 @@
 <link rel="stylesheet" href="../css/base.css" />
 <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
-<link
-  rel="stylesheet"
-  href="../material-icons/css/materialdesignicons.min.css"
-  media="all"
-/>
-
+<link rel="stylesheet" href="../material-icons/css/materialdesignicons.min.css" media="all" />
 <div id="mySidenav" class="sidenav">
-  <span id="cat-top" class="closebtn" onclick="closeNav()"
-    ><div></div>
-    <div style="margin-left: 100%; font-weight: bold">&times;</div></span
-  >
+  <span id="cat-top" class="closebtn" onclick="closeNav()">
+    <div></div>
+    <div style="margin-left: 100%; font-weight: bold">&times;</div>
+  </span>
   <div id="category">
     <h1 id="cat-head">
-      <i
-        style="font-size: 24px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-view-list"
-      ></i>
-      <span> CATEGORIES</span>
+      <i style="font-size: 24px" class="mdi mdi-96px mdi-rotate-0 mdi-view-list"></i>
+      <span>MY EXSALE</span>
     </h1>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
-      ></i>
-      Fassion
-    </li>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"
-      ></i
-      >Super market
-    </li>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
-      ></i
-      >Phones & Accessories
-    </li>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"
-      ></i
-      >Computers
-    </li>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
-      ></i
-      >Home
-    </li>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-spin mdi-rotate-0 mdi-dots-circle"
-      ></i
-      >Fassion
-    </li>
-  </div>
-  <br />
-  <div>
-    <h1 id="cat-head">
-      <i
-        style="font-size: 24px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-view-list"
-      ></i>
-      <span> CATEGORIES</span>
-    </h1>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
-      ></i>
-      Fassion
-    </li>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"
-      ></i
-      >Super market
-    </li>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
-      ></i
-      >Phones & Accessories
-    </li>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"
-      ></i
-      >Computers
-    </li>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
-      ></i
-      >Home
-    </li>
-    <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-spin mdi-rotate-0 mdi-dots-circle"
-      ></i
-      >Fassion
-    </li>
-  </div>
 
+    <% if (locals.name){ %>
+      <div id="greeting">
+        <div id="user-greeting">Hi, <%=name%></div>
+        <div id="user-greeting">WELCOME TO EXSALE</div>
+        <!-- <hr> -->
+      </div>
+
+      <% }else{ %>
+        <div id="greeting">
+          <div id="user-greeting">Hi, cherished customer</div>
+          <div id="user-greeting">WELCOME TO EXSALE</div>
+          <!-- <hr> -->
+        </div>
+
+        <% } %>
+          
+          <form action="/" method="get">
+            <button type="submit" id="cat">
+              <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-wallet-outline"></i>
+              Prepaid: 00.0
+            </button>
+          </form>
+
+          <form action="/" method="get">
+            <button type="submit" id="cat">
+              <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-account-plus-outline"></i>
+              Invite
+            </button>
+          </form>
+
+          <form action="/" method="get">
+            <button type="submit" id="cat">
+              <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-account-outline"></i>
+              Account
+            </button>
+          </form>
+
+          <form action="/my-orders" method="get">
+            <button type="submit" id="cat">
+              <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-cart-arrow-down"></i>
+              My orders
+            </button>
+          </form>
+
+          <form action="/" method="get">
+            <button type="submit" id="cat">
+              <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-message-question-outline"></i>
+              Help center
+            </button>
+          </form>
+
+          <% if (locals.name){ %>
+            <form action="/logout" method="get">
+              <button type="submit" id="cat">
+                <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-logout"></i>
+                Log out
+              </button>
+            </form>
+
+            <% }else{ %>
+              <form action="/login" method="get">
+                <button type="submit" id="cat">
+                  <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-login"></i>
+                  Log in
+                </button>
+              </form>
+
+              <% } %>
+  </div>
+  <!-- <br> -->
   <div>
     <h1 id="cat-head">
-      <i
-        style="font-size: 24px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-view-list"
-      ></i>
+      <i style="font-size: 24px" class="mdi mdi-96px mdi-rotate-0 mdi-view-list"></i>
       <span> CATEGORIES</span>
     </h1>
     <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
-      ></i>
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
       Fassion
     </li>
     <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"
-      ></i
-      >Super market
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"></i>
+      Super market
     </li>
     <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
-      ></i
-      >Phones & Accessories
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"></i>
+      Phones & Accessories
     </li>
     <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"
-      ></i
-      >Computers
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"></i>
+      Computers
     </li>
     <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
-      ></i
-      >Home
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+      Home
     </li>
     <li id="cat">
-      <i
-        style="font-size: 20px"
-        class="mdi mdi-96px mdi-spin mdi-rotate-0 mdi-dots-circle"
-      ></i
-      >Fassion
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-dots-circle"></i>
+      Fassion
+    </li>
+  </div>
+  <div>
+    <h1 id="cat-head">
+      <i style="font-size: 24px" class="mdi mdi-96px mdi-rotate-0 mdi-view-list"></i>
+      <span> CATEGORIES</span>
+    </h1>
+    <li id="cat">
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+      Fassion
+    </li>
+    <li id="cat">
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"></i>
+      Super market
+    </li>
+    <li id="cat">
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"></i>
+      Phones & Accessories
+    </li>
+    <li id="cat">
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"></i>
+      Computers
+    </li>
+    <li id="cat">
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+      Home
+    </li>
+    <li id="cat">
+      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-dots-circle"></i>
+      Fassion
     </li>
   </div>
 </div>
-
 <span id="open-nav" onclick="openNav()">&#9776;</span>
-
 <script>
   function openNav() {
     document.getElementById("mySidenav").style.width = "80%";
