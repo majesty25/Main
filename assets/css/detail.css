@@ -1,11 +1,10 @@
-#container-main{
+#container-main {
   display: flex;
   flex-direction: row;
   /* justify-content: space-evenly; */
-  
 }
 
-#left-container{
+#left-container {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
@@ -13,7 +12,7 @@
   margin-left: 5.5%;
 }
 
-#right-container{
+#right-container {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
@@ -30,7 +29,7 @@
   flex-direction: row;
   justify-content: space-around;
   background-color: white;
-  box-shadow: 0px 1px 4px 1px silver; 
+  box-shadow: 0px 1px 4px 1px silver;
 }
 
 #main-pic {
@@ -38,12 +37,12 @@
   /* border-radius: 100px; */
 }
 
-#open-nav{
+#open-nav {
   /* display: none; */
 }
 
 #buy-info {
-  width: auto;
+  width: 45%;
   height: auto;
   background-color: rgb(255, 255, 255);
   display: flex;
@@ -63,27 +62,34 @@
   display: flex;
   background-color: white;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   padding: 10px;
   margin-bottom: 10px;
   /* border-left: 1px silver solid; */
-  box-shadow: 0px 1px 4px 1px silver;  
+  box-shadow: 0px 1px 4px 1px silver;
   /* justify-content: center; */
+}
+
+#seller-name{
+  font-size: 17px;
+  font-weight: bold;
 }
 
 #del-info-1 {
   margin-top: 20px;
   margin-bottom: 10px;
   font-weight: bold;
-  font-size: 21px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 19px;
+  width: 100%;
+  border-bottom: 1px silver solid;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 #del-info-2 {
   margin-top: 10px;
   margin-bottom: 0px;
   font-weight: 3000;
   font-size: 14px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #del-info-1 {
@@ -101,7 +107,7 @@
   border-radius: 4px;
   margin-bottom: 0px;
   padding: 5px;
-  box-shadow: 0px 1px 4px 1px silver; 
+  box-shadow: 0px 1px 4px 1px silver;
 }
 
 #further-info {
@@ -118,7 +124,7 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  box-shadow: 0px 1px 4px 1px silver; 
+  box-shadow: 0px 1px 4px 1px silver;
   /* justify-content: space-evenly; */
 }
 
@@ -148,7 +154,7 @@
   margin-left: 30px;
   font-size: 20px;
   color: rgb(3, 3, 14);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #old-price {
@@ -198,9 +204,9 @@
   flex-wrap: wrap;
   justify-content: flex-start;
 }
-.choose-color{
+.choose-color {
   font-size: 16px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-right: 5px;
 }
 
@@ -235,7 +241,6 @@
   margin-top: 20px;
   justify-content: center;
   margin-left: 30px;
-
 }
 
 #qty {
@@ -290,9 +295,9 @@
 #other-pics-img {
   width: 50%;
   /* height: 70%; */
-} 
+}
 
-.further-info{
+.further-info {
   width: 45%;
   border: 1px rgb(226, 224, 224) solid;
   border-radius: 3px;
@@ -300,7 +305,7 @@
   margin-left: 2.5%;
 }
 
-.further-info-head{
+.further-info-head {
   font-weight: bold;
   font-size: 18px;
   border-bottom: 1px rgb(233, 233, 233) solid;
@@ -310,12 +315,11 @@
   align-items: center;
 }
 
-.further-info-content{
+.further-info-content {
   padding: 20px;
 }
 
-#spec{
-  
+#spec {
   /* padding-left: 50px;
   padding-right: 50px; */
 }
@@ -339,7 +343,7 @@
     border-bottom: 1px silver solid;
   }
 
-  #add{
+  #add {
     margin-left: 15%;
     width: 70%;
   }
@@ -351,18 +355,17 @@
     padding-bottom: 10px;
     border: none;
     border-bottom: 1px silver solid;
-    
   }
-  #container-main{
+  #container-main {
     flex-direction: column;
   }
 
-  #left-container{
+  #left-container {
     width: 100%;
     margin-left: 0%;
   }
 
-  #right-container{
+  #right-container {
     width: 100%;
     margin-left: 0%;
   }
@@ -399,7 +402,7 @@
     margin: 0px;
   }
 
-  .further-info{
+  .further-info {
     width: 98%;
     margin-left: 0px;
   }
@@ -414,7 +417,7 @@
     /* justify-content: space-between; */
   }
 
-  #new-price{
+  #new-price {
     margin-left: 0px;
   }
 
