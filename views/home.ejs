@@ -46,8 +46,14 @@
         <div id="text-1">
           <div id="user-greeting-1">Hi, <%=name%></div>
           <div id="user-greeting-1">WELCOME TO EXSALE</div>
-          <div id="user-contact">nyankson25@gmail.com</div>
-          <div id="user-contact">+233555089255</div>
+          <!-- <div id="user-contact">nyankson25@gmail.com</div> -->
+          <div id="sign">
+            <button id="prepaid-btn">
+              <i style="font-size: 16px" class="mdi mdi-wallet-outline"></i>Prepaid: 00.0
+            </button>
+          <div id="invite-btn"><i style="font-size: 16px" class="mdi mdi-account-plus-outline"></i> Invite</div>
+          </div>
+          
         </div>
 
         <%} else{ %>
@@ -57,10 +63,10 @@
           <div id="user-greeting-1">WELCOME TO EXSALE</div>
           <div id="sign">
             <form action="/login" method="get">
-              <button id="login-btn">Log in</button>
+              <button id="login-btn"><i style="font-size: 16px" class="mdi mdi-96px mdi-rotate-0 mdi-login"></i> Log in</button>
             </form>
             <form action="/signup" method="get">
-              <button id="signup-btn">Join</button>
+              <button id="signup-btn"><i style="font-size: 16px" class="mdi mdi-16px mdi-rotate-0 mdi-account-plus-outline"></i>  Join</button>
             </form>
           </div>
         </div>
@@ -134,7 +140,10 @@
       <form action="/detail" method="post">
         <input type="hidden" name="id" value="<%=row.id%>" />
         <button id="image-btn">
-          <img id="img1" src="../font/<%=row.pic%>" alt="" srcset="" />
+          <!-- <div id="bbb">
+            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+          </div>           -->
+          <img id="img1" src="../font/<%=row.pic%>" alt="" srcset=""/>
         </button>
       </form>
       <div id="item-name"><%=row.name%></div>
@@ -307,8 +316,11 @@
             <div id="item"></div>
             <div id="item"></div> -->
     <!-- <div id="item"></div> -->
+    <%- include("footer")%>
   </div>
+  
   </div>
+  
 </body>
 
 </html>
