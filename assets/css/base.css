@@ -48,6 +48,8 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  border: none;
+  background-color: white;
 }
 
 #cat:hover {
@@ -94,6 +96,18 @@ li {
   flex-direction: column;
 }
 
+#greeting{
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px silver solid;
+}
+
+#user-greeting{
+  font-size: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  margin-left:5%;
+}
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
