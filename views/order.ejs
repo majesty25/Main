@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/order.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include("header")%>
+
+    <div id="main-container">
+      <div id="container-head">
+        <span id="pending">PENDING</span>
+        <!-- <span id="delivered">CONFIRMED</span> -->
+        <span id="delivered">DELIVERED</span>
+      </div>
+      <div id="orders">
+        <div class="order">
+          <div id="order-head">
+              <span id="ID">ID:293049344389</span>
+              <span id="date">24/03/2022</span>
+          </div>
+          <div id="order">
+            <div id="order-img">
+                <img id="IMG" src="../font/lap5.jpg" alt="" srcset="">
+            </div>
+            <div id="order-det">
+              <div id="sec1">
+                  <div id="name">item's name</div>
+                  <div id="others">
+                      <span id="qty">X3</span>
+                      <span id="vty">red</span>
+                    </div>
+              </div>
+              <div id="sec2">
+                  <button>Pending</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
