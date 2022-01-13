@@ -108,13 +108,7 @@
           </div>
         </span>
 
-        <span id="checkout-sec">
-          <div id="prepaid">EXSALE prepaid</div>
-          <div id="total">Total: GHS 56387.00</div>
-          <div id="checkout">
-            <button id="checkout-btn" type="submit">Checkout</button>
-          </div>
-        </span>
+        
       </div>
       <div id="cart-summary">
         <span id="cart-summary-head">Cart's summary</span>
@@ -129,15 +123,33 @@
         </span>
 
         <span id="price-summary">
+          <div id="price-label">Prepaid</div>
+          <div id="price-info">GHS 00.00</div>
+        </span>
+
+        <span id="price-summary">
           <div id="total-label">Total</div>
           <div id="price-total">GHS 2883</div>
         </span>
 
         <div id="del-address-head">Delivery address</div>
         <div id="del-address">Cape Coast, UCC, Casford hall, room 54</div>
-        <button id="address-btn" type="submit">Change address</button>
+        <form action="/account" method="get">
+          <button id="address-btn" type="submit">Change address</button>
+        </form>
+        
       </div>
     </div>
+
+    <span id="checkout-sec">
+          <div id="prepaid">EXSALE prepaid: 200.0</div>
+          <div id="total">Total: GHS 56387.00</div>
+          <div id="checkout">
+            <form id="checkout-btn" action="/payment" method="get">
+             <button id="checkout-btn" type="submit">Checkout</button>
+            </form> 
+          </div>
+        </span>
   </body>
 
   <script src="../js/search.js"></script>
