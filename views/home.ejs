@@ -26,15 +26,44 @@
           <i style="font-size: 24px" class="mdi mdi-96px mdi-rotate-0 mdi-view-list"></i>
           <span> CATEGORIES</span>
         </h1>
-        <li id="cat">
-          <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          Fassion
-        </li>
-        <li id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"></i>Super market</li>
-        <li id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"></i>Phones & Accessories</li>
-        <li id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"></i>Computers</li>
-        <li id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>Home</li>
-        <li id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-spin mdi-rotate-0 mdi-dots-circle"></i>Fassion</li>
+       <form action="/" method="post">
+          <input type="hidden" name="cat" value="1">
+          <button id="cat">
+            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i> Fassion
+          </button>
+
+        </form>
+        <form action="/" method="post">
+          <input type="hidden" name="cat" value="2">
+          <button type="submit" id="cat"><i style="font-size: 20px"
+              class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"></i>Super market
+          </button>
+        </form>
+
+        <form action="/" method="post">
+          <input type="hidden" name="cat" value="3">
+          <button id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"></i>Phones &
+            Accessories
+          </button>
+        </form>
+
+        <form action="/" method="post">
+          <input type="hidden" name="cat" value="4">
+          <button id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"></i>Computers
+          </button>
+        </form>
+
+        <form action="/" method="post">
+          <input type="hidden" name="cat" value="5"> 
+          <button id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>Home
+          </button>
+        </form>
+        
+        <form action="/" method="post">
+          <input type="hidden" name="cat" value="6">
+          <button id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-spin mdi-rotate-0 mdi-dots-circle"></i>Fassion
+          </button>
+        </form>
       </div>
       <div id="topmost-left">
         <img id="img1"
@@ -316,11 +345,11 @@
             <div id="item"></div>
             <div id="item"></div> -->
     <!-- <div id="item"></div> -->
-    <%- include("footer")%>
+   
   </div>
   
   </div>
-  
+   <%- include("footer")%>
 </body>
 
 </html>
