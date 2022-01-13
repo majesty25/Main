@@ -47,6 +47,16 @@ app.get("/", (req, res) => {
   });
 });
 
+app.post("/", (req, res) => {
+  const name = req.session.username;
+  const id = req.session.ID;
+  const cat = req.body.cat;
+  conn.all(`SELECT * FROM item WHERE category = '${cat}'`, (err, result) => {
+    if (err) throw err;
+    res.render("category", { result, name, id });
+  });
+});
+
 app.get("/test", (req, res) => {
   let y = conn.all("SELECT * FROM item", (err, result) => {
     if (err) throw err;
@@ -127,6 +137,31 @@ app.get("/logout", (req, res) => {
   });
 });
 
+app.get('/help', (req, res) => {
+  res.render("help")
+});
+
+app.get("/payment", (req, res) => {
+  res.render("payment");
+});
+
+app.get("/account", (req, res) => {
+  const userId = req.session.userId;
+  const name = req.session.username;
+  if (req.session.username) {
+     const query = `SELECT * FROM users WHERE id = '${userId}'`;
+     conn.all(query, (err, result) => {
+       if (err) throw err;
+       res.render("account", { result, name, userId });
+     });
+    
+  } else {
+    res.redirect("/login");
+  }
+ 
+  // res.render("account", {});
+});
+
 app.post("/dashboard", async (req, res) => {
   const user = {
     email: req.body.email,
@@ -158,6 +193,7 @@ app.post("/dashboard", async (req, res) => {
           let row = result[key];
           conn.all("SELECT * FROM item", (err, result) => {
             if (err) throw err;
+            req.session.userId = row.id;
             req.session.username = row.firstName + " " + row.lastName;
             req.session.address = `${row.region}, ${row.city}, ${row.resAddress}`;
             // let name = req.session.username;
@@ -180,8 +216,14 @@ app.get("/cart", (req, res) => {
   } else {
     res.redirect("/login")
   }
+
+  
   // const name = "Steve";
   
+});
+
+app.get("/my-carts", (req, res) => {
+  res.render("cart1");
 });
 
 app.get("/my-orders", (req, res) => {
