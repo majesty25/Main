@@ -3,6 +3,23 @@ footer{
     background-color: black;
     height: 400px;
     /* position: absolute; */
-    bottom: 0;
+    /* bottom: 0; */
     float: right;
+    display: flex;
+    flex-direction: column;
+}
+
+#footer-top{
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px silver solid;
+    /* background-color: red; */
+}
+
+#footer-bottom{
+    width: 100%;
+    height: 30%;
+    /* background-color: yellow; */
 }
