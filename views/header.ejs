@@ -13,49 +13,81 @@
   <!-- <div id="open-nav">&#9776;</div> -->
   <div id="logo">
     <a href="/">
-      <img style="width: 100%" src="../font/log.png" alt="" srcset="" /></a>
+      <img style="width: 100%" src="../font/log.png" alt="" srcset=""
+    /></a>
   </div>
   <form id="search-form" autocomplete="off">
     <div class="autocomplete">
-      <input id="myInput" type="text" name="myCountry" placeholder="I'm looking for..." />
+      <input
+        id="myInput"
+        type="text"
+        name="myCountry"
+        placeholder="I'm looking for..."
+      />
     </div>
     <input type="submit" value="search" />
     <!-- <a href="/"><i style="font-size: 22px; margin-left: 10%;" class="mdi mdi-96px mdi-rotate-60 mdi-help-circle-outline"></i></a> -->
   </form>
-  <a href="/cart"><i style="font-size: 22px" class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"></i><label
-      id="cart-label" for="">3 carts</label></a>
+  <a href="/cart"
+    ><i
+      style="font-size: 22px"
+      class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"
+    ></i>
+    <label id="cart-label" for="">
+      <%if (locals.carts){ %> <%Object.keys(carts).forEach(key => { const sum =
+      carts[key]; if (sum.total == 0){ }else if (sum.total == 1){ %>
+      <%=sum.total%>cart <% }else{ %> <%=sum.total%>carts <% } %> <% })%> <%
+      }else{ %> <% }%>
+      <!-- 3 carts -->
+    </label>
+  </a>
 
-
-  <i id="USER" onmouseover="showAccount()" class="far fa-user-circle" style="font-size: 18px; margin-left: 30px"></i>
+  <i
+    id="USER"
+    onmouseover="showAccount()"
+    class="far fa-user-circle"
+    style="font-size: 18px; margin-left: 30px"
+  ></i>
 
   <!-- <a href="/login"
     ><i class="far fa-user" style="font-size: 18px; margin-left: 30px"></i
   ></a> -->
-
 </header>
 
 <div id="pop" onmouseover="showAccount()" onmouseout="hideAccount()">
   <form action="/account" method="get">
-    <button type="submit" id="user-btn"><i style="margin-right: 5px;" class="mdi  mdi-account-outline"></i> Account</button>
+    <button type="submit" id="user-btn">
+      <i style="margin-right: 5px" class="mdi mdi-account-outline"></i> Account
+    </button>
   </form>
   <form action="/my-orders" method="get">
-    <button id="user-btn"><i style="margin-right: 5px;" class="mdi mdi-cart-arrow-down"></i> My orders</button>
-  </form> 
-
-   <form action="/help" method="get">
-    <button id="user-btn"><i style="margin-right: 5px;" class="mdi mdi-message-question-outline"></i> Help center</button>
+    <button id="user-btn">
+      <i style="margin-right: 5px" class="mdi mdi-cart-arrow-down"></i> My
+      orders
+    </button>
   </form>
- 
+
+  <form action="/help" method="get">
+    <button id="user-btn">
+      <i style="margin-right: 5px" class="mdi mdi-message-question-outline"></i>
+      Help center
+    </button>
+  </form>
+
   <% if (locals.name){ %>
-    <form action="/logout" method="get">
-      <button id="user-btn"><i style="margin-right: 5px;" class="mdi mdi-logout"></i> Log out</button>
-    </form>
-     
+  <form action="/logout" method="get">
+    <button id="user-btn">
+      <i style="margin-right: 5px" class="mdi mdi-logout"></i> Log out
+    </button>
+  </form>
+
   <%} else{ %>
-    <form action="/login" method="get">
-      <button id="user-btn"><i style="margin-right: 5px;" class="mdi mdi-login"></i> Log in</button>
-    </form>
-     
+  <form action="/login" method="get">
+    <button id="user-btn">
+      <i style="margin-right: 5px" class="mdi mdi-login"></i> Log in
+    </button>
+  </form>
+
   <%}%>
   <!-- <button id="user-btn"></button> -->
 </div>
@@ -64,19 +96,32 @@
   <%- include("side-panel")%>
   <div id="logo-small">
     <a href="/">
-      <img style="width: 100%" src="../font/log.png" alt="" srcset="" /></a>
+      <img style="width: 100%" src="../font/log.png" alt="" srcset=""
+    /></a>
   </div>
-  <a href="/search"><i class="fab fa-sistrix" style="font-size: 18px; margin-left: 0px"></i></a>
-  <a href="/cart"><i style="font-size: 22px" class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"><label id="cart-label"
-        for="">3</label></i></a>
-  <!-- <%if (locals.name){ %> -->
-  <i class="far fa-user-circle" id="USER" style="font-size: 18px; margin-left: 30px"></i>
+  <a href="/search"
+    ><i class="fab fa-sistrix" style="font-size: 18px; margin-left: 0px"></i
+  ></a>
+  <a href="/cart"
+    ><i
+      style="font-size: 22px"
+      class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"
+      ><label id="cart-label" for="">
+        <%if (locals.carts){ %> <%Object.keys(carts).forEach(key => { const sum
+        = carts[key]; if (sum.total == 0){ }else if (sum.total == 1){ %>
+        <%=sum.total%> <% }else{ %> <%=sum.total%> <% } %> <% })%> <% }else{ %>
+        <% }%>
+      </label>
+    </i>
+  </a>
+ 
+  <i
+    class="far fa-user-circle"
+    id="USER"
+    style="font-size: 18px; margin-left: 0px"
+  ></i>
 
 
-  <!-- <% }
-   else { %> -->
-  <!-- <a href="/login"
-    ><i id="USER" class="far fa-user" style="font-size: 18px; margin-left: 30px"></i
-  ></a> -->
-  <!-- <%}%> -->
 </div>
+
+<script src="../js/search.js"></script>
