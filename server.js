@@ -9,11 +9,13 @@ const socket = require("socket.io");
 const Mailer = require("nodemailer");
 const sqlite = require("sqlite3").verbose();
 const path = require("path");
-const { ItemDetailInfo } = require("./classes");
-// const s = require("df");
 
 const conn = new sqlite.Database("./majesty.db");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 const port = 3000;
 app.use(
   session({
@@ -38,80 +40,376 @@ app.use(
   )
 );
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   const name = req.session.username;
   const id = req.session.ID;
-  conn.all("SELECT * FROM item", (err, result) => {
-    if (err) throw err;
-    res.render("home", { result, name, id });
+  const userId = req.session.userId;
+  const query1 = `SELECT SUM(quantity) as total FROM cart
+                  WHERE userId = '${userId}'`;
+  await conn.all("SELECT * FROM item", async (err, result) => {
+    if (err) {
+      throw err;
+    } else {
+      await conn.all(query1, (error, carts) => {
+        if (error) {
+          throw error;
+        } else {
+          res.render("home", {
+            result,
+            name,
+            id,
+            carts,
+          });
+        }
+      });
+    }
   });
 });
 
-app.post("/", (req, res) => {
+app.post("/", async (req, res) => {
   const name = req.session.username;
   const id = req.session.ID;
   const cat = req.body.cat;
-  conn.all(`SELECT * FROM item WHERE category = '${cat}'`, (err, result) => {
-    if (err) throw err;
-    res.render("category", { result, name, id });
-  });
+  await conn.all(
+    `SELECT * FROM item WHERE category = '${cat}'`,
+    async (err, result) => {
+      if (err) throw err;
+      res.render("category", {
+        result,
+        name,
+        id,
+      });
+    }
+  );
 });
 
 app.get("/test", (req, res) => {
-  let y = conn.all("SELECT * FROM item", (err, result) => {
+  function ghana(err, result) {
     if (err) throw err;
     return result;
-  });
+  }
+  let y = conn.all("SELECT * FROM item");
 
-  const ty = new ItemDetailInfo(y);
-  res.send(ty.db(result));
+  console.log(y);
 });
 
-app.post("/detail", (req, res) => {
+app.post("/detailk", (req, res) => {
   const id = req.body.id;
   const name = req.session.username;
   const address = req.session.address;
-  conn.all(`SELECT * FROM item WHERE id = ${id}`, function (err, result) {
-    conn.all(
-      `SELECT * FROM review WHERE itemId = ${id}`,
-      function (err, reviewOutput) {
-        if (err) throw err;
-        conn.all(
-          `SELECT * FROM keyfeatures WHERE itemId = ${id}`,
-          function (err, keyfeaturesOutput) {
-            if (err) throw err;
-            conn.all(
-              `SELECT * FROM specifications WHERE itemId = ${id}`,
-              function (err, specOutput) {
-                if (err) throw err;
-                conn.all(`SELECT * FROM users`, function (err, packageOutput) {
+  const today1 = new Date();
+  const today2 = new Date();
+  const currentDay1 = today1.getDate();
+  const currentDay2 = today2.getDate();
+  // Where will be three weeks in the future?
+  const newDate1 = today1.setDate(currentDay1 + 3);
+  const newDate2 = today2.setDate(currentDay2 + 8);
+  const startDate = `${today1.toDateString().slice(0, 10)}`;
+  const endDate = `${today2.toDateString().slice(0, 10)}`;
+  conn.all(
+    `SELECT * FROM otherpics WHERE itemId = ${id}`,
+    function (err, otherpicsOutput) {
+      conn.all(
+        `SELECT * FROM review WHERE itemId = ${id}`,
+        function (err, reviewOutput) {
+          if (err) throw err;
+          conn.all(
+            `SELECT * FROM keyfeatures WHERE itemId = ${id}`,
+            function (err, keyfeaturesOutput) {
+              if (err) throw err;
+              conn.all(
+                `SELECT * FROM specifications WHERE itemId = ${id}`,
+                function (err, specOutput) {
                   if (err) throw err;
                   conn.all(
-                    `SELECT * FROM otherpics WHERE itemId = ${id}`,
-                    function (err, otherpicsOutput) {
+                    `SELECT * FROM users`,
+                    function (err, packageOutput) {
                       if (err) throw err;
-                      res.render("detail", {
-                        reviewOutput,
-                        id,
-                        result,
-                        keyfeaturesOutput,
-                        specOutput,
-                        packageOutput,
-                        otherpicsOutput,
-                        name,
-                        address,
-                      });
+                      conn.all(
+                        `SELECT * FROM item WHERE id = ${id}`,
+                        function (err, result) {
+                          if (err) throw err;
+                          Object.keys(result).forEach((key) => {
+                            const variety = result[key];
+                            const len = variety.varieties;
+                            if (len === "default") {
+                              res.render("detail", {
+                                reviewOutput,
+                                id,
+                                result,
+                                keyfeaturesOutput,
+                                specOutput,
+                                packageOutput,
+                                otherpicsOutput,
+                                name,
+                                address,
+                                startDate,
+                                endDate,
+                              });
+                            } else if (len.length > 0) {
+                              console.log(len);
+                              const varieties = len.split(", ");
+                              const num = varieties.length;
+
+                              res.render("detail", {
+                                reviewOutput,
+                                id,
+                                result,
+                                keyfeaturesOutput,
+                                specOutput,
+                                packageOutput,
+                                otherpicsOutput,
+                                name,
+                                address,
+                                startDate,
+                                endDate,
+                                varieties,
+                                num,
+                              });
+                            } else if (len == "default") {
+                              console.log(toString(len));
+                              const varieties = [];
+                              varieties.length = 0;
+                              // const num = varieties.length;
+
+                              res.render("detail", {
+                                reviewOutput,
+                                id,
+                                result,
+                                keyfeaturesOutput,
+                                specOutput,
+                                packageOutput,
+                                otherpicsOutput,
+                                name,
+                                address,
+                                startDate,
+                                endDate,
+                                varieties,
+                                num,
+                              });
+                            }
+                          });
+                        }
+                      );
                     }
                   );
-                });
-              }
-            );
-          }
-        );
-      }
-    );
-    if (err) throw err;
+                }
+              );
+            }
+          );
+        }
+      );
+      if (err) throw err;
+    }
+  );
+});
+
+app.post("/detail", async (req, res) => {
+  const id = req.body.id;
+  const name = req.session.username;
+  const userId = req.session.userId;
+  const address = req.session.address;
+  const today1 = new Date();
+  const today2 = new Date();
+  const currentDay1 = today1.getDate();
+  const currentDay2 = today2.getDate();
+  today1.setDate(currentDay1 + 3);
+  today2.setDate(currentDay2 + 8);
+  const startDate = `${today1.toDateString().slice(0, 10)}`;
+  const endDate = `${today2.toDateString().slice(0, 10)}`;
+  const query1 = `SELECT * FROM item WHERE id = ${id}`;
+  const query2 = `SELECT * FROM review WHERE itemId = ${id}`;
+  const query3 = `SELECT SUM(quantity) as total FROM cart
+                  WHERE userId = '${userId}'`;
+
+  conn.all(query3, (error, carts) => {
+    if (error) {
+      throw error;
+    } else {
+      conn.all(query1, async (err, result) => {
+        if (err) {
+          throw err;
+        } else {
+          Object.keys(result).forEach((key) => {
+            const data = result[key];
+            const variety = data.varieties;
+            const spec = data.specifications.split(",");
+            const keyFeat = data.specifications.split(",");
+            const otherPics = data.otherpics.split(", ");
+            if (variety == "default") {
+              res.render("detail", {
+                result,
+                id,
+                spec,
+                keyFeat,
+                otherPics,
+                startDate,
+                endDate,
+                carts,
+                address,
+              });
+            } else if (variety.length > 0) {
+              const varieties = variety.split(", ");
+              res.render("detail", {
+                result,
+                id,
+                varieties,
+                spec,
+                keyFeat,
+                otherPics,
+                startDate,
+                endDate,
+                carts,
+                address,
+              });
+            }
+          });
+        }
+      });
+    }
   });
+});
+
+app.post("/add-cart", async (req, res) => {
+  try {
+    const variation = await req.body.color;
+    const itemId = await req.body.id;
+    const userId = await req.session.userId;
+    const query1 = `SELECT * FROM cart 
+                    WHERE (itemId IN(${itemId}) AND userId IN(${userId}))`;
+    await conn.all(query1, async (err, results) => {
+      if (err) {
+        console.log(err);
+      } else if (Object.keys(results).length === 0) {
+        // INSERT INTO THE TABLE IF ITEM DOES NOT EXIST IN THE TABLE
+        const query2 = `INSERT INTO cart (itemId, userId, quantity, variety) 
+                        VALUES(${itemId}, ${userId}, 1, '${variation}')`;
+        await conn.run(query2, [], (err) => {
+          if (err) {
+            console.log(err);
+          }
+          console.log(variation);
+        });
+        // conn.close();
+      } else {
+        try {
+          const query = `DELETE FROM cart 
+                   WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
+          // DELETE WHEN EXIST 
+          conn.run(query, [], (errorMessage) => {
+            if (errorMessage) {
+              throw errorMessage;
+            } else {
+              console.log("Deleted!");
+            }
+          })
+          
+        } catch (error) {
+          
+        } finally {
+          const query4 = `INSERT INTO cart (itemId, userId, quantity, variety) 
+                        VALUES(${itemId}, ${userId}, 1, '${variation}')`;
+          // REINSERT AFTER DELETED
+          conn.run(query4, [], (ERR) => {
+            if (ERR) {
+              throw ERR;
+            } else {
+              console.log("Inserted!");
+            }
+          })
+          // console.log("Item already exist in your carts!");
+        }
+        
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  } finally {
+    res.redirect("/cart");
+  }
+});
+
+app.post("/delete-cart", async (req, res) => {
+  try {
+    const itemId = req.body.id;
+    const userId = req.session.userId;
+    const query = `DELETE FROM cart 
+                   WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
+    conn.run(query, [], (err) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log("Deleted!");
+      }
+    });
+  } catch (error) {
+  } finally {
+    res.redirect("/cart");
+  }
+});
+
+app.post("/increase-cart", async (req, res) => {
+  try {
+    const itemId = req.body.id;
+    const userId = req.session.userId;
+    const selectQuery = `SELECT * FROM cart
+                         WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
+
+    await conn.all(selectQuery, (err, result) => {
+      if (err) {
+        throw err;
+      } else {
+        Object.keys(result).forEach((key) => {
+          const row = result[key];
+          const qty = row.quantity;
+          const query = `UPDATE cart SET quantity = ${qty + 1}
+                         WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
+          conn.run(query, [], (error) => {
+            if (error) {
+              throw error;
+            } else {
+            }
+          });
+        });
+      }
+    });
+  } catch (error) {
+  } finally {
+    res.redirect("/cart");
+  }
+});
+
+app.post("/decrease-cart", async (req, res) => {
+  try {
+    const itemId = req.body.id;
+    const userId = req.session.userId;
+    const selectQuery = `SELECT * FROM cart
+                         WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
+
+    await conn.all(selectQuery, (err, result) => {
+      if (err) {
+        throw err;
+      } else {
+        Object.keys(result).forEach((key) => {
+          const row = result[key];
+          const qty = row.quantity;
+          if (qty > 1) {
+            const query = `UPDATE cart SET quantity = ${qty - 1}
+                         WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
+            conn.run(query, [], (error) => {
+              if (error) {
+                throw error;
+              } else {
+              }
+            });
+          }
+        });
+      }
+    });
+  } catch (error) {
+  } finally {
+    res.redirect("/cart");
+  }
 });
 
 app.get("/login", (req, res) => {
@@ -121,7 +419,10 @@ app.get("/login", (req, res) => {
     const errorMessages = req.session.message;
     const logoutMessages = req.session.log;
     const id = req.session.ID;
-    res.render("login", { errorMessages, logoutMessages });
+    res.render("login", {
+      errorMessages,
+      logoutMessages,
+    });
   }
 });
 
@@ -137,8 +438,8 @@ app.get("/logout", (req, res) => {
   });
 });
 
-app.get('/help', (req, res) => {
-  res.render("help")
+app.get("/help", (req, res) => {
+  res.render("help");
 });
 
 app.get("/payment", (req, res) => {
@@ -148,18 +449,72 @@ app.get("/payment", (req, res) => {
 app.get("/account", (req, res) => {
   const userId = req.session.userId;
   const name = req.session.username;
+
   if (req.session.username) {
-     const query = `SELECT * FROM users WHERE id = '${userId}'`;
-     conn.all(query, (err, result) => {
-       if (err) throw err;
-       res.render("account", { result, name, userId });
-     });
-    
+    const query = `SELECT * FROM users WHERE id = '${userId}'`;
+    const query1 = `SELECT SUM(quantity) as total FROM cart
+                    WHERE userId = '${userId}'`;
+    conn.all(query, (err, result) => {
+      if (err) {
+        throw err;
+      } else {
+        conn.all(query1, (error, carts) => {
+          if (error) {
+            throw error;
+          } else {
+            res.render("account", {
+              result,
+              name,
+              userId,
+              carts,
+            });
+          }
+        });
+      }
+      //  res.render("account", { result, name, userId });
+    });
   } else {
     res.redirect("/login");
   }
- 
+
   // res.render("account", {});
+});
+
+app.get("/orders", (req, res) => {
+  const name = req.session.username;
+  const userId = req.session.userId;
+  const random = Math.random() * 10000000000000;
+  const orderId = Math.floor(random);
+  const date = new Date();
+  const dataFormatted = date.toLocaleDateString();
+
+  const selectQuery = `SELECT * FROM cart WHERE userId = '${userId}'`;
+
+  try {
+    conn.all(selectQuery, (err, carts) => {
+      if (err) {
+        throw err;
+      } else {
+        Object.keys(carts).forEach((key) => {
+          const cart = carts[key];
+          const insertQuery = `INSERT INTO orders(itemId, orderId, userId, date, quantity, variety)
+                             VALUES(${cart.itemId}, '${orderId}', ${userId}, '${dataFormatted}', ${cart.quantity}, '${cart.variety}')`;
+          conn.run(insertQuery, [], (err) => {
+            if (err) {
+              throw err;
+            } else {
+              console.log("Inserted!");
+            }
+          });
+        });
+      }
+    });
+  } catch (error) {
+  } finally {
+    res.redirect("/my-orders");
+  }
+
+  // console.log(dataFormatted);
 });
 
 app.post("/dashboard", async (req, res) => {
@@ -170,7 +525,12 @@ app.post("/dashboard", async (req, res) => {
 
   const schema = Joi.object({
     email: Joi.string()
-      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
+      .email({
+        minDomainSegments: 2,
+        tlds: {
+          allow: ["com", "net"],
+        },
+      })
       .required(),
     password: Joi.string().pattern(new RegExp("^[A-zA-Z0-M]{3,30}$")).min(4),
   });
@@ -209,17 +569,83 @@ app.get("/dashboard", (req, res) => {
   res.redirect("/");
 });
 
-app.get("/cart", (req, res) => {
+app.get("/cart", async (req, res) => {
   const name = req.session.username;
+  const userId = req.session.userId;
+  const query = `SELECT * FROM cart C
+                 JOIN item I
+                 ON C.itemId = I.id
+                 WHERE C.userId = '${userId}'`;
+
+  const query1 = `SELECT SUM(quantity) as total FROM cart
+                  WHERE userId = '${userId}'`;
+
   if (req.session.username) {
-    res.render("cart", { name });
+    await conn.all(query, async (err, results) => {
+      if (err) {
+        throw err;
+      } else {
+        await conn.all(query1, (error, carts) => {
+          if (error) {
+            throw error;
+          } else {
+            res.render("cart", {
+              name,
+              results,
+              carts,
+            });
+            // console.log(results);
+            // console.log(carts);
+          }
+        });
+      }
+    });
   } else {
-    res.redirect("/login")
+    res.redirect("/login");
   }
 
-  
   // const name = "Steve";
-  
+
+});
+
+
+
+app.get("/cart-one", async (req, res) => {
+  const name = req.session.username;
+  const userId = req.session.userId;
+  const query = `SELECT * FROM cart C
+                 JOIN item I
+                 ON C.itemId = I.id
+                 WHERE C.userId = '${userId}'`;
+
+  const query1 = `SELECT SUM(quantity) as total FROM cart
+                  WHERE userId = '${userId}'`;
+
+  if (req.session.username) {
+    await conn.all(query, async (err, results) => {
+      if (err) {
+        throw err;
+      } else {
+        await conn.all(query1, (error, carts) => {
+          if (error) {
+            throw error;
+          } else {
+            res.render("cart1", {
+              name,
+              results,
+              carts,
+            });
+            // console.log(results);
+            // console.log(carts);
+          }
+        });
+      }
+    });
+  } else {
+    res.redirect("/login");
+  }
+
+  // const name = "Steve";
 });
 
 app.get("/my-carts", (req, res) => {
@@ -228,7 +654,23 @@ app.get("/my-carts", (req, res) => {
 
 app.get("/my-orders", (req, res) => {
   if (req.session.username) {
-    res.render("order");
+    const userId = req.session.userId;
+    const name = req.session.username;
+    const query = `SELECT * FROM orders O
+                 JOIN item I
+                 ON O.itemId = I.id
+                 WHERE O.userId = '${userId}'`;
+
+    const query1 = `SELECT SUM(quantity) as total FROM cart
+                  WHERE userId = '${userId}'`;
+    conn.all(query, (err, orders) => {
+      if (err) {
+        throw err;
+      } else {
+         res.render("order", {orders, name});
+      }
+    })
+   
   } else {
     res.redirect("/login");
   }
@@ -244,11 +686,10 @@ app.post("/register", (req, res) => {
     address: req.body.address,
     password: req.body.password,
   };
-  const query = `SELECT * FROM user WHERE email`
-})
+  const query = `SELECT * FROM user WHERE email`;
+});
 
-app.get("/refer:id")
-
+app.get("/refer:id");
 
 app.get("/search", (req, res) => {
   const name = req.session.username;
