@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <!-- <link rel="stylesheet" href="../css/home.css" /> -->
+    <link rel="stylesheet" href="../css/cart1.css" />
+    <!-- <link rel="stylesheet" href="../css/side-panel.css" /> -->
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include("header")%>
+    <span id="cart-num">
+      <%Object.keys(carts).forEach(key => { const sum = carts[key]; if
+      (sum.total == 0){ }else if (sum.total == 1){ %> Carts(<%=sum.total%> item)
+      <% }else{ %> Carts(<%=sum.total%> items) <% } %> <% })%>
+    </span>
+    <div id="main-container">
+      <div id="carts">
+        <%Object.keys(results).forEach(key=>{ const cart = results[key];%>
+
+        <span id="cart-item">
+          <div id="cart-sec-1">
+            <span id="cart-img">
+              <img
+                class="cart-img"
+                src="../font/<%=cart.pic%>"
+                alt=""
+                srcset=""
+              />
+            </span>
+            <span id="cart-det">
+              <div id="name-price">
+                <span id="name"><%=cart.name%></span>
+                <span id="price">GHS <%=cart.price%></span>
+
+              </div>
+              <div id="add">
+      
+
+                <button id="qty" class="count">X<%=cart.quantity%></button>
+
+              </div>
+            </span>
+          </div>
+
+        </span>
+
+        <% }) %>
+      </div>
+      <div id="cart-summary">
+        <span id="cart-summary-head">Cart's summary</span>
+        <span id="price-summary">
+          <div id="price-label">Price(2 items)</div>
+          <div id="price-info">GHS 2783</div>
+        </span>
+
+        <span id="price-summary">
+          <div id="price-label">Delivery fee</div>
+          <div id="price-info">GHS 32.00</div>
+        </span>
+
+        <span id="price-summary">
+          <div id="price-label">Prepaid</div>
+          <div id="price-info">GHS 00.00</div>
+        </span>
+
+        <span id="price-summary">
+          <div id="total-label">Total</div>
+          <div id="price-total">GHS 2883</div>
+        </span>
+
+        <!-- <div id="del-address-head">Delivery address</div>
+        <div id="del-address">Cape Coast, UCC, Casford hall, room 54</div> -->
+        <form action="/payment" method="get">
+          <button id="address-btn" type="submit">Next</button>
+        </form>
+      </div>
+    </div>
+
+    <span id="checkout-sec">
+      <div id="prepaid">EXSALE prepaid: 200.0</div>
+      <div id="total">Total: GHS 56387.00</div>
+      <div id="checkout">
+        <form id="checkout-btn" action="/payment" method="get">
+          <button id="checkout-btn" type="submit">Checkout</button>
+        </form>
+      </div>
+    </span>
+  </body>
+
+  <!-- <script src="../js/search.js"></script> -->
+</html>
