@@ -26,42 +26,45 @@
           <i style="font-size: 24px" class="mdi mdi-96px mdi-rotate-0 mdi-view-list"></i>
           <span> CATEGORIES</span>
         </h1>
-       <form action="/" method="post">
-          <input type="hidden" name="cat" value="1">
+        <form action="/" method="post">
+          <input type="hidden" name="cat" value="1" />
           <button id="cat">
-            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i> Fassion
-          </button>
-
-        </form>
-        <form action="/" method="post">
-          <input type="hidden" name="cat" value="2">
-          <button type="submit" id="cat"><i style="font-size: 20px"
-              class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"></i>Super market
+            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+            Fassion
           </button>
         </form>
-
         <form action="/" method="post">
-          <input type="hidden" name="cat" value="3">
-          <button id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"></i>Phones &
-            Accessories
+          <input type="hidden" name="cat" value="2" />
+          <button type="submit" id="cat">
+            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"></i>Super market
           </button>
         </form>
 
         <form action="/" method="post">
-          <input type="hidden" name="cat" value="4">
-          <button id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"></i>Computers
+          <input type="hidden" name="cat" value="3" />
+          <button id="cat">
+            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"></i>Phones & Accessories
           </button>
         </form>
 
         <form action="/" method="post">
-          <input type="hidden" name="cat" value="5"> 
-          <button id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>Home
+          <input type="hidden" name="cat" value="4" />
+          <button id="cat">
+            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"></i>Computers
           </button>
         </form>
-        
+
         <form action="/" method="post">
-          <input type="hidden" name="cat" value="6">
-          <button id="cat"><i style="font-size: 20px" class="mdi mdi-96px mdi-spin mdi-rotate-0 mdi-dots-circle"></i>Fassion
+          <input type="hidden" name="cat" value="5" />
+          <button id="cat">
+            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>Home
+          </button>
+        </form>
+
+        <form action="/" method="post">
+          <input type="hidden" name="cat" value="6" />
+          <button id="cat">
+            <i style="font-size: 20px" class="mdi mdi-96px mdi-spin mdi-rotate-0 mdi-dots-circle"></i>Fassion
           </button>
         </form>
       </div>
@@ -80,9 +83,11 @@
             <button id="prepaid-btn">
               <i style="font-size: 16px" class="mdi mdi-wallet-outline"></i>Prepaid: 00.0
             </button>
-          <div id="invite-btn"><i style="font-size: 16px" class="mdi mdi-account-plus-outline"></i> Invite</div>
+            <div id="invite-btn">
+              <i style="font-size: 16px" class="mdi mdi-account-plus-outline"></i>
+              Invite
+            </div>
           </div>
-          
         </div>
 
         <%} else{ %>
@@ -92,10 +97,16 @@
           <div id="user-greeting-1">WELCOME TO EXSALE</div>
           <div id="sign">
             <form action="/login" method="get">
-              <button id="login-btn"><i style="font-size: 16px" class="mdi mdi-96px mdi-rotate-0 mdi-login"></i> Log in</button>
+              <button id="login-btn">
+                <i style="font-size: 16px" class="mdi mdi-96px mdi-rotate-0 mdi-login"></i>
+                Log in
+              </button>
             </form>
             <form action="/signup" method="get">
-              <button id="signup-btn"><i style="font-size: 16px" class="mdi mdi-16px mdi-rotate-0 mdi-account-plus-outline"></i>  Join</button>
+              <button id="signup-btn">
+                <i style="font-size: 16px" class="mdi mdi-16px mdi-rotate-0 mdi-account-plus-outline"></i>
+                Join
+              </button>
             </form>
           </div>
         </div>
@@ -108,12 +119,21 @@
               <div style="color: red"><%- include('flash')%></div>
     </div>
     <div id="flash-deals">
-      <div id="flash-deal-1">
+      <button id="flash-deal-1">
         <img id="flash-deal-img" src="../font/0ed9e16c7fcf4078981a587643b170d3.jpg" alt="" srcset="" />
-      </div>
-      <div id="flash-deal-1">
+
+        <div id="prices">
+          <div id="new-price">GH₵ 36</div>
+          <span class="percent-off">-4%</span>
+        </div>
+      </button>
+
+      <button id="flash-deal-1">
         <img id="flash-deal-img" src="../font/0ed9e16c7fcf4078981a587643b170d3.jpg" alt="" srcset="" />
-      </div>
+        <div id="prices">
+          <div id="new-price">GH₵ 36</div>
+        </div>
+      </button>
     </div>
   </div>
   </div>
@@ -156,7 +176,7 @@
       </div>
     </div>
   </div>
-  <div id="demo1" class="demo">
+  <div id="demo" class="demo">
     <div id="weekly-deal">Weakly deal</div>
     <!-- <%=result[2].name%> -->
 
@@ -172,184 +192,245 @@
           <!-- <div id="bbb">
             <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
           </div>           -->
-          <img id="img1" src="../font/<%=row.pic%>" alt="" srcset=""/>
+          <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
         </button>
       </form>
       <div id="item-name"><%=row.name%></div>
       <div id="prices">
-        <div id="new-price">GHS <%=row.price%></div>
-        <div id="old-price">GHS <%=oldPriceRounded%></div>
+        <div id="new-price">GH₵ <%=row.price%></div>
+
+        <% if (row.off <= 0) { %>
+        <!-- <div id="old-price"></div> -->
+        <% }else{ %>
+        <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+        <% } %>
       </div>
 
+
+
       <div id="percent-off">
-        <!-- <span class="old-price">GHS 378</span> -->
+
         <div id="star">
-          <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
-              < (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
+          <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i <
+            (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
         </div>
+        <!-- <span class="old-price">GHS 378</span> -->
+        <% if (row.off <= 0) { %>
+        <!-- <span class="percent-off"></span> -->
+        <% }else{ %>
         <span class="percent-off">-<%=row.off%>%</span>
+        <% } %>
       </div>
     </div>
     <!-- <li><%=row.First_name%></li> -->
     <%})%>
 
+
+    <% Object.keys(result).forEach(key => { var row = result[key]; const
+        percentOff = (row.off/100)*row.price; const oldPriceWhole =
+        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
+        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
+        Math.round((row.stars / total) * 5); %>
     <div id="item">
-      <img id="img1" src="../font/shu1.jpg" alt="" srcset="" />
-      <div id="item-name">Item's name</div>
+      <form action="/detail" method="post">
+        <input type="hidden" name="id" value="<%=row.id%>" />
+        <button id="image-btn">
+          <!-- <div id="bbb">
+            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+          </div>           -->
+          <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+        </button>
+      </form>
+      <div id="item-name"><%=row.name%></div>
       <div id="prices">
-        <div id="new-price">GHS 389</div>
-        <div id="old-price">GHS 413</div>
+        <div id="new-price">GH₵ <%=row.price%></div>
+
+        <% if (row.off <= 0) { %>
+        <!-- <div id="old-price"></div> -->
+        <% }else{ %>
+        <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+        <% } %>
       </div>
+
 
       <div id="percent-off">
+
+        <div id="star">
+          <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i <
+            (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
+        </div>
         <!-- <span class="old-price">GHS 378</span> -->
-        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
-        <span class="percent-off">-23%</span>
+        <% if (row.off <= 0) { %>
+        <!-- <span class="percent-off"></span> -->
+        <% }else{ %>
+        <span class="percent-off">-<%=row.off%>%</span>
+        <% } %>
       </div>
     </div>
-    <div id="item">
-      <img id="img1" src="../font/lap4.jpg" alt="" srcset="" />
-      <div id="item-name">Item's name</div>
-      <div id="prices">
-        <div id="new-price">GHS 389</div>
-        <div id="old-price">GHS 413</div>
-      </div>
-
-      <div id="percent-off">
-        <!-- <span class="old-price">GHS 378</span> -->
-        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
-        <span class="percent-off">-23%</span>
-      </div>
-    </div>
-
-    <div id="item">
-      <img id="img1" src="../font/LEL.jpg" alt="" srcset="" />
-      <div id="item-name">Item's name</div>
-      <div id="prices">
-        <div id="new-price">GHS 389</div>
-        <div id="old-price">GHS 413</div>
-      </div>
-
-      <div id="percent-off">
-        <!-- <span class="old-price">GHS 378</span> -->
-        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
-        <span class="percent-off">-23%</span>
-      </div>
-    </div>
-
-    <div id="item">
-      <img id="img1" src="../font/top2.jpg" alt="" srcset="" />
-      <div id="item-name">Item's name</div>
-      <div id="prices">
-        <div id="new-price">GHS 389</div>
-        <div id="old-price">GHS 413</div>
-      </div>
-
-      <div id="percent-off">
-        <!-- <span class="old-price">GHS 378</span> -->
-        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
-        <span class="percent-off">-23%</span>
-      </div>
-    </div>
-
-    <div id="item">
-      <img id="img1" src="../font/table1.jpg" alt="" srcset="" />
-      <div id="item-name">Item's name</div>
-      <div id="prices">
-        <div id="new-price">GHS 389</div>
-        <div id="old-price">GHS 413</div>
-      </div>
-
-      <div id="percent-off">
-        <!-- <span class="old-price">GHS 378</span> -->
-        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
-        <span class="percent-off">-23%</span>
-      </div>
-    </div>
-
-    <div id="item">
-      <img id="img1" src="../font/shu5.jpg" alt="" srcset="" />
-      <div id="item-name">Item's name</div>
-      <div id="prices">
-        <div id="new-price">GHS 389</div>
-        <div id="old-price">GHS 413</div>
-      </div>
-
-      <div id="percent-off">
-        <!-- <span class="old-price">GHS 378</span> -->
-        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
-        <span class="percent-off">-23%</span>
-      </div>
-    </div>
-
-    <div id="item">
-      <img id="img1" src="../font/gettyimages-1129225638-2048x2048.jpg" alt="" srcset="" />
-      <div id="item-name">Item's name</div>
-      <div id="prices">
-        <div id="new-price">GHS 389</div>
-        <div id="old-price">GHS 413</div>
-      </div>
-
-      <div id="percent-off">
-        <!-- <span class="old-price">GHS 378</span> -->
-        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
-        <span class="percent-off">-23%</span>
-      </div>
-    </div>
-
-    <div id="item">
-      <img id="img1" src="../font/gettyimages-958437054-2048x2048.jpg" alt="" srcset="" />
-      <div id="item-name">Item's name</div>
-      <div id="prices">
-        <div id="new-price">GHS 389</div>
-        <div id="old-price">GHS 413</div>
-      </div>
-
-      <div id="percent-off">
-        <!-- <span class="old-price">GHS 378</span> -->
-        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
-        <span class="percent-off">-23%</span>
-      </div>
-    </div>
-
-    <div id="item">
-      <img id="img1" src="../font/shu2.jpg" alt="" srcset="" />
-      <div id="item-name">Item's name</div>
-      <div id="prices">
-        <div id="new-price">GHS 389</div>
-        <div id="old-price">GHS 413</div>
-      </div>
-
-      <div id="percent-off">
-        <!-- <span class="old-price">GHS 378</span> -->
-        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
-        <span class="percent-off">-23%</span>
-      </div>
-    </div>
-
-    <div id="item">
-      <img id="img1" src="../font/lap5.jpg" alt="" srcset="" />
-      <div id="item-name">Item's name</div>
-      <div id="prices">
-        <div id="new-price">GHS 389</div>
-        <div id="old-price">GHS 413</div>
-      </div>
-
-      <div id="percent-off">
-        <!-- <span class="old-price">GHS 378</span> -->
-        <div id="star">&starf; &starf; &starf; &star; &star;(49)</div>
-        <span class="percent-off">-23%</span>
-      </div>
-    </div>
+    <!-- <li><%=row.First_name%></li> -->
+    <%})%>
     <!-- <div id="item"></div>
             <div id="item"></div>
             <div id="item"></div> -->
     <!-- <div id="item"></div> -->
-   
+    <div id="banners">
+      <div id="banner">
+        <img id="img1" class="bana-img" src="../font/bana.jpg" alt="" srcset="">
+      </div>
+      <div id="banner">
+        <img id="img1" class="bana-img" src="../font/bannernew.png" alt="" srcset="">
+      </div>
+    </div>
+
+
+    <div id="weekly-deal">Fassion</div>
+
+    <% Object.keys(result).forEach(key => { var row = result[key]; const
+        percentOff = (row.off/100)*row.price; const oldPriceWhole =
+        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
+        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
+        Math.round((row.stars / total) * 5); %>
+    <div id="item-category">
+      <form action="/detail" method="post">
+        <input type="hidden" name="id" value="<%=row.id%>" />
+        <button id="image-btn">
+          <!-- <div id="bbb">
+            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+          </div>           -->
+          <img id="item-category-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+        </button>
+      </form>
+      <div id="item-name"><%=row.name%></div>
+
+
+
+
+
+    </div>
+    <!-- <li><%=row.First_name%></li> -->
+    <%})%>
+
+    <% Object.keys(result).forEach(key => { var row = result[key]; const
+        percentOff = (row.off/100)*row.price; const oldPriceWhole =
+        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
+        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
+        Math.round((row.stars / total) * 5); %>
+    <div id="item-category">
+      <form action="/detail" method="post">
+        <input type="hidden" name="id" value="<%=row.id%>" />
+        <button id="image-btn">
+          <!-- <div id="bbb">
+            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+          </div>           -->
+          <img id="item-category-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+        </button>
+      </form>
+      <div id="item-name"><%=row.name%></div>
+
+
+
+
+
+    </div>
+    <!-- <li><%=row.First_name%></li> -->
+    <%})%>
+
+    <div id="weekly-deal">Top picks</div>
+
+    <% Object.keys(result).forEach(key => { var row = result[key]; const
+        percentOff = (row.off/100)*row.price; const oldPriceWhole =
+        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
+        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
+        Math.round((row.stars / total) * 5); %>
+    <div id="item">
+      <form action="/detail" method="post">
+        <input type="hidden" name="id" value="<%=row.id%>" />
+        <button id="image-btn">
+          <!-- <div id="bbb">
+            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+          </div>           -->
+          <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+        </button>
+      </form>
+      <div id="item-name"><%=row.name%></div>
+      <div id="prices">
+        <div id="new-price">GH₵ <%=row.price%></div>
+
+        <% if (row.off <= 0) { %>
+        <!-- <div id="old-price"></div> -->
+        <% }else{ %>
+        <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+        <% } %>
+      </div>
+
+
+
+      <div id="percent-off">
+
+        <div id="star">
+          <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i <
+            (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
+        </div>
+        <!-- <span class="old-price">GHS 378</span> -->
+        <% if (row.off <= 0) { %>
+        <!-- <span class="percent-off"></span> -->
+        <% }else{ %>
+        <span class="percent-off">-<%=row.off%>%</span>
+        <% } %>
+      </div>
+    </div>
+    <!-- <li><%=row.First_name%></li> -->
+    <%})%>
+
+    <% Object.keys(result).forEach(key => { var row = result[key]; const
+        percentOff = (row.off/100)*row.price; const oldPriceWhole =
+        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
+        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
+        Math.round((row.stars / total) * 5); %>
+    <div id="item">
+      <form action="/detail" method="post">
+        <input type="hidden" name="id" value="<%=row.id%>" />
+        <button id="image-btn">
+          <!-- <div id="bbb">
+            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+          </div>           -->
+          <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+        </button>
+      </form>
+      <div id="item-name"><%=row.name%></div>
+      <div id="prices">
+        <div id="new-price">GH₵ <%=row.price%></div>
+
+        <% if (row.off <= 0) { %>
+        <!-- <div id="old-price"></div> -->
+        <% }else{ %>
+        <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+        <% } %>
+      </div>
+
+
+
+      <div id="percent-off">
+
+        <div id="star">
+          <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i <
+            (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
+        </div>
+        <!-- <span class="old-price">GHS 378</span> -->
+        <% if (row.off <= 0) { %>
+        <!-- <span class="percent-off"></span> -->
+        <% }else{ %>
+        <span class="percent-off">-<%=row.off%>%</span>
+        <% } %>
+      </div>
+    </div>
+    <!-- <li><%=row.First_name%></li> -->
+    <%})%>
+
+
   </div>
-  
   </div>
-   <%- include("footer")%>
+  <%- include("footer")%>
 </body>
 
 </html>
