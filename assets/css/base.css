@@ -94,6 +94,7 @@ li {
 #mySidenav {
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 
 #greeting{
@@ -115,6 +116,7 @@ li {
   color: #818181;
   display: block;
   transition: 0s;
+  
 }
 
 #cat-top {
@@ -153,7 +155,8 @@ li {
 #subhead {
   width: 100%;
   height: auto;
-  padding: 5px;
+  padding-top: 2.5px;
+  padding-bottom: 2.5px;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: row;
@@ -168,7 +171,12 @@ li {
   margin-bottom: 10px;
   top: 0;
 }
-@media screen and (min-width: 499px) {
+
+.ml-5{
+  margin-left: 5px;
+}
+
+@media screen and (min-width: 649px) {
   #subhead {
     display: none;
   }
@@ -177,7 +185,7 @@ li {
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 850px) {
   #logo {
     display: none;
   }
