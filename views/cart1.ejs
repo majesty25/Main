@@ -36,27 +36,23 @@
             <span id="cart-det">
               <div id="name-price">
                 <span id="name"><%=cart.name%></span>
-                <span id="price">GHS <%=cart.price%></span>
-
+                <span id="price">GHS <%=cart.price * cart.quantity%></span>
               </div>
               <div id="add">
-      
-
                 <button id="qty" class="count">X<%=cart.quantity%></button>
-
               </div>
             </span>
           </div>
-
         </span>
 
         <% }) %>
       </div>
+      <% Object.keys(carts).forEach(key => { const row = carts[key]; %>
       <div id="cart-summary">
         <span id="cart-summary-head">Cart's summary</span>
         <span id="price-summary">
-          <div id="price-label">Price(2 items)</div>
-          <div id="price-info">GHS 2783</div>
+          <div id="price-label">Price(<%=row.total%> items)</div>
+          <div id="price-info">GHS <%=row.totalPrice%></div>
         </span>
 
         <span id="price-summary">
@@ -74,12 +70,11 @@
           <div id="price-total">GHS 2883</div>
         </span>
 
-        <!-- <div id="del-address-head">Delivery address</div>
-        <div id="del-address">Cape Coast, UCC, Casford hall, room 54</div> -->
         <form action="/payment" method="get">
           <button id="address-btn" type="submit">Next</button>
         </form>
       </div>
+      <% }) %>
     </div>
 
     <span id="checkout-sec">
