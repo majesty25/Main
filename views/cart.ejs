@@ -13,17 +13,16 @@
     <title>Document</title>
   </head>
   <body>
-    <%- include("header")%>
+    <%- include("header")%> <%Object.keys(carts).forEach(key => { const sum =
+    carts[key]; if (sum.total == null){ %>
+    <h3>You have no cart!</h3>
+    <% } else{ %>
 
-     <%Object.keys(carts).forEach(key => { const sum = carts[key]; 
-      if (sum.total == null){ %>
-        <h3>You have no cart!</h3>
-        <% } else{ %> 
-          
     <span id="cart-num">
       <%Object.keys(carts).forEach(key => { const sum = carts[key]; if
-      (sum.total == null){ %> hgajggjsh <% }else if (sum.total == 1){ %> Cart(<%=sum.total%> item)
-      <% }else{ %> Cart(<%=sum.total%> items) <% } %> <% })%>
+      (sum.total == null){ %> hgajggjsh <% }else if (sum.total == 1){ %>
+      Cart(<%=sum.total%> item) <% }else{ %> Cart(<%=sum.total%> items) <% } %>
+      <% })%>
     </span>
     <div id="main-container">
       <div id="carts">
@@ -42,7 +41,9 @@
             <span id="cart-det">
               <div id="name-price">
                 <span id="name"><%=cart.name%></span>
-                <span id="price">GHS <%=cart.price%></span>
+                <span id="price"
+                  >GH₵ <%=(cart.price * cart.quantity).toFixed(2)%></span
+                >
                 <!-- <span id="quantity">X2</span> -->
               </div>
               <div id="add">
@@ -72,9 +73,14 @@
             <!-- <span id="status">In stock</span> -->
 
             <form id="view" action="/detail" method="post">
-              <input type="hidden" name="id" value="<%=cart.id%>">
-              <button id="view"  class="view" type="submit">
-                <i style="font-size: 18px; margin-right: 5px;" class="mdi mdi-eye-outline"> </i> view
+              <input type="hidden" name="id" value="<%=cart.id%>" />
+              <button id="view" class="view" type="submit">
+                <i
+                  style="font-size: 18px; margin-right: 5px"
+                  class="mdi mdi-eye-outline"
+                >
+                </i>
+                view
               </button>
             </form>
 
@@ -91,13 +97,12 @@
         </span>
 
         <% }) %>
-
       </div>
       <div id="cart-summary">
         <span id="cart-summary-head">Cart's summary</span>
         <span id="price-summary">
           <div id="price-label">Price(2 items)</div>
-          <div id="price-info">GHS 2783</div>
+          <div id="price-info">GH₵ 2783</div>
         </span>
 
         <span id="price-summary">
@@ -123,11 +128,13 @@
       </div>
     </div>
 
+    <% Object.keys(carts).forEach(key => { const row = carts[key]; %>
+
     <span id="checkout-sec">
       <!-- <div id="prepaid">EXSALE prepaid: 200.0</div> -->
       <div id="total">
-        <div>Total</div> 
-        <div><b>GHS 56387.00</b></div> 
+        <div>Total</div>
+        <div><b>GH₵ <%=(row.totalPrice).toFixed(2)%></b></div>
       </div>
       <div id="checkout">
         <form id="" action="/cart-one" method="get">
@@ -135,11 +142,8 @@
         </form>
       </div>
     </span>
-        
-      <% } %> 
-    <% })%>
 
-
+    <% }) %> <% } %> <% })%>
   </body>
 
   <script src="../js/search.js"></script>
