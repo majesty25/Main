@@ -1,0 +1,29 @@
+<% Object.keys(results).forEach(key => { const row = results[key]; %>
+<div id="cart-summary">
+  <span id="cart-summary-head">Cart's summary</span>
+  <span id="price-summary">
+    <div id="price-label">Price(2 items)</div>
+    <div id="price-info">GHS <%=row.totalPrice%></div>
+  </span>
+
+  <span id="price-summary">
+    <div id="price-label">Delivery fee</div>
+    <div id="price-info">GHS 32.00</div>
+  </span>
+
+  <span id="price-summary">
+    <div id="price-label">Prepaid</div>
+    <div id="price-info">GHS 00.00</div>
+  </span>
+
+  <span id="price-summary">
+    <div id="total-label">Total</div>
+    <div id="price-total">GHS 2883</div>
+  </span>
+
+  <form action="/payment" method="get">
+    <button id="address-btn" type="submit">Next</button>
+  </form>
+</div>
+<% }) %> <% Object.keys(carts).forEach(key => { const row = carts[key]; %> <% })
+%>
