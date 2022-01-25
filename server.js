@@ -295,17 +295,15 @@ app.post("/add-cart", async (req, res) => {
         try {
           const query = `DELETE FROM cart 
                    WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
-          // DELETE WHEN EXIST 
+          // DELETE WHEN EXIST
           conn.run(query, [], (errorMessage) => {
             if (errorMessage) {
               throw errorMessage;
             } else {
               console.log("Deleted!");
             }
-          })
-          
+          });
         } catch (error) {
-          
         } finally {
           const query4 = `INSERT INTO cart (itemId, userId, quantity, variety) 
                         VALUES(${itemId}, ${userId}, 1, '${variation}')`;
@@ -316,10 +314,9 @@ app.post("/add-cart", async (req, res) => {
             } else {
               console.log("Inserted!");
             }
-          })
+          });
           // console.log("Item already exist in your carts!");
         }
-        
       }
     });
   } catch (err) {
@@ -577,8 +574,11 @@ app.get("/cart", async (req, res) => {
                  ON C.itemId = I.id
                  WHERE C.userId = '${userId}'`;
 
-  const query1 = `SELECT SUM(quantity) as total FROM cart
-                  WHERE userId = '${userId}'`;
+  const query1 = `SELECT SUM(I.price * C.quantity) AS totalPrice, SUM(quantity) as total
+                 FROM cart C
+                 JOIN item I
+                 ON C.itemId = I.id
+                 WHERE C.userId = '${userId}'`;
 
   if (req.session.username) {
     await conn.all(query, async (err, results) => {
@@ -605,10 +605,7 @@ app.get("/cart", async (req, res) => {
   }
 
   // const name = "Steve";
-
 });
-
-
 
 app.get("/cart-one", async (req, res) => {
   const name = req.session.username;
@@ -618,8 +615,16 @@ app.get("/cart-one", async (req, res) => {
                  ON C.itemId = I.id
                  WHERE C.userId = '${userId}'`;
 
-  const query1 = `SELECT SUM(quantity) as total FROM cart
-                  WHERE userId = '${userId}'`;
+  // const query1 = `SELECT SUM(quantity) as total FROM cart
+  //                 WHERE userId = '${userId}'`;
+
+  // https://1drv.ms/u/s!AhR4a2AQFhH5gho78W5TMfGCxGs9
+
+  const query1 = `SELECT SUM(I.price * C.quantity) AS totalPrice, SUM(quantity) as total
+                 FROM cart C
+                 JOIN item I
+                 ON C.itemId = I.id
+                 WHERE C.userId = '${userId}'`;
 
   if (req.session.username) {
     await conn.all(query, async (err, results) => {
@@ -648,6 +653,37 @@ app.get("/cart-one", async (req, res) => {
   // const name = "Steve";
 });
 
+app.get("/cat", async (req, res) => {
+  const name = req.session.username;
+  const userId = req.session.userId;
+  const query = `SELECT SUM(I.price) AS totalPrice, SUM(quantity) as total
+                 FROM cart C
+                 JOIN item I
+                 ON C.itemId = I.id
+                 WHERE C.userId = '${userId}'`;
+
+  const query1 = `SELECT SUM(quantity) as total FROM cart
+                  WHERE userId = '${userId}'`;
+
+  if (req.session.username) {
+    await conn.all(query, async (err, results) => {
+      if (err) {
+        throw err;
+      } else {
+        res.render("cartSum", {
+          name,
+          results,
+          err,
+        });
+
+        console.log(results);
+      }
+    });
+  } else {
+    res.redirect("/login");
+  }
+});
+
 app.get("/my-carts", (req, res) => {
   res.render("cart1");
 });
@@ -667,26 +703,41 @@ app.get("/my-orders", (req, res) => {
       if (err) {
         throw err;
       } else {
-         res.render("order", {orders, name});
+        res.render("order", { orders, name });
       }
-    })
-   
+    });
   } else {
     res.redirect("/login");
   }
 });
 
 app.post("/register", (req, res) => {
-  const user = {
-    firstName: req.body.fname,
-    lastName: req.body.lname,
-    email: req.body.email,
-    phone: req.body.phone,
-    city: req.body.city,
-    address: req.body.address,
-    password: req.body.password,
-  };
-  const query = `SELECT * FROM user WHERE email`;
+  const customer = req.body;
+  // const user = {
+  const firstName = customer.fname;
+  const lastName = customer.lname;
+  const email = customer.email;
+  const phone = customer.phone;
+  const city = customer.city;
+  const address = customer.address;
+  const password = customer.password;
+  const region = customer.region;
+  // };
+  const query = `INSERT INTO users 
+                 (firstName, lastName, email, phone, region, city, resAddress, password)
+                 VALUES('${firstName}', '${lastName}', '${email}', '${phone}',
+                 '${region}', '${city}', '${address}', '${password}')`;
+
+  conn.run(query, [], (err) => {
+    if (err) {
+      throw err;
+    } else {
+      console.log("Registered!");
+      res.redirect("login");
+    }
+  });
+
+  console.log(firstName);
 });
 
 app.get("/refer:id");
