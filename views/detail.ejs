@@ -139,6 +139,7 @@
         </span>
       </div>
 
+      
 
     </div>
     <div id="right-container">
@@ -213,150 +214,151 @@
          
 
 
-            <div id="suggested-items">
-          <div id="sug-head">
-            You may like these
-          </div>
 
-           <% Object.keys(result).forEach(key => { var row = result[key]; const
-        percentOff = (row.off/100)*row.price; const oldPriceWhole =
-        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
-        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
-        Math.round((row.stars / total) * 5); %>
-          <div id="item-det">
-            <form action="/detail" method="post">
-              <input type="hidden" name="id" value="<%=row.id%>" />
-              <button id="image-btn">
-                <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
-                <img id="item-det-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-              </button>
-            </form>
-            <div id="item-name"><%=row.name%></div>
-            <div id="prices">
-              <div id="newPrice">GHS <%=row.price%></div>
-              <div id="oldPrice">GHS <%=oldPriceRounded%></div>
-            </div>
+              <div id="viewedMainContainer">
 
-           
-          </div>
-          <!-- <li><%=row.First_name%></li> -->
-          <%})%>      
+      <div id="viewed-head">
+    Similar items
+  </div> 
 
+    <div id="viewed-container">
+   
+   
+   <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
 
-                     <% Object.keys(result).forEach(key => { var row = result[key]; const
-        percentOff = (row.off/100)*row.price; const oldPriceWhole =
-        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
-        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
-        Math.round((row.stars / total) * 5); %>
-          <div id="item-det">
-            <form action="/detail" method="post">
-              <input type="hidden" name="id" value="<%=row.id%>" />
-              <button id="image-btn">
-                <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
-                <img id="item-det-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-              </button>
-            </form>
-            <div id="item-name"><%=row.name%></div>
-            <div id="prices">
-              <div id="newPrice">GHS <%=row.price%></div>
-              <div id="oldPrice">GHS <%=oldPriceRounded%></div>
-            </div>
+         <span id="sug-prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
 
-           
-          </div>
-          <!-- <li><%=row.First_name%></li> -->
-          <%})%>     
+   
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
 
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
 
-                     <% Object.keys(result).forEach(key => { var row = result[key]; const
-        percentOff = (row.off/100)*row.price; const oldPriceWhole =
-        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
-        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
-        Math.round((row.stars / total) * 5); %>
-          <div id="item-det">
-            <form action="/detail" method="post">
-              <input type="hidden" name="id" value="<%=row.id%>" />
-              <button id="image-btn">
-                <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
-                <img id="item-det-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-              </button>
-            </form>
-            <div id="item-name"><%=row.name%></div>
-            <div id="prices">
-              <div id="newPrice">GHS <%=row.price%></div>
-              <div id="oldPrice">GHS <%=oldPriceRounded%></div>
-            </div>
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
 
-           
-          </div>
-          <!-- <li><%=row.First_name%></li> -->
-          <%})%>     
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
 
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
 
-                     <% Object.keys(result).forEach(key => { var row = result[key]; const
-        percentOff = (row.off/100)*row.price; const oldPriceWhole =
-        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
-        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
-        Math.round((row.stars / total) * 5); %>
-          <div id="item-det">
-            <form action="/detail" method="post">
-              <input type="hidden" name="id" value="<%=row.id%>" />
-              <button id="image-btn">
-                <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
-                <img id="item-det-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-              </button>
-            </form>
-            <div id="item-name"><%=row.name%></div>
-            <div id="prices">
-              <div id="newPrice">GHS <%=row.price%></div>
-              <div id="oldPrice">GHS <%=oldPriceRounded%></div>
-            </div>
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
 
-           
-          </div>
-          <!-- <li><%=row.First_name%></li> -->
-          <%})%>     
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
 
 
-                     <% Object.keys(result).forEach(key => { var row = result[key]; const
-        percentOff = (row.off/100)*row.price; const oldPriceWhole =
-        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
-        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
-        Math.round((row.stars / total) * 5); %>
-          <div id="item-det">
-            <form action="/detail" method="post">
-              <input type="hidden" name="id" value="<%=row.id%>" />
-              <button id="image-btn">
-                <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
-                <img id="item-det-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-              </button>
-            </form>
-            <div id="item-name"><%=row.name%></div>
-            <div id="prices">
-              <div id="newPrice">GHS <%=row.price%></div>
-              <div id="oldPrice">GHS <%=oldPriceRounded%></div>
-            </div>
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
 
-           
-          </div>
-          <!-- <li><%=row.First_name%></li> -->
-          <%})%>     
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
 
 
-          
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
 
-          
-        </div>
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+  
+ </div>
+  </div>
+
+
         </div>
 
       
