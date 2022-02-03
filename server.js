@@ -16,7 +16,7 @@ app.use(
     extended: true,
   })
 );
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.use(
   session({
     secret: "secret key",
@@ -54,7 +54,14 @@ app.get("/", async (req, res) => {
         if (error) {
           throw error;
         } else {
+          const arr = ["a"];
+          (Object.keys(result).forEach(key => {
+            const n = result[key];
+            arr.push(n.name);
+          }))
+          console.log(arr)
           res.render("home", {
+            arr,
             result,
             name,
             id,
@@ -74,6 +81,7 @@ app.post("/", async (req, res) => {
     `SELECT * FROM item WHERE category = '${cat}'`,
     async (err, result) => {
       if (err) throw err;
+      console.log(result)
       res.render("category", {
         result,
         name,
