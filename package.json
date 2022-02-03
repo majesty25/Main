@@ -2,9 +2,9 @@
   "name": "main",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "npm run server.js"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
