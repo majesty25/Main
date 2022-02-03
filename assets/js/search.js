@@ -103,7 +103,7 @@ function autocomplete(inp, arr) {
 
 /*An array containing all the country names in the world:*/
 var countries = [
-  "<%=name%>",
+  "",
   "Afghanistan",
   "Albania",
   "Algeria",
