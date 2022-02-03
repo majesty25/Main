@@ -1,150 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="../css/base.css" />
-    <link rel="stylesheet" href="../css/header.css" />
-    <!-- <link rel="stylesheet" href="../css/home.css" /> -->
-    <link rel="stylesheet" href="../css/cart.css" />
-    <!-- <link rel="stylesheet" href="../css/side-panel.css" /> -->
-    <title>Document</title>
-  </head>
-  <body>
-    <%- include("header")%> <%Object.keys(carts).forEach(key => { const sum =
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/header.css" />
+  <link rel="stylesheet" href="../css/items.css" />
+  <link rel="stylesheet" href="../css/cart.css" />
+  <!-- <link rel="stylesheet" href="../css/side-panel.css" /> -->
+  <title>Document</title>
+</head>
+
+<body>
+  <%- include("header")%> <%Object.keys(carts).forEach(key => { const sum =
     carts[key]; if (sum.total == null){ %>
-    <h3>You have no cart!</h3>
-    <% } else{ %>
+  <h3>You have no cart!</h3>
+  <% } else{ %>
 
-    <span id="cart-num">
-      <%Object.keys(carts).forEach(key => { const sum = carts[key]; if
+  <span id="cart-num">
+    <%Object.keys(carts).forEach(key => { const sum = carts[key]; if
       (sum.total == null){ %> hgajggjsh <% }else if (sum.total == 1){ %>
-      Cart(<%=sum.total%> item) <% }else{ %> Cart(<%=sum.total%> items) <% } %>
-      <% })%>
-    </span>
-    <div id="main-container">
-      <div id="carts">
-        <%Object.keys(results).forEach(key=>{ const cart = results[key];%>
+    Cart(<%=sum.total%> item) <% }else{ %> Cart(<%=sum.total%> items) <% } %>
+    <% })%>
+  </span>
+  <div id="main-container">
+    <div id="carts">
+      <%Object.keys(results).forEach(key=>{ const cart = results[key];%>
 
-        <span id="cart-item">
-          <div id="cart-sec-1">
-            <span id="cart-img">
-              <img
-                class="cart-img"
-                src="../font/<%=cart.pic%>"
-                alt=""
-                srcset=""
-              />
-            </span>
-            <span id="cart-det">
-              <div id="name-price">
-                <span id="name"><%=cart.name%></span>
-                <span id="price"
-                  >GH₵ <%=(cart.price * cart.quantity).toFixed(2)%></span
-                >
-                <!-- <span id="quantity">X2</span> -->
-              </div>
-              <div id="add">
-                <form action="/decrease-cart" method="post">
-                  <input type="hidden" name="id" value="<%=cart.itemId%>" />
-                  <button id="qty" class="qty dec" onclick="decreaseQuantity()">
-                    -
-                  </button>
-                </form>
-
-                <button id="qt" class="count"><%=cart.quantity%></button>
-                <form action="/increase-cart" method="post">
-                  <input type="hidden" name="id" value="<%=cart.itemId%>" />
-                  <button
-                    type="submit"
-                    id="qty"
-                    class="qty inc"
-                    onclick="increaseQuantity()"
-                  >
-                    +
-                  </button>
-                </form>
-              </div>
-            </span>
-          </div>
-          <div id="cart-sec-2">
-            <!-- <span id="status">In stock</span> -->
-
-            <form id="view" action="/detail" method="post">
-              <input type="hidden" name="id" value="<%=cart.id%>" />
-              <button id="view" class="view" type="submit">
-                <i
-                  style="font-size: 18px; margin-right: 5px"
-                  class="mdi mdi-eye-outline"
-                >
-                </i>
-                view
-              </button>
-            </form>
-
-            <span id="remove">
-              <form action="/delete-cart" method="post">
+      <span id="cart-item">
+        <div id="cart-sec-1">
+          <span id="cart-img">
+            <img class="cart-img" src="../font/<%=cart.pic%>" alt="" srcset="" />
+          </span>
+          <span id="cart-det">
+            <div id="name-price">
+              <span id="name"><%=cart.name%></span>
+              <span id="price">GH₵ <%=(cart.price * cart.quantity).toFixed(2)%></span>
+              <!-- <span id="quantity">X2</span> -->
+            </div>
+            <div id="add">
+              <form action="/decrease-cart" method="post">
                 <input type="hidden" name="id" value="<%=cart.itemId%>" />
-                <button id="remove-btn" type="submit">
-                  <i style="font-size: 18px" class="mdi mdi-cart-remove"></i>
-                  Remove
+                <button id="qty" class="qty dec" onclick="decreaseQuantity()">
+                  -
                 </button>
               </form>
-            </span>
-          </div>
-        </span>
 
-        <% }) %>
-      </div>
-      <div id="cart-summary">
-        <span id="cart-summary-head">Cart's summary</span>
-        <span id="price-summary">
-          <div id="price-label">Price(2 items)</div>
-          <div id="price-info">GH₵ 2783</div>
-        </span>
+              <button id="qt" class="count"><%=cart.quantity%></button>
+              <form action="/increase-cart" method="post">
+                <input type="hidden" name="id" value="<%=cart.itemId%>" />
+                <button type="submit" id="qty" class="qty inc" onclick="increaseQuantity()">
+                  +
+                </button>
+              </form>
+            </div>
+          </span>
+        </div>
+        <div id="cart-sec-2">
+          <!-- <span id="status">In stock</span> -->
 
-        <span id="price-summary">
-          <div id="price-label">Delivery fee</div>
-          <div id="price-info">GHS 32.00</div>
-        </span>
+          <form id="view" action="/detail" method="post">
+            <input type="hidden" name="id" value="<%=cart.id%>" />
+            <button id="view" class="view" type="submit">
+              <i style="font-size: 18px; margin-right: 5px" class="mdi mdi-eye-outline">
+              </i>
+              view
+            </button>
+          </form>
 
-        <span id="price-summary">
-          <div id="price-label">Prepaid</div>
-          <div id="price-info">GHS 00.00</div>
-        </span>
+          <span id="remove">
+            <form action="/delete-cart" method="post">
+              <input type="hidden" name="id" value="<%=cart.itemId%>" />
+              <button id="remove-btn" type="submit">
+                <i style="font-size: 18px" class="mdi mdi-cart-remove"></i>
+                Remove
+              </button>
+            </form>
+          </span>
+        </div>
+      </span>
 
-        <span id="price-summary">
-          <div id="total-label">Total</div>
-          <div id="price-total">GHS 2883</div>
-        </span>
-
-        <div id="del-address-head">Delivery address</div>
-        <div id="del-address">Cape Coast, UCC, Casford hall, room 54</div>
-        <form action="/account" method="get">
-          <button id="address-btn" type="submit">Procede</button>
-        </form>
-      </div>
+      <% }) %>
     </div>
+    <div id="cart-summary">
+      <span id="cart-summary-head">Cart's summary</span>
+      <span id="price-summary">
+        <div id="price-label">Price(2 items)</div>
+        <div id="price-info">GH₵ 2783</div>
+      </span>
 
-    <% Object.keys(carts).forEach(key => { const row = carts[key]; %>
+      <span id="price-summary">
+        <div id="price-label">Delivery fee</div>
+        <div id="price-info">GHS 32.00</div>
+      </span>
 
-    <span id="checkout-sec">
-      <!-- <div id="prepaid">EXSALE prepaid: 200.0</div> -->
-      <div id="total">
-        <div>Total</div>
-        <div><b>GH₵ <%=(row.totalPrice).toFixed(2)%></b></div>
-      </div>
-      <div id="checkout">
-        <form id="" action="/cart-one" method="get">
-          <button id="checkout-btn" type="submit">Checkout</button>
-        </form>
-      </div>
-    </span>
+      <span id="price-summary">
+        <div id="price-label">Prepaid</div>
+        <div id="price-info">GHS 00.00</div>
+      </span>
 
-    <% }) %> <% } %> <% })%>
-  </body>
+      <span id="price-summary">
+        <div id="total-label">Total</div>
+        <div id="price-total">GHS 2883</div>
+      </span>
 
-  <script src="../js/search.js"></script>
+      <div id="del-address-head">Delivery address</div>
+      <div id="del-address">Cape Coast, UCC, Casford hall, room 54</div>
+      <form action="/account" method="get">
+        <button id="address-btn" type="submit">Procede</button>
+      </form>
+    </div>
+  </div>
+
+  <% Object.keys(carts).forEach(key => { const row = carts[key]; %>
+
+  <span id="checkout-sec">
+    <!-- <div id="prepaid">EXSALE prepaid: 200.0</div> -->
+    <div id="total">
+      <div>Total</div>
+      <div><b>GH₵ <%=(row.totalPrice).toFixed(2)%></b></div>
+    </div>
+    <div id="checkout">
+      <form id="" action="/cart-one" method="get">
+        <button id="checkout-btn" type="submit">Checkout</button>
+      </form>
+    </div>
+  </span>
+
+  <% }) %> <% } %> <% }) %>
+
+
+  <div id="viewedMainContainer">
+
+      <div id="viewed-head">
+    Currently viewed Items
+  </div> 
+
+    <div id="viewed-container">
+   
+   
+   <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+   
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+
+      <div id="viewed-item">
+       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+       <div id="viewedItemDet">
+         <span id="viewed-name">
+           Item's name
+         </span>
+
+         <span id="prices">
+           <div id="new">GHS 234.54</div>
+           <div id="old">GHS 45.78</div>
+         </span>
+       </div>
+   </div>
+
+  
+ </div>
+  </div>
+ 
+ 
+
+</body>
+
+<script src="../js/search.js"></script>
+
 </html>
