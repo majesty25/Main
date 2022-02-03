@@ -274,18 +274,18 @@
 }
 
 #item {
-  width: 18%;
+  width: 15%;
   float: left;
   height: auto;
   background-color: rgb(255, 255, 255);
-  /* margin: 0.5%; */
+  margin: 2%;
   border: none;
   /* padding: 0px; */
   padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
   flex-wrap: no-wrap;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -330,7 +330,7 @@
 }
 
 #item-img{
-  width: 80%;
+  width: 100%;
 }
 
 #item-category-img{
@@ -338,7 +338,12 @@
 }
 
 #item-name {
-  margin-right: 10px;
+  width: 90%;
+  /* margin-left: 5%; */
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  margin-right: 0px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
 }
