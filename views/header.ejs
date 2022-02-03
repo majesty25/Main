@@ -110,7 +110,7 @@
         <%if (locals.carts){ %> <%Object.keys(carts).forEach(key => { const sum
         = carts[key]; if (sum.total == 0){ }else if (sum.total == 1){ %>
         <%=sum.total%> <% }else{ %> <%=sum.total%> <% } %> <% })%> <% }else{ %>
-        <% }%>
+        <% } %>
       </label>
     </i>
   </a>
@@ -124,4 +124,3 @@
 
 </div>
 
-<script src="../js/search.js"></script>
