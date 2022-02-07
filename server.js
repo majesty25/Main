@@ -55,11 +55,11 @@ app.get("/", async (req, res) => {
           throw error;
         } else {
           const arr = ["a"];
-          (Object.keys(result).forEach(key => {
+          Object.keys(result).forEach((key) => {
             const n = result[key];
             arr.push(n.name);
-          }))
-          console.log(arr)
+          });
+          // console.log(arr)
           res.render("home", {
             arr,
             result,
@@ -81,7 +81,7 @@ app.post("/", async (req, res) => {
     `SELECT * FROM item WHERE category = '${cat}'`,
     async (err, result) => {
       if (err) throw err;
-      console.log(result)
+      console.log(result);
       res.render("category", {
         result,
         name,
@@ -101,119 +101,120 @@ app.get("/test", (req, res) => {
   console.log(y);
 });
 
-app.post("/detailk", (req, res) => {
-  const id = req.body.id;
-  const name = req.session.username;
-  const address = req.session.address;
-  const today1 = new Date();
-  const today2 = new Date();
-  const currentDay1 = today1.getDate();
-  const currentDay2 = today2.getDate();
-  // Where will be three weeks in the future?
-  const newDate1 = today1.setDate(currentDay1 + 3);
-  const newDate2 = today2.setDate(currentDay2 + 8);
-  const startDate = `${today1.toDateString().slice(0, 10)}`;
-  const endDate = `${today2.toDateString().slice(0, 10)}`;
-  conn.all(
-    `SELECT * FROM otherpics WHERE itemId = ${id}`,
-    function (err, otherpicsOutput) {
-      conn.all(
-        `SELECT * FROM review WHERE itemId = ${id}`,
-        function (err, reviewOutput) {
-          if (err) throw err;
-          conn.all(
-            `SELECT * FROM keyfeatures WHERE itemId = ${id}`,
-            function (err, keyfeaturesOutput) {
-              if (err) throw err;
-              conn.all(
-                `SELECT * FROM specifications WHERE itemId = ${id}`,
-                function (err, specOutput) {
-                  if (err) throw err;
-                  conn.all(
-                    `SELECT * FROM users`,
-                    function (err, packageOutput) {
-                      if (err) throw err;
-                      conn.all(
-                        `SELECT * FROM item WHERE id = ${id}`,
-                        function (err, result) {
-                          if (err) throw err;
-                          Object.keys(result).forEach((key) => {
-                            const variety = result[key];
-                            const len = variety.varieties;
-                            if (len === "default") {
-                              res.render("detail", {
-                                reviewOutput,
-                                id,
-                                result,
-                                keyfeaturesOutput,
-                                specOutput,
-                                packageOutput,
-                                otherpicsOutput,
-                                name,
-                                address,
-                                startDate,
-                                endDate,
-                              });
-                            } else if (len.length > 0) {
-                              console.log(len);
-                              const varieties = len.split(", ");
-                              const num = varieties.length;
+// app.post("/detailk", (req, res) => {
+//   const id = req.body.id;
+//   const name = req.session.username;
+//   const address = req.session.address;
+//   const today1 = new Date();
+//   const today2 = new Date();
+//   const currentDay1 = today1.getDate();
+//   const currentDay2 = today2.getDate();
+//   // Where will be three weeks in the future?
+//   const newDate1 = today1.setDate(currentDay1 + 3);
+//   const newDate2 = today2.setDate(currentDay2 + 8);
+//   const startDate = `${today1.toDateString().slice(0, 10)}`;
+//   const endDate = `${today2.toDateString().slice(0, 10)}`;
+//   conn.all(
+//     `SELECT * FROM otherpics WHERE itemId = ${id}`,
+//     function (err, otherpicsOutput) {
+//       conn.all(
+//         `SELECT * FROM review WHERE itemId = ${id}`,
+//         function (err, reviewOutput) {
+//           if (err) throw err;
+//           conn.all(
+//             `SELECT * FROM keyfeatures WHERE itemId = ${id}`,
+//             function (err, keyfeaturesOutput) {
+//               if (err) throw err;
+//               conn.all(
+//                 `SELECT * FROM specifications WHERE itemId = ${id}`,
+//                 function (err, specOutput) {
+//                   if (err) throw err;
+//                   conn.all(
+//                     `SELECT * FROM users`,
+//                     function (err, packageOutput) {
+//                       if (err) throw err;
+//                       conn.all(
+//                         `SELECT * FROM item WHERE id = ${id}`,
+//                         function (err, result) {
+//                           if (err) throw err;
+//                           Object.keys(result).forEach((key) => {
+//                             const variety = result[key];
+//                             const len = variety.varieties;
+//                             if (len === "default") {
+//                               res.render("detail", {
+//                                 reviewOutput,
+//                                 id,
+//                                 result,
+//                                 keyfeaturesOutput,
+//                                 specOutput,
+//                                 packageOutput,
+//                                 otherpicsOutput,
+//                                 name,
+//                                 address,
+//                                 startDate,
+//                                 endDate,
+//                               });
+//                             } else if (len.length > 0) {
+//                               console.log(len);
+//                               const varieties = len.split(", ");
+//                               const num = varieties.length;
 
-                              res.render("detail", {
-                                reviewOutput,
-                                id,
-                                result,
-                                keyfeaturesOutput,
-                                specOutput,
-                                packageOutput,
-                                otherpicsOutput,
-                                name,
-                                address,
-                                startDate,
-                                endDate,
-                                varieties,
-                                num,
-                              });
-                            } else if (len == "default") {
-                              console.log(toString(len));
-                              const varieties = [];
-                              varieties.length = 0;
-                              // const num = varieties.length;
+//                               res.render("detail", {
+//                                 reviewOutput,
+//                                 id,
+//                                 result,
+//                                 keyfeaturesOutput,
+//                                 specOutput,
+//                                 packageOutput,
+//                                 otherpicsOutput,
+//                                 name,
+//                                 address,
+//                                 startDate,
+//                                 endDate,
+//                                 varieties,
+//                                 num,
+//                               });
+//                             } else if (len == "default") {
+//                               console.log(toString(len));
+//                               const varieties = [];
+//                               varieties.length = 0;
+//                               // const num = varieties.length;
 
-                              res.render("detail", {
-                                reviewOutput,
-                                id,
-                                result,
-                                keyfeaturesOutput,
-                                specOutput,
-                                packageOutput,
-                                otherpicsOutput,
-                                name,
-                                address,
-                                startDate,
-                                endDate,
-                                varieties,
-                                num,
-                              });
-                            }
-                          });
-                        }
-                      );
-                    }
-                  );
-                }
-              );
-            }
-          );
-        }
-      );
-      if (err) throw err;
-    }
-  );
-});
+//                               res.render("detail", {
+//                                 reviewOutput,
+//                                 id,
+//                                 result,
+//                                 keyfeaturesOutput,
+//                                 specOutput,
+//                                 packageOutput,
+//                                 otherpicsOutput,
+//                                 name,
+//                                 address,
+//                                 startDate,
+//                                 endDate,
+//                                 varieties,
+//                                 num,
+//                               });
+//                             }
+//                           });
+//                         }
+//                       );
+//                     }
+//                   );
+//                 }
+//               );
+//             }
+//           );
+//         }
+//       );
+//       if (err) throw err;
+//     }
+//   );
+// });
 
 app.post("/detail", async (req, res) => {
   const id = req.body.id;
+  const itemId = { ID: id };
   const name = req.session.username;
   const userId = req.session.userId;
   const address = req.session.address;
@@ -227,111 +228,135 @@ app.post("/detail", async (req, res) => {
   const endDate = `${today2.toDateString().slice(0, 10)}`;
   const query1 = `SELECT * FROM item WHERE id = ${id}`;
   const query2 = `SELECT * FROM review WHERE itemId = ${id}`;
+  const query4 = `SELECT * FROM item WHERE itemId = ${id}`;
   const query3 = `SELECT SUM(quantity) as total FROM cart
                   WHERE userId = '${userId}'`;
 
-  conn.all(query3, (error, carts) => {
-    if (error) {
-      throw error;
-    } else {
-      conn.all(query1, async (err, result) => {
-        if (err) {
-          throw err;
-        } else {
-          Object.keys(result).forEach((key) => {
-            const data = result[key];
-            const variety = data.varieties;
-            const spec = data.specifications.split(",");
-            const keyFeat = data.specifications.split(",");
-            const otherPics = data.otherpics.split(", ");
-            if (variety == "default") {
-              res.render("detail", {
-                result,
-                id,
-                spec,
-                keyFeat,
-                otherPics,
-                startDate,
-                endDate,
-                carts,
-                address,
-              });
-            } else if (variety.length > 0) {
-              const varieties = variety.split(", ");
-              res.render("detail", {
-                result,
-                id,
-                varieties,
-                spec,
-                keyFeat,
-                otherPics,
-                startDate,
-                endDate,
-                carts,
-                address,
-              });
-            }
-          });
-        }
-      });
-    }
-  });
+  const shcema = Joi.object({ ID: Joi.number().integer().required() });
+
+  const idValidation = shcema.validate(itemId);
+  if (idValidation.error) {
+    console.log(idValidation.error.details.message);
+    res.redirect("/help");
+  } else {
+    conn.all(query3, (error, carts) => {
+      if (error) {
+        throw error;
+      } else {
+        conn.all(query1, async (err, result) => {
+          if (err) {
+            res.redirect("/help");
+          } else {
+            Object.keys(result).forEach((key) => {
+              const data = result[key];
+              const variety = data.varieties;
+              const spec = data.specifications.split(",");
+              const keyFeat = data.specifications.split(",");
+              const otherPics = data.otherpics.split(", ");
+              if (variety == "default") {
+                res.render("detail", {
+                  result,
+                  id,
+                  spec,
+                  keyFeat,
+                  otherPics,
+                  startDate,
+                  endDate,
+                  carts,
+                  address,
+                });
+              } else if (variety.length > 0) {
+                const varieties = variety.split(", ");
+                res.render("detail", {
+                  result,
+                  id,
+                  varieties,
+                  spec,
+                  keyFeat,
+                  otherPics,
+                  startDate,
+                  endDate,
+                  carts,
+                  address,
+                });
+              }
+            });
+          }
+        });
+      }
+    });
+  }
 });
 
 app.post("/add-cart", async (req, res) => {
-  try {
-    const variation = await req.body.color;
-    const itemId = await req.body.id;
-    const userId = await req.session.userId;
-    const query1 = `SELECT * FROM cart 
+  
+  const itemId = await req.body.id;
+  const sql = `SELECT id FROM item WHERE id = ?`
+
+   conn.all(sql, [itemId], (ERROR, RESULT) => {
+     if (ERROR) {
+       console.log(ERROR);
+     } else if (Object.keys(RESULT).length === 0) {
+       console.log("Ivalid entery");
+     } else {
+         try {
+           const variation =  req.body.color;
+
+           const userId = req.session.userId;
+           const query1 = `SELECT * FROM cart 
                     WHERE (itemId IN(${itemId}) AND userId IN(${userId}))`;
-    await conn.all(query1, async (err, results) => {
-      if (err) {
-        console.log(err);
-      } else if (Object.keys(results).length === 0) {
-        // INSERT INTO THE TABLE IF ITEM DOES NOT EXIST IN THE TABLE
-        const query2 = `INSERT INTO cart (itemId, userId, quantity, variety) 
+            conn.all(query1, async (err, results) => {
+             if (err) {
+               console.log(err);
+             } else if (Object.keys(results).length === 0) {
+               // INSERT INTO THE TABLE IF ITEM DOES NOT EXIST IN THE TABLE
+               const query2 = `INSERT INTO cart (itemId, userId, quantity, variety) 
                         VALUES(${itemId}, ${userId}, 1, '${variation}')`;
-        await conn.run(query2, [], (err) => {
-          if (err) {
-            console.log(err);
-          }
-          console.log(variation);
-        });
-        // conn.close();
-      } else {
-        try {
-          const query = `DELETE FROM cart 
+               await conn.run(query2, [], (err) => {
+                 if (err) {
+                   console.log(err);
+                 }
+                 console.log(variation);
+               });
+               // conn.close();
+             } else {
+               try {
+                 const query = `DELETE FROM cart 
                    WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
-          // DELETE WHEN EXIST
-          conn.run(query, [], (errorMessage) => {
-            if (errorMessage) {
-              throw errorMessage;
-            } else {
-              console.log("Deleted!");
-            }
-          });
-        } catch (error) {
-        } finally {
-          const query4 = `INSERT INTO cart (itemId, userId, quantity, variety) 
+                 // DELETE WHEN EXIST
+                 conn.run(query, [], (errorMessage) => {
+                   if (errorMessage) {
+                     throw errorMessage;
+                   } else {
+                     console.log("Deleted!");
+                   }
+                 });
+               } catch (error) {
+               } finally {
+                 const query4 = `INSERT INTO cart (itemId, userId, quantity, variety) 
                         VALUES(${itemId}, ${userId}, 1, '${variation}')`;
-          // REINSERT AFTER DELETED
-          conn.run(query4, [], (ERR) => {
-            if (ERR) {
-              throw ERR;
-            } else {
-              console.log("Inserted!");
-            }
-          });
-          // console.log("Item already exist in your carts!");
-        }
-      }
-    });
-  } catch (err) {
-    console.log(err);
-  } finally {
-    res.redirect("/cart");
-  }
+                 // REINSERT AFTER DELETED
+                 conn.run(query4, [], (ERR) => {
+                   if (ERR) {
+                     throw ERR;
+                   } else {
+                     console.log("Inserted!");
+                   }
+                 });
+                 // console.log("Item already exist in your carts!");
+               }
+             }
+           });
+         } catch (err) {
+           console.log(err);
+         } finally {
+           res.redirect("/cart");
+         }
+     }
+   });
+
+
+
 });
 
 app.post("/delete-cart", async (req, res) => {
@@ -546,8 +571,8 @@ app.post("/dashboard", async (req, res) => {
     res.redirect("/login");
     console.log(loginValidation.error.details[0].message);
   } else {
-    const sql = `SELECT * FROM users WHERE (email = '${user.email}' AND password = '${user.password}')`;
-    conn.all(sql, (err, result) => {
+    const sql = "SELECT * FROM users WHERE (email = ? AND password = ?)";
+    conn.all(sql, [`${user.email}`, `${user.password}`], (err, result) => {
       if (err) {
         throw err;
       } else if (Object.keys(result).length === 0) {
@@ -580,20 +605,20 @@ app.get("/cart", async (req, res) => {
   const query = `SELECT * FROM cart C
                  JOIN item I
                  ON C.itemId = I.id
-                 WHERE C.userId = '${userId}'`;
+                 WHERE C.userId =  ?`;
 
   const query1 = `SELECT SUM(I.price * C.quantity) AS totalPrice, SUM(quantity) as total
                  FROM cart C
                  JOIN item I
                  ON C.itemId = I.id
-                 WHERE C.userId = '${userId}'`;
+                 WHERE C.userId = ?`;
 
   if (req.session.username) {
-    await conn.all(query, async (err, results) => {
+    await conn.all(query, [userId], async (err, results) => {
       if (err) {
         throw err;
       } else {
-        await conn.all(query1, (error, carts) => {
+        await conn.all(query1, [userId], (error, carts) => {
           if (error) {
             throw error;
           } else {
@@ -721,31 +746,56 @@ app.get("/my-orders", (req, res) => {
 
 app.post("/register", (req, res) => {
   const customer = req.body;
-  // const user = {
-  const firstName = customer.fname;
-  const lastName = customer.lname;
-  const email = customer.email;
-  const phone = customer.phone;
-  const city = customer.city;
-  const address = customer.address;
-  const password = customer.password;
-  const region = customer.region;
-  // };
-  const query = `INSERT INTO users 
-                 (firstName, lastName, email, phone, region, city, resAddress, password)
-                 VALUES('${firstName}', '${lastName}', '${email}', '${phone}',
-                 '${region}', '${city}', '${address}', '${password}')`;
+  const user = {
+    firstName: customer.fname,
+    lastName: customer.lname,
+    email: customer.email,
+    phone: customer.phone,
+    city: customer.city,
+    address: customer.address,
+    password: customer.password,
+    repPassword: customer.repPassword,
+    region: customer.region,
+  };
 
-  conn.run(query, [], (err) => {
-    if (err) {
-      throw err;
-    } else {
-      console.log("Registered!");
-      res.redirect("login");
-    }
+  const schema = Joi.object({
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required(),
+    email: Joi.string().email({
+      minDomainSegments: 2,
+      tlds: {
+        allow: ["com", "net"],
+      },
+    }),
+    phone: Joi.string().min(4),
+    city: Joi.string().min(4),
+    address: Joi.string().min(4),
+    password: Joi.string().min(4),
+    repPassword: Joi.ref("password"),
+    region: Joi.string(),
   });
 
-  console.log(firstName);
+  const registeValidation = schema.validate(user);
+
+  if (registeValidation.error) {
+    console.log(registeValidation.error.details[0].message);
+  } else {
+    const query = `INSERT INTO users 
+                 (firstName, lastName, email, phone, region, city, resAddress, password)
+                 VALUES('${user.firstName}', '${user.lastName}', '${user.email}', '${user.phone}',
+                 '${user.region}', '${user.city}', '${user.address}', '${user.password}')`;
+
+    conn.run(query, [], (err) => {
+      if (err) {
+        throw err;
+      } else {
+        console.log("Registered!");
+        res.redirect("login");
+      }
+    });
+  }
+
+  // console.log(firstName);
 });
 
 app.get("/refer:id");
