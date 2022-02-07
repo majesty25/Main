@@ -102,9 +102,9 @@
         <!-- <li><%=row.First_name%></li> -->
         <%})%>
       </div>
-      <div id="detail" class="ml-5">
-        <h5>Detail</h5>
-        <div class="ml-5">
+      <div id="detail" class="">
+        <div id="det-head">Description</div>
+        <div class="ml-5" id="desc">
           <% Object.keys(result).forEach(key => { var row = result[key];%>
           <%=row.description%> <%})%>
         </div>
@@ -124,7 +124,7 @@
           <div class="further-info-head">KEY FEATURES</div>
           <div class="further-info-content">
             <% for (i in spec){ %>
-              <%=spec[i]%>
+                <%=spec[i]%>
             <% } %>
           </div>
         </span>
@@ -133,13 +133,11 @@
           <div class="further-info-head">WHAT'S IN THE PACKAGE</div>
           <div class="further-info-content">
             <% for (i in spec){ %>
-              <b><%=spec[i]%></b>
+                <%=spec[i]%>
             <% } %>
           </div>
         </span>
-      </div>
-
-      
+      </div>      
 
     </div>
     <div id="right-container">
