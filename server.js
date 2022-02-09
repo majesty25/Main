@@ -228,7 +228,7 @@ app.post("/detail", async (req, res) => {
   const endDate = `${today2.toDateString().slice(0, 10)}`;
   const query1 = `SELECT * FROM item WHERE id = ${id}`;
   const query2 = `SELECT * FROM review WHERE itemId = ${id}`;
-  const query4 = `SELECT * FROM item WHERE itemId = ${id}`;
+  const query4 = `SELECT * FROM item WHERE id < ?`;
   const query3 = `SELECT SUM(quantity) as total FROM cart
                   WHERE userId = '${userId}'`;
 
@@ -239,52 +239,61 @@ app.post("/detail", async (req, res) => {
     console.log(idValidation.error.details.message);
     res.redirect("/help");
   } else {
-    conn.all(query3, (error, carts) => {
-      if (error) {
-        throw error;
+    conn.all(query4, [4], (E, items) => {
+      if (E) {
+        throw E;
       } else {
-        conn.all(query1, async (err, result) => {
-          if (err) {
-            res.redirect("/help");
-          } else {
-            Object.keys(result).forEach((key) => {
-              const data = result[key];
-              const variety = data.varieties;
-              const spec = data.specifications.split(",");
-              const keyFeat = data.specifications.split(",");
-              const otherPics = data.otherpics.split(", ");
-              if (variety == "default") {
-                res.render("detail", {
-                  result,
-                  id,
-                  spec,
-                  keyFeat,
-                  otherPics,
-                  startDate,
-                  endDate,
-                  carts,
-                  address,
-                });
-              } else if (variety.length > 0) {
-                const varieties = variety.split(", ");
-                res.render("detail", {
-                  result,
-                  id,
-                  varieties,
-                  spec,
-                  keyFeat,
-                  otherPics,
-                  startDate,
-                  endDate,
-                  carts,
-                  address,
+            conn.all(query3, (error, carts) => {
+              if (error) {
+                throw error;
+              } else {
+                conn.all(query1, async (err, result) => {
+                  if (err) {
+                    res.redirect("/help");
+                  } else {
+                    Object.keys(result).forEach((key) => {
+                      const data = result[key];
+                      const variety = data.varieties;
+                      const spec = data.specifications.split(",");
+                      const keyFeat = data.specifications.split(",");
+                      const otherPics = data.otherpics.split(", ");
+                      if (variety == "default") {
+                        res.render("detail", {
+                          result,
+                          id,
+                          spec,
+                          keyFeat,
+                          otherPics,
+                          startDate,
+                          endDate,
+                          carts,
+                          address,
+                          items,
+                        });
+                      } else if (variety.length > 0) {
+                        const varieties = variety.split(", ");
+                        res.render("detail", {
+                          result,
+                          id,
+                          varieties,
+                          spec,
+                          keyFeat,
+                          otherPics,
+                          startDate,
+                          endDate,
+                          carts,
+                          address,
+                          items,
+                        });
+                      }
+                    });
+                  }
                 });
               }
             });
-          }
-        });
       }
     });
+
   }
 });
 
@@ -612,27 +621,37 @@ app.get("/cart", async (req, res) => {
                  JOIN item I
                  ON C.itemId = I.id
                  WHERE C.userId = ?`;
+  
+  const query2 = `SELECT * FROM item WHERE id < ?`
 
   if (req.session.username) {
-    await conn.all(query, [userId], async (err, results) => {
-      if (err) {
-        throw err;
+    conn.all(query2, [10], (E, items) => {
+      if (E) {
+        throw E;        
       } else {
-        await conn.all(query1, [userId], (error, carts) => {
-          if (error) {
-            throw error;
-          } else {
-            res.render("cart", {
-              name,
-              results,
-              carts,
+             conn.all(query, [userId], async (err, results) => {
+              if (err) {
+                throw err;
+              } else {
+                await conn.all(query1, [userId], (error, carts) => {
+                  if (error) {
+                    throw error;
+                  } else {
+                    res.render("cart", {
+                      name,
+                      results,
+                      carts,
+                      items
+                    });
+                    // console.log(results);
+                    // console.log(carts);
+                  }
+                });
+              }
             });
-            // console.log(results);
-            // console.log(carts);
-          }
-        });
       }
-    });
+    })
+
   } else {
     res.redirect("/login");
   }
@@ -658,6 +677,8 @@ app.get("/cart-one", async (req, res) => {
                  JOIN item I
                  ON C.itemId = I.id
                  WHERE C.userId = '${userId}'`;
+
+  
 
   if (req.session.username) {
     await conn.all(query, async (err, results) => {
