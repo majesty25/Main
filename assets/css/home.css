@@ -437,6 +437,12 @@
   /* align-items: center; */
 }
 
+#flash-prices{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 #old-price {
   font-size: 14px;
   float: right;
@@ -571,7 +577,7 @@
   }
 
   #text {
-    font-size: 10px;
+    font-size: 12px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
 

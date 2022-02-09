@@ -12,6 +12,9 @@
   height: 80px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
   cursor: pointer;
   /* border: 1px silver solid; */
   /* background-color: blue; */

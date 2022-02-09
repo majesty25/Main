@@ -14,14 +14,23 @@
 
     <div id="main-container">
       <div id="container-head">
-        My orders
+        
+
+       <% Object.keys(orders).forEach(key => {
+         const row = orders[key];
+         if (row.userId  == null){ %>
+           You have no order
+         <% }else{ %>
+           My orders
+         <% }
+       }) %> 
         <!-- <span id="pending">PENDING</span> -->
         <!-- <span id="delivered">CONFIRMED</span> -->
         <!-- <span id="delivered">DELIVERED</span> -->
       </div>
       <div id="orders">
         <% Object.keys(orders).forEach(key => {
-          const order = orders[key]; %>
+          const order = orders[key]; %>      
 
           <div class="order">
           <div id="order-head">
@@ -53,5 +62,7 @@
         
       </div>
     </div>
+
+    <%# include("footer") %> 
   </body>
 </html>

@@ -504,7 +504,7 @@
   width: 100%;
   margin-left: 0%;
   height: 30px;
-  background-color: orangered;
+  background-color: rgba(24, 31, 23, 0.775);
   display: flex;
   color: white;
   justify-content: center;

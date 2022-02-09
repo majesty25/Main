@@ -44,6 +44,7 @@ app.get("/", async (req, res) => {
   const name = req.session.username;
   const id = req.session.ID;
   const userId = req.session.userId;
+  const email = req.session.email;
   const query1 = `SELECT SUM(quantity) as total FROM cart
                   WHERE userId = '${userId}'`;
   await conn.all("SELECT * FROM item", async (err, result) => {
@@ -66,6 +67,7 @@ app.get("/", async (req, res) => {
             name,
             id,
             carts,
+            email,
           });
         }
       });
@@ -77,6 +79,7 @@ app.post("/", async (req, res) => {
   const name = req.session.username;
   const id = req.session.ID;
   const cat = req.body.cat;
+  const email = req.session.email;
   await conn.all(
     `SELECT * FROM item WHERE category = '${cat}'`,
     async (err, result) => {
@@ -86,6 +89,7 @@ app.post("/", async (req, res) => {
         result,
         name,
         id,
+        email,
       });
     }
   );
@@ -218,6 +222,7 @@ app.post("/detail", async (req, res) => {
   const name = req.session.username;
   const userId = req.session.userId;
   const address = req.session.address;
+  const email = req.session.email;
   const today1 = new Date();
   const today2 = new Date();
   const currentDay1 = today1.getDate();
@@ -269,6 +274,7 @@ app.post("/detail", async (req, res) => {
                           carts,
                           address,
                           items,
+                          email,
                         });
                       } else if (variety.length > 0) {
                         const varieties = variety.split(", ");
@@ -284,6 +290,7 @@ app.post("/detail", async (req, res) => {
                           carts,
                           address,
                           items,
+                          email,
                         });
                       }
                     });
@@ -593,6 +600,7 @@ app.post("/dashboard", async (req, res) => {
           conn.all("SELECT * FROM item", (err, result) => {
             if (err) throw err;
             req.session.userId = row.id;
+            req.session.email = row.email;
             req.session.username = row.firstName + " " + row.lastName;
             req.session.address = `${row.region}, ${row.city}, ${row.resAddress}`;
             // let name = req.session.username;
@@ -610,6 +618,7 @@ app.get("/dashboard", (req, res) => {
 
 app.get("/cart", async (req, res) => {
   const name = req.session.username;
+  const email = req.session.email;
   const userId = req.session.userId;
   const query = `SELECT * FROM cart C
                  JOIN item I
@@ -641,7 +650,8 @@ app.get("/cart", async (req, res) => {
                       name,
                       results,
                       carts,
-                      items
+                      items,
+                      email,
                     });
                     // console.log(results);
                     // console.log(carts);
@@ -662,6 +672,7 @@ app.get("/cart", async (req, res) => {
 app.get("/cart-one", async (req, res) => {
   const name = req.session.username;
   const userId = req.session.userId;
+  const email = req.session.email;
   const query = `SELECT * FROM cart C
                  JOIN item I
                  ON C.itemId = I.id
@@ -693,6 +704,7 @@ app.get("/cart-one", async (req, res) => {
               name,
               results,
               carts,
+              email,
             });
             // console.log(results);
             // console.log(carts);
@@ -746,6 +758,7 @@ app.get("/my-orders", (req, res) => {
   if (req.session.username) {
     const userId = req.session.userId;
     const name = req.session.username;
+    const email = req.session.email;
     const query = `SELECT * FROM orders O
                  JOIN item I
                  ON O.itemId = I.id
@@ -757,7 +770,7 @@ app.get("/my-orders", (req, res) => {
       if (err) {
         throw err;
       } else {
-        res.render("order", { orders, name });
+        res.render("order", { orders, name, email });
       }
     });
   } else {
