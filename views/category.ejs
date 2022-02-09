@@ -23,68 +23,86 @@
     <!-- MAIN CONTAINER: THIS CONTAIN ALL THE BODY CONTENT -->
     <div id="main-container">
       <!-- THE FIRST SECTION OF THE MAIN PAGE -->
-     
+
       <div id="demo">
-        <div id="con">
-          <div id="img-con">
-            <img id="img2" src="../font/shu1.jpg" alt="" srcset="" />
-            <div id="text">CATEGORY 1</div>
+        <form id="con" action="/" method="post">
+          <input type="hidden" name="" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/40.jpg" alt="" srcset="" />
+              <div id="text">Kitchen Untesils</div>
+            </button>
           </div>
-        </div>
-        <div id="con">
-          <div id="img-con">
-            <img id="img2" src="../font/shu2.jpg" alt="" srcset="" />
-            <div id="text">CATEGORY 1</div>
+        </form>
+
+        <form id="con" action="/" method="post">
+          <input type="hidden" name="" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/shu4.jpg" alt="" srcset="" />
+              <div id="text">Men's shoe</div>
+            </button>
           </div>
-        </div>
-        <div id="con">
-          <div id="img-con">
-            <img
-              id="img2"
-              src="../font/gettyimages-1025627712-612x612.jpg"
-              alt=""
-              srcset=""
-            />
-            <div id="text">CATEGORY 1</div>
+        </form>
+
+        <form id="con" action="/" method="post">
+          <input type="hidden" name="" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/gettyimages-1025627712-612x612.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Women's shoe</div>
+            </button>
           </div>
-        </div>
-        <div id="con">
-          <div id="img-con">
-            <img
-              id="img2"
-              src="../font/smartphones-front-back-view-illustration_174496-77.jpg"
-              alt=""
-              srcset=""
-            />
-            <div id="text">CATEGORY 1</div>
+        </form>
+
+        <form id="con" action="/" method="post">
+          <input type="hidden" name="" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/gettyimages-1137505232-2048x2048.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Women's cloth</div>
+            </button>
           </div>
-        </div>
-        <div id="con">
-          <div id="img-con">
-            <img
-              id="img2"
-              src="../font/gettyimages-1129225638-2048x2048.jpg"
-              alt=""
-              srcset=""
-            />
-            <div id="text">CATEGORY 1</div>
+        </form>
+
+        <form id="con" action="/" method="post">
+          <input type="hidden" name="" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/iphone-mock-up-realistic-design_23-2148358424.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Phones</div>
+            </button>
           </div>
-        </div>
-        <div id="con">
-          <div id="img-con">
-            <img
-              id="img2"
-              src="../font/gettyimages-1129225638-2048x2048.jpg"
-              alt=""
-              srcset=""
-            />
-            <div id="text">CATEGORY 1</div>
+        </form>
+
+        <form id="con" action="/" method="post">
+          <input type="hidden" name="" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/51.jpg" alt="" srcset="" />
+              <div title="hkjhkk" id="text">Men's cloth</div>
+            </button>
           </div>
-        </div>
+        </form>
       </div>
       <div id="demo" class="demo">
         <div id="weekly-deal">Weakly deal</div>
-       
+
         <% Object.keys(result).forEach(key => { var row = result[key]; const
         percentOff = (row.off/100)*row.price; const oldPrice = row.price +
         percentOff; const total = (row.rate) * 5; const rate =
@@ -133,9 +151,6 @@
           <form action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
             <button id="image-btn">
-              <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
               <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
             </button>
           </form>
@@ -155,7 +170,7 @@
               <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
               < (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
             </div>
-            <!-- <span class="old-price">GHS 378</span> -->
+          
             <% if (row.off <= 0) { %>
             <!-- <span class="percent-off"></span> -->
             <% }else{ %>
@@ -240,7 +255,7 @@
         <!-- <li><%=row.First_name%></li> -->
         <%})%>
 
-        <div id="weekly-deal">Top picks</div>
+        <div id="weekly-deal">Top picks</div>        
 
         <% Object.keys(result).forEach(key => { var row = result[key]; const
         percentOff = (row.off/100)*row.price; const oldPriceWhole =
@@ -329,4 +344,5 @@
   </body>
 </html>
 
+<script src="../js/slideshow.js"></script>
 <script src="../js/search.js"></script>
