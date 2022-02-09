@@ -34,7 +34,7 @@
         <div id="buy-info">
           <div id="name"><%=row.name%></div>
           <div id="new-pric" class="new-price">GHS <%=row.price%></div>
-          <div id="price">
+          <div id="V-box">
             <div id="old-price">GHS <%=oldPriceRounded%></div>
             <div id="percent-off">-<%=row.off%>%</div>
           </div>
@@ -58,8 +58,8 @@
             <button id="jh" class="color 3">42</button> -->
               
               
-               
-              <% if (locals.varieties){ %>
+               <div id="V-boxk">
+                               <% if (locals.varieties){ %>
                 <button id="color">Variations</button>
                 <% for (i in varieties){ %>
                   
@@ -67,7 +67,9 @@
                 <% }
               }else{ %>
                 <input type="hidden" name="color" value="default">
-              <% } %>          
+              <% } %> 
+               </div>
+         
             
             <!-- <input type="radio" name="color" id="rad2" value="42"><label for="rad2">42</label>
             <input type="radio" name="color" id="rad3" value="43"><label for="rad3">43</label>
@@ -221,9 +223,10 @@
 
     <div id="viewed-container">
    
-   
-   <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+      <% Object.keys(items).forEach(key => {
+        const item = items[key]; %>
+           <div id="viewed-item">
+       <img style="width: 100%;" src="../font/<%=item.pic%>" alt="" srcset="">
        <div id="viewedItemDet">
          <span id="viewed-name">
            Item's name
@@ -235,6 +238,9 @@
          </span>
        </div>
    </div>
+      <% }) %> 
+  
+
 
    
       <div id="viewed-item">
@@ -251,106 +257,7 @@
        </div>
    </div>
 
-      <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
 
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
-
-      <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
-
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
-
-      <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
-
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
-
-      <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
-
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
-
-
-      <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
-
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
-
-
-      <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
-
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
-
-
-      <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
-
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
 
   
  </div>
