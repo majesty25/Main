@@ -190,6 +190,8 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   /* font-weight: bold; */
   margin-left: 30px;
+
+  background-color: rgb(180, 156, 156);
   margin-top: 0px;
   display: flex;
   flex-direction: row;
@@ -205,6 +207,7 @@
 }
 
 #old-price {
+  float: left;
   font-size: 16px;
   color: rgb(143, 143, 172);
   text-decoration: line-through;
@@ -212,8 +215,9 @@
 }
 
 #percent-off {
-  background-color: rgba(255, 69, 0, 0.459);
+  /* background-color: rgba(255, 69, 0, 0.459); */
   color: white;
+  float: right;
   padding-left: 2px;
   padding-right: 2px;
   border-radius: 3px;
@@ -259,12 +263,12 @@
 }
 
 #color {
-  margin-right: 20px;
+  margin-right: 10px;
   margin-left: 30px;
   font-size: 15px;
   border: none;
   padding: 5px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .color {
@@ -563,10 +567,26 @@ label{
   font-size: 17px;
 }
 
+#V-box{
+  display: flex;
+  color: white;
+  /* justify-content: space-evenly; */
+  width: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 30px;
+  color: white;
+  background-color: rgb(36, 32, 31);
+}
+
 @media screen and (max-width: 800px) {
   #viewedMainContainer {
     width: 98%;
     margin-left: 1%;
+  }
+
+  #V-box{
+    margin-left: 0%;
   }
 
   #viewed-container {
