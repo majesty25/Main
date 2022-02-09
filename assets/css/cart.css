@@ -427,6 +427,14 @@
 
 }
 
+h3{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+
 @media screen and (max-width: 650px) {
   #main-container {
     flex-direction: column;
