@@ -32,6 +32,14 @@
       text-align: center;
     }
 
+    #signup{
+      background-color: rgb(255, 1, 81);
+      border: none;
+      border-radius: 4px;
+      color: white;
+      box-shadow: 2px 2px 6px 2px silver;
+    }
+
     input {
       padding: 10px;
       width: 100%;
@@ -42,9 +50,10 @@
     }
 
     #Region {
-      width: 50%;
+      width: 100%;
       height: 45px;
       font-size: 17px;
+      outline: none;
     }
 
     /* Mark input boxes that gets an error on validation: */
@@ -54,7 +63,7 @@
 
     /* Hide all steps by default: */
     .tab {
-      display: none;
+      display: block;
     }
 
     button {
@@ -105,7 +114,232 @@
       }
     }
   </style>
-
+<% 
+const country = [
+  "Afghanistan",
+  "Albania",
+  "Algeria",
+  "Andorra",
+  "Angola",
+  "Anguilla",
+  "Antigua & Barbuda",
+  "Argentina",
+  "Armenia",
+  "Aruba",
+  "Australia",
+  "Austria",
+  "Azerbaijan",
+  "Bahamas",
+  "Bahrain",
+  "Bangladesh",
+  "Barbados",
+  "Belarus",
+  "Belgium",
+  "Belize",
+  "Benin",
+  "Bermuda",
+  "Bhutan",
+  "Bolivia",
+  "Bosnia & Herzegovina",
+  "Botswana",
+  "Brazil",
+  "British Virgin Islands",
+  "Brunei",
+  "Bulgaria",
+  "Burkina Faso",
+  "Burundi",
+  "Cambodia",
+  "Cameroon",
+  "Canada",
+  "Cape Verde",
+  "Cayman Islands",
+  "Central Arfrican Republic",
+  "Chad",
+  "Chile",
+  "China",
+  "Colombia",
+  "Congo",
+  "Cook Islands",
+  "Costa Rica",
+  "Cote D Ivoire",
+  "Croatia",
+  "Cuba",
+  "Curacao",
+  "Cyprus",
+  "Czech Republic",
+  "Denmark",
+  "Djibouti",
+  "Dominica",
+  "Dominican Republic",
+  "Ecuador",
+  "Egypt",
+  "El Salvador",
+  "Equatorial Guinea",
+  "Eritrea",
+  "Estonia",
+  "Ethiopia",
+  "Falkland Islands",
+  "Faroe Islands",
+  "Fiji",
+  "Finland",
+  "France",
+  "French Polynesia",
+  "French West Indies",
+  "Gabon",
+  "Gambia",
+  "Georgia",
+  "Germany",
+  "Ghana",
+  "Gibraltar",
+  "Greece",
+  "Greenland",
+  "Grenada",
+  "Guam",
+  "Guatemala",
+  "Guernsey",
+  "Guinea",
+  "Guinea Bissau",
+  "Guyana",
+  "Haiti",
+  "Honduras",
+  "Hong Kong",
+  "Hungary",
+  "Iceland",
+  "India",
+  "Indonesia",
+  "Iran",
+  "Iraq",
+  "Ireland",
+  "Isle of Man",
+  "Israel",
+  "Italy",
+  "Jamaica",
+  "Japan",
+  "Jersey",
+  "Jordan",
+  "Kazakhstan",
+  "Kenya",
+  "Kiribati",
+  "Kosovo",
+  "Kuwait",
+  "Kyrgyzstan",
+  "Laos",
+  "Latvia",
+  "Lebanon",
+  "Lesotho",
+  "Liberia",
+  "Libya",
+  "Liechtenstein",
+  "Lithuania",
+  "Luxembourg",
+  "Macau",
+  "Macedonia",
+  "Madagascar",
+  "Malawi",
+  "Malaysia",
+  "Maldives",
+  "Mali",
+  "Malta",
+  "Marshall Islands",
+  "Mauritania",
+  "Mauritius",
+  "Mexico",
+  "Micronesia",
+  "Moldova",
+  "Monaco",
+  "Mongolia",
+  "Montenegro",
+  "Montserrat",
+  "Morocco",
+  "Mozambique",
+  "Myanmar",
+  "Namibia",
+  "Nauro",
+  "Nepal",
+  "Netherlands",
+  "Netherlands Antilles",
+  "New Caledonia",
+  "New Zealand",
+  "Nicaragua",
+  "Niger",
+  "Nigeria",
+  "North Korea",
+  "Norway",
+  "Oman",
+  "Pakistan",
+  "Palau",
+  "Palestine",
+  "Panama",
+  "Papua New Guinea",
+  "Paraguay",
+  "Peru",
+  "Philippines",
+  "Poland",
+  "Portugal",
+  "Puerto Rico",
+  "Qatar",
+  "Reunion",
+  "Romania",
+  "Russia",
+  "Rwanda",
+  "Saint Pierre & Miquelon",
+  "Samoa",
+  "San Marino",
+  "Sao Tome and Principe",
+  "Saudi Arabia",
+  "Senegal",
+  "Serbia",
+  "Seychelles",
+  "Sierra Leone",
+  "Singapore",
+  "Slovakia",
+  "Slovenia",
+  "Solomon Islands",
+  "Somalia",
+  "South Africa",
+  "South Korea",
+  "South Sudan",
+  "Spain",
+  "Sri Lanka",
+  "St Kitts & Nevis",
+  "St Lucia",
+  "St Vincent",
+  "Sudan",
+  "Suriname",
+  "Swaziland",
+  "Sweden",
+  "Switzerland",
+  "Syria",
+  "Taiwan",
+  "Tajikistan",
+  "Tanzania",
+  "Thailand",
+  "Timor L'Este",
+  "Togo",
+  "Tonga",
+  "Trinidad & Tobago",
+  "Tunisia",
+  "Turkey",
+  "Turkmenistan",
+  "Turks & Caicos",
+  "Tuvalu",
+  "Uganda",
+  "Ukraine",
+  "United Arab Emirates",
+  "United Kingdom",
+  "United States of America",
+  "Uruguay",
+  "Uzbekistan",
+  "Vanuatu",
+  "Vatican City",
+  "Venezuela",
+  "Vietnam",
+  "Virgin Islands (US)",
+  "Yemen",
+  "Zambia",
+  "Zimbabwe",
+];
+ %> 
   <body>
     <form id="regForm" action="/register" method="post">
       <h1>Register</h1>
@@ -149,17 +383,21 @@
         <!-- <p><input placeholder="Regoin" oninput="this.className = ''" name="region"></p> -->
         <p>
           <select name="region" id="Region" oninput="this.className = ''">
-            <option value="Central">Central</option>
+            <option value="Choose" disabled selected>Select Country</option>
+            <% for (i in country){%>
+              <option value="<%=country[i]%>" aria-placeholder="hjgjh"><%=country[i]%></option>
+            <% }%> 
+            <!-- <option value="Central">Central</option>
             <option value="Ashanti">Ashanti</option>
             <option value="Western">Western</option>
-            <option value="Northern">Northern</option>
+            <option value="Northern">Northern</option> -->
           </select>
         </p>
         <p>
           <input placeholder="City" oninput="this.className = ''" name="city" />
         </p>
         <p>
-          <input
+          <input type="text"
             placeholder="Residential address"
             oninput="this.className = ''"
             name="address"
@@ -185,19 +423,19 @@
             type="password"
           />
         </p>
-        <input name="signup" type="submit" value="Sign up" />
+        <input id="signup" name="signup" type="submit" value="Sign up" />
       </div>
-      <div style="overflow: auto">
+      <div style="overflow: auto; margin-top: 20px;">
         <div>Already have an account? <a href="login">Sign in</a></div>
         <div style="float: right">
-          <button type="button" id="prevBtn" onclick="nextPrev(-1)">
+          <!-- <button type="button" id="prevBtn" onclick="nextPrev(-1)">
             Previous
-          </button>
-          <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+          </button> -->
+          <!-- <button type="button" id="nextBtn" onclick="nextPrev(1)">Reset</button> -->
         </div>
       </div>
       <!-- Circles which indicates the steps of the form: -->
-      <div style="text-align: center; margin-top: 40px">
+      <div style="text-align: center; margin-top: 40px; display: none;">
         <span class="step"></span>
         <span class="step"></span>
         <span class="step"></span>
@@ -205,7 +443,7 @@
       </div>
     </form>
 
-    <script>
+    <!-- <script>
       var currentTab = 0; // Current tab is set to be the first tab (0)
       showTab(currentTab); // Display the current tab
 
@@ -285,6 +523,6 @@
         //... and adds the "active" class on the current step:
         x[n].className += " active";
       }
-    </script>
+    </script> -->
   </body>
 </html>
