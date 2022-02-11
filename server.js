@@ -105,116 +105,6 @@ app.get("/test", (req, res) => {
   console.log(y);
 });
 
-// app.post("/detailk", (req, res) => {
-//   const id = req.body.id;
-//   const name = req.session.username;
-//   const address = req.session.address;
-//   const today1 = new Date();
-//   const today2 = new Date();
-//   const currentDay1 = today1.getDate();
-//   const currentDay2 = today2.getDate();
-//   // Where will be three weeks in the future?
-//   const newDate1 = today1.setDate(currentDay1 + 3);
-//   const newDate2 = today2.setDate(currentDay2 + 8);
-//   const startDate = `${today1.toDateString().slice(0, 10)}`;
-//   const endDate = `${today2.toDateString().slice(0, 10)}`;
-//   conn.all(
-//     `SELECT * FROM otherpics WHERE itemId = ${id}`,
-//     function (err, otherpicsOutput) {
-//       conn.all(
-//         `SELECT * FROM review WHERE itemId = ${id}`,
-//         function (err, reviewOutput) {
-//           if (err) throw err;
-//           conn.all(
-//             `SELECT * FROM keyfeatures WHERE itemId = ${id}`,
-//             function (err, keyfeaturesOutput) {
-//               if (err) throw err;
-//               conn.all(
-//                 `SELECT * FROM specifications WHERE itemId = ${id}`,
-//                 function (err, specOutput) {
-//                   if (err) throw err;
-//                   conn.all(
-//                     `SELECT * FROM users`,
-//                     function (err, packageOutput) {
-//                       if (err) throw err;
-//                       conn.all(
-//                         `SELECT * FROM item WHERE id = ${id}`,
-//                         function (err, result) {
-//                           if (err) throw err;
-//                           Object.keys(result).forEach((key) => {
-//                             const variety = result[key];
-//                             const len = variety.varieties;
-//                             if (len === "default") {
-//                               res.render("detail", {
-//                                 reviewOutput,
-//                                 id,
-//                                 result,
-//                                 keyfeaturesOutput,
-//                                 specOutput,
-//                                 packageOutput,
-//                                 otherpicsOutput,
-//                                 name,
-//                                 address,
-//                                 startDate,
-//                                 endDate,
-//                               });
-//                             } else if (len.length > 0) {
-//                               console.log(len);
-//                               const varieties = len.split(", ");
-//                               const num = varieties.length;
-
-//                               res.render("detail", {
-//                                 reviewOutput,
-//                                 id,
-//                                 result,
-//                                 keyfeaturesOutput,
-//                                 specOutput,
-//                                 packageOutput,
-//                                 otherpicsOutput,
-//                                 name,
-//                                 address,
-//                                 startDate,
-//                                 endDate,
-//                                 varieties,
-//                                 num,
-//                               });
-//                             } else if (len == "default") {
-//                               console.log(toString(len));
-//                               const varieties = [];
-//                               varieties.length = 0;
-//                               // const num = varieties.length;
-
-//                               res.render("detail", {
-//                                 reviewOutput,
-//                                 id,
-//                                 result,
-//                                 keyfeaturesOutput,
-//                                 specOutput,
-//                                 packageOutput,
-//                                 otherpicsOutput,
-//                                 name,
-//                                 address,
-//                                 startDate,
-//                                 endDate,
-//                                 varieties,
-//                                 num,
-//                               });
-//                             }
-//                           });
-//                         }
-//                       );
-//                     }
-//                   );
-//                 }
-//               );
-//             }
-//           );
-//         }
-//       );
-//       if (err) throw err;
-//     }
-//   );
-// });
 
 app.post("/detail", async (req, res) => {
   const id = req.body.id;
@@ -784,12 +674,9 @@ app.post("/register", (req, res) => {
     firstName: customer.fname,
     lastName: customer.lname,
     email: customer.email,
-    phone: customer.phone,
-    city: customer.city,
-    address: customer.address,
+    phone: customer.phone,   
     password: customer.password,
-    repPassword: customer.repPassword,
-    region: customer.region,
+    repPassword: customer.repPassword,    
   };
 
   const schema = Joi.object({
@@ -801,12 +688,10 @@ app.post("/register", (req, res) => {
         allow: ["com", "net"],
       },
     }),
-    phone: Joi.string().min(4),
-    city: Joi.string().min(4),
-    address: Joi.string().min(4),
+    phone: Joi.string().min(10),
+    
     password: Joi.string().min(4),
-    repPassword: Joi.ref("password"),
-    region: Joi.string(),
+    repPassword: Joi.ref("password"), 
   });
 
   const registeValidation = schema.validate(user);
@@ -815,9 +700,8 @@ app.post("/register", (req, res) => {
     console.log(registeValidation.error.details[0].message);
   } else {
     const query = `INSERT INTO users 
-                 (firstName, lastName, email, phone, region, city, resAddress, password)
-                 VALUES('${user.firstName}', '${user.lastName}', '${user.email}', '${user.phone}',
-                 '${user.region}', '${user.city}', '${user.address}', '${user.password}')`;
+                 (firstName, lastName, email, phone, password)
+                 VALUES('${user.firstName}', '${user.lastName}', '${user.email}', '${user.phone}', '${user.password}')`;
 
     conn.run(query, [], (err) => {
       if (err) {
