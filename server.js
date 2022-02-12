@@ -724,6 +724,34 @@ app.get("/search", (req, res) => {
   res.render("search");
 });
 
+app.get("/searcho", (req, res) => {
+const fetch = require("node-fetch");
+
+const url = "https://api.flutterwave.com/v3/charges?type=mobile_money_ghana";
+const options = {
+  method: "POST",
+  headers: {
+    Accept: "application/json",
+    Authorization: "FLWSECK-f3528899bf8914081e94a26e708be794-X",
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    amount: 10,
+    currency: "GHS",
+    email: "nyankson25@gamil.com",
+    tx_ref: "MC-158523s09v505089",
+    phone_number: "0555089255",
+    network: "MTN",
+    
+  }),
+};
+
+fetch(url, options)
+  .then((res) => res.json())
+  .then((json) => console.log(json))
+  .catch((err) => console.error("error:" + err));
+});
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
