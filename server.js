@@ -687,9 +687,8 @@ app.post("/register", (req, res) => {
       tlds: {
         allow: ["com", "net"],
       },
-    }),
-    phone: Joi.string().min(10),
-    
+    }).required(),
+    phone: Joi.string().min(10).required(),    
     password: Joi.string().min(4),
     repPassword: Joi.ref("password"), 
   });
@@ -698,6 +697,8 @@ app.post("/register", (req, res) => {
 
   if (registeValidation.error) {
     console.log(registeValidation.error.details[0].message);
+    const msg = registeValidation.error.details[0].message;
+    res.render("signup", {msg});
   } else {
     const query = `INSERT INTO users 
                  (firstName, lastName, email, phone, password)
