@@ -21,6 +21,7 @@ header {
 
 #open-nav {
   margin: 10px;
+  margin-left: -10px;
   font-size: 21px;
   cursor: pointer;
 }
