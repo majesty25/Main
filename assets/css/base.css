@@ -109,7 +109,7 @@ li {
   flex-direction: column;
   border-bottom: 1px silver solid;
   padding-bottom: 10px;
-  align-items: center;
+  /* align-items: center; */
 }
 
 #user-greeting {
