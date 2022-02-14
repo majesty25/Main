@@ -185,6 +185,20 @@ li {
   margin-left: 5px;
 }
 
+#search{
+  width: auto;
+  height: auto;
+  background-color: orangered;
+  color: white;
+  padding-left: 9px;
+  padding-right: 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
 @media screen and (min-width: 649px) {
   #subhead {
     display: none;
