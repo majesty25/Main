@@ -6,7 +6,8 @@
     />
 
 <div id="fade">
-    <i style="font-size: 68px; color: white;" class="mdi mdi-spin mdi-autorenew"></i>
+    <!-- <i style="font-size: 68px; color: white;" class="mdi mdi-spin mdi-autorenew"></i> -->
+    <div class="loader"></div>
 </div>
 
 
@@ -15,7 +16,7 @@
     setTimeout( function hide(){
         const fade = document.querySelector("#fade");
         fade.style.display = "none";
-    },100)
+    },6000)
 
     function shew(){
         const fade = document.querySelector("#fade");
