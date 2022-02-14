@@ -152,7 +152,7 @@
       /></a>
     </div>
 
-    <form action="/dashboard" method="post">
+    <form onsubmit="shew()" action="/dashboard" method="post">
       <div class="container">
         <%if (locals.errorMessages){ %>
         <div id="error-message"><%=errorMessages%></div>
