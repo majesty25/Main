@@ -51,7 +51,7 @@
           </div>
 
           <div id="colors">
-            <form style="width: 100%" action="/add-cart" method="post">
+            <form style="width: 100%" action="/add-cart" method="post" onsubmit="shew()">
             
          
             <!-- <button id="hj" class="color" onclick="select()">40</button>
@@ -97,7 +97,7 @@
           <div id="add">
             
               <input id="cnt" type="hidden" name="id" value="<%= id%>" />
-              <button id="add-cart" type="submit" onclick="shew">
+              <button id="add-cart" type="submit">
                 <i style="font-size: 20px; float:left;" class="mdi mdi-cart-plus"></i>
                 ADD TO CART
               </button>
