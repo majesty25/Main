@@ -16,11 +16,17 @@
     setTimeout( function hide(){
         const fade = document.querySelector("#fade");
         fade.style.display = "none";
-    },6000)
+    },100)
 
     function shew(){
         const fade = document.querySelector("#fade");
         fade.style.display = "flex";
     }
+
+    const body = document.querySelector("body");
+    body.addEventListener("load", (e)=>{
+        e.preventDefault();
+        
+    })
    
 </script>
