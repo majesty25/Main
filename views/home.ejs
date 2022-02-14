@@ -38,7 +38,7 @@
             ></i>
             <span> CATEGORIES</span>
           </div>
-          <form action="/" method="post">
+          <form action="/" method="post" onsubmit="shew()">
             <input type="hidden" name="cat" value="1" />
             <button id="cat">
               <i
@@ -48,7 +48,7 @@
               Fassion
             </button>
           </form>
-          <form action="/" method="post">
+          <form action="/" method="post" onsubmit="shew()">
             <input type="hidden" name="cat" value="2" />
             <button type="submit" id="cat">
               <i
@@ -59,7 +59,7 @@
             </button>
           </form>
 
-          <form action="/" method="post">
+          <form action="/" method="post" onsubmit="shew()">
             <input type="hidden" name="cat" value="3" />
             <button id="cat">
               <i
@@ -70,7 +70,7 @@
             </button>
           </form>
 
-          <form action="/" method="post">
+          <form action="/" method="post" onsubmit="shew()">
             <input type="hidden" name="cat" value="4" />
             <button id="cat">
               <i
@@ -81,7 +81,7 @@
             </button>
           </form>
 
-          <form action="/" method="post">
+          <form action="/" method="post" onsubmit="shew()">
             <input type="hidden" name="cat" value="5" />
             <button id="cat">
               <i
@@ -92,7 +92,7 @@
             </button>
           </form>
 
-          <form action="/" method="post">
+          <form action="/" method="post" onsubmit="shew()">
             <input type="hidden" name="cat" value="6" />
             <button id="cat">
               <i
@@ -152,7 +152,7 @@
             <div id="user-greeting-1">Hi, cherished Customer</div>
             <div id="user-greeting-1">WELCOME TO EXSALE</div>
             <div id="sign">
-              <form action="/login" method="get">
+              <form action="/login" method="get" onsubmit="shew()">
                 <button id="login-btn">
                   <i
                     style="font-size: 16px"
@@ -161,7 +161,7 @@
                   Log in
                 </button>
               </form>
-              <form action="/signup" method="get">
+              <form action="/signup" method="get" onsubmit="shew()">
                 <button id="signup-btn">
                   <i
                     style="font-size: 16px"
@@ -190,7 +190,7 @@
               <div style="color: red"><%- include('flash')%></div>
             </div>
             <div id="flash-deals">
-              <form class="flash-deal-1" action="/" method="post">
+              <form class="flash-deal-1" action="/" method="post" onsubmit="shew()">
                 <button id="flash-deal-1" type="submit">
                   <img
                     id="flash-deal-img"
@@ -209,7 +209,7 @@
                 </button>
               </form>
 
-              <form class="flash-deal-1" action="/" method="post">
+              <form class="flash-deal-1" action="/" method="post" onsubmit="shew()">
                 <button id="flash-deal-1" type="submit">
                   <img
                     id="flash-deal-img"
@@ -232,7 +232,7 @@
         </div>
       </div>
       <div id="demo">
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -242,7 +242,7 @@
           </div>
         </form>
 
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -252,7 +252,7 @@
           </div>
         </form>
 
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -267,7 +267,7 @@
           </div>
         </form>
 
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -282,7 +282,7 @@
           </div>
         </form>
 
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -297,7 +297,7 @@
           </div>
         </form>
 
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -315,7 +315,7 @@
         percentOff; const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
         <div id="item">
-          <form action="/detail" method="post">
+          <form onsubmit="shew()" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
             <button id="image-btn">
               <!-- <div id="bbb">
@@ -355,7 +355,7 @@
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
         <div id="item">
-          <form action="/detail" method="post">
+          <form onsubmit="shew()" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
             <button id="image-btn">
               <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
@@ -414,7 +414,7 @@
 
         <div id="weekly-deal">Top deals</div>
               <div id="demo">
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -424,7 +424,7 @@
           </div>
         </form>
 
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -434,7 +434,7 @@
           </div>
         </form>
 
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -449,7 +449,7 @@
           </div>
         </form>
 
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -464,7 +464,7 @@
           </div>
         </form>
 
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -479,7 +479,7 @@
           </div>
         </form>
 
-        <form id="con" action="/" method="post">
+        <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="" />
           <div id="conj">
             <button id="img-con">
@@ -500,7 +500,7 @@
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
         <div id="item-category">
-          <form action="/detail" method="post">
+          <form onsubmit="shew()" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
             <button id="image-btn">
               <!-- <div id="bbb">
@@ -523,7 +523,7 @@
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
         <div id="item-category">
-          <form action="/detail" method="post">
+          <form onsubmit="shew()" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
             <button id="image-btn">
               <!-- <div id="bbb">
@@ -550,7 +550,7 @@
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
         <div id="item">
-          <form action="/detail" method="post">
+          <form onsubmit="shew()" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
             <button id="image-btn">
               <!-- <div id="bbb">
@@ -590,7 +590,7 @@
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
         <div id="item">
-          <form action="/detail" method="post">
+          <form onsubmit="shew()" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
             <button id="image-btn">
               <!-- <div id="bbb">
