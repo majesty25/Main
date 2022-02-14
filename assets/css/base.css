@@ -171,6 +171,7 @@ li {
   flex-direction: row;
   align-items: center;
   justify-content: space-evenly;
+  border-bottom: 1px silver solid;
   /* box-shadow: 1px 1px 3px 1px silver; */
   /* position: fixed; */
 }
