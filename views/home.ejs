@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/loader.css" />
     <link rel="stylesheet" href="../css/home.css" />
     <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
     <link rel="icon" href="../font/others/icon.png" type="image/x-icon">
@@ -18,11 +19,14 @@
     <title>Document</title>
   </head>
 
-  <body oncontextmenu="return false">
+  <body oncontextmenu="return false" onload="hide()">
     <div id="header-container"><%- include('header') %></div>
+    
 
     <!-- MAIN CONTAINER: THIS CONTAIN ALL THE BODY CONTENT -->
     <div id="main-container">
+
+      <%- include("loader")%>
       <!-- THE FIRST SECTION OF THE MAIN PAGE -->
       <div id="topmost-section">
         <div id="category">
