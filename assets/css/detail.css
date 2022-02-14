@@ -486,6 +486,7 @@
 #viewedMainContainer {
   width: 100%;
   margin-left: 0%;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   box-shadow: 2px 2px 5px 1px silver;
@@ -519,6 +520,9 @@
   max-width: 16%;
   height: auto;
   margin: 0.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 #viewed-name {
@@ -543,7 +547,7 @@
 #sug-prices {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   font-size: 14px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
