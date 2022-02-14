@@ -16,7 +16,7 @@
       <img style="width: 100%" src="../font/others/log.png" alt="" srcset=""
     /></a>
   </div>
-  <form id="search-form" autocomplete="off">
+  <form onsubmit="shew()" id="search-form" autocomplete="off">
     <div class="autocomplete">
       <input
         id="myInput"
@@ -55,19 +55,19 @@
 </header>
 
 <div id="pop" onmouseover="showAccount()" onmouseout="hideAccount()">
-  <form action="/account" method="get">
+  <form onsubmit="shew()" action="/account" method="get">
     <button type="submit" id="user-btn">
       <i style="margin-right: 5px" class="mdi mdi-account-outline"></i> Account
     </button>
   </form>
-  <form action="/my-orders" method="get">
+  <form onsubmit="shew()" action="/my-orders" method="get">
     <button id="user-btn">
       <i style="margin-right: 5px" class="mdi mdi-cart-arrow-down"></i> My
       orders
     </button>
   </form>
 
-  <form action="/help" method="get">
+  <form onsubmit="shew()" action="/help" method="get">
     <button id="user-btn">
       <i style="margin-right: 5px" class="mdi mdi-message-question-outline"></i>
       Help center
@@ -75,14 +75,14 @@
   </form>
 
   <% if (locals.name){ %>
-  <form action="/logout" method="get">
+  <form onsubmit="shew()" action="/logout" method="get">
     <button id="user-btn">
       <i style="margin-right: 5px" class="mdi mdi-logout"></i> Log out
     </button>
   </form>
 
   <%} else{ %>
-  <form action="/login" method="get">
+  <form onsubmit="shew()" action="/login" method="get">
     <button id="user-btn">
       <i style="margin-right: 5px" class="mdi mdi-login"></i> Log in
     </button>
