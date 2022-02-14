@@ -44,7 +44,7 @@
               <!-- <span id="quantity">X2</span> -->
             </div>
             <div id="add">
-              <form action="/decrease-cart" method="post">
+              <form onsubmit="shew()" action="/decrease-cart" method="post">
                 <input type="hidden" name="id" value="<%=cart.itemId%>" />
                 <button id="qty" class="qty dec" onclick="decreaseQuantity()">
                   -
@@ -52,7 +52,7 @@
               </form>
 
               <button id="qt" class="count"><%=cart.quantity%></button>
-              <form action="/increase-cart" method="post">
+              <form onsubmit="shew()" action="/increase-cart" method="post">
                 <input type="hidden" name="id" value="<%=cart.itemId%>" />
                 <button type="submit" id="qty" class="qty inc" onclick="increaseQuantity()">
                   +
@@ -64,7 +64,7 @@
         <div id="cart-sec-2">
           <!-- <span id="status">In stock</span> -->
 
-          <form id="view" action="/detail" method="post">
+          <form onsubmit="shew()" id="view" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=cart.id%>" />
             <button id="view" class="view" type="submit">
               <i style="font-size: 18px; margin-right: 5px" class="mdi mdi-eye-outline">
@@ -74,7 +74,7 @@
           </form>
 
           <span id="remove">
-            <form action="/delete-cart" method="post">
+            <form onsubmit="shew()" action="/delete-cart" method="post">
               <input type="hidden" name="id" value="<%=cart.itemId%>" />
               <button id="remove-btn" type="submit">
                 <i style="font-size: 18px" class="mdi mdi-cart-remove"></i>
@@ -111,7 +111,7 @@
 
       <div id="del-address-head">Delivery address</div>
       <div id="del-address">Cape Coast, UCC, Casford hall, room 54</div>
-      <form action="/account" method="get">
+      <form onsubmit="shew()" action="/account" method="get">
         <button id="address-btn" type="submit">Procede</button>
       </form>
     </div>
@@ -126,7 +126,7 @@
       <div><b>GH₵ <%=(row.totalPrice).toFixed(2)%></b></div>
     </div>
     <div id="checkout">
-      <form id="" action="/cart-one" method="get">
+      <form onsubmit="shew()" id="" action="/cart-one" method="get">
         <button id="checkout-btn" type="submit">Checkout</button>
       </form>
     </div>
