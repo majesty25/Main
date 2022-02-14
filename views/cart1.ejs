@@ -14,6 +14,7 @@
   </head>
   <body>
     <%- include("header")%>
+    <%- include("loader") %> 
     <span id="cart-num">
       <%Object.keys(carts).forEach(key => { const sum = carts[key]; if
       (sum.total == 0){ }else if (sum.total == 1){ %> Carts(<%=sum.total%> item)

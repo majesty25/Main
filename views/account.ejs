@@ -355,16 +355,13 @@ h1 {
 ]; %> 
 
     <%- include("header")%>
+    <%- include("loader") %> 
 
     <% Object.keys(result).forEach(key => { const row = result[key]; %>
 
             <form id="regForm" action="/login" method="post">
         <h1>My account info</h1>
-        <!-- <div id="refer-address">
-            https://exsale.herokuapp.com/refer/288932749893
-        </div> -->
-        
-        <!-- One "tab" for each step in the form: -->
+
         <div class="tab">Name:
             <p><input id="input" placeholder="First name..." oninput="this.className = ''" name="fname" value="<%=row.firstName%>"></p>
             <p><input id="input" placeholder="Last name..." oninput="this.className = ''" name="lname" value="<%=row.lastName%>"></p>
@@ -380,11 +377,7 @@ h1 {
                <% for (i in countries){%>
                  <option value="<%=countries[i]%>"><%=countries[i]%></option>
                <%} %> 
-               
-                <!-- <option value="Central">Central</option>
-                <option value="Ashanti">Ashanti</option>
-                <option value="Western">Western</option>
-                <option value="Northern">Northern</option> -->
+ 
             </select></p>
             <p><input id="input" placeholder="City" oninput="this.className = ''" name="city" value="<%=row.city%>"></p>
             <p><input id="input" placeholder="Residential address" oninput="this.className = ''" name="address" value="<%=row.resAddress%>"></p>

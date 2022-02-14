@@ -15,7 +15,9 @@
 </head>
 
 <body>
-  <%- include("header")%> <%Object.keys(carts).forEach(key => { const sum =
+  <%- include("header")%> 
+  <%- include("loader") %> 
+  <%Object.keys(carts).forEach(key => { const sum =
     carts[key]; if (sum.total == null){ %>
   <h3>You have no cart!</h3>
   <% } else{ %>
