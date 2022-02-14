@@ -188,7 +188,7 @@ li {
 #search{
   width: auto;
   height: auto;
-  background-color: orangered;
+  background-color: rgba(255, 68, 0, 0.727);
   color: white;
   padding-left: 9px;
   padding-right: 9px;
