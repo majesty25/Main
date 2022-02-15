@@ -655,7 +655,7 @@
   }
 
   .percent-off{
-    display: none;    
+    /* display: none;     */
   }
 
   #percent-off{
