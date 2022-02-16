@@ -123,7 +123,8 @@ app.get("/", async (req, res) => {
             id,
             carts,
             email,
-            items
+            items,
+            items2,
           });
         }
       });
