@@ -411,6 +411,7 @@
   width: 100%;
   padding-top: 5px;
   padding-bottom: 5px;
+  display: flex;
   justify-content: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
@@ -565,6 +566,17 @@
 #view-all:hover{
   background: linear-gradient(to right, orangered, orange);
   transition: 6
+}
+
+#flash{
+  font-size: 50px;
+  color: red;
+}
+
+@media screen and (min-width: 500px) {
+  #flash-small{
+    display: none;
+  }
 }
 
 
