@@ -414,7 +414,8 @@
   justify-content: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-  background-color: rgba(24, 31, 23, 0.775);
+  /* background-color: rgba(24, 31, 23, 0.775); */
+  background-color: rgba(255, 68, 0, 0.474);
   color: white;
 }
 
