@@ -494,11 +494,10 @@
 
         <div id="weekly-deal">Fassion</div>
 
-        <% Object.keys(result).forEach(key => { var row = result[key]; const
-        percentOff = (row.off/100)*row.price; const oldPriceWhole =
-        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
-        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
-        Math.round((row.stars / total) * 5); %>
+        <div id="items-container">
+          <div id="CONTAINER">
+
+             <% Object.keys(items).forEach(key => { var row = items[key];  %>
         <div id="item-category">
           <form onsubmit="shew()" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
@@ -516,12 +515,13 @@
           </form>
           <div id="item-name"><%=row.name%></div>
         </div>
-        <!-- <li><%=row.First_name%></li> -->
-        <%})%> <% Object.keys(result).forEach(key => { var row = result[key];
-        const percentOff = (row.off/100)*row.price; const oldPriceWhole =
-        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
-        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
-        Math.round((row.stars / total) * 5); %>
+ 
+        <%})%> 
+
+          </div>
+          <div id="CONTAINER">
+
+                      <% Object.keys(items).forEach(key => { var row = items[key];  %>
         <div id="item-category">
           <form onsubmit="shew()" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
@@ -539,8 +539,14 @@
           </form>
           <div id="item-name"><%=row.name%></div>
         </div>
-        <!-- <li><%=row.First_name%></li> -->
-        <%})%>
+ 
+        <%})%> 
+
+
+          </div>
+        </div>
+
+
 
         <div id="weekly-deal">Top picks</div>        
 

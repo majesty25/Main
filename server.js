@@ -40,6 +40,61 @@ app.use(
   )
 );
 
+
+const items = [
+  {
+    id: 1,
+    name: "name 1",
+    price: 336.00,
+    pic: "lap4.jpg",
+  },
+  {
+    id: 1,
+    name: "name 2",
+    price: 136.00,
+    pic: "shu1.jpg",
+  },
+  {
+    id: 1,
+    name: "name 3",
+    price: 876.00,
+    pic: "56.jpg",
+  },
+  {
+    id: 1,
+    name: "name 1",
+    price: 336,
+    pic: "51.jpg",
+  },
+];
+
+const items2 = [
+  {
+    id: 1,
+    name: "name 1",
+    price: 336.0,
+    pic: "shu2.jpg",
+  },
+  {
+    id: 1,
+    name: "name 2",
+    price: 136.0,
+    pic: "45.jpg",
+  },
+  {
+    id: 1,
+    name: "name 3",
+    price: 876.0,
+    pic: "54.jpg",
+  },
+  {
+    id: 1,
+    name: "name 1",
+    price: 336,
+    pic: "53.jpg",
+  },
+];
+
 app.get("/", async (req, res) => {
   const name = req.session.username;
   const id = req.session.ID;
@@ -68,6 +123,7 @@ app.get("/", async (req, res) => {
             id,
             carts,
             email,
+            items
           });
         }
       });
