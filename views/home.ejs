@@ -502,9 +502,6 @@
           <form onsubmit="shew()" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
             <button id="image-btn">
-              <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
               <img
                 id="item-category-img"
                 src="../font/<%=row.pic%>"
@@ -521,14 +518,11 @@
           </div>
           <div id="CONTAINER">
 
-                      <% Object.keys(items).forEach(key => { var row = items[key];  %>
+                      <% Object.keys(items2).forEach(key => { var row = items2[key];  %>
         <div id="item-category">
           <form onsubmit="shew()" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
             <button id="image-btn">
-              <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
               <img
                 id="item-category-img"
                 src="../font/<%=row.pic%>"
