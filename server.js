@@ -191,7 +191,7 @@ app.post("/detail", async (req, res) => {
     console.log(idValidation.error.details.message);
     res.redirect("/help");
   } else {
-    conn.all(query4, [4], (E, items) => {
+    conn.all(query4, [9], (E, items) => {
       if (E) {
         throw E;
       } else {
@@ -713,13 +713,18 @@ app.get("/my-orders", (req, res) => {
 
     const query1 = `SELECT SUM(quantity) as total FROM cart
                   WHERE userId = '${userId}'`;
-    conn.all(query, (err, orders) => {
-      if (err) {
-        throw err;
-      } else {
-        res.render("order", { orders, name, email });
-      }
-    });
+    
+    const query4 = `SELECT * FROM item`
+    conn.all(query4, [], (e, items) => {
+      conn.all(query, (err, orders) => {
+        if (err) {
+          throw err;
+        } else {
+          res.render("order", { orders, name, email, items });
+        }
+      });
+    })
+    
   } else {
     res.redirect("/login");
   }

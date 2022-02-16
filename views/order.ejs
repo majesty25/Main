@@ -10,49 +10,78 @@
     <title>Document</title>
   </head>
   <body>
-    <%- include("header")%>
-
-    <%- include("loader") %> 
+    <%- include("header")%> <%- include("loader") %>
 
     <div id="main-container">
-      <div id="container-head">  
-           My orders  
-      </div>
+      <div id="container-head">My orders</div>
       <div id="orders">
-        <% Object.keys(orders).forEach(key => {
-          const order = orders[key]; %>      
+        <% Object.keys(orders).forEach(key => { const order = orders[key]; %>
 
-          <div class="order">
+        <div class="order">
           <div id="order-head">
-              <span id="ID">ID:<%=order.orderId%></span>
-              <span id="date"><%=order.date%></span>
+            <span id="ID">ID:<%=order.orderId%></span>
+            <span id="date"><%=order.date%></span>
           </div>
           <div id="order">
-            
             <div id="order-det">
               <div id="order-img">
-                <img id="IMG" src="../font/<%=order.pic%>" alt="" srcset="">
-            </div>
-              <div id="sec1">
-                  <div id="name"><%=order.name%></div>
-                  <div id="others">
-                      <span id="qty">X<%=order.quantity%></span>
-                      <span id="vty"><%=order.variety%></span>
-                    </div>
+                <img id="IMG" src="../font/<%=order.pic%>" alt="" srcset="" />
               </div>
-              
+              <div id="sec1">
+                <div id="name"><%=order.name%></div>
+                <div id="others">
+                  <span id="qty">X<%=order.quantity%></span>
+                  <span id="vty"><%=order.variety%></span>
+                </div>
+              </div>
             </div>
 
             <div id="sec2">
-                  <button id="order-status">Pending</button>
-              </div>
+              <button id="order-status">Pending</button>
+            </div>
           </div>
         </div>
         <% }) %>
-        
+      </div>
+
+      <div id="viewedMainContainer">
+        <div id="viewed-head">Similar items</div>
+
+        <div id="viewed-container">
+          <% Object.keys(items).forEach(key => { const item = items[key]; %>
+          <button id="viewed-item">
+            <img
+              style="width: 100%"
+              src="../font/<%=item.pic%>"
+              alt=""
+              srcset=""
+            />
+            <div id="viewedItemDet">
+              <span id="viewed-name"> Item's namejhg </span>
+
+              <span id="sug-prices">
+                <div id="new">GHS 234.54</div>
+                <div id="old">GHS 45.78</div>
+              </span>
+            </div>
+          </button>
+          <% }) %>
+
+          <div id="viewed-item">
+            <img style="width: 100%" src="../font/shu5.jpg" alt="" srcset="" />
+            <div id="viewedItemDet">
+              <span id="viewed-name"> Item's name </span>
+
+              <span id="prices">
+                <div id="new">GHS 234.54</div>
+                <div id="old">GHS 45.78</div>
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <%# include("footer") %> 
+    <%# include("footer") %>
   </body>
 </html>

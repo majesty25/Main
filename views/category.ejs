@@ -113,9 +113,7 @@
           <form action="/detail" method="post">
             <input type="hidden" name="id" value="<%=row.id%>" />
             <button id="image-btn">
-              <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
+          
               <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
             </button>
           </form>
@@ -124,7 +122,6 @@
             <div id="new-price">GH₵ <%=(row.price).toFixed(2)%></div>
 
             <% if (row.off <= 0) { %>
-            <!-- <div id="old-price"></div> -->
             <% }else{ %>
             <div id="old-price">GH₵ <%=oldPrice.toFixed(2)%></div>
             <% } %>
@@ -135,15 +132,14 @@
               <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
               < (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
             </div>
-            <!-- <span class="old-price">GHS 378</span> -->
             <% if (row.off <= 0) { %>
-            <!-- <span class="percent-off"></span> -->
+          
             <% }else{ %>
             <span class="percent-off">-<%=row.off%>%</span>
             <% } %>
           </div>
         </div>
-        <!-- <li><%=row.First_name%></li> -->
+    
         <%})%> <% Object.keys(result).forEach(key => { var row = result[key];
         const percentOff = (row.off/100)*row.price; const oldPriceWhole =
         Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
@@ -161,7 +157,7 @@
             <div id="new-price">GH₵ <%=row.price%></div>
 
             <% if (row.off <= 0) { %>
-            <!-- <div id="old-price"></div> -->
+        
             <% }else{ %>
             <div id="old-price">GH₵ <%=oldPriceRounded%></div>
             <% } %>
@@ -174,124 +170,20 @@
             </div>
           
             <% if (row.off <= 0) { %>
-            <!-- <span class="percent-off"></span> -->
+         
             <% }else{ %>
             <span class="percent-off">-<%=row.off%>%</span>
             <% } %>
           </div>
         </div>
-        <!-- <li><%=row.First_name%></li> -->
+     
         <%})%>
-        <!-- <div id="item"></div>
-            <div id="item"></div>
-            <div id="item"></div> -->
-        <!-- <div id="item"></div> -->
-        <div id="banners">
-          <div id="banner">
-            <img
-              id="img1"
-              class="bana-img"
-              src="../font/bana.jpg"
-              alt=""
-              srcset=""
-            />
-          </div>
-          <div id="banner">
-            <img
-              id="img1"
-              class="bana-img"
-              src="../font/bannernew.png"
-              alt=""
-              srcset=""
-            />
-          </div>
-        </div>
+       
 
 
 
-        <div id="weekly-deal">Top picks</div>        
+             
 
-        <% Object.keys(result).forEach(key => { var row = result[key]; const
-        percentOff = (row.off/100)*row.price; const oldPriceWhole =
-        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
-        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
-        Math.round((row.stars / total) * 5); %>
-        <div id="item">
-          <form action="/detail" method="post">
-            <input type="hidden" name="id" value="<%=row.id%>" />
-            <button id="image-btn">
-              <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
-              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-            </button>
-          </form>
-          <div id="item-name"><%=row.name%></div>
-          <div id="prices">
-            <div id="new-price">GH₵ <%=row.price%></div>
-
-            <% if (row.off <= 0) { %>
-            <!-- <div id="old-price"></div> -->
-            <% }else{ %>
-            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
-            <% } %>
-          </div>
-
-          <div id="percent-off">
-            <div id="star">
-              <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
-              < (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
-            </div>
-            <!-- <span class="old-price">GHS 378</span> -->
-            <% if (row.off <= 0) { %>
-            <!-- <span class="percent-off"></span> -->
-            <% }else{ %>
-            <span class="percent-off">-<%=row.off%>%</span>
-            <% } %>
-          </div>
-        </div>
-        <!-- <li><%=row.First_name%></li> -->
-        <%})%> <% Object.keys(result).forEach(key => { var row = result[key];
-        const percentOff = (row.off/100)*row.price; const oldPriceWhole =
-        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
-        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
-        Math.round((row.stars / total) * 5); %>
-        <div id="item">
-          <form action="/detail" method="post">
-            <input type="hidden" name="id" value="<%=row.id%>" />
-            <button id="image-btn">
-              <!-- <div id="bbb">
-            <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-          </div>           -->
-              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-            </button>
-          </form>
-          <div id="item-name"><%=row.name%></div>
-          <div id="prices">
-            <div id="new-price">GH₵ <%=row.price%></div>
-
-            <% if (row.off <= 0) { %>
-            <!-- <div id="old-price"></div> -->
-            <% }else{ %>
-            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
-            <% } %>
-          </div>
-
-          <div id="percent-off">
-            <div id="star">
-              <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
-              < (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
-            </div>
-            <!-- <span class="old-price">GHS 378</span> -->
-            <% if (row.off <= 0) { %>
-            <!-- <span class="percent-off"></span> -->
-            <% }else{ %>
-            <span class="percent-off">-<%=row.off%>%</span>
-            <% } %>
-          </div>
-        </div>
-        <!-- <li><%=row.First_name%></li> -->
-        <%})%>
       </div>
     </div>
     <%- include("footer")%>
