@@ -308,6 +308,61 @@
         </form>
       </div>
       <div id="demo" class="demo">
+
+
+                <div id="weekly-deal">Fassion</div>
+
+        <div id="items-container">
+          <div id="CONTAINER-BIG">
+            <div>dkjksdkjhiuehiuhr</div>
+            <button id="view-all">VIEW ALL</button>
+          </div>
+          <div id="CONTAINER">
+
+             <% Object.keys(items).forEach(key => { var row = items[key];  %>
+        <div id="item-category">
+          <form onsubmit="shew()" action="/detail" method="post">
+            <input type="hidden" name="id" value="<%=row.id%>" />
+            <button id="image-btn">
+              <img
+                id="item-category-img"
+                src="../font/<%=row.pic%>"
+                alt=""
+                srcset=""
+              />
+            </button>
+          </form>
+          <div id="item-name"><%=row.name%></div>
+        </div>
+ 
+        <%})%> 
+
+          </div>
+          <div id="CONTAINER">
+
+                      <% Object.keys(items2).forEach(key => { var row = items2[key];  %>
+        <div id="item-category">
+          <form onsubmit="shew()" action="/detail" method="post">
+            <input type="hidden" name="id" value="<%=row.id%>" />
+            <button id="image-btn">
+              <img
+                id="item-category-img"
+                src="../font/<%=row.pic%>"
+                alt=""
+                srcset=""
+              />
+            </button>
+          </form>
+          <div id="item-name"><%=row.name%></div>
+        </div>
+ 
+        <%})%> 
+
+
+          </div>
+        </div>
+
+
         <div id="weekly-deal">Weakly deal</div>
 
         <% Object.keys(result).forEach(key => { var row = result[key]; const
@@ -492,57 +547,7 @@
 
 
 
-        <div id="weekly-deal">Fassion</div>
 
-        <div id="items-container">
-          <div id="CONTAINER-BIG">
-            <div>dkjksdkjhiuehiuhr</div>
-            <button id="view-all">VIEW ALL</button>
-          </div>
-          <div id="CONTAINER">
-
-             <% Object.keys(items).forEach(key => { var row = items[key];  %>
-        <div id="item-category">
-          <form onsubmit="shew()" action="/detail" method="post">
-            <input type="hidden" name="id" value="<%=row.id%>" />
-            <button id="image-btn">
-              <img
-                id="item-category-img"
-                src="../font/<%=row.pic%>"
-                alt=""
-                srcset=""
-              />
-            </button>
-          </form>
-          <div id="item-name"><%=row.name%></div>
-        </div>
- 
-        <%})%> 
-
-          </div>
-          <div id="CONTAINER">
-
-                      <% Object.keys(items2).forEach(key => { var row = items2[key];  %>
-        <div id="item-category">
-          <form onsubmit="shew()" action="/detail" method="post">
-            <input type="hidden" name="id" value="<%=row.id%>" />
-            <button id="image-btn">
-              <img
-                id="item-category-img"
-                src="../font/<%=row.pic%>"
-                alt=""
-                srcset=""
-              />
-            </button>
-          </form>
-          <div id="item-name"><%=row.name%></div>
-        </div>
- 
-        <%})%> 
-
-
-          </div>
-        </div>
 
 
 
