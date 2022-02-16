@@ -417,6 +417,8 @@
   /* background-color: rgba(24, 31, 23, 0.775); */
   background-color: rgba(255, 68, 0, 0.474);
   color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #percent-off {
@@ -542,7 +544,7 @@
 #CONTAINER-BIG{
   width: 40%;
   min-height: 300px;
-  background-color: rgb(149, 129, 237);
+  background: linear-gradient(to right, rgb(149, 129, 237), rgb(224, 129, 237));
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -555,7 +557,7 @@
   padding: 10px;
   border: none;
   border-radius: 20px;
-  background: linear-gradient(to right, orange, orangered);
+  background: linear-gradient(to right, orange, rgba(255, 68, 0, 0.631));
   transition: 6;
   /* box-shadow: 5px 3px 6px 3px white; */
 }
