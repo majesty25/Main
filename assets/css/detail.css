@@ -517,6 +517,33 @@ label{
   background-color: rgb(36, 32, 31);
 }
 
+.radio{
+  display: inline-flex;
+  overflow: hidden;
+  /* border-radius: 15px; */
+}
+
+.radio-input{
+  display: none;
+}
+
+.radio-label{
+  padding: 6px 10px;
+  font-size: 14px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(255, 255, 255);
+  cursor: pointer;
+  border: 1px solid rgb(228, 227, 227);
+}
+
+/* .radio-label:not(:last-of-type){
+  border: 1px gray solid;
+} */
+
+.radio-input:checked + .radio-label{
+  background: silver;
+}
+
 @media screen and (max-width: 800px) {
  
 
