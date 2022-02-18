@@ -21,7 +21,7 @@
   <!-- <div id="subhead"></div> -->
   <div id="container-main">
 
-    <%- include("loader") %> 
+    <%- include("loader") %>
 
     <div id="left-container">
       <div id="item-info">
@@ -52,59 +52,42 @@
 
           <div id="colors">
             <form style="width: 100%" action="/add-cart" method="post" onsubmit="shew()">
-            
-         
-            <!-- <button id="hj" class="color" onclick="select()">40</button>
-            <button id="jh" class="color 2">41</button>
-            <button id="jh" class="color 3">42</button>
-            <button id="jh" class="color 3">42</button>
-            <button id="jh" class="color 3">42</button> -->
-              
-              
-               <div id="V-boxk">
-                               <% if (locals.varieties){ %>
+
+
+              <div id="V-boxk">
+                <% if (locals.varieties){ %>
                 <button id="color">Variations</button>
-                <% for (i in varieties){ %>
-                  
-                   <input type="radio" name="color" id="rad1" value="<%=varieties[i]%>" required><label for=""><%=varieties[i]%></label>
-                <% }
+                <div class="radio">
+                  <% for (i in varieties){ %>
+
+                  <input class="radio-input" type="radio" name="color" id="<%=varieties[i]%>" value="<%=varieties[i]%>" required>
+                  <label class="radio-label" for="<%=varieties[i]%>"><%=varieties[i]%></label>
+                  <% }
               }else{ %>
-                <input type="hidden" name="color" value="default">
-              <% } %> 
-               </div>
-         
-            
-            <!-- <input type="radio" name="color" id="rad2" value="42"><label for="rad2">42</label>
-            <input type="radio" name="color" id="rad3" value="43"><label for="rad3">43</label>
-            <input type="radio" name="color" id="rad4" value="44"><label for="rad4">43</label> -->
-           
+                  <input type="hidden" name="color" value="default">
+                  <% } %>
+                </div>
+
+              </div>
+
           </div>
 
           <div id="colors">
-            <!-- <button id="color">Sizes</button>
-          <input type="radio" name="" id="" />
-          <div class="choose-color">XXS</div>
-          <input type="radio" name="" id="" />
-        
-          <div class="choose-color">M</div>
-          <input type="radio" name="" id="" /> -->
-            <!-- <div class="choose-color">L</div>
-    
-          <button class="color">L</button> -->
+
           </div>
 
 
           <div id="add">
-            
-              <input id="cnt" type="hidden" name="id" value="<%= id%>" />
-              <button id="add-cart" type="submit">
-                <i style="font-size: 20px; float:left;" class="mdi mdi-cart-plus"></i>
-                ADD TO CART
-              </button>
+
+            <input id="cnt" type="hidden" name="id" value="<%= id%>" />
+            <button id="add-cart" type="submit">
+              <i style="font-size: 20px; float:left;" class="mdi mdi-cart-plus"></i>
+              ADD TO CART
+            </button>
             </form>
           </div>
         </div>
-        <!-- <li><%=row.First_name%></li> -->
+
         <%})%>
       </div>
       <div id="detail" class="">
@@ -120,7 +103,7 @@
           <div class="further-info-head">SPECIFICATIONS</div>
           <div class="further-info-content">
             <% for (i in spec){ %>
-              <%=spec[i]%>
+            <%=spec[i]%>
             <% } %>
           </div>
         </span>
@@ -129,7 +112,7 @@
           <div class="further-info-head">KEY FEATURES</div>
           <div class="further-info-content">
             <% for (i in spec){ %>
-                <%=spec[i]%>
+            <%=spec[i]%>
             <% } %>
           </div>
         </span>
@@ -138,11 +121,11 @@
           <div class="further-info-head">WHAT'S IN THE PACKAGE</div>
           <div class="further-info-content">
             <% for (i in spec){ %>
-                <%=spec[i]%>
+            <%=spec[i]%>
             <% } %>
           </div>
         </span>
-      </div>      
+      </div>
 
     </div>
     <div id="right-container">
@@ -177,80 +160,71 @@
 
      <div id="other-pics">
            <% for (i in otherPics){ %>
-              <img id="other-pics-img" src="../font/<%=otherPics[i]%>" alt="" srcset="" />
-            <% } %>
-         
-         
+          <img id="other-pics-img" src="../font/<%=otherPics[i]%>" alt="" srcset="" />
+          <% } %>
 
 
 
-              <div id="viewedMainContainer">
 
-      <div id="viewed-head">
-    Similar items
-  </div> 
 
-    <div id="viewed-container">
-   
-      <% Object.keys(items).forEach(key => {
+          <div id="viewedMainContainer">
+            <div id="viewed-head">
+              Similar items
+            </div>
+            <div id="viewed-container">
+              <% Object.keys(items).forEach(key => {
         const item = items[key]; %>
-           <button id="viewed-item">
-       <img style="width: 100%;" src="../font/<%=item.pic%>" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's namejhg
-         </span>
+              <button id="viewed-item">
+                <img style="width: 100%;" src="../font/<%=item.pic%>" alt="" srcset="">
+                <div id="viewedItemDet">
+                  <span id="viewed-name">
+                    Item's namejhg
+                  </span>
 
-         <span id="sug-prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-      </button>
-      <% }) %> 
-  
+                  <span id="sug-prices">
+                    <div id="new">GHS 234.54</div>
+                    <div id="old">GHS 45.78</div>
+                  </span>
+                </div>
+              </button>
+              <% }) %>
 
+              <div id="viewed-item">
+                <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+                <div id="viewedItemDet">
+                  <span id="viewed-name">
+                    Item's name
+                  </span>
 
-   
-      <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
+                  <span id="prices">
+                    <div id="new">GHS 234.54</div>
+                    <div id="old">GHS 45.78</div>
+                  </span>
+                </div>
+              </div>
 
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
-
-
-
-  
- </div>
-  </div>
+            </div>
+          </div>
 
 
-        </div>     
+        </div>
 
         <div id="feedback">
           <span>
-             <% for (i in spec){ %>
-              <b><%=spec[i]%></b>
+            <% for (i in spec){ %>
+            <b><%=spec[i]%></b>
             <% } %>
           </span>
 
           <span>
             <% for (i in spec){ %>
-              <b><%=spec[i]%></b>
+            <b><%=spec[i]%></b>
             <% } %>
           </span>
 
           <span>
             <% for (i in spec){ %>
-              <b><%=spec[i]%></b>
+            <b><%=spec[i]%></b>
             <% } %>
           </span>
         </div>
@@ -261,24 +235,24 @@
 </html>
 <script src="../assets/js/search.js"></script>
 <script src="../assets/js/detail.js"></script>
-<script src = "https://maps.googleapis.com/maps/api/js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
 
 
 
 <script>
-function myMap() {
-  var mapCanvas = document.getElementById("map");
-  var mapOptions = {
-    center: new google.maps.LatLng(17.088291, 78.442383),
-    zoom: 1
-  };
-  var map = new google.maps.Map(mapCanvas, mapOptions);
-  
-var marker = new google.maps.Marker({
-  position: new google.maps.LatLng(17.088291, 78.442383),
-map: map,
-  });
-}
+  function myMap() {
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {
+      center: new google.maps.LatLng(17.088291, 78.442383),
+      zoom: 1
+    };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(17.088291, 78.442383),
+      map: map,
+    });
+  }
 </script>
 
 
