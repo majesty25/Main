@@ -24,7 +24,7 @@
 
   <span id="cart-num">
     <%Object.keys(carts).forEach(key => { const sum = carts[key]; if
-      (sum.total == null){ %> hgajggjsh <% }else if (sum.total == 1){ %>
+      (sum.total == null){ %> <% }else if (sum.total == 1){ %>
     Cart(<%=sum.total%> item) <% }else{ %> Cart(<%=sum.total%> items) <% } %>
     <% })%>
   </span>
@@ -41,7 +41,7 @@
             <div id="name-price">
               <span id="name"><%=cart.name%></span>
               <span id="price">GH₵ <%=(cart.price * cart.quantity).toFixed(2)%></span>
-              <!-- <span id="quantity">X2</span> -->
+           
             </div>
             <div id="add">
               <form onsubmit="shew()" action="/decrease-cart" method="post">
@@ -62,7 +62,7 @@
           </span>
         </div>
         <div id="cart-sec-2">
-          <!-- <span id="status">In stock</span> -->
+    
 
           <form onsubmit="shew()" id="view" action="/detail" method="post">
             <input type="hidden" name="id" value="<%=cart.id%>" />
@@ -135,54 +135,48 @@
   <% }) %> <% } %> <% }) %>
 
 
-  <div id="viewedMainContainer">
-
-      <div id="viewed-head">
-    Currently viewed Items
-  </div> 
-
-    <div id="viewed-container">
 
 
-
-
-          <% Object.keys(items).forEach(key => {
+  <div id="CONTAINER">
+          <div id="viewedMainContainer">
+            <div id="viewed-head">
+              Similar items
+            </div>
+            <div id="viewed-container">
+              <% Object.keys(items).forEach(key => {
         const item = items[key]; %>
-           <div id="viewed-item">
-       <img style="width: 100%;" src="../font/<%=item.pic%>" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
+              <button id="viewed-item">
+                <img style="width: 100%;" src="../font/<%=item.pic%>" alt="" srcset="">
+                <div id="viewedItemDet">
+                  <span id="viewed-name">
+                    Item's namejhg
+                  </span>
 
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
-      <% }) %> 
-  
-   
-   
-   <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
+                  <span id="sug-prices">
+                    <div id="new">GHS 234.54</div>
+                    <div id="old">GHS 45.78</div>
+                  </span>
+                </div>
+              </button>
+              <% }) %>
 
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
+              <div id="viewed-item">
+                <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+                <div id="viewedItemDet">
+                  <span id="viewed-name">
+                    Item's name
+                  </span>
 
+                  <span id="prices">
+                    <div id="new">GHS 234.54</div>
+                    <div id="old">GHS 45.78</div>
+                  </span>
+                </div>
+              </div>
 
-
-  
- </div>
+            </div>
+          </div>
+  </div>
   </div>
  
  <%- include("footer") %> 
