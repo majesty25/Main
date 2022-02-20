@@ -16,12 +16,12 @@
       <img style="width: 100%" src="../font/others/log.png" alt="" srcset=""
     /></a>
   </div>
-  <form onsubmit="shew()" id="search-form" autocomplete="off">
+  <form action="/" method="post" onsubmit="shew()" id="search-form" autocomplete="off">
     <div class="autocomplete">
       <input
         id="myInput"
         type="text"
-        name="myCountry"
+        name="cat"
         placeholder="I'm looking for..."
       />
     </div>
@@ -36,7 +36,7 @@
     <label id="cart-label" for="">
       <%if (locals.carts){ %> <%Object.keys(carts).forEach(key => { const sum =
       carts[key]; if (sum.total == 0){ }else if (sum.total == 1){ %>
-      <%=sum.total%>cart <% }else{ %> <%=sum.total%>carts <% } %> <% })%> <%
+      <%=sum.total%>cart <% }else{ %> <%=sum.total%>cart <% } %> <% })%> <%
       }else{ %> <% }%>
       <!-- 3 carts -->
     </label>
@@ -124,3 +124,4 @@
 
 </div>
 
+<script src="../js/search.js"></script>
