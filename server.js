@@ -134,11 +134,23 @@ app.get("/", async (req, res) => {
 
 app.post("/", async (req, res) => {
   const name = req.session.username;
+  const userId = req.session.userId;
   const id = req.session.ID;
-  const cat = req.body.cat;
+  // const cat = req.body.cat;
   const email = req.session.email;
+  const item = req.body.cat;
+  const itNameArr = item.split(" ")
+  const itNameLast = (itNameArr[itNameArr.length-1])
+  const itNameFirst = (itNameArr[0])
+
+  const query1 = `SELECT SUM(quantity) as total FROM cart
+                  WHERE userId = '${userId}'`;
+  
+  
+  conn.all(query1, [], )
   await conn.all(
-    `SELECT * FROM item WHERE category = '${cat}'`,
+    `SELECT * FROM item WHERE 
+    (category = '${item}') OR name LIKE '%${item}%' OR name LIKE '%${itNameFirst}%' OR name LIKE '%${itNameLast}%'`,
     async (err, result) => {
       if (err) throw err;
       console.log(result);
