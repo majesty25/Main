@@ -19,7 +19,7 @@
   <%- include("loader") %> 
   <%Object.keys(carts).forEach(key => { const sum =
     carts[key]; if (sum.total == null){ %>
-  <h3>You have no cart!</h3>
+  <h3>Your cart is empty!</h3>
   <% } else{ %>
 
   <span id="cart-num">
@@ -120,7 +120,7 @@
   <% Object.keys(carts).forEach(key => { const row = carts[key]; %>
 
   <span id="checkout-sec">
-    <!-- <div id="prepaid">EXSALE prepaid: 200.0</div> -->
+
     <div id="total">
       <div>Total</div>
       <div><b>GH₵ <%=(row.totalPrice).toFixed(2)%></b></div>
