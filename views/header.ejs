@@ -36,7 +36,7 @@
     <label id="cart-label" for="">
       <%if (locals.carts){ %> <%Object.keys(carts).forEach(key => { const sum =
       carts[key]; if (sum.total == 0){ }else if (sum.total == 1){ %>
-      <%=sum.total%>cart <% }else{ %> <%=sum.total%>cart <% } %> <% })%> <%
+      <%=sum.total%>->cart <% }else{ %> <%=sum.total%>->cart <% } %> <% })%> <%
       }else{ %> <% }%>
       <!-- 3 carts -->
     </label>
