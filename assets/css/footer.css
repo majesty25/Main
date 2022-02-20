@@ -1,6 +1,6 @@
 footer{
     width: 100%;
-    background-color: rgb(44, 39, 39);
+    background-color: rgba(22, 22, 24, 0.803);
     height: 400px;
     /* position: relative; */
     /* bottom: 0; */
@@ -33,12 +33,23 @@ footer{
 #head{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 16px;
+    color: orangered;
 }
 
 #content{
     font-size: 16px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: silver;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 /* #about{
