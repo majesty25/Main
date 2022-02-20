@@ -31,60 +31,63 @@
           <img style="width: 100%" src="../font/<%=row.pic%>" alt="" srcset="" />
         </div>
         <div id="buy-info">
-         
-           <div id="name"><%=row.name%></div>
-          <div id="V-box">
-            
-          <div id="new-pric" class="new-price">GHS <%=row.price%></div>
-            <div id="old-price">GHS <%=oldPriceRounded%></div>
-            <div id="percent-off">-<%=row.off%>%</div>
-          </div>
+
+          <div id="name"><%=row.name%></div>
+
           <div id="rate">
             <%for(let i = 0; i < rate; i++){ %> &starf; <%}%><%for(let i = 0;
               i < (5 - rate); i++){ %> &star; <%}%>
               <span>(<%=row.rate%> ratings)</span>
           </div>
+          <div id="V-box">
+
+            <div id="new-pric" class="new-price">GHS <%=row.price%></div>
+            <div id="old-price">GHS <%=oldPriceRounded%></div>
+            <div id="percent-off">-<%=row.off%>%</div>
+          </div>
+
           <div id="shipping-from">
-            +shipping from <%=row.shipping%> <span id="fav"></span>
+            This item will be shipped from <%=row.shipping%> <span id="fav"></span>
           </div>
           <div id="colors">
             <form style="width: 100%" action="/add-cart" method="post">
-            
-      
-              
-              
-               <div style="display: flex; flex-direction: column;" id="V-boxu">
-                               <% if (locals.varieties){ %>
+
+
+
+
+              <div style="display: flex; flex-direction: column;" id="V-boxu">
+                <% if (locals.varieties){ %>
                 <button id="color">Variations</button>
                 <div class="radio">
-                  <% for (i in varieties){ %>                  
-                   <input class="radio-input" type="radio" name="color" id="<%=varieties[i]%>" value="<%=varieties[i]%>" required>
-                   <label class="radio-label" for="<%=varieties[i]%>"><%=varieties[i]%></label>  
-                   
-                <% } %>
-                </div>
-              <%}else{ %>
-                <!-- <button id="color">Variations</button> -->
-                <input type="hidden" name="color" value="default">
-              <% } %> 
-                
-                
-               </div>
-         
-            
+                  <% for (i in varieties){ %>
+                  <input class="radio-input" type="radio" name="color" id="<%=varieties[i]%>" value="<%=varieties[i]%>"
+                    required>
+                  <label class="radio-label" for="<%=varieties[i]%>"><%=varieties[i]%></label>
 
-           
+                  <% } %>
+                </div>
+                <%}else{ %>
+                <button id="color">No variations for this item</button>
+                <!-- <input type="hidden" name="color" value="default"> -->
+                <% } %>
+
+
+              </div>
+
+
+
+
           </div>
           <div id="colors">
-        
+
           </div>
           <div id="add">
-            
-              <input id="cnt" type="hidden" name="id" value="<%= id%>" />
-              <button id="add-cart" type="submit">
-                <i style="font-size: 20px; float:left;" class="mdi mdi-cart-plus"></i>
-                ADD TO CART
-              </button>
+
+            <input id="cnt" type="hidden" name="id" value="<%= id%>" />
+            <button id="add-cart" type="submit">
+              <i style="font-size: 20px; float:left;" class="mdi mdi-cart-plus"></i>
+              ADD TO CART
+            </button>
             </form>
           </div>
         </div>
@@ -104,7 +107,7 @@
           <div class="further-info-head">SPECIFICATIONS</div>
           <div class="further-info-content">
             <% for (i in spec){ %>
-              <%=spec[i]%>
+            <%=spec[i]%>
             <% } %>
           </div>
         </span>
@@ -113,7 +116,7 @@
           <div class="further-info-head">KEY FEATURES</div>
           <div class="further-info-content">
             <% for (i in spec){ %>
-                <%=spec[i]%>
+            <%=spec[i]%>
             <% } %>
           </div>
         </span>
@@ -122,11 +125,11 @@
           <div class="further-info-head">WHAT'S IN THE PACKAGE</div>
           <div class="further-info-content">
             <% for (i in spec){ %>
-                <%=spec[i]%>
+            <%=spec[i]%>
             <% } %>
           </div>
         </span>
-      </div>      
+      </div>
 
     </div>
     <div id="right-container">
@@ -161,91 +164,92 @@
 
      <div id="other-pics">
            <% for (i in otherPics){ %>
-              <img id="other-pics-img" src="../font/<%=otherPics[i]%>" alt="" srcset="" />
-            <% } %>
-         
-         
+          <img id="other-pics-img" src="../font/<%=otherPics[i]%>" alt="" srcset="" />
+          <% } %>
 
 
 
-              <div id="viewedMainContainer">
 
-      <div id="viewed-head">
-    Similar items
-  </div> 
 
-    <div id="viewed-container">
-   
-      <% Object.keys(items).forEach(key => {
+          <div id="viewedMainContainer">
+
+            <div id="viewed-head">
+              Similar items
+            </div>
+
+            <div id="viewed-container">
+
+              <% Object.keys(items).forEach(key => {
         const item = items[key]; %>
-           <div id="viewed-item">
-       <img style="width: 100%;" src="../font/<%=item.pic%>" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
-         <span id="sug-prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
-      <% }) %> 
-  
-   
-      <div id="viewed-item">
-       <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-       <div id="viewedItemDet">
-         <span id="viewed-name">
-           Item's name
-         </span>
-         <span id="prices">
-           <div id="new">GHS 234.54</div>
-           <div id="old">GHS 45.78</div>
-         </span>
-       </div>
-   </div>
-  
- </div>
-  </div>
-        </div>     
+              <div id="viewed-item">
+                <img style="width: 100%;" src="../font/<%=item.pic%>" alt="" srcset="">
+                <div id="viewedItemDet">
+                  <span id="viewed-name">
+                    Item's name
+                  </span>
+                  <span id="sug-prices">
+                    <div id="new">GHS 234.54</div>
+                    <div id="old">GHS 45.78</div>
+                  </span>
+                </div>
+              </div>
+              <% }) %>
+
+
+              <div id="viewed-item">
+                <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
+                <div id="viewedItemDet">
+                  <span id="viewed-name">
+                    Item's name
+                  </span>
+                  <span id="prices">
+                    <div id="new">GHS 234.54</div>
+                    <div id="old">GHS 45.78</div>
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
         <div id="feedback">
           <span>
-             <% for (i in spec){ %>
-              <b><%=spec[i]%></b>
+            <% for (i in spec){ %>
+            <b><%=spec[i]%></b>
             <% } %>
           </span>
           <span>
             <% for (i in spec){ %>
-              <b><%=spec[i]%></b>
+            <b><%=spec[i]%></b>
             <% } %>
           </span>
           <span>
             <% for (i in spec){ %>
-              <b><%=spec[i]%></b>
+            <b><%=spec[i]%></b>
             <% } %>
           </span>
         </div>
         <%- include("footer")%>
 </body>
+
 </html>
 <script src="../assets/js/search.js"></script>
 <script src="../assets/js/detail.js"></script>
-<script src = "https://maps.googleapis.com/maps/api/js"></script>
+<script src="https://maps.googleapis.com/maps/api/js"></script>
 <script>
-function myMap() {
-  var mapCanvas = document.getElementById("map");
-  var mapOptions = {
-    center: new google.maps.LatLng(17.088291, 78.442383),
-    zoom: 1
-  };
-  var map = new google.maps.Map(mapCanvas, mapOptions);
-  
-var marker = new google.maps.Marker({
-  position: new google.maps.LatLng(17.088291, 78.442383),
-map: map,
-  });
-}
+  function myMap() {
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {
+      center: new google.maps.LatLng(17.088291, 78.442383),
+      zoom: 1
+    };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+
+    var marker = new google.maps.Marker({
+      position: new google.maps.LatLng(17.088291, 78.442383),
+      map: map,
+    });
+  }
 </script>
 <script>
   document.querySelector(".dec").disabled = true;
@@ -275,4 +279,5 @@ map: map,
     }
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPEUTKYkMg3lDJOo3Pq93HfbbRC0kEstk&callback=myMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPEUTKYkMg3lDJOo3Pq93HfbbRC0kEstk&callback=myMap">
+</script>

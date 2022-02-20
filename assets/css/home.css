@@ -400,7 +400,7 @@
 }
 
 #new-price {
-  font-size: 16px;
+  font-size: 18px;
   /* margin-left: 10px; */
   margin-right: 10px;
   /* font-weight: bold; */
@@ -450,8 +450,9 @@
 }
 
 #old-price {
-  font-size: 14px;
+  font-size: 16px;
   float: right;
+  color: gray ;
   /* margin-left: 10px; */
   text-decoration: line-through;
 }
@@ -461,7 +462,10 @@
   /* text-decoration: none; */
   background-color: orangered;
   color: white;
-  padding: 1px;
+  padding: 3px 6px;
+  position: relative;
+  top: -200px;
+  left: -80%;
 }
 
 #star {
