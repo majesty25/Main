@@ -147,21 +147,25 @@ app.post("/", async (req, res) => {
                   WHERE userId = '${userId}'`;
   
   
-  conn.all(query1, [], )
-  await conn.all(
-    `SELECT * FROM item WHERE 
+  conn.all(query1, [], (ERR, carts) => {
+    // console.log(carts)
+       conn.all(
+        `SELECT * FROM item WHERE 
     (category = '${item}') OR name LIKE '%${item}%' OR name LIKE '%${itNameFirst}%' OR name LIKE '%${itNameLast}%'`,
-    async (err, result) => {
-      if (err) throw err;
-      console.log(result);
-      res.render("category", {
-        result,
-        name,
-        id,
-        email,
-      });
-    }
-  );
+        async (err, result) => {
+          if (err) throw err;
+          console.log(result);
+          res.render("category", {
+            result,
+            name,
+            id,
+            email,
+            carts
+          });
+        }
+      );
+  })
+
 });
 
 app.get("/test", (req, res) => {
