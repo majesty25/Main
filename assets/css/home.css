@@ -2,7 +2,7 @@
   width: 90%;
   /* height: ; */
   /* display:flex; */
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(197, 158, 158, 0);
   margin-top: 65px;
   margin-left: 5%;
   border-radius: 15px;
@@ -15,6 +15,7 @@
   height: auto;
   display: flex;
   flex-direction: row;
+  margin-bottom: 15px;
   background-color: rgb(243, 243, 243);
 }
 
@@ -304,6 +305,7 @@
   height: auto;
   margin-left: 0%;
   margin-top: 0px;
+  margin-bottom: 15px;
   /* justify-content: center; */
   background-color: rgb(255, 255, 255);
 }
@@ -403,21 +405,23 @@
   font-size: 18px;
   /* margin-left: 10px; */
   margin-right: 10px;
-  /* font-weight: bold; */
-  color: orangered;
+  font-weight: bold;
+  /* color: orangered; */
 }
 
 #weekly-deal {
   width: 100%;
-  padding-top: 5px;
+  padding: 5px 18px;
   padding-bottom: 5px;
+  font-size: 25px;
+  font-weight: bold;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   /* background-color: rgba(24, 31, 23, 0.775); */
-  background-color: rgba(255, 68, 0, 0.874);
-  color: white;
+  background-color: rgba(255, 255, 255, 0.874);
+  /* color: white; */
   margin-top: 10px;
   margin-bottom: 10px;
   border-top-left-radius: 5px;
@@ -462,10 +466,7 @@
   /* text-decoration: none; */
   background-color: orangered;
   color: white;
-  padding: 3px 6px;
-  position: relative;
-  top: -200px;
-  left: -80%;
+  padding: 3px 6px; 
 }
 
 #star {
@@ -511,10 +512,11 @@
 #img-con {
   text-align: center;
   width: 100%;
+  min-height: 150px;
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  background-color: white;
+  background-color: rgb(240, 240, 240);
 }
 
 #img2 {
@@ -592,6 +594,13 @@
   background: linear-gradient(to right, rgb(149, 129, 237), rgb(224, 129, 237));
 }
 
+#space-bet{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media screen and (min-width: 500px) {
   #flash-small{
     display: none;
@@ -655,6 +664,10 @@
     width: 22%;
     margin: 4%;
     border-radius: 4px;
+  }
+
+  #img-con{
+    min-height: 50px;
   }
 
   #text {
