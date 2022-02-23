@@ -2,7 +2,7 @@
   width: 90%;
   height: auto;
   margin-left: 5%;
-  margin-top: 10px;
+  margin-top: 10px; 
   padding-bottom: 20px;
   border: 1px silver solid;
   background-color: white;
@@ -17,6 +17,8 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
   cursor: pointer;
+   margin-bottom: 30px;
+   margin-top: 30px;
   /* border: 1px silver solid; */
   /* background-color: blue; */
 }
