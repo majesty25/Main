@@ -125,7 +125,7 @@
       <div><b>GH₵ <%=(row.totalPrice).toFixed(2)%></b></div>
     </div>
     <div id="checkout">
-      <form onsubmit="shew()" id="" action="/cart-one" method="get">
+      <form onsubmit="shew()" id="" action="/cart-one" method="post">
         <button id="checkout-btn" type="submit">Checkout</button>
       </form>
     </div>
@@ -139,7 +139,7 @@
   <div id="CONTAINER">
           <div id="viewedMainContainer">
             <div id="viewed-head">
-              Similar items
+              Recently viewed items
             </div>
             <div id="viewed-container">
               <% Object.keys(items).forEach(key => {
