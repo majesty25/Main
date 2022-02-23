@@ -632,7 +632,7 @@ app.get("/cart", async (req, res) => {
   // const name = "Steve";
 });
 
-app.get("/cart-one", async (req, res) => {
+app.post("/cart-one", async (req, res) => {
   const name = req.session.username;
   const userId = req.session.userId;
   const email = req.session.email;
@@ -727,19 +727,32 @@ app.get("/my-orders", (req, res) => {
                  ON O.itemId = I.id
                  WHERE O.userId = '${userId}'`;
 
-    const query1 = `SELECT SUM(quantity) as total FROM cart
-                  WHERE userId = '${userId}'`;
+    // const query1 = `SELECT SUM(quantity) as total FROM cart
+    //               WHERE userId = '${userId}'`;
+
+      const query1 = `SELECT SUM(O.orderId) as TOT, SUM(C.quantity) as total
+                 FROM cart C
+                 LEFT JOIN orders O
+                 ON C.userID = O.userId
+                 WHERE (C.userId = ?)`;
     
     const query4 = `SELECT * FROM item`
-    conn.all(query4, [], (e, items) => {
-      conn.all(query, (err, orders) => {
-        if (err) {
-          throw err;
-        } else {
-          res.render("order", { orders, name, email, items });
-        }
-      });
+    conn.all(query1, [userId], (ERR, carts) => {
+      if (ERR) {
+        throw ERR
+      } else {
+            conn.all(query4, [], (e, items) => {
+              conn.all(query, (err, orders) => {
+                if (err) {
+                  throw err;
+                } else {
+                  res.render("order", { orders, name, email, items, carts });
+                }
+              });
+            });
+      }        
     })
+
     
   } else {
     res.redirect("/login");
