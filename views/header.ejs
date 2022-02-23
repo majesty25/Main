@@ -33,11 +33,12 @@
     ><i
       style="font-size: 22px"
       class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"
+      title="Cart"
     ></i>
-    <label id="cart-label" for="">
+    <label id="cart-label" for="" title="Cart">
       <%if (locals.carts){ %> <%Object.keys(carts).forEach(key => { const sum =
       carts[key]; if (sum.total == 0){ }else if (sum.total == 1){ %>
-      <%=sum.total%>->cart <% }else{ %> <%=sum.total%>->cart <% } %> <% })%> <%
+      <%=sum.total%> <% }else{ %> <%=sum.total%> <% } %> <% })%> <%
       }else{ %> <% }%>
       <!-- 3 carts -->
     </label>
