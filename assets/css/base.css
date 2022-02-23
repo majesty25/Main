@@ -223,12 +223,12 @@ li {
   width: 100%;
   margin-left: 0%;
   height: 30px;
-  background-color: rgba(255, 68, 0, 0.474);
+  background-color: rgba(255, 68, 0, 0.8);
   display: flex;
   color: white;
   justify-content: center;
   align-items: center;
-  font-size: 14px;
+  font-size: 19px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
