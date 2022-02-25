@@ -1,6 +1,10 @@
 <link rel="stylesheet" href="../css/base.css" />
 <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
-<link rel="stylesheet" href="../material-icons/css/materialdesignicons.min.css" media="all" />
+<link
+  rel="stylesheet"
+  href="../material-icons/css/materialdesignicons.min.css"
+  media="all"
+/>
 <div id="mySidenav" class="sidenav">
   <span id="cat-top" class="closebtn" onclick="closeNav()">
     <div></div>
@@ -13,150 +17,215 @@
     </div>
 
     <% if (locals.name){ %>
-      <div id="greeting">
-        <div id="user-greeting">Hi, <%=name%></div>
-        <div id="user-greeting">WELCOME TO EXSALE</div>
-        <!-- <hr> -->
-      </div>
+    <div id="greeting">
+      <div id="user-greeting">Hi, <%=name%></div>
+      <div id="user-greeting">WELCOME TO EXSALE</div>
+      <!-- <hr> -->
+    </div>
 
-      <% }else{ %>
-        <div id="greeting">
-          <div id="user-greeting">Hi, cherished customer</div>
-          <div id="user-greeting">WELCOME TO EXSALE</div>
-          <!-- <hr> -->
-        </div>
+    <% }else{ %>
+    <div id="greeting">
+      <div id="user-greeting">Hi, cherished customer</div>
+      <div id="user-greeting">WELCOME TO EXSALE</div>
+      <!-- <hr> -->
+    </div>
 
-        <% } %>
-          
-          <form action="/" method="get">
-            <button type="submit" id="cat">
-              <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-wallet-outline"></i>
-              Prepaid: 00.0
-            </button>
-          </form>
+    <% } %>
 
-          <form action="/" method="get">
-            <button type="submit" id="cat">
-              <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-account-plus-outline"></i>
-              Invite
-            </button>
-          </form>
+    <form action="/" method="get">
+      <button type="submit" id="cat">
+        <i
+          style="margin-right: 5px; font-size: 22px"
+          class="mdi mdi-wallet-outline"
+        ></i>
+        Prepaid: 00.0
+      </button>
+    </form>
 
-          <form action="/account" method="get">
-            <button type="submit" id="cat">
-              <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-account-outline"></i>
-              Account
-            </button>
-          </form>
+    <form action="/" method="get">
+      <button type="submit" id="cat">
+        <i
+          style="margin-right: 5px; font-size: 22px"
+          class="mdi mdi-account-plus-outline"
+        ></i>
+        Invite
+      </button>
+    </form>
 
-          <form action="/my-orders" method="get">
-            <button type="submit" id="cat">
-              <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-cart-arrow-down"></i>
-              My orders
-            </button>
-          </form>
+    <form action="/account" method="get">
+      <button type="submit" id="cat">
+        <i
+          style="margin-right: 5px; font-size: 22px"
+          class="mdi mdi-account-outline"
+        ></i>
+        Account
+      </button>
+    </form>
 
-          <form action="/help" method="get">
-            <button type="submit" id="cat">
-              <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-message-question-outline"></i>
-              Help center
-            </button>
-          </form>
+    <form action="/my-orders" method="get">
+      <button type="submit" id="cat">
+        <i
+          style="margin-right: 5px; font-size: 22px"
+          class="mdi mdi-cart-arrow-down"
+        ></i>
+        My orders
+      </button>
+    </form>
 
-          <% if (locals.name){ %>
-            <form action="/logout" method="get">
-              <button type="submit" id="cat">
-                <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-logout"></i>
-                Log out
-              </button>
-            </form>
+    <form action="/help" method="get">
+      <button type="submit" id="cat">
+        <i
+          style="margin-right: 5px; font-size: 22px"
+          class="mdi mdi-message-question-outline"
+        ></i>
+        Help center
+      </button>
+    </form>
 
-            <% }else{ %>
-              <form action="/login" method="get">
-                <button type="submit" id="cat">
-                  <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-login"></i>
-                  Log in
-                </button>
-              </form>
+    <% if (locals.name){ %>
+    <form action="/logout" method="get">
+      <button type="submit" id="cat">
+        <i
+          style="margin-right: 5px; font-size: 22px"
+          class="mdi mdi-logout"
+        ></i>
+        Log out
+      </button>
+    </form>
 
-              <% } %>
+    <% }else{ %>
+    <form action="/login" method="get">
+      <button type="submit" id="cat">
+        <i style="margin-right: 5px; font-size: 22px" class="mdi mdi-login"></i>
+        Log in
+      </button>
+    </form>
+
+    <% } %>
   </div>
   <!-- <br> -->
   <div>
     <h1 id="cat-head">
-      <i style="font-size: 24px" class="mdi mdi-96px mdi-rotate-0 mdi-view-list"></i>
+      <i
+        style="font-size: 24px"
+        class="mdi mdi-96px mdi-rotate-0 mdi-view-list"
+      ></i>
       <span> CATEGORIES</span>
     </h1>
 
-              <form action="/" method="post">
-            <button type="submit" id="cat">
-              <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-              Fassion
-            </button>
-          </form>
+    <form action="/" method="post">
+      <input type="hidden" name="cat" value="1" />
+      <button type="submit" id="cat">
+        <i
+          style="font-size: 20px"
+          class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
+        ></i>
+        Fassion
+      </button>
+    </form>
 
-              <form action="/" method="post">
-            <button type="submit" id="cat">
-              <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"></i>
-              Suppermarket
-            </button>
-          </form>
+    <form action="/" method="post">
+      <input type="hidden" name="cat" value="2" />
+      <button type="submit" id="cat">
+        <i
+          style="font-size: 20px"
+          class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"
+        ></i>
+        Suppermarket
+      </button>
+    </form>
 
-              <form action="/" method="post">
-            <button type="submit" id="cat">
-              <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"></i>
-              Phones&Accessories
-            </button>
-          </form>
+    <form action="/" method="post">
+      <input type="hidden" name="cat" value="3" />
+      <button type="submit" id="cat">
+        <i
+          style="font-size: 20px"
+          class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
+        ></i>
+        Phones&Accessories
+      </button>
+    </form>
 
-              <form action="/" method="post">
-            <button type="submit" id="cat">
-               <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"></i>
-              Computers
-            </button>
-          </form>
-              <form action="/" method="post">
-            <button type="submit" id="cat">
-               <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-              Home
-            </button>
-          </form>
+    <form action="/" method="post">
+      <input type="hidden" name="cat" value="4" />
+      <button type="submit" id="cat">
+        <i
+          style="font-size: 20px"
+          class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"
+        ></i>
+        Computers
+      </button>
+    </form>
+    <form action="/" method="post">
+      <input type="hidden" name="cat" value="5" />
+      <button type="submit" id="cat">
+        <i
+          style="font-size: 20px"
+          class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
+        ></i>
+        Home
+      </button>
+    </form>
 
-              <form action="/" method="post">
-            <button type="submit" id="cat">
-              <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-dots-circle"></i>
-              Others
-            </button>
-          </form>
-
+    <form action="/" method="post">
+      <input type="hidden" name="cat" value="6" />
+      <button type="submit" id="cat">
+        <i
+          style="font-size: 20px"
+          class="mdi mdi-96px mdi-rotate-0 mdi-dots-circle"
+        ></i>
+        Others
+      </button>
+    </form>
   </div>
-  <div style="display: none;">
+  <div style="display: none">
     <h1 id="cat-head">
-      <i style="font-size: 24px" class="mdi mdi-96px mdi-rotate-0 mdi-view-list"></i>
+      <i
+        style="font-size: 24px"
+        class="mdi mdi-96px mdi-rotate-0 mdi-view-list"
+      ></i>
       <span> CATEGORIES</span>
     </h1>
     <li id="cat">
-      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+      <i
+        style="font-size: 20px"
+        class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
+      ></i>
       Fassion
     </li>
     <li id="cat">
-      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"></i>
+      <i
+        style="font-size: 20px"
+        class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"
+      ></i>
       Super market
     </li>
     <li id="cat">
-      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"></i>
+      <i
+        style="font-size: 20px"
+        class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
+      ></i>
       Phones & Accessories
     </li>
     <li id="cat">
-      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"></i>
+      <i
+        style="font-size: 20px"
+        class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"
+      ></i>
       Computers
     </li>
     <li id="cat">
-      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
+      <i
+        style="font-size: 20px"
+        class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
+      ></i>
       Home
     </li>
     <li id="cat">
-      <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-dots-circle"></i>
+      <i
+        style="font-size: 20px"
+        class="mdi mdi-96px mdi-rotate-0 mdi-dots-circle"
+      ></i>
       Fassion
     </li>
   </div>
