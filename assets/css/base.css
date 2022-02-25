@@ -35,6 +35,9 @@ header {
   display: flex;
   flex-direction: column;
 }
+#space {
+  height: 30px;
+}
 
 #cat {
   /* font-family: candara, calibri, Verdana, Geneva, Tahoma, sans-serif; */
@@ -186,7 +189,7 @@ li {
   margin-left: 5px;
 }
 
-#search{
+#search {
   width: auto;
   height: auto;
   background-color: rgba(255, 68, 0, 0.727);
@@ -280,13 +283,12 @@ li {
 }
 
 @media screen and (max-width: 800px) {
-
-   #viewedMainContainer {
+  #viewedMainContainer {
     width: 98%;
     margin-left: 1%;
   }
 
-  #V-box{
+  #V-box {
     margin-left: 0%;
   }
 
@@ -299,7 +301,7 @@ li {
     max-width: 40%;
     min-width: 40%;
   }
-  
+
   #logo {
     display: none;
   }
