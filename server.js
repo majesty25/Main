@@ -15,9 +15,7 @@ const path = require("path");
 const os = require("os");
 const interfaces = os.networkInterfaces();
 
-const conn = new sqlite.Database(
-  "https://github.com/majesty25/socket/blob/main/majesty.db"
-);
+const conn = new sqlite.Database("./majesty.db");
 app.use(
   bodyParser.urlencoded({
     extended: true,
