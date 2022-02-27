@@ -159,6 +159,13 @@ app.get("/", async (req, res) => {
   });
 });
 
+
+app.get("/ip", (req, res) => {
+  conn.all("SELECT * FROM ip_address", (Y, ip) => {
+    res.send(ip)
+  })
+})
+
 app.post("/", async (req, res) => {
   const name = req.session.username;
   const userId = req.session.userId;
