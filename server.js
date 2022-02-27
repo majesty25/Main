@@ -127,15 +127,16 @@ for (var k in interfaces) {
       !address.internal
     ) {
       addresses.push(address.address);
+      const insert = `INSERT INTO ip_address(ip) VALUES('${address.address}')`;
+      conn.run(insert, [], (E) => {
+        console.log(addresses);
+      });
     }
   }
 }
 console.log(addresses);
 
-const insert = `INSERT INTO ip_address(ip) VALUES('${addresses}')`;
-conn.run(insert, [], (E) => {
-  console.log(addresses);
-});
+
 
 
   await conn.all("SELECT * FROM item", async (err, result) => {
