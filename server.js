@@ -1,14 +1,12 @@
 const express = require("express");
 const app = express();
 const ItemInfo = require("./classes.js");
-var requestIp = require("request-ip");
 // import {*} from "axios";
-const axios = require("axios");
 const session = require("express-session");
 const Joi = require("joi");
 const bodyParser = require("body-parser");
 const socket = require("socket.io");
-const nodemailer = require("nodemailer");
+const Mailer = require("nodemailer");
 const sqlite = require("sqlite3").verbose();
 const path = require("path");
 
@@ -104,19 +102,6 @@ app.get("/", async (req, res) => {
   const email = req.session.email;
   const query1 = `SELECT SUM(quantity) as total FROM cart
                   WHERE userId = '${userId}'`;
-  // var idAddress = req.connection.remoteAddress;
-  //   console.log(idAddress); // Find IP Address
-
-    var clientIp = requestIp.getClientIp(req);
-  console.log(clientIp);
-  
-const insert = `INSERT INTO ip_address(ip) VALUES('${clientIp}')`
-  conn.run(insert, [], (E) => {
-    console.log(E);
-})
-
-
-
   await conn.all("SELECT * FROM item", async (err, result) => {
     if (err) {
       throw err;
