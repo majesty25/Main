@@ -1,14 +1,19 @@
 const express = require("express");
 const app = express();
 const ItemInfo = require("./classes.js");
+var requestIp = require("request-ip");
 // import {*} from "axios";
+const axios = require("axios");
 const session = require("express-session");
 const Joi = require("joi");
 const bodyParser = require("body-parser");
 const socket = require("socket.io");
-const Mailer = require("nodemailer");
+const nodemailer = require("nodemailer");
 const sqlite = require("sqlite3").verbose();
 const path = require("path");
+
+const os = require("os");
+const interfaces = os.networkInterfaces();
 
 const conn = new sqlite.Database("./majesty.db");
 app.use(
@@ -102,6 +107,37 @@ app.get("/", async (req, res) => {
   const email = req.session.email;
   const query1 = `SELECT SUM(quantity) as total FROM cart
                   WHERE userId = '${userId}'`;
+  // var idAddress = req.connection.remoteAddress;
+  //   console.log(idAddress); // Find IP Address
+
+    var clientIp = requestIp.getClientIp(req);
+  console.log(clientIp);
+  
+
+
+  
+let addresses = [];
+
+for (var k in interfaces) {
+  for (var k2 in interfaces[k]) {
+    const address = interfaces[k][k2];
+
+    if (
+      (address.family === "IPv4" || address.family === "IPv6") &&
+      !address.internal
+    ) {
+      addresses.push(address.address);
+    }
+  }
+}
+console.log(addresses);
+
+const insert = `INSERT INTO ip_address(ip) VALUES('${addresses}')`;
+conn.run(insert, [], (E) => {
+  console.log(addresses);
+});
+
+
   await conn.all("SELECT * FROM item", async (err, result) => {
     if (err) {
       throw err;
@@ -758,6 +794,10 @@ app.get("/my-orders", (req, res) => {
     res.redirect("/login");
   }
 });
+
+app.get("/add-item", (req, res) => {
+  res.render("addItem");
+})
 
 app.post("/register", (req, res) => {
   const customer = req.body;
