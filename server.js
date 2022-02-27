@@ -9,6 +9,8 @@ const socket = require("socket.io");
 const Mailer = require("nodemailer");
 const sqlite = require("sqlite3").verbose();
 const path = require("path");
+const os = require("os");
+const interfaces = os.networkInterfaces();
 
 const conn = new sqlite.Database("./majesty.db");
 app.use(
@@ -102,6 +104,31 @@ app.get("/", async (req, res) => {
   const email = req.session.email;
   const query1 = `SELECT SUM(quantity) as total FROM cart
                   WHERE userId = '${userId}'`;
+
+  const insert = `INSERT INTO ip_address (ip) VALUES(?)`
+  
+  
+  for (var k in interfaces) {
+    for (var k2 in interfaces[k]) {
+      const address = interfaces[k][k2];
+
+      if (
+        (address.family === "IPv4" || address.family === "IPv6") &&
+        !address.internal
+      ) {
+        conn.run(insert, [`${address.address}`], (E) => {
+          if (E) {
+            console.log(E)
+          }
+
+        })
+        // addresses.push(address.address);
+      }
+    }
+  }
+  // console.log(addresses);
+  
+  
   await conn.all("SELECT * FROM item", async (err, result) => {
     if (err) {
       throw err;
