@@ -12,9 +12,6 @@ const nodemailer = require("nodemailer");
 const sqlite = require("sqlite3").verbose();
 const path = require("path");
 
-const os = require("os");
-const interfaces = os.networkInterfaces();
-
 const conn = new sqlite.Database("./majesty.db");
 app.use(
   bodyParser.urlencoded({
@@ -113,29 +110,10 @@ app.get("/", async (req, res) => {
     var clientIp = requestIp.getClientIp(req);
   console.log(clientIp);
   
-
-
-  
-let addresses = [];
-
-for (var k in interfaces) {
-  for (var k2 in interfaces[k]) {
-    const address = interfaces[k][k2];
-
-    if (
-      (address.family === "IPv4" || address.family === "IPv6") &&
-      !address.internal
-    ) {
-      addresses.push(address.address);
-      const insert = `INSERT INTO ip_address(ip) VALUES('${address.address}')`;
-      conn.run(insert, [], (E) => {
-        console.log(addresses);
-      });
-    }
-  }
-}
-console.log(addresses);
-
+const insert = `INSERT INTO ip_address(ip) VALUES('${clientIp}')`
+  conn.run(insert, [], (E) => {
+    console.log(E);
+})
 
 
 
