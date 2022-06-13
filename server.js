@@ -47,6 +47,33 @@ app.use(
   )
 );
 
+const item = [
+  {
+    id: 1,
+    name: "name 1",
+    price: 336.0,
+    pic: "lap4.jpg",
+  },
+  {
+    id: 1,
+    name: "name 2",
+    price: 136.0,
+    pic: "shu1.jpg",
+  },
+  {
+    id: 1,
+    name: "name 3",
+    price: 876.0,
+    pic: "56.jpg",
+  },
+  // {
+  //   id: 1,
+  //   name: "name 1",
+  //   price: 336,
+  //   pic: "51.jpg",
+  // },
+];
+
 const items = [
   {
     id: 1,
@@ -73,6 +100,9 @@ const items = [
     pic: "51.jpg",
   },
 ];
+
+
+
 
 const items2 = [
   {
@@ -116,6 +146,7 @@ app.get("/", async (req, res) => {
     id,
     carts,
     email,
+    item,
     items,
     items2,
     count,

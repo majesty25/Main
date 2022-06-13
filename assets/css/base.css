@@ -33,10 +33,7 @@ header {
   height: auto;
   padding-left: 0px;
   display: flex;
-  flex-direction: column;
-  border-radius: 19px;
-  /* display: flex; */
-  /* flex-direction: column; */
+  flex-direction: column; 
   justify-content: space-between;
 }
 #space {
@@ -299,13 +296,68 @@ li {
 }
 
 #big-left{
-  width: 40%;
+  width: 30%;
+  padding: 1em;
   border-radius: 5px;
-  background-color: rgb(255, 255, 255);
+  background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226));;
+  /* background-color: rgba(218, 28, 107, 0.959); */
 }
+
+#message{
+  width: 100%;
+  display: flex;  
+  flex-direction: column; 
+  align-items: center;
+  color: white;
+  margin-bottom: 1em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /* background-color: rgba(235, 11, 104, 0.678); */
+  border-radius: 5px;
+
+}
+
+#welcome-message{
+  font-size: 15px;
+}
+#discount-message{
+  font-size: 13px;
+}
+
+#view-more{
+  width: 100%;
+  height: 2.4em;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 1em;
+  background-color: rgb(250, 212, 154);
+}
+
+#super-deals{
+  width: 100%;
+  height: 11em;
+  border-radius: 5px;
+  padding-top: 0.5em;
+  background-color: white;
+}
+
+#super-deal-price {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center; 
+  margin-right: 0px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+}
+
 #big-right{
-  width: 58%;
-  height: 17em;
+  width: 64%;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -314,7 +366,7 @@ li {
 
 #top{
   width: 100%;
-  height: 7em;
+  height: 10em;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -323,7 +375,7 @@ li {
 
 .top{
   width: 49%;
-  height: 7em;
+  height: 10em;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
@@ -331,6 +383,8 @@ li {
   background-color: rgb(255, 255, 255);
 }
 .top-left{
+  background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226));
+
 }
 
 .top-right{ 
@@ -338,9 +392,91 @@ li {
 
 #bottom{
   width: 100%;
-  height: 9.3em;
+  height: auto;
+  margin-top: 0.5em;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
   background-color: white;
+}
+
+#bottom-head{
+  width: 100%;
+  height: 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  justify-content: space-around;
+  /* background-color: blue; */
+}
+
+#flash-sale-lable{}
+
+#flash-sale-timmer{}
+
+.bottom-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#flash-items{
+  width: 32%;
+  display: flex;
+  border: none;
+  background-color: white;
+  flex-direction: column;
+}
+
+#flash-pic{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: none;
+  background-color: white;
+}
+
+#flash-img{
+  width: 90%;
+}
+
+#flash-prices-discount{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 0.3em;
+}
+
+#flash-prices{
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#flash-new-price{
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#flash-old-price{
+  font-size: 12px;
+  color: silver;
+  text-decoration: line-through;
+}
+
+#flash-discount{
+  height: 1.7em;
+  /* border-radius: 3px; */
+  border-top-left-radius: 7px;
+  border-bottom-right-radius: 3px;
+  font-size: 14px;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: orangered;
 }
 
 @media screen and (max-width: 1000px) {
