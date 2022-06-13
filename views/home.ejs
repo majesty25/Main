@@ -1,612 +1,656 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <link rel="stylesheet" href="../css/loader.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
+    <link rel="icon" href="../font/others/icon.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="../material-icons/css/materialdesignicons.min.css"
+      media="all"
+    />
 
-<head>
-  <link rel="stylesheet" href="../css/loader.css" />
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../css/base.css" />
-  <link rel="stylesheet" href="../css/header.css" />
+    <title>Document</title>
+  </head>
 
-  <link rel="stylesheet" href="../css/home.css" />
-  <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
-  <link rel="icon" href="../font/others/icon.png" type="image/x-icon">
-  <link rel="stylesheet" href="../material-icons/css/materialdesignicons.min.css" media="all" />
-  <!-- <link rel="stylesheet" href="css/search.css" /> -->
-  <title>Document</title>
-</head>
+  <body oncontextmenu="return false">
+    <div id="header-container"><%- include('header') %></div>
 
-<body oncontextmenu="return false">
-  <div id="header-container"><%- include('header') %></div>
-
-
-  <!-- MAIN CONTAINER: THIS CONTAIN ALL THE BODY CONTENT -->
-  <div id="main-container">
-
-    <%# include("loader")%>
-    <!-- THE FIRST SECTION OF THE MAIN PAGE -->
-    <div id="topmost-section">
-      <div id="category">
-        <div id="cat-head">
-          <i style="font-size: 24px" class="mdi mdi-96px mdi-rotate-0 mdi-view-list"></i>
-          <span> CATEGORIES</span>
-        </div>
-        <form action="/" method="post" onsubmit="shew()">
-          <input type="hidden" name="cat" value="1" />
-          <button id="cat">
-            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
-            Fassion
-          </button>
-        </form>
-        <form action="/" method="post" onsubmit="shew()">
-          <input type="hidden" name="cat" value="2" />
-          <button type="submit" id="cat">
-            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"></i>Supermarket
-          </button>
-        </form>
-
-        <form action="/" method="post" onsubmit="shew()">
-          <input type="hidden" name="cat" value="3" />
-          <button id="cat">
-            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"></i>Phones & Accessories
-          </button>
-        </form>
-
-        <form action="/" method="post" onsubmit="shew()">
-          <input type="hidden" name="cat" value="4" />
-          <button id="cat">
-            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"></i>Computers
-          </button>
-        </form>
-
-        <form action="/" method="post" onsubmit="shew()">
-          <input type="hidden" name="cat" value="5" />
-          <button id="cat">
-            <i style="font-size: 20px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>Home & Office
-          </button>
-        </form>
-
-        <form action="/" method="post" onsubmit="shew()">
-          <input type="hidden" name="cat" value="6" />
-          <button id="cat">
-            <i style="font-size: 20px" class="mdi mdi-alpha-o-box-outline"></i>Others
-          </button>
-        </form>
-      </div>
-      <div id="topmost-left">
-        <!-- <img
-            id="img1"
-            src="../font/others/delivery-concept-portrait-happy-african-american-delivery-man-red-cloth-holding-box-package-isolated-grey-studio-background-copy-space_1258-1261.jpg"
-            alt=""
-            srcset=""
-          /> -->
-        <img class="mySlides" src="../font/others/01.png" style="width: 100%" />
-        <img class="mySlides" src="../font/others/02.jpg" style="width: 100%" />
-        <img class="mySlides" src="../font/others/03.jpg" style="width: 100%" />
-        <!-- <div id="small-box"></div> -->
-        <!-- <img class="mySlides" src="img_chicago.jpg" style="width: 100%" /> -->
-      </div>
-      <div id="topmost-right">
-        <%if (locals.name){ %>
-        <div id="text-1">
-          <div id="user-greeting-1">Hi, <%=name%></div>
-          <div id="user-greeting-1">WELCOME TO NYANKIE</div>
-
-          <div id="sign">
-            <button id="prepaid-btn">
-              <i style="font-size: 16px" class="mdi mdi-wallet-outline"></i>Prepaid: 00.0
+    <!-- MAIN CONTAINER: THIS CONTAIN ALL THE BODY CONTENT -->
+    <div id="main-container">
+      <%# include("loader")%>
+      <!-- THE FIRST SECTION OF THE MAIN PAGE -->
+      <div id="topmost-section">
+        <div class="category">
+          <div id="cat-head">
+            <i
+              style="font-size: 24px"
+              class="mdi mdi-96px mdi-rotate-0 mdi-view-list"
+            ></i>
+            <span> CATEGORIES</span>
+          </div>
+          <form action="/" method="post" onsubmit="shew()">
+            <input type="hidden" name="cat" value="1" />
+            <button id="cat">
+              <i
+                style="font-size: 20px"
+                class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
+              ></i>
+              Fassion
             </button>
-            <div id="invite-btn">
-              <i style="font-size: 16px" class="mdi mdi-account-plus-outline"></i>
-              Invite
+          </form>
+          <form action="/" method="post" onsubmit="shew()">
+            <input type="hidden" name="cat" value="2" />
+            <button type="submit" id="cat">
+              <i
+                style="font-size: 20px"
+                class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"
+              ></i
+              >Supermarket
+            </button>
+          </form>
+
+          <form action="/" method="post" onsubmit="shew()">
+            <input type="hidden" name="cat" value="3" />
+            <button id="cat">
+              <i
+                style="font-size: 20px"
+                class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
+              ></i
+              >Phones & Accessories
+            </button>
+          </form>
+
+          <form action="/" method="post" onsubmit="shew()">
+            <input type="hidden" name="cat" value="3" />
+            <button id="cat">
+              <i
+                style="font-size: 20px"
+                class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
+              ></i
+              >Phones & Accessories
+            </button>
+          </form>
+
+          <form action="/" method="post" onsubmit="shew()">
+            <input type="hidden" name="cat" value="3" />
+            <button id="cat">
+              <i
+                style="font-size: 20px"
+                class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
+              ></i
+              >Phones & Accessories
+            </button>
+          </form>
+
+          <form action="/" method="post" onsubmit="shew()">
+            <input type="hidden" name="cat" value="3" />
+            <button id="cat">
+              <i
+                style="font-size: 20px"
+                class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
+              ></i
+              >Phones & Accessories
+            </button>
+          </form>
+
+          <form action="/" method="post" onsubmit="shew()">
+            <input type="hidden" name="cat" value="4" />
+            <button id="cat">
+              <i
+                style="font-size: 20px"
+                class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"
+              ></i
+              >Computers
+            </button>
+          </form>
+
+          <form action="/" method="post" onsubmit="shew()">
+            <input type="hidden" name="cat" value="5" />
+            <button id="cat">
+              <i
+                style="font-size: 20px"
+                class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
+              ></i
+              >Home & Office
+            </button>
+          </form>
+
+          <form action="/" method="post" onsubmit="shew()">
+            <input type="hidden" name="cat" value="6" />
+            <button id="cat">
+              <i style="font-size: 20px" class="mdi mdi-alpha-o-box-outline"></i
+              >Others
+            </button>
+          </form>
+        </div>
+        <div id="grid">
+          <div id="long-bar"></div>
+          <div id="big-container">
+            <!-- <div id="topmost-left">
+              
+            </div> -->
+
+            <div id="big-left"></div>
+            <div id="big-right">
+              <div id="top">
+                <div class="top-left top">
+                  <img
+                class="mySlides slide-img"
+                src="../font/others/01.png" 
+                alt=""              
+              />
+              <img
+                class="mySlides slide-img"
+                src="../font/others/02.jpg" 
+                alt=""               
+              />
+              <img
+                class="mySlides slide-img"
+                src="../font/others/03.jpg"  
+                alt=""              
+              />
+                </div>
+                <div class="top-right top"></div>
+              </div>
+              <div id="bottom"></div>
             </div>
-          </div>
 
-          <div id="box">
-            <!-- <img style="width: 100%" src="../font/others/1.jpg" alt="" srcset="" /> -->
           </div>
         </div>
-
-        <%} else{ %>
-
-        <div id="text-2">
-          <div id="user-greeting-1">Hi, cherished Customer</div>
-          <div id="user-greeting-1">WELCOME TO NYANKIE</div>
-          <div id="sign">
-            <form action="/login" method="get" onsubmit="shew()">
-              <button id="login-btn">
-                <i style="font-size: 16px" class="mdi mdi-96px mdi-rotate-0 mdi-login"></i>
-                Log in
-              </button>
-            </form>
-            <form action="/signup" method="get" onsubmit="shew()">
-              <button id="signup-btn">
-                <i style="font-size: 16px" class="mdi mdi-16px mdi-rotate-0 mdi-account-plus-outline"></i>
-                Join
-              </button>
-            </form>
-          </div>
-
-          <div id="box">
-            <!-- <img style="width: 100%" src="../font/others/1.jpg" alt="" srcset="" /> -->
-          </div>
-        </div>
-
-        <%}%>
-
-          <div id="flash-deal">
-            <div class="flash-deals-head">
-              Flash deals
-              <div style="color: red"><%- include('flash')%></div>
-    </div>
-    <div id="flash-deals">
-      <form class="flash-deal-1" action="/" method="post" onsubmit="shew()">
-        <button id="flash-deal-1" type="submit">
-          <img id="flash-deal-img" src="../font/1.jpg" alt="" srcset="" />
-
-          <div id="flash-name">where the name of the item appears</div>
-
-          <div id="flash-new-price">GH₵ 36</div>
-          <div id="flash-prices">
-            <div id="flash-old-price">GH₵ 45</div>
-            <div class="flash-percent-off">-4%</div>
-          </div>
-        </button>
-      </form>
-
-      <form class="flash-deal-1" action="/" method="post" onsubmit="shew()">
-        <button id="flash-deal-1" type="submit">
-          <img id="flash-deal-img" src="../font/5.jpg" alt="" srcset="" />
-
-          <div id="flash-name">where the name of the item appears</div>
-
-          <div id="flash-new-price">GH₵ 36</div>
-          <div id="flash-prices">
-            <div id="flash-old-price">GH₵ 45</div>
-            <div class="flash-percent-off">-4%</div>
-          </div>
-        </button>
-      </form>
-    </div>
-  </div>
-  </div>
-  </div>
-  <div id="demo">
-    <form onsubmit="shew()" id="con" action="/" method="post">
-      <input type="hidden" name="cat" />
-      <div id="conj">
-        <button id="img-con">
-          <img id="img2" src="../font/40.jpg" alt="" srcset="" />
-          <div id="text">Kitchen Untesils</div>
-        </button>
       </div>
-    </form>
-
-    <form onsubmit="shew()" id="con" action="/" method="post">
-      <input type="hidden" name="cat" />
-      <div id="conj">
-        <button id="img-con">
-          <img id="img2" src="../font/shu4.jpg" alt="" srcset="" />
-          <div id="text">Men's shoe</div>
-        </button>
-      </div>
-    </form>
-
-    <form onsubmit="shew()" id="con" action="/" method="post">
-      <input type="hidden" name="cat" />
-      <div id="conj">
-        <button id="img-con">
-          <img id="img2" src="../font/gettyimages-1025627712-612x612.jpg" alt="" srcset="" />
-          <div id="text">Women's shoe</div>
-        </button>
-      </div>
-    </form>
-
-    <form onsubmit="shew()" id="con" action="/" method="post">
-      <input type="hidden" name="cat" />
-      <div id="conj">
-        <button id="img-con">
-          <img id="img2" src="../font/gettyimages-1137505232-2048x2048.jpg" alt="" srcset="" />
-          <div id="text">Women's cloth</div>
-        </button>
-      </div>
-    </form>
-
-    <form onsubmit="shew()" id="con" action="/" method="post">
-      <input type="hidden" name="cat" />
-      <div id="conj">
-        <button id="img-con">
-          <img id="img2" src="../font/iphone-mock-up-realistic-design_23-2148358424.jpg" alt="" srcset="" />
-          <div id="text">Phones</div>
-        </button>
-      </div>
-    </form>
-
-    <form onsubmit="shew()" id="con" action="/" method="post">
-      <input type="hidden" name="cat" />
-      <div id="conj">
-        <button id="img-con">
-          <img id="img2" src="../font/51.jpg" alt="" srcset="" />
-          <div title="hkjhkk" id="text">Men's cloth</div>
-        </button>
-      </div>
-    </form>
-  </div>
-  <!-- <div id="demo" class="demo"> -->
-
-
-    <div id="demo">
-          <div id="weekly-deal">
-      <div>Flash sales</div>
-      <div id="flash-small" style="color: red; margin-left: 10px;"><%- include("flash2") %></div>
-    </div>
-
-    <div id="items-container">
-      <div id="CONTAINER-BIG">
-        <div id="flash"><%- include('flash3')%></div>
-        <!-- <img style="width: 30%; height: 100%;" src="../font/others/new.png" alt="" srcset=""> -->
-        <button id="view-all">VIEW ALL</button>
-      </div>
-      <div id="CONTAINER">
-       
-
-
-        <% Object.keys(items).forEach(key => { var row = items[key];  %>
-        <div id="item-category">
-          <form onsubmit="shew()" action="/detail" method="post">
-            <input type="hidden" name="id" value="<%=row.id%>" />
-            <button id="img-con1">
-              <img id="item-category-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+      <div id="demo">
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="">
+            <button id="img-con">
+              <img id="img2" src="../font/40.jpg" alt="" srcset="" />
+              <div id="text">Kitchen Untesils</div>
             </button>
-          </form>
-          <div id="item-name"><%=row.name%></div>
-        </div>
+          </div>
+        </form>
 
-        <%})%>
-
-      </div>
-      <div id="CONTAINER">
-
-        <% Object.keys(items2).forEach(key => { var row = items2[key];  %>
-        <div id="item-category">
-          <form onsubmit="shew()" action="/detail" method="post">
-            <input type="hidden" name="id" value="<%=row.id%>" />
-            <button id="img-con1">
-              <img id="item-category-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/shu4.jpg" alt="" srcset="" />
+              <div id="text">Men's shoe</div>
             </button>
-          </form>
-          <div id="item-name"><%=row.name%></div>
-        </div>
+          </div>
+        </form>
 
-        <%})%>
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/gettyimages-1025627712-612x612.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Women's shoe</div>
+            </button>
+          </div>
+        </form>
 
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/gettyimages-1137505232-2048x2048.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Women's cloth</div>
+            </button>
+          </div>
+        </form>
 
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/iphone-mock-up-realistic-design_23-2148358424.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Phones</div>
+            </button>
+          </div>
+        </form>
+
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/51.jpg" alt="" srcset="" />
+              <div title="hkjhkk" id="text">Men's cloth</div>
+            </button>
+          </div>
+        </form>
       </div>
-    </div>
-    </div>
+      <!-- <div id="demo" class="demo"> -->
 
-
-
-    
-    <div id="demo">
-      <div id="weekly-deal"><div>Top deals</div>  <%- include('flash2')%> <div>></div></div>
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/40.jpg" alt="" srcset="" />
-            <div id="text">Kitchen Untesils</div>
-          </button>
+      <div id="demo">
+        <div id="weekly-deal">
+          <div>Flash sales</div>
+          <div id="flash-small" style="color: red; margin-left: 10px">
+            <%- include("flash2") %>
+          </div>
         </div>
-      </form>
 
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/shu4.jpg" alt="" srcset="" />
-            <div id="text">Men's shoe</div>
-          </button>
+        <div id="items-container">
+          <div id="CONTAINER-BIG">
+            <div id="flash"><%- include('flash3')%></div>
+            <!-- <img style="width: 30%; height: 100%;" src="../font/others/new.png" alt="" srcset=""> -->
+            <button id="view-all">VIEW ALL</button>
+          </div>
+          <div id="CONTAINER">
+            <% Object.keys(items).forEach(key => { var row = items[key]; %>
+            <div id="item-category">
+              <form onsubmit="shew()" action="/detail" method="post">
+                <input type="hidden" name="id" value="<%=row.id%>" />
+                <button id="img-con1">
+                  <img
+                    id="item-category-img"
+                    src="../font/<%=row.pic%>"
+                    alt=""
+                    srcset=""
+                  />
+                </button>
+              </form>
+              <div id="item-name"><%=row.name%></div>
+            </div>
+
+            <%})%>
+          </div>
+          <div id="CONTAINER">
+            <% Object.keys(items2).forEach(key => { var row = items2[key]; %>
+            <div id="item-category">
+              <form onsubmit="shew()" action="/detail" method="post">
+                <input type="hidden" name="id" value="<%=row.id%>" />
+                <button id="img-con1">
+                  <img
+                    id="item-category-img"
+                    src="../font/<%=row.pic%>"
+                    alt=""
+                    srcset=""
+                  />
+                </button>
+              </form>
+              <div id="item-name"><%=row.name%></div>
+            </div>
+
+            <%})%>
+          </div>
         </div>
-      </form>
-
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/gettyimages-1025627712-612x612.jpg" alt="" srcset="" />
-            <div id="text">Women's shoe</div>
-          </button>
-        </div>
-      </form>
-
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/gettyimages-1137505232-2048x2048.jpg" alt="" srcset="" />
-            <div id="text">Women's cloth</div>
-          </button>
-        </div>
-      </form>
-
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/iphone-mock-up-realistic-design_23-2148358424.jpg" alt="" srcset="" />
-            <div id="text">Phones</div>
-          </button>
-        </div>
-      </form>
-
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/51.jpg" alt="" srcset="" />
-            <div title="hkjhkk" id="text">Men's cloth</div>
-          </button>
-        </div>
-      </form>
-    </div>
-
-    <!-- <div id="BANA">
-        <img style="width: 15%; height: 100%;" src="../font/others/icon.png" alt="" srcset="">
-        <img style="width: 28%; height: 100%" src="../font/others/bargain-453486_960_720.webp" alt="" srcset="">
-      </div> -->
-
-    
-
-     <div id="demo">
-       <div id="weekly-deal">Weakly deal</div>
-           <% Object.keys(result).forEach(key => { var row = result[key]; const
-        percentOff = (row.off/100)*row.price; const oldPrice = row.price +
-        percentOff; const total = (row.rate) * 5; const rate =
-        Math.round((row.stars / total) * 5); %>
-    <div id="item">
-      <form onsubmit="shew()" action="/detail" method="post">
-        <input type="hidden" name="id" value="<%=row.id%>" />
-        <button id="image-btn">
-
-          <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-        </button>
-      </form>
-      <div id="item-name"><%=row.name%></div>
-      <div id="prices">
-        <div id="new-price">GH₵ <%=(row.price).toFixed(2)%></div>
-
-        <% if (row.off <= 0) { %>
-        <!-- <div id="old-price"></div> -->
-        <% }else{ %>
-        <div id="space-bet">
-          <div id="old-price">GH₵ <%=oldPrice.toFixed(2)%></div>
-          <span class="percent-off">-<%=row.off%>%</span>
-        </div>
-        
-        <% } %>
       </div>
 
-      <div id="percent-off">
-        <div id="star">
-
+      <div id="demo">
+        <div id="weekly-deal">
+          <div>Top deals</div>
+          <%- include('flash2')%>
+          <div>></div>
         </div>
-        <!-- <span class="old-price">GHS 378</span> -->
-        <% if (row.off <= 0) { %>
-        <!-- <span class="percent-off"></span> -->
-        <% }else{ %>
-        <!-- <span class="percent-off">-<%=row.off%>%</span> -->
-        <% } %>
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/40.jpg" alt="" srcset="" />
+              <div id="text">Kitchen Untesils</div>
+            </button>
+          </div>
+        </form>
+
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/shu4.jpg" alt="" srcset="" />
+              <div id="text">Men's shoe</div>
+            </button>
+          </div>
+        </form>
+
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/gettyimages-1025627712-612x612.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Women's shoe</div>
+            </button>
+          </div>
+        </form>
+
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/gettyimages-1137505232-2048x2048.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Women's cloth</div>
+            </button>
+          </div>
+        </form>
+
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/iphone-mock-up-realistic-design_23-2148358424.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Phones</div>
+            </button>
+          </div>
+        </form>
+
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/51.jpg" alt="" srcset="" />
+              <div title="hkjhkk" id="text">Men's cloth</div>
+            </button>
+          </div>
+        </form>
       </div>
-    </div>
- 
-    <%})%>
 
-
-    <% Object.keys(result).forEach(key => { var row = result[key];
+      <div id="demo">
+        <div id="weekly-deal">Weakly deal</div>
+        <% Object.keys(ITEMS).forEach(key => { var row = ITEMS[key].toJSON();
         const percentOff = (row.off/100)*row.price; const oldPriceWhole =
         Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
-    <div id="item">
-      <form onsubmit="shew()" action="/detail" method="post">
-        <input type="hidden" name="id" value="<%=row.id%>" />
-        <button id="image-btn">
-          <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-        </button>
-      </form>
-      <div id="item-name"><%=row.name%></div>
-      <div id="prices">
-        <div id="new-price">GH₵ <%=row.price%></div>
+        <div id="item">
+          <form onsubmit="shew()" action="/det" method="post">
+            <input type="hidden" name="id" value="<%=row.itemId%>" />
+            <button id="image-btn">
+              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+            </button>
+          </form>
+          <div id="item-name"><%=row.name%></div>
+          <div id="prices">
+            <div id="new-price">GH₵ <%=row.price.toFixed(2)%></div>
 
-        <% if (row.off <= 0) { %>
-        <!-- <div id="old-price"></div> -->
-        <% }else{ %>
-        <div id="old-price">GH₵ <%=oldPriceRounded%></div>
-        <% } %>
-      </div>
+            <% if (row.off <= 0) { %> <% }else{ %>
+            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+            <% } %>
+          </div>
 
-      <div id="percent-off">
-        <div id="star">
-          <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
+          <div id="percent-off">
+            <div id="star">
+              <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
               < (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
+            </div>
+
+            <% if (row.off <= 0) { %> <% }else{ %>
+            <span class="percent-off">-<%=row.off%>%</span>
+            <% } %>
+          </div>
         </div>
 
-        <% if (row.off <= 0) { %>
-        <!-- <span class="percent-off"></span> -->
-        <% }else{ %>
-        <span class="percent-off">-<%=row.off%>%</span>
-        <% } %>
+        <%})%>
+
+
+               <% Object.keys(ITEMS).forEach(key => { var row = ITEMS[key].toJSON();
+        const percentOff = (row.off/100)*row.price; const oldPriceWhole =
+        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
+        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
+        Math.round((row.stars / total) * 5); %>
+        <div id="item">
+          <form onsubmit="shew()" action="/det" method="post">
+            <input type="hidden" name="id" value="<%=row.itemId%>" />
+            <button id="image-btn">
+              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+            </button>
+          </form>
+          <div id="item-name"><%=row.name%></div>
+          <div id="prices">
+            <div id="new-price">GH₵ <%=row.price.toFixed(2)%></div>
+
+            <% if (row.off <= 0) { %> <% }else{ %>
+            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+            <% } %>
+          </div>
+
+          <div id="percent-off">
+            <div id="star">
+              <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
+              < (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
+            </div>
+
+            <% if (row.off <= 0) { %> <% }else{ %>
+            <span class="percent-off">-<%=row.off%>%</span>
+            <% } %>
+          </div>
+        </div>
+
+        <%})%>
+
+               <% Object.keys(ITEMS).forEach(key => { var row = ITEMS[key].toJSON();
+        const percentOff = (row.off/100)*row.price; const oldPriceWhole =
+        Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
+        oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
+        Math.round((row.stars / total) * 5); %>
+        <div id="item">
+          <form onsubmit="shew()" action="/det" method="post">
+            <input type="hidden" name="id" value="<%=row.itemId%>" />
+            <button id="image-btn">
+              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+            </button>
+          </form>
+          <div id="item-name"><%=row.name%></div>
+          <div id="prices">
+            <div id="new-price">GH₵ <%=row.price.toFixed(2)%></div>
+
+            <% if (row.off <= 0) { %> <% }else{ %>
+            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+            <% } %>
+          </div>
+
+          <div id="percent-off">
+            <div id="star">
+              <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
+              < (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
+            </div>
+
+            <% if (row.off <= 0) { %> <% }else{ %>
+            <span class="percent-off">-<%=row.off%>%</span>
+            <% } %>
+          </div>
+        </div>
+
+        <%})%>
       </div>
-    </div>
-    <!-- <li><%=row.First_name%></li> -->
-    <%})%>
-     </div>
 
+      <div id="demo">
+        <div id="weekly-deal">Top deals</div>
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/40.jpg" alt="" srcset="" />
+              <div id="text">Kitchen Untesils</div>
+            </button>
+          </div>
+        </form>
 
- 
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/shu4.jpg" alt="" srcset="" />
+              <div id="text">Men's shoe</div>
+            </button>
+          </div>
+        </form>
 
-   
-    <div id="demo">
-       <div id="weekly-deal">Top deals</div>
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/40.jpg" alt="" srcset="" />
-            <div id="text">Kitchen Untesils</div>
-          </button>
-        </div>
-      </form>
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/gettyimages-1025627712-612x612.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Women's shoe</div>
+            </button>
+          </div>
+        </form>
 
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/shu4.jpg" alt="" srcset="" />
-            <div id="text">Men's shoe</div>
-          </button>
-        </div>
-      </form>
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/gettyimages-1137505232-2048x2048.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Women's cloth</div>
+            </button>
+          </div>
+        </form>
 
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/gettyimages-1025627712-612x612.jpg" alt="" srcset="" />
-            <div id="text">Women's shoe</div>
-          </button>
-        </div>
-      </form>
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img
+                id="img2"
+                src="../font/iphone-mock-up-realistic-design_23-2148358424.jpg"
+                alt=""
+                srcset=""
+              />
+              <div id="text">Phones</div>
+            </button>
+          </div>
+        </form>
 
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/gettyimages-1137505232-2048x2048.jpg" alt="" srcset="" />
-            <div id="text">Women's cloth</div>
-          </button>
-        </div>
-      </form>
+        <form onsubmit="shew()" id="con" action="/" method="post">
+          <input type="hidden" name="cat" />
+          <div id="conj">
+            <button id="img-con">
+              <img id="img2" src="../font/51.jpg" alt="" srcset="" />
+              <div title="hkjhkk" id="text">Men's cloth</div>
+            </button>
+          </div>
+        </form>
+      </div>
 
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/iphone-mock-up-realistic-design_23-2148358424.jpg" alt="" srcset="" />
-            <div id="text">Phones</div>
-          </button>
-        </div>
-      </form>
+      <div id="demo">
+        <div id="weekly-deal">Top picks</div>
 
-      <form onsubmit="shew()" id="con" action="/" method="post">
-        <input type="hidden" name="cat" />
-        <div id="conj">
-          <button id="img-con">
-            <img id="img2" src="../font/51.jpg" alt="" srcset="" />
-            <div title="hkjhkk" id="text">Men's cloth</div>
-          </button>
-        </div>
-      </form>
-    </div>
-
-
-
-
-
-
-
-   
-    <div id="demo">
-       <div id="weekly-deal">Top picks</div>
-      
-    <% Object.keys(result).forEach(key => { var row = result[key]; const
+        <% Object.keys(ITEMS).forEach(key => { var row = ITEMS[key]; const
         percentOff = (row.off/100)*row.price; const oldPriceWhole =
         Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
-    <div id="item">
-      <form onsubmit="shew()" action="/detail" method="post">
-        <input type="hidden" name="id" value="<%=row.id%>" />
-        <button id="image-btn">
-          <!-- <div id="bbb">
+        <div id="item">
+          <form onsubmit="shew()" action="/det" method="post">
+            <input type="hidden" name="id" value="<%=row.itemId%>" />
+            <button id="image-btn">
+              <!-- <div id="bbb">
             <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
           </div>           -->
-          <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-        </button>
-      </form>
-      <div id="item-name"><%=row.name%></div>
-      <div id="prices">
-        <div id="new-price">GH₵ <%=row.price%></div>
+              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+            </button>
+          </form>
+          <div id="item-name"><%=row.name%></div>
+          <div id="prices">
+            <div id="new-price">GH₵ <%=row.price%></div>
 
-        <% if (row.off <= 0) { %>
-        <!-- <div id="old-price"></div> -->
-        <% }else{ %>
-        <div id="old-price">GH₵ <%=oldPriceRounded%></div>
-        <% } %>
-      </div>
+            <% if (row.off <= 0) { %>
+            <!-- <div id="old-price"></div> -->
+            <% }else{ %>
+            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+            <% } %>
+          </div>
 
-      <div id="percent-off">
-        <div id="star">
-
+          <div id="percent-off">
+            <div id="star"></div>
+            <!-- <span class="old-price">GHS 378</span> -->
+            <% if (row.off <= 0) { %>
+            <!-- <span class="percent-off"></span> -->
+            <% }else{ %>
+            <span class="percent-off">-<%=row.off%>%</span>
+            <% } %>
+          </div>
         </div>
-        <!-- <span class="old-price">GHS 378</span> -->
-        <% if (row.off <= 0) { %>
-        <!-- <span class="percent-off"></span> -->
-        <% }else{ %>
-        <span class="percent-off">-<%=row.off%>%</span>
-        <% } %>
-      </div>
-    </div>
-    <!-- <li><%=row.First_name%></li> -->
-    <%})%> <% Object.keys(result).forEach(key => { var row = result[key];
+
+        <%})%> <% Object.keys(ITEMS).forEach(key => { var row = ITEMS[key];
         const percentOff = (row.off/100)*row.price; const oldPriceWhole =
         Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
-    <div id="item">
-      <form onsubmit="shew()" action="/detail" method="post">
-        <input type="hidden" name="id" value="<%=row.id%>" />
-        <button id="image-btn">
-          <!-- <div id="bbb">
+        <div id="item">
+          <form onsubmit="shew()" action="/det" method="post">
+            <input type="hidden" name="id" value="<%=row.itemId%>" />
+            <button id="image-btn">
+              <!-- <div id="bbb">
             <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
           </div>           -->
-          <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-        </button>
-      </form>
-      <div id="item-name"><%=row.name%></div>
-      <div id="prices">
-        <div id="new-price">GH₵ <%=row.price%></div>
+              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+            </button>
+          </form>
+          <div id="item-name"><%=row.name%></div>
+          <div id="prices">
+            <div id="new-price">GH₵ <%=row.price%></div>
 
-        <% if (row.off <= 0) { %>
-        <!-- <div id="old-price"></div> -->
-        <% }else{ %>
-        <div id="old-price">GH₵ <%=oldPriceRounded%></div>
-        <% } %>
-      </div>
+            <% if (row.off <= 0) { %>
+            <!-- <div id="old-price"></div> -->
+            <% }else{ %>
+            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+            <% } %>
+          </div>
 
-      <div id="percent-off">
-        <div id="star">
-
+          <div id="percent-off">
+            <div id="star"></div>
+            <!-- <span class="old-price">GHS 378</span> -->
+            <% if (row.off <= 0) { %>
+            <!-- <span class="percent-off"></span> -->
+            <% }else{ %>
+            <span class="percent-off">-<%=row.off%>%</span>
+            <% } %>
+          </div>
         </div>
-        <!-- <span class="old-price">GHS 378</span> -->
-        <% if (row.off <= 0) { %>
-        <!-- <span class="percent-off"></span> -->
-        <% }else{ %>
-        <span class="percent-off">-<%=row.off%>%</span>
-        <% } %>
+        <!-- <li><%=row.First_name%></li> -->
+        <%})%>
       </div>
-    </div>
-    <!-- <li><%=row.First_name%></li> -->
-    <%})%>
-    </div>
 
-  <!-- </div> -->
-  </div>
-  <%- include("footer")%>
-</body>
-
+      <!-- </div> -->
+    </div>
+    <%- include("footer")%>
+  </body>
 </html>
 
 <script src="../js/slideshow.js"></script>

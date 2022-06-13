@@ -2,14 +2,19 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test</title>
+    <title>Hello World with Socket.io</title>
   </head>
   <body>
-    <% Object.keys(result).forEach(key => { var row = result[key];
-    console.log(row.First_name);%>
-    <li><%=row.First_name%></li>
-    <%})%>
+    <!-- <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> -->
+    <script>
+      const io = require("socket.io-client");
+      var socket = io("http://localhost:3000");
+      socket.on("message-from-server-to-client", function (msg) {
+        document.getElementById("message").innerHTML = msg;
+      });
+      socket.emit("message-from-client-to-server", "iuyiucli yiu yiu ");
+    </script>
+    <p>Socket.io Hello World client started!</p>
+    <p id="message"></p>
   </body>
 </html>

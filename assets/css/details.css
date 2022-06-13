@@ -1,0 +1,387 @@
+#pic-desc-container {
+  width: 85%;
+  height: auto;
+  margin-top: 3px;
+  margin-left: 7.5%;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 2px 2px 5px 1px rgba(192, 192, 192, 0.096);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#pics {
+  width: 40%;
+  height: auto;
+  display: flex;
+  margin-right: 0%;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+}
+
+#main-pic-container {
+  width: 100%;
+  /* float: right; */
+}
+
+#main-pic {
+  width: 100%;
+}
+
+#small-pic {
+  width: 15%;
+  margin-right: 5px;
+  border-radius: 5px;
+}
+
+#small-pics-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* justify-content: space-around; */
+  background-color: rgb(255, 255, 255);
+  /* float: left; */
+}
+
+#desc {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  /* margin-left: 3%; */
+}
+
+#top-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(233, 233, 233, 0.726);
+}
+
+#stars {
+  font-size: 16px;
+  color: orangered;
+}
+
+#price {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+#name {
+  font-size: 16px;
+  margin-bottom: 10px;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  /* justify-content: space-between; */
+}
+
+.buy-btn {
+  border-radius: 4px;
+  border: 1px solid red;
+  font-size: 11px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.add {
+  background-color: white;
+  color: orangered;
+}
+
+.buy {
+  margin-left: 30px;
+  background-color: rgba(255, 68, 0, 0.8);
+  color: white;
+}
+
+#save-btn {
+  margin-left: 30px;
+  border: none;
+  background-color: white;
+  color: orangered;
+  font-size: 23px;
+  cursor: pointer;
+  outline: none;
+}
+
+#varieties {
+  margin-bottom: 17px;
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  align-items: center;
+}
+
+#var {
+  font-size: 14px;
+  font-weight: bold;
+  color: rgb(153, 153, 152);
+}
+
+.radio {
+  display: flex;
+  overflow: hidden;
+  margin-left: 10px;
+  /* box-shadow: 0 0 5px silver; */
+}
+
+.radio-input {
+  display: none;
+}
+
+.radio-label {
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 15px;
+  margin-right: 10px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: rgba(255, 255, 255, 0.837);
+  cursor: pointer;
+  border: 1px solid rgb(235, 235, 235);
+  transition: 0.1s;
+  color: rgb(0, 0, 0);
+}
+.radio-input:checked + .radio-label {
+  border: 1px solid red;
+}
+
+#description {
+  width: 100%;
+}
+
+.description {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.desc {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#delivery {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: rgb(7, 148, 7);
+  border-bottom: 1px solid rgba(223, 223, 223, 0.74);
+}
+
+#seller-container {
+  width: 98%;
+  border-radius: 5px;
+  height: auto;
+  border: 1px solid rgba(230, 230, 230, 0.76);
+  padding: 5px;
+}
+
+#seller {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#seller-name {
+  font-size: 16px;
+  text-decoration: underline;
+}
+
+#react {
+  display: flex;
+  flex-direction: row;
+}
+
+#like {
+  font-size: 18px;
+  color: green;
+  cursor: pointer;
+}
+#dislike {
+  font-size: 18px;
+  color: red;
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.seller-btn {
+  /* border: 1px solid; */
+  border-radius: 12px;
+  background-color: white;
+  font-size: 12px;
+  padding: 5px 15px;
+}
+
+.follow {
+  border: 1px solid silver;
+}
+
+.msg {
+  border: 1px solid green;
+}
+
+#seller-detail {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+#about {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.about-value {
+  font-size: 19px;
+}
+.about {
+  font-size: 14px;
+  color: gray;
+  margin-left: 5px;
+}
+
+.sells {
+  color: red;
+}
+
+#review-spec {
+  width: 85.8%;
+  height: auto;
+  margin-left: 7.5%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* background-color: white; */
+}
+
+#review-head {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#review {
+  width: 50%;
+  display: flex;
+  background-color: white;
+  margin-left: 0px;
+  padding: 10px 10px;
+  /* box-shadow: 2px 2px 5px 1px rgba(192, 192, 192, 0.651); */
+  flex-direction: column;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#review-rate {
+  color: orangered;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  justify-content: space-between;
+}
+
+#comment {
+  font-size: 14px;
+  width: 100%;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(228, 228, 228, 0.637);
+}
+
+#spec {
+  width: 45%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* justify-content: space-evenly; */
+  background-color: white;
+  /* box-shadow: 2px 2px 5px 1px rgba(192, 192, 192, 0.65); */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#spec-head {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  font-size: 17px;
+  /* justify-content: space-evenly; */
+  font-weight: bold;
+  margin-left: 5%;
+}
+
+#features {
+  font-size: 17px;
+}
+
+@media screen and (min-width: 881px) {
+  #desc {
+    margin-left: 5%;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  #pic-desc-container {
+    width: 98%;
+    margin-left: 0%;
+  }
+
+  #review-spec {
+    width: 98%;
+    margin-left: 0%;
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  #pic-desc-container {
+    flex-direction: column;
+  }
+
+  #pics {
+    width: 98%;
+  }
+
+  #desc {
+    width: 100%;
+  }
+
+  #review-spec {
+    width: 100%;
+    flex-direction: column;
+
+    /* display: none;     */
+  }
+
+  #review {
+    width: 95%;
+    padding: 2.5%;
+    /* display: none; */
+    /* justify-content: space-evenly; */
+  }
+
+  .reviews {
+    /* justify-content: space-around; */
+  }
+
+  #spec {
+    width: 100%;
+    /* display: none; */
+  }
+
+  #spec-head {
+    width: 98%;
+    margin-left: 2%;
+  }
+}

@@ -1,21 +1,25 @@
 const express = require("express");
 const app = express();
-const ItemInfo = require("./classes.js");
-// import {*} from "axios";
+const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const Joi = require("joi");
 const bodyParser = require("body-parser");
-const socket = require("socket.io");
-const Mailer = require("nodemailer");
 const sqlite = require("sqlite3").verbose();
 const path = require("path");
-const os = require("os");
-const interfaces = os.networkInterfaces();
+const MongoClient = require("mongodb").MongoClient;
+const Items = require("./database/items");
+const Saved = require("./database/saved");
+const Cart = require("./database/cart");
+const Customer = require("./util/classes/User");
+const uid = require("./util/classes/uid");
+const Users = require("./database/users");
+// var url ="mongodb+srv://STEPHENNYANKSON:tvvq8KSYSuN4vWXi@cluster0.j5vgn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+var url = "mongodb://127.0.0.1:27017";
 
 const conn = new sqlite.Database("./majesty.db");
 app.use(
   bodyParser.urlencoded({
-    extended: true,
+    extended: false,
   })
 );
 const port = process.env.PORT || 3000;
@@ -27,6 +31,7 @@ app.use(
   })
 );
 app.set("view engine", "ejs");
+app.use(cookieParser());
 
 app.use("/css", express.static(path.resolve(__dirname, "assets/css")));
 app.use("/js", express.static(path.resolve(__dirname, "assets/js")));
@@ -42,24 +47,23 @@ app.use(
   )
 );
 
-
 const items = [
   {
     id: 1,
     name: "name 1",
-    price: 336.00,
+    price: 336.0,
     pic: "lap4.jpg",
   },
   {
     id: 1,
     name: "name 2",
-    price: 136.00,
+    price: 136.0,
     pic: "shu1.jpg",
   },
   {
     id: 1,
     name: "name 3",
-    price: 876.00,
+    price: 876.0,
     pic: "56.jpg",
   },
   {
@@ -102,69 +106,26 @@ app.get("/", async (req, res) => {
   const id = req.session.ID;
   const userId = req.session.userId;
   const email = req.session.email;
-  const query1 = `SELECT SUM(quantity) as total FROM cart
-                  WHERE userId = '${userId}'`;
-
-  const insert = `INSERT INTO ip_address (ip) VALUES(?)`
-  
-  
-  for (var k in interfaces) {
-    for (var k2 in interfaces[k]) {
-      const address = interfaces[k][k2];
-
-      if (
-        (address.family === "IPv4" || address.family === "IPv6") &&
-        !address.internal
-      ) {
-        conn.run(insert, [`${address.address}`], (E) => {
-          if (E) {
-            console.log(E)
-          }
-
-        })
-        // addresses.push(address.address);
-      }
-    }
-  }
-  // console.log(addresses);
-  
-  
-  await conn.all("SELECT * FROM item", async (err, result) => {
-    if (err) {
-      throw err;
-    } else {
-      await conn.all(query1, (error, carts) => {
-        if (error) {
-          throw error;
-        } else {
-          const arr = ["a"];
-          Object.keys(result).forEach((key) => {
-            const n = result[key];
-            arr.push(n.name);
-          });
-          // console.log(arr)
-          res.render("home", {
-            arr,
-            result,
-            name,
-            id,
-            carts,
-            email,
-            items,
-            items2,
-          });
-        }
-      });
-    }
+  let count = await Cart.find({ userId }).count();
+  const ID = uid();
+  const ITEMS = await Items.find();
+  const carts = 3;
+  res.render("home", {
+    ITEMS,
+    name,
+    id,
+    carts,
+    email,
+    items,
+    items2,
+    count,
   });
 });
 
-
-app.get("/ip", (req, res) => {
-  conn.all("SELECT * FROM ip_address", (Y, ip) => {
-    res.send(ip)
-  })
-})
+let user = {
+  name: "John",
+  age: 32,
+};
 
 app.post("/", async (req, res) => {
   const name = req.session.username;
@@ -173,49 +134,58 @@ app.post("/", async (req, res) => {
   // const cat = req.body.cat;
   const email = req.session.email;
   const item = req.body.cat;
-  const itNameArr = item.split(" ")
-  const itNameLast = (itNameArr[itNameArr.length-1])
-  const itNameFirst = (itNameArr[0])
+  const itNameArr = item.split(" ");
+  const itNameLast = itNameArr[itNameArr.length - 1];
+  const itNameFirst = itNameArr[0];
 
   const query1 = `SELECT SUM(quantity) as total FROM cart
                   WHERE userId = '${userId}'`;
-  
-  
+
   conn.all(query1, [], (ERR, carts) => {
     // console.log(carts)
-       conn.all(
-        `SELECT * FROM item WHERE 
+    conn.all(
+      `SELECT * FROM item WHERE 
     (category = '${item}') OR name LIKE '%${item}%' OR name LIKE '%${itNameFirst}%' OR name LIKE '%${itNameLast}%'`,
-        async (err, result) => {
-          if (err) throw err;
-          console.log(result);
-          res.render("category", {
-            result,
-            name,
-            id,
-            email,
-            carts
-          });
-        }
-      );
-  })
-
+      async (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        res.render("category", {
+          result,
+          name,
+          id,
+          email,
+          carts,
+        });
+      }
+    );
+  });
 });
 
-app.get("/test", (req, res) => {
-  function ghana(err, result) {
-    if (err) throw err;
-    return result;
+app.post("/det", async (req, res) => {
+  const itemId = req.body.id;
+  const userId = req.session.userId;
+  var savedItems = await Saved.findOne({ itemId, userId });
+  if (userId) {
+    var count = await Cart.find({ userId }).count();
+  } else {
+    var count = "";
   }
-  let y = conn.all("SELECT * FROM item");
 
-  console.log(y);
+  if (savedItems === null) {
+    var output = "mdi-cards-heart-outline";
+  } else {
+    var output = "mdi-cards-heart";
+  }
+
+  const item = await Items.find({ itemId: `${itemId}` });
+  res.render("details", { item, count, output });
 });
-
 
 app.post("/detail", async (req, res) => {
-  const id = req.body.id;
-  const itemId = { ID: id };
+  const id = await req.body.id;
+  const itemId = {
+    id,
+  };
   const name = req.session.username;
   const userId = req.session.userId;
   const address = req.session.address;
@@ -228,164 +198,82 @@ app.post("/detail", async (req, res) => {
   today2.setDate(currentDay2 + 8);
   const startDate = `${today1.toDateString().slice(0, 10)}`;
   const endDate = `${today2.toDateString().slice(0, 10)}`;
-  const query1 = `SELECT * FROM item WHERE id = ${id}`;
-  const query2 = `SELECT * FROM review WHERE itemId = ${id}`;
-  const query4 = `SELECT * FROM item WHERE id < ?`;
-  const query3 = `SELECT SUM(quantity) as total FROM cart
-                  WHERE userId = '${userId}'`;
+  const shcema = Joi.object({
+    ID: Joi.number().integer().required(),
+  });
 
-  const shcema = Joi.object({ ID: Joi.number().integer().required() });
+  const result = await Items.find({ _id: req.body.id });
+  console.log(result);
 
-  const idValidation = shcema.validate(itemId);
-  if (idValidation.error) {
-    console.log(idValidation.error.details.message);
-    res.redirect("/help");
-  } else {
-    conn.all(query4, [9], (E, items) => {
-      if (E) {
-        throw E;
-      } else {
-            conn.all(query3, (error, carts) => {
-              if (error) {
-                throw error;
-              } else {
-                conn.all(query1, async (err, result) => {
-                  if (err) {
-                    res.redirect("/help");
-                  } else {
-                    Object.keys(result).forEach((key) => {
-                      const data = result[key];
-                      const variety = data.varieties;
-                      const spec = data.specifications.split(",");
-                      const keyFeat = data.specifications.split(",");
-                      const otherPics = data.otherpics.split(", ");
-                      if (variety == "default") {
-                        res.render("detail", {
-                          result,
-                          id,
-                          spec,
-                          keyFeat,
-                          otherPics,
-                          startDate,
-                          endDate,
-                          carts,
-                          address,
-                          items,
-                          email,
-                        });
-                      } else if (variety.length > 0) {
-                        const varieties = variety.split(", ");
-                        res.render("detail", {
-                          result,
-                          id,
-                          varieties,
-                          spec,
-                          keyFeat,
-                          otherPics,
-                          startDate,
-                          endDate,
-                          carts,
-                          address,
-                          items,
-                          email,
-                        });
-                      }
-                    });
-                  }
-                });
-              }
-            });
-      }
-    });
+  const spec = ["red", "blue"];
+  // const keyFeat = data.specifications.split(",");
+  const keyFeat = ["Fbrication: leather"];
+  // const otherPics = data.otherpics.split(", ");
+  const otherPics = ["5.jpg"];
 
-  }
+  Object.keys(result).forEach((key) => {
+    let data = result[key].toJSON();
+    // let variety = data.varieties.split(",");
+    let variety = ["red", "blue"];
+    console.log(variety);
+    if (variety == "default") {
+      res.render("detail", {
+        result,
+        id,
+        spec,
+        keyFeat,
+        otherPics,
+        startDate,
+        endDate,
+        // carts,
+        address,
+        items,
+        email,
+        name,
+      });
+    } else {
+      res.render("detail", {
+        variety,
+        result,
+        id,
+        spec,
+        keyFeat,
+        otherPics,
+        startDate,
+        endDate,
+        // carts,
+        address,
+        items,
+        email,
+        name,
+      });
+    }
+  });
 });
 
 app.post("/add-cart", async (req, res) => {
-  
-  const itemId = await req.body.id;
-  const sql = `SELECT id FROM item WHERE id = ?`
+  const Id = req.body.id;
+  const userId = req.session.userId;
+  const customer = new Customer(userId);
+  const item = await Cart.findOne({ itemId: Id, userId });
+  console.log(item);
+  if (item === null) {
+    console.log("Null");
+    customer.addCart(Id, 1, "red");
+  } else {
+    console.log("Not null");
+  }
 
-   conn.all(sql, [itemId], (ERROR, RESULT) => {
-     if (ERROR) {
-       console.log(ERROR);
-     } else if (Object.keys(RESULT).length === 0) {
-       console.log("Ivalid entery");
-     } else {
-         try {
-           const variation =  req.body.color;
-
-           const userId = req.session.userId;
-           const query1 = `SELECT * FROM cart 
-                    WHERE (itemId IN(${itemId}) AND userId IN(${userId}))`;
-            conn.all(query1, async (err, results) => {
-             if (err) {
-               console.log(err);
-             } else if (Object.keys(results).length === 0) {
-               // INSERT INTO THE TABLE IF ITEM DOES NOT EXIST IN THE TABLE
-               const query2 = `INSERT INTO cart (itemId, userId, quantity, variety) 
-                        VALUES(${itemId}, ${userId}, 1, '${variation}')`;
-               await conn.run(query2, [], (err) => {
-                 if (err) {
-                   console.log(err);
-                 }
-                 console.log(variation);
-               });
-               // conn.close();
-             } else {
-               try {
-                 const query = `DELETE FROM cart 
-                   WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
-                 // DELETE WHEN EXIST
-                 conn.run(query, [], (errorMessage) => {
-                   if (errorMessage) {
-                     throw errorMessage;
-                   } else {
-                     console.log("Deleted!");
-                   }
-                 });
-               } catch (error) {
-               } finally {
-                 const query4 = `INSERT INTO cart (itemId, userId, quantity, variety) 
-                        VALUES(${itemId}, ${userId}, 1, '${variation}')`;
-                 // REINSERT AFTER DELETED
-                 conn.run(query4, [], (ERR) => {
-                   if (ERR) {
-                     throw ERR;
-                   } else {
-                     console.log("Inserted!");
-                   }
-                 });
-                 // console.log("Item already exist in your carts!");
-               }
-             }
-           });
-         } catch (err) {
-           console.log(err);
-         } finally {
-           res.redirect("/cart");
-         }
-     }
-   });
-
-
-
+  res.redirect("/cart");
 });
 
 app.post("/delete-cart", async (req, res) => {
   try {
-    const itemId = req.body.id;
+    const Id = req.body.id;
     const userId = req.session.userId;
-    const query = `DELETE FROM cart 
-                   WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
-    conn.run(query, [], (err) => {
-      if (err) {
-        throw err;
-      } else {
-        console.log("Deleted!");
-      }
-    });
+    await Cart.deleteOne({ itemId: Id, userId: userId });
   } catch (error) {
+    console.log(error);
   } finally {
     res.redirect("/cart");
   }
@@ -395,30 +283,15 @@ app.post("/increase-cart", async (req, res) => {
   try {
     const itemId = req.body.id;
     const userId = req.session.userId;
-    const selectQuery = `SELECT * FROM cart
-                         WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
-
-    await conn.all(selectQuery, (err, result) => {
-      if (err) {
-        throw err;
-      } else {
-        Object.keys(result).forEach((key) => {
-          const row = result[key];
-          const qty = row.quantity;
-          const query = `UPDATE cart SET quantity = ${qty + 1}
-                         WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
-          conn.run(query, [], (error) => {
-            if (error) {
-              throw error;
-            } else {
-            }
-          });
-        });
-      }
-    });
+    const item = await Cart.findOne({ itemId, userId });
+    const initialQuantity = item.quantity;
+    const newQuantiy = initialQuantity + 1;
+    console.log(initialQuantity);
+    await Cart.findOneAndUpdate({ itemId, userId }, { quantity: newQuantiy });
   } catch (error) {
+    console.log(error);
   } finally {
-    res.redirect("/cart");
+    res.redirect("cart");
   }
 });
 
@@ -426,32 +299,19 @@ app.post("/decrease-cart", async (req, res) => {
   try {
     const itemId = req.body.id;
     const userId = req.session.userId;
-    const selectQuery = `SELECT * FROM cart
-                         WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
-
-    await conn.all(selectQuery, (err, result) => {
-      if (err) {
-        throw err;
-      } else {
-        Object.keys(result).forEach((key) => {
-          const row = result[key];
-          const qty = row.quantity;
-          if (qty > 1) {
-            const query = `UPDATE cart SET quantity = ${qty - 1}
-                         WHERE (userId = '${userId}' AND itemId = '${itemId}')`;
-            conn.run(query, [], (error) => {
-              if (error) {
-                throw error;
-              } else {
-              }
-            });
-          }
-        });
-      }
-    });
+    const item = await Cart.findOne({ itemId, userId });
+    const initialQuantity = item.quantity;
+    if (initialQuantity >= 2) {
+      const newQuantity = initialQuantity - 1;
+      await Cart.findOneAndUpdate(
+        { itemId, userId },
+        { quantity: newQuantity }
+      );
+    }
   } catch (error) {
+    console.log(error);
   } finally {
-    res.redirect("/cart");
+    res.redirect("cart");
   }
 });
 
@@ -483,10 +343,6 @@ app.get("/logout", (req, res) => {
 
 app.get("/help", (req, res) => {
   res.render("help");
-});
-
-app.get("/payment", (req, res) => {
-  res.render("payment");
 });
 
 app.get("/account", (req, res) => {
@@ -617,48 +473,33 @@ app.get("/cart", async (req, res) => {
   const name = req.session.username;
   const email = req.session.email;
   const userId = req.session.userId;
-  const query = `SELECT * FROM cart C
-                 JOIN item I
-                 ON C.itemId = I.id
-                 WHERE C.userId =  ?`;
-
-  const query1 = `SELECT SUM(I.price * C.quantity) AS totalPrice, SUM(quantity) as total
-                 FROM cart C
-                 JOIN item I
-                 ON C.itemId = I.id
-                 WHERE C.userId = ?`;
-  
-  const query2 = `SELECT * FROM item WHERE id < ?`
-
   if (req.session.username) {
-    conn.all(query2, [10], (E, items) => {
-      if (E) {
-        throw E;        
-      } else {
-             conn.all(query, [userId], async (err, results) => {
-              if (err) {
-                throw err;
-              } else {
-                await conn.all(query1, [userId], (error, carts) => {
-                  if (error) {
-                    throw error;
-                  } else {
-                    res.render("cart", {
-                      name,
-                      results,
-                      carts,
-                      items,
-                      email,
-                    });
-                    // console.log(results);
-                    // console.log(carts);
-                  }
-                });
-              }
-            });
-      }
-    })
-
+    const customer = new Customer(userId);
+    let count = await Cart.find({ userId }).count();
+    MongoClient.connect(url, (error, db) => {
+      if (error) throw error;
+      var dbo = db.db("nyankie");
+      dbo
+        .collection("carts")
+        .aggregate([
+          {
+            $lookup: {
+              from: "items",
+              localField: "itemId",
+              foreignField: "itemId",
+              as: "cartdetails",
+            },
+          },
+          {
+            $match: { userId },
+          },
+        ])
+        .toArray((err, cart) => {
+          if (err) throw err;
+          res.render("cart", { cart, count });
+          db.close();
+        });
+    });
   } else {
     res.redirect("/login");
   }
@@ -668,52 +509,109 @@ app.get("/cart", async (req, res) => {
 
 app.post("/cart-one", async (req, res) => {
   const name = req.session.username;
-  const userId = req.session.userId;
   const email = req.session.email;
-  const query = `SELECT * FROM cart C
-                 JOIN item I
-                 ON C.itemId = I.id
-                 WHERE C.userId = '${userId}'`;
-
-  // const query1 = `SELECT SUM(quantity) as total FROM cart
-  //                 WHERE userId = '${userId}'`;
-
-  // https://1drv.ms/u/s!AhR4a2AQFhH5gho78W5TMfGCxGs9
-
-  const query1 = `SELECT SUM(I.price * C.quantity) AS totalPrice, SUM(quantity) as total
-                 FROM cart C
-                 JOIN item I
-                 ON C.itemId = I.id
-                 WHERE C.userId = '${userId}'`;
-
-  
+  const userId = req.session.userId;
 
   if (req.session.username) {
-    await conn.all(query, async (err, results) => {
-      if (err) {
-        throw err;
-      } else {
-        await conn.all(query1, (error, carts) => {
-          if (error) {
-            throw error;
-          } else {
-            res.render("cart1", {
-              name,
-              results,
-              carts,
-              email,
-            });
-            // console.log(results);
-            // console.log(carts);
-          }
+    const customer = new Customer(userId);
+    const carts = await customer.myCarts();
+    let count = await Cart.find({ userId: userId }).count();
+    // console.log(count);
+
+    MongoClient.connect(url, function (err, db) {
+      if (err) throw err;
+      var dbo = db.db("nyankie");
+      dbo
+        .collection("carts")
+        .aggregate([
+          {
+            $lookup: {
+              from: "items",
+              localField: "itemId",
+              foreignField: "itemId",
+              as: "cartdetails",
+            },
+          },
+          {
+            $match: { userId: 6 },
+          },
+        ])
+        .toArray(function (err, cart) {
+          if (err) throw err;
+
+          console.log(cart);
+          res.render("cart1", { cart, count });
+          db.close();
         });
-      }
     });
   } else {
     res.redirect("/login");
   }
+});
 
-  // const name = "Steve";
+app.get("/", (req, res) => {
+  return;
+});
+
+app.post("/save", async (req, res) => {
+  if (req.session.userId) {
+    const userId = req.session.userId;
+    const itemId = req.body.id;
+    var savedItems = await Saved.findOne({ itemId, userId });
+    if (userId) {
+      var count = await Cart.find({ userId }).count();
+      const customer = new Customer(userId);
+      customer.saveItem(itemId);
+    } else {
+      var count = "";
+      // res.redirect("/");
+    }
+
+    if (savedItems === null) {
+      var output = "mdi-cards-heart";
+    } else {
+      var output = "mdi-cards-heart-outline";
+    }
+
+    const item = await Items.find({ itemId: `${itemId}` });
+    res.render("details", { item, count, output });
+  } else {
+    res.redirect("/login");
+  }
+});
+
+app.get("/saved", async (req, res) => {
+  const userId = req.session.userId;
+  if (req.session.username) {
+    const customer = new Customer(userId);
+    let count = await Cart.find({ userId }).count();
+    MongoClient.connect(url, (error, db) => {
+      if (error) throw error;
+      var dbo = db.db("nyankie");
+      dbo
+        .collection("saveds")
+        .aggregate([
+          {
+            $lookup: {
+              from: "items",
+              localField: "itemId",
+              foreignField: "itemId",
+              as: "cartdetails",
+            },
+          },
+          {
+            $match: { userId },
+          },
+        ])
+        .toArray((err, cart) => {
+          if (err) throw err;
+          res.render("saved", { cart, count });
+          db.close();
+        });
+    });
+  } else {
+    res.redirect("/login");
+  }
 });
 
 app.get("/cat", async (req, res) => {
@@ -753,41 +651,7 @@ app.get("/my-carts", (req, res) => {
 
 app.get("/my-orders", (req, res) => {
   if (req.session.username) {
-    const userId = req.session.userId;
-    const name = req.session.username;
-    const email = req.session.email;
-    const query = `SELECT * FROM orders O
-                 JOIN item I
-                 ON O.itemId = I.id
-                 WHERE O.userId = '${userId}'`;
-
-    // const query1 = `SELECT SUM(quantity) as total FROM cart
-    //               WHERE userId = '${userId}'`;
-
-      const query1 = `SELECT SUM(O.orderId) as TOT, SUM(C.quantity) as total
-                 FROM cart C
-                 LEFT JOIN orders O
-                 ON C.userID = O.userId
-                 WHERE (C.userId = ?)`;
-    
-    const query4 = `SELECT * FROM item`
-    conn.all(query1, [userId], (ERR, carts) => {
-      if (ERR) {
-        throw ERR
-      } else {
-            conn.all(query4, [], (e, items) => {
-              conn.all(query, (err, orders) => {
-                if (err) {
-                  throw err;
-                } else {
-                  res.render("order", { orders, name, email, items, carts });
-                }
-              });
-            });
-      }        
-    })
-
-    
+    res.render("order");
   } else {
     res.redirect("/login");
   }
@@ -795,7 +659,43 @@ app.get("/my-orders", (req, res) => {
 
 app.get("/add-item", (req, res) => {
   res.render("addItem");
-})
+});
+
+app.post("/add-item", (req, res) => {
+  const userId = req.session.userId;
+  const ID = uid();
+  const customer = new Customer(userId);
+  const output = req.body;
+  const item = {
+    id: ID,
+    name: output.name,
+    pic: output.pic,
+    category: output.category,
+    price: output.price,
+    rate: output.rate,
+    location: output.location,
+    stars: output.stars,
+    discount: output.discount,
+    description: output.description,
+  };
+
+  customer.addItem(
+    item.id,
+    item.name,
+    item.description,
+    item.pic,
+    item.price,
+    item.discount,
+    item.category,
+    item.rate,
+    item.stars,
+    item.location
+  );
+
+  console.log(item);
+
+  res.render("addItem");
+});
 
 app.post("/register", (req, res) => {
   const customer = req.body;
@@ -803,23 +703,25 @@ app.post("/register", (req, res) => {
     firstName: customer.fname,
     lastName: customer.lname,
     email: customer.email,
-    phone: customer.phone,   
+    phone: customer.phone,
     password: customer.password,
-    repPassword: customer.repPassword,    
+    repPassword: customer.repPassword,
   };
 
   const schema = Joi.object({
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
-    email: Joi.string().email({
-      minDomainSegments: 2,
-      tlds: {
-        allow: ["com", "net"],
-      },
-    }).required(),
-    phone: Joi.string().min(10).required(),    
+    email: Joi.string()
+      .email({
+        minDomainSegments: 2,
+        tlds: {
+          allow: ["com", "net"],
+        },
+      })
+      .required(),
+    phone: Joi.string().min(10).required(),
     password: Joi.string().min(4),
-    repPassword: Joi.ref("password"), 
+    repPassword: Joi.ref("password"),
   });
 
   const registeValidation = schema.validate(user);
@@ -827,7 +729,9 @@ app.post("/register", (req, res) => {
   if (registeValidation.error) {
     console.log(registeValidation.error.details[0].message);
     const msg = registeValidation.error.details[0].message;
-    res.render("signup", {msg});
+    res.render("signup", {
+      msg,
+    });
   } else {
     const query = `INSERT INTO users 
                  (firstName, lastName, email, phone, password)
@@ -842,49 +746,16 @@ app.post("/register", (req, res) => {
       }
     });
   }
-
-  // console.log(firstName);
 });
 
-app.get("/refer:id");
 app.get("/search", (req, res) => {
   const name = req.session.username;
-  // const name = "Steve";
+
   res.render("search");
-});
-
-app.get("/searcho", (req, res) => {
-const fetch = require("node-fetch");
-
-const url = "https://api.flutterwave.com/v3/charges?type=mobile_money_ghana";
-const options = {
-  method: "POST",
-  headers: {
-    Accept: "application/json",
-    Authorization: "FLWSECK-f3528899bf8914081e94a26e708be794-X",
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    amount: 10,
-    currency: "GHS",
-    email: "nyankson25@gamil.com",
-    tx_ref: "MC-158523s09v505089",
-    phone_number: "0555089255",
-    network: "MTN",
-    
-  }),
-};
-
-fetch(url, options)
-  .then((res) => res.json())
-  .then((json) => console.log(json))
-  .catch((err) => console.error("error:" + err));
 });
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-
-
 
 // https://materialdesignicons.com/

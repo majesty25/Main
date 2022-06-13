@@ -13,33 +13,30 @@
     <%- include("header")%> <%- include("loader") %>
 
     <div id="main-container">
-      
       <div id="orders">
-      <%  Object.keys(carts).forEach(key => {
-        const sum = carts[key];
-        if (sum.TOT == null){%>
-          <div id="container-head">You have not placed any order</div>
-        <% }else{ %>
-          <div id="container-head">My orders</div>
-       <%  }
-      }) %> 
-        <% Object.keys(orders).forEach(key => { const order = orders[key]; %>
+        <!-- const sum = carts[key]; -->
+
+        <div id="container-head">You have not placed any order</div>
+
+        <div id="container-head">My orders</div>
+
+        <%# Object.keys(orders).forEach(key => { const order = orders[key]; %>
 
         <div class="order">
           <div id="order-head">
-            <span id="ID">ID:<%=order.orderId%></span>
-            <span id="date"><%=order.date%></span>
+            <span id="ID">ID:<%#order.orderId%></span>
+            <span id="date"><%#order.date%></span>
           </div>
           <div id="order">
             <div id="order-det">
               <div id="order-img">
-                <img id="IMG" src="../font/<%=order.pic%>" alt="" srcset="" />
+                <img id="IMG" src="../font/<%#order.pic%>" alt="" srcset="" />
               </div>
               <div id="sec1">
-                <div id="name"><%=order.name%></div>
+                <div id="name"><%#order.name%></div>
                 <div id="others">
-                  <span id="qty">X<%=order.quantity%></span>
-                  <span id="vty"><%=order.variety%></span>
+                  <span id="qty">X<%#order.quantity%></span>
+                  <span id="vty"><%#order.variety%></span>
                 </div>
               </div>
             </div>
@@ -49,18 +46,18 @@
             </div>
           </div>
         </div>
-        <% }) %>
+        <%## }) %>
       </div>
 
       <div id="viewedMainContainer">
         <div id="viewed-head">Recently viewed items</div>
 
         <div id="viewed-container">
-          <% Object.keys(items).forEach(key => { const item = items[key]; %>
+          <%# Object.keys(items).forEach(key => { const item = items[key]; %>
           <button id="viewed-item">
             <img
               style="width: 100%"
-              src="../font/<%=item.pic%>"
+              src="../font/<%#item.pic%>"
               alt=""
               srcset=""
             />
@@ -73,7 +70,7 @@
               </span>
             </div>
           </button>
-          <% }) %>
+          <%# }) %>
 
           <div id="viewed-item">
             <img style="width: 100%" src="../font/shu5.jpg" alt="" srcset="" />
