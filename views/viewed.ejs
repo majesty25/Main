@@ -1,0 +1,65 @@
+ <link rel="stylesheet" href="../css/viewed.css">
+ 
+ <div id="CONTAINER">
+    <div id="viewed-main-container">
+      <div id="viewed-head">
+        Recently viewed items
+      </div>
+      <div id="viewed-container">
+
+
+        <button onclick="right()" class="left-arrow arrow">
+          <em style="font-size: 22px;" class="mdi mdi-chevron-left"></em>
+        </button>
+        <div id="scrollContainer" class="viewed-container">
+
+          <% for (let i in items){            
+            let item = items[i];%>
+          <form id="viewed-item" action="/det" method="post">
+            <input type="hidden" name="id" value="<%=item.itemId%>">
+            <button id="viewed-item-btn">
+              <img id="viewed-img" src="../font/<%= item.pic %>" alt="" srcset="">
+              <div id="viewedItemDet">
+                <span id="viewed-name">
+                  <%= item.name %>
+                </span>
+
+                <span id="sug-prices">
+                  <div id="new">GH₵ <%= item.price %></div>
+                </span>
+              </div>
+            </button>
+          </form>
+          <%} %>
+
+
+
+            <% for (let i in items){            
+            let item = items[i];%>
+          <form id="viewed-item" action="/det" method="post">
+            <input type="hidden" name="id" value="<%=item.itemId%>">
+            <button id="viewed-item-btn">
+              <img id="viewed-img" src="../font/<%= item.pic %>" alt="" srcset="">
+              <div id="viewedItemDet">
+                <span id="viewed-name">
+                  <%= item.name %>
+                </span>
+
+                <span id="sug-prices">
+                  <div id="new">GH₵ <%= item.price %></div>
+                </span>
+              </div>
+            </button>
+          </form>
+          <%} %>
+
+
+
+        </div>
+        <button onclick="left()" class="right-arrow arrow">
+          <em style="font-size: 22px;" class="mdi mdi-chevron-right"></em>
+        </button>
+
+      </div>
+    </div>
+  </div>

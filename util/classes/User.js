@@ -54,8 +54,15 @@ class Customer {
     }
   }
 
-  async myCarts(itemId) {
-    return Cart.find({ userId: this.userId });
+  async myCarts() {
+    let counter = 0;
+    const CART = await Cart.find({ userId: this.userId });
+    for (let i in CART) {
+      const x = CART[i];
+      const quantity = x.quantity;
+      counter = counter + quantity;
+    }
+    return counter;
   }
 
   async cart(itemId) {

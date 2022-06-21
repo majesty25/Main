@@ -50,9 +50,7 @@
                         <div id="add">
                             <form onsubmit="shew()" id="view" action="/add-cart" method="post">
                                 <input type="hidden" name="id" value="<%=CART.itemId%>" />
-                                <button id="view" class="view" type="submit">
-                                    <i style="font-size: 18px; margin-right: 5px" class="mdi mdi-eye-outline">
-                                    </i>
+                                <button id="view" class="view" type="submit">                                   
                                     Add to cart
                                 </button>
                             </form>
@@ -65,8 +63,7 @@
                     <form onsubmit="shew()" id="view" action="/det" method="post">
                         <input type="hidden" name="id" value="<%=CART.itemId%>" />
                         <button id="view" class="view" type="submit">
-                            <i style="font-size: 18px; margin-right: 5px" class="mdi mdi-eye-outline">
-                            </i>
+                            
                             BUY NOW
                         </button>
                     </form>
@@ -75,7 +72,7 @@
                         <form onsubmit="shew()" action="/save" method="post">
                             <input type="hidden" name="id" value="<%=CART.itemId%>" />
                             <button id="remove-btn" type="submit">
-                                <i style="font-size: 18px" class="mdi mdi-cart-remove"></i>
+                              
                                 Remove
                             </button>
                         </form>

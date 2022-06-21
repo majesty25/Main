@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/viewed.css" />
   <link rel="stylesheet" href="../css/header.css" />
   <link rel="stylesheet" href="../css/items.css" />
   <link rel="stylesheet" href="../css/cart.css" />
@@ -32,14 +33,14 @@
     <div id="carts">
       <%#Object.keys(results).forEach(key=>{ const cart = results[key];%>
 
-        <% for (i in cart){ 
+      <% for (i in cart){ 
           let CART = cart[i];
           let cartDetail = CART.cartdetails;
           for (j in cartDetail){
             let actualCart = cartDetail[j];
         %>
 
-              <span id="cart-item">
+      <span id="cart-item">
         <div id="cart-sec-1">
           <span id="cart-img">
             <img class="cart-img" src="../font/<%= actualCart.pic %> " alt="" srcset="" />
@@ -72,7 +73,7 @@
 
 
           <form onsubmit="shew()" id="view" action="/det" method="post">
-            <input type="hidden" name="id" value="<%=CART.itemId%>"/>
+            <input type="hidden" name="id" value="<%=CART.itemId%>" />
             <button id="view" class="view" type="submit">
               <i style="font-size: 18px; margin-right: 5px" class="mdi mdi-eye-outline">
               </i>
@@ -92,7 +93,7 @@
         </div>
       </span>
 
-        <%}}
+      <%}}
     %>
 
 
@@ -147,9 +148,9 @@
         }
        
       } %>
-       <div><b>GH₵ <%=counter.toFixed(2)%> </b></div>
-      %> 
-      
+      <div><b>GH₵ <%=counter.toFixed(2)%> </b></div>
+      %>
+
     </div>
     <div id="checkout">
       <form onsubmit="shew()" id="" action="/cart-one" method="post">
@@ -157,57 +158,13 @@
       </form>
     </div>
   </span>
-
-
-
-
-
-  <div id="CONTAINER">
-    <div id="viewedMainContainer">
-      <div id="viewed-head">
-        Recently viewed items
-      </div>
-      <div id="viewed-container">
-        <%# Object.keys(items).forEach(key => {
-        const item = items[key]; %>
-        <button id="viewed-item">
-          <img style="width: 100%;" src="../font/" alt="" srcset="">
-          <div id="viewedItemDet">
-            <span id="viewed-name">
-              Item's namejhg
-            </span>
-
-            <span id="sug-prices">
-              <div id="new">GHS 234.54</div>
-              <div id="old">GHS 45.78</div>
-            </span>
-          </div>
-        </button>
-
-
-        <div id="viewed-item">
-          <img style="width: 100%;" src="../font/shu5.jpg" alt="" srcset="">
-          <div id="viewedItemDet">
-            <span id="viewed-name">
-              Item's name
-            </span>
-
-            <span id="prices">
-              <div id="new">GHS 234.54</div>
-              <div id="old">GHS 45.78</div>
-            </span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  </div>
-
+  <%- include("viewed") %>
   <%- include("footer") %>
 
 </body>
 
+
 <script src="../js/search.js"></script>
+<script src="../js/scroll.js"></script>
 
 </html>

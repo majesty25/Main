@@ -436,20 +436,14 @@ h3{
 
 }
 
-#CONTAINER{
-  width: 80%;
-  margin-left: 10%;
-}
+
 
 @media screen and (max-width: 650px) {
   #main-container {
     flex-direction: column;
   }
 
-  #CONTAINER{
-    width: 100%;
-    margin-left: 0%;
-  }
+
 
   #cart-item {
     flex-direction: column;
@@ -457,7 +451,7 @@ h3{
     width: 98%;
   }
 
-  #viewedMainContainer{
+  /* #viewedMainContainer{
     width: 98%;
     margin-left: 1%;    
 }
@@ -465,14 +459,10 @@ h3{
   #viewed-container{
     width: 100%;
     margin-left: 0%;  
-  }
+  } */
 
   
 
-  #viewed-item{
-    max-width: 40%; 
-    min-width: 40%;
-  }
 
   #cart-det {
     flex-direction: column;

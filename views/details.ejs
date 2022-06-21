@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/details.css" />
     <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
-    <link rel="stylesheet" href="../css/home.css" />
+    <!-- <link rel="stylesheet" href="../css/home.css" /> -->
     <link rel="stylesheet" href="../css/header.css" />
     <title>Document</title>
   </head>
@@ -217,12 +217,16 @@
       </div>
     </div>
 
-    <!-- </div>
 
-    </div>
-    </div> -->
 
-    <%# include("footer") %>
+
+
+  
+
+
+    <%- include("viewed") %>
+    <%- include("viewed") %>
+    <%- include("viewed") %>
     <script>
       const mainPic = document.querySelector("#main-pic");
       const smallPics = document.querySelector(".small-pic");
@@ -230,5 +234,6 @@
         mainPic.src = "../font/6.jpg";
       }
     </script>
+    <script src="../js/scroll.js"></script>
   </body>
 </html>

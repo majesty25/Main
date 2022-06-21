@@ -7,6 +7,3 @@ function preload(e) {
 
 }
 
-window.addEventListener("load", (e) => {
-    
-})

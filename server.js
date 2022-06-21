@@ -101,9 +101,6 @@ const items = [
   },
 ];
 
-
-
-
 const items2 = [
   {
     id: 1,
@@ -132,19 +129,20 @@ const items2 = [
 ];
 
 app.get("/", async (req, res) => {
-  const name = req.session.username;
+  const isUser = req.session.username;
   const id = req.session.ID;
   const userId = req.session.userId;
   const email = req.session.email;
-  let count = await Cart.find({ userId }).count();
-  const ID = uid();
+  let count;
+  if (userId) {
+    const customer = new Customer(userId);
+    count = await customer.myCarts();
+  }
   const ITEMS = await Items.find();
-  const carts = 3;
   res.render("home", {
     ITEMS,
-    name,
+    userId,
     id,
-    carts,
     email,
     item,
     items,
@@ -196,10 +194,10 @@ app.post("/det", async (req, res) => {
   const itemId = req.body.id;
   const userId = req.session.userId;
   var savedItems = await Saved.findOne({ itemId, userId });
+  let count;
   if (userId) {
-    var count = await Cart.find({ userId }).count();
-  } else {
-    var count = "";
+    const customer = new Customer(userId);
+    count = await customer.myCarts();
   }
 
   if (savedItems === null) {
@@ -209,7 +207,8 @@ app.post("/det", async (req, res) => {
   }
 
   const item = await Items.find({ itemId: `${itemId}` });
-  res.render("details", { item, count, output });
+  const items = await Items.find();
+  res.render("details", { item, items, count, output, userId });
 });
 
 app.post("/detail", async (req, res) => {
@@ -506,7 +505,10 @@ app.get("/cart", async (req, res) => {
   const userId = req.session.userId;
   if (req.session.username) {
     const customer = new Customer(userId);
-    let count = await Cart.find({ userId }).count();
+    let count;
+    count = await customer.myCarts();
+    const items = await Items.find();
+    // }
     MongoClient.connect(url, (error, db) => {
       if (error) throw error;
       var dbo = db.db("nyankie");
@@ -527,7 +529,7 @@ app.get("/cart", async (req, res) => {
         ])
         .toArray((err, cart) => {
           if (err) throw err;
-          res.render("cart", { cart, count });
+          res.render("cart", { cart, count, userId, items });
           db.close();
         });
     });
@@ -545,9 +547,8 @@ app.post("/cart-one", async (req, res) => {
 
   if (req.session.username) {
     const customer = new Customer(userId);
-    const carts = await customer.myCarts();
-    let count = await Cart.find({ userId: userId }).count();
-    // console.log(count);
+    let count;
+    count = await customer.myCarts();
 
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
@@ -589,15 +590,14 @@ app.post("/save", async (req, res) => {
     const userId = req.session.userId;
     const itemId = req.body.id;
     var savedItems = await Saved.findOne({ itemId, userId });
+    const items = await Items.find();
+    let count;
     if (userId) {
-      var count = await Cart.find({ userId }).count();
       const customer = new Customer(userId);
       customer.saveItem(itemId);
-    } else {
-      var count = "";
-      // res.redirect("/");
-    }
 
+      count = await customer.myCarts();
+    }
     if (savedItems === null) {
       var output = "mdi-cards-heart";
     } else {
@@ -605,7 +605,7 @@ app.post("/save", async (req, res) => {
     }
 
     const item = await Items.find({ itemId: `${itemId}` });
-    res.render("details", { item, count, output });
+    res.render("details", { item, items, count, output, userId });
   } else {
     res.redirect("/login");
   }
@@ -615,7 +615,11 @@ app.get("/saved", async (req, res) => {
   const userId = req.session.userId;
   if (req.session.username) {
     const customer = new Customer(userId);
-    let count = await Cart.find({ userId }).count();
+    let count;
+    if (userId) {
+      const customer = new Customer(userId);
+      count = await customer.myCarts();
+    }
     MongoClient.connect(url, (error, db) => {
       if (error) throw error;
       var dbo = db.db("nyankie");
@@ -636,7 +640,7 @@ app.get("/saved", async (req, res) => {
         ])
         .toArray((err, cart) => {
           if (err) throw err;
-          res.render("saved", { cart, count });
+          res.render("saved", { cart, count, userId });
           db.close();
         });
     });

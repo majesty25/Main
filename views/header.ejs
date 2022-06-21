@@ -33,21 +33,17 @@
     </div>
     <input type="submit" value="search" />
     <a href="/help" title="Help"
-      ><i
+      ><em
         style="font-size: 22px; margin-left: 10%"
         class="mdi mdi-help-circle-outline"
-      ></i
+      ></em
     ></a>
   </form>
   <a href="/cart"
-    ><i
-      style="font-size: 22px"
-      class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"
-      title="Cart"
-    ></i>
-    <label id="cart-label" for="" title="Cart">
-      <% if(locals.count){%> <%= count %> <%} %>
-    </label>
+    ><em style="font-size: 25px" class="mdi mdi-cart-outline" title="Cart"></em>
+    <% if (locals.count){%>
+    <sup> <% if(locals.count){%> <%= count %> <%} %></sup>
+    <%} %>
   </a>
 
   <i
@@ -89,7 +85,7 @@
     </button>
   </form>
 
-  <% if (locals.name){ %>
+  <% if (locals.userId){ %>
   <form onsubmit="shew()" action="/logout" method="get">
     <button id="user-btn">
       <i style="margin-right: 5px" class="mdi mdi-logout"></i> Log out
@@ -114,15 +110,24 @@
       <img style="width: 100%" src="../font/others/log.png" alt="" srcset=""
     /></a>
   </div>
-  <a id="search" href="/search"
-    ><i class="mdi mdi-magnify" style="font-size: 18px; margin-left: 0px"></i
-  ></a>
+  <form action="/search" method="get">
+    <button id="search">
+      <em
+        class="mdi mdi-magnify"
+        style="font-size: 14px; margin-left: 0px"
+      ></em>
+    </button>
+  </form>
+
   <a href="/cart"
-    ><i
+    ><em
       style="font-size: 22px"
       class="mdi mdi-96px mdi-rotate-60 mdi-cart-outline"
-      ><label id="cart-label" for="">8 </label>
-    </i>
+    >
+      <% if (locals.count){%>
+      <sup> <% if(locals.count){%> <%= count %> <%} %></sup>
+      <%} %>
+    </em>
   </a>
 
   <i

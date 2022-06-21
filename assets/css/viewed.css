@@ -1,0 +1,150 @@
+#CONTAINER{
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+#viewed-main-container {
+  width: 100%;
+  margin-left: 0%;
+  background-color: white;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  /* box-shadow: 2px 2px 5px 1px silver; */
+  /* margin-bottom: 200px; */
+}
+
+#viewed-container {
+  width: 100%;
+  max-height: auto;
+  margin-left: 0%;
+  display: flex; 
+}
+
+.viewed-container {
+  width: 100%;
+  max-height: auto;
+  margin-left: 0%;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.viewed-container::-webkit-scrollbar{
+  width: 1px;
+  height: 5px;
+}
+
+.viewed-container::-webkit-scrollbar-track{
+   box-shadow: inset 0 0 0px grey; 
+  border-radius: 10px;
+}
+
+.viewed-container::-webkit-scrollbar-thumb{
+  width: 5px;
+  height: 7px;
+   background: rgb(247, 194, 194); 
+  border-radius: 10px;
+}
+
+#viewed-head {
+  width: 100%;
+  margin-left: 0%;
+  height: 30px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  color: rgb(0, 0, 0);
+  justify-content: center;
+  align-items: center;
+  font-size: 19px;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.arrow{
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.left-arrow {
+  
+}
+
+.right-arrow {
+ 
+}
+
+#viewed-item {
+  min-width: 16%;
+  max-width: 16%;
+  /* height: 9em;  */
+  margin: 0%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#viewed-item-btn {
+  /* min-width: 16%;
+  max-width: 16%; */
+  height: auto;
+  border: none;
+  background-color: white;
+}
+
+
+
+#viewed-name { 
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#viewed-img {
+  width: auto;
+  height: 6.7em;
+}
+
+#viewedItemDet {
+  width: 90%;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+#sug-prices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#new{
+  font-weight: bold;
+}
+
+
+@media screen and (max-width: 800px) {
+     #CONTAINER{
+    width: 100%;
+    margin-left: 0%;
+  }
+
+  #viewedMainContainer {
+    width: 98%;
+    margin-left: 1%;
+  }
+
+   #viewed-container {
+    width: 100%;
+    margin-left: 0%;
+  }
+
+  #viewed-item {
+    max-width: 40%;
+    min-width: 40%;
+  }
+}

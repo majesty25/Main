@@ -190,17 +190,13 @@
   border-radius: 15px;
 }
 
-#category {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+
 
 #demo {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   width: 100%;
   float: left;
   height: auto;
