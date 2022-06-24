@@ -6,7 +6,7 @@ const saveds = new mongoose.Schema({
     type: String,
   },
   userId: {
-    type: Number,
+    type: String,
   },
 });
 

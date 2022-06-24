@@ -9,7 +9,7 @@ const cart = new mongoose.Schema({
     type: Number,
   },
   userId: {
-    type: Number,
+    type: String,
   },
   variety: {
     type: String,

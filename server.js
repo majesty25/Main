@@ -213,9 +213,6 @@ app.post("/det", async (req, res) => {
 
 app.post("/detail", async (req, res) => {
   const id = await req.body.id;
-  const itemId = {
-    id,
-  };
   const name = req.session.username;
   const userId = req.session.userId;
   const address = req.session.address;
@@ -447,52 +444,26 @@ app.get("/orders", (req, res) => {
 });
 
 app.post("/dashboard", async (req, res) => {
-  const user = {
-    email: req.body.email,
-    password: req.body.password,
-  };
-
-  const schema = Joi.object({
-    email: Joi.string()
-      .email({
-        minDomainSegments: 2,
-        tlds: {
-          allow: ["com", "net"],
-        },
-      })
-      .required(),
-    password: Joi.string().pattern(new RegExp("^[A-zA-Z0-M]{3,30}$")).min(4),
-  });
-  const loginValidation = schema.validate(user);
-  if (loginValidation.error) {
-    const errorMessage = loginValidation.error.details[0].message;
-    req.session.message = errorMessage;
-    res.redirect("/login");
-    console.log(loginValidation.error.details[0].message);
+  const body = req.body;
+  const email = body.email;
+  const password = body.password;
+  const customer = new Customer(email);
+  const msg = await customer.login(password);
+  if (msg[1] === true) {
+    const user = msg[0];
+    for (let i in user) {
+      const USER = user[i];
+      req.session.userId = USER.userId;
+      req.session.email = USER.email;
+      req.session.username = USER.firstName + " " + USER.lastName;
+    }
   } else {
-    const sql = "SELECT * FROM users WHERE (email = ? AND password = ?)";
-    conn.all(sql, [`${user.email}`, `${user.password}`], (err, result) => {
-      if (err) {
-        throw err;
-      } else if (Object.keys(result).length === 0) {
-        req.session.log = "email and password do not match";
-        res.redirect("/login");
-      } else {
-        Object.keys(result).forEach((key) => {
-          let row = result[key];
-          conn.all("SELECT * FROM item", (err, result) => {
-            if (err) throw err;
-            req.session.userId = row.id;
-            req.session.email = row.email;
-            req.session.username = row.firstName + " " + row.lastName;
-            req.session.address = `${row.region}, ${row.city}, ${row.resAddress}`;
-            // let name = req.session.username;
-            res.redirect("/");
-          });
-        });
-      }
-    });
+    const errorMessages = msg;
+    res.render("login", { errorMessages });
   }
+  console.log(msg[1]);
+
+  res.redirect("/");
 });
 
 app.get("/dashboard", (req, res) => {
@@ -549,6 +520,7 @@ app.post("/cart-one", async (req, res) => {
     const customer = new Customer(userId);
     let count;
     count = await customer.myCarts();
+    const items = await Items.find();
 
     MongoClient.connect(url, function (err, db) {
       if (err) throw err;
@@ -572,7 +544,7 @@ app.post("/cart-one", async (req, res) => {
           if (err) throw err;
 
           console.log(cart);
-          res.render("cart1", { cart, count });
+          res.render("cart1", { cart, count, items });
           db.close();
         });
     });
@@ -616,6 +588,7 @@ app.get("/saved", async (req, res) => {
   if (req.session.username) {
     const customer = new Customer(userId);
     let count;
+    const items = await Items.find();
     if (userId) {
       const customer = new Customer(userId);
       count = await customer.myCarts();
@@ -640,7 +613,7 @@ app.get("/saved", async (req, res) => {
         ])
         .toArray((err, cart) => {
           if (err) throw err;
-          res.render("saved", { cart, count, userId });
+          res.render("saved", { cart, items, count, userId });
           db.close();
         });
     });
@@ -684,9 +657,10 @@ app.get("/my-carts", (req, res) => {
   res.render("cart1");
 });
 
-app.get("/my-orders", (req, res) => {
+app.get("/my-orders", async (req, res) => {
+  const items = await Items.find();
   if (req.session.username) {
-    res.render("order");
+    res.render("order", { items });
   } else {
     res.redirect("/login");
   }
@@ -700,22 +674,23 @@ app.post("/add-item", (req, res) => {
   const userId = req.session.userId;
   const ID = uid();
   const customer = new Customer(userId);
-  const output = req.body;
-  const item = {
-    id: ID,
-    name: output.name,
-    pic: output.pic,
-    category: output.category,
-    price: output.price,
-    rate: output.rate,
-    location: output.location,
-    stars: output.stars,
-    discount: output.discount,
-    description: output.description,
-  };
+  // const output = req.body;
+  const item = req.body;
+  // const item = {
+  //   id: ID,
+  //   name: output.name,
+  //   pic: output.pic,
+  //   category: output.category,
+  //   price: output.price,
+  //   rate: output.rate,
+  //   location: output.location,
+  //   stars: output.stars,
+  //   discount: output.discount,
+  //   description: output.description,
+  // };
 
   customer.addItem(
-    item.id,
+    ID,
     item.name,
     item.description,
     item.pic,
@@ -728,58 +703,30 @@ app.post("/add-item", (req, res) => {
   );
 
   console.log(item);
-
-  res.render("addItem");
+  res.redirect("/add-item");
 });
 
-app.post("/register", (req, res) => {
-  const customer = req.body;
-  const user = {
-    firstName: customer.fname,
-    lastName: customer.lname,
-    email: customer.email,
-    phone: customer.phone,
-    password: customer.password,
-    repPassword: customer.repPassword,
-  };
-
-  const schema = Joi.object({
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
-    email: Joi.string()
-      .email({
-        minDomainSegments: 2,
-        tlds: {
-          allow: ["com", "net"],
-        },
-      })
-      .required(),
-    phone: Joi.string().min(10).required(),
-    password: Joi.string().min(4),
-    repPassword: Joi.ref("password"),
-  });
-
-  const registeValidation = schema.validate(user);
-
-  if (registeValidation.error) {
-    console.log(registeValidation.error.details[0].message);
-    const msg = registeValidation.error.details[0].message;
-    res.render("signup", {
-      msg,
-    });
-  } else {
-    const query = `INSERT INTO users 
-                 (firstName, lastName, email, phone, password)
-                 VALUES('${user.firstName}', '${user.lastName}', '${user.email}', '${user.phone}', '${user.password}')`;
-
-    conn.run(query, [], (err) => {
-      if (err) {
-        throw err;
-      } else {
-        console.log("Registered!");
-        res.redirect("login");
-      }
-    });
+app.post("/register", async (req, res) => {
+  try {
+    const userId = uid();
+    const user = req.body;
+    const customer = new Customer(userId);
+    var msg = customer.register(
+      user.fname,
+      user.lname,
+      user.email,
+      user.phone,
+      user.password,
+      user.repPassword
+    );
+  } catch (error) {
+    throw error;
+  } finally {
+    if (msg === true) {
+      res.redirect("/login");
+    } else {
+      res.render("signup", { msg });
+    }
   }
 });
 
