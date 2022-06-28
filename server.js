@@ -674,21 +674,7 @@ app.post("/add-item", (req, res) => {
   const userId = req.session.userId;
   const ID = uid();
   const customer = new Customer(userId);
-  // const output = req.body;
   const item = req.body;
-  // const item = {
-  //   id: ID,
-  //   name: output.name,
-  //   pic: output.pic,
-  //   category: output.category,
-  //   price: output.price,
-  //   rate: output.rate,
-  //   location: output.location,
-  //   stars: output.stars,
-  //   discount: output.discount,
-  //   description: output.description,
-  // };
-
   customer.addItem(
     ID,
     item.name,
