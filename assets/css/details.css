@@ -129,7 +129,7 @@
 }
 
 .radio {
-  display: flex;
+  display: inline-flex;
   overflow: hidden;
   margin-left: 10px;
   /* box-shadow: 0 0 5px silver; */
@@ -270,7 +270,7 @@
 }
 
 #review {
-  width: 50%;
+  width: 52%;
   display: flex;
   background-color: white;
   margin-left: 0px;
@@ -322,7 +322,7 @@
 }
 
 #features {
-  font-size: 17px;
+  font-size: 15px;
 }
 
 @media screen and (min-width: 881px) {

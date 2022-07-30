@@ -160,7 +160,6 @@ app.post("/", async (req, res) => {
   const name = req.session.username;
   const userId = req.session.userId;
   const id = req.session.ID;
-  // const cat = req.body.cat;
   const email = req.session.email;
   const item = req.body.cat;
   const itNameArr = item.split(" ");
@@ -194,20 +193,20 @@ app.post("/det", async (req, res) => {
   const itemId = req.body.id;
   const userId = req.session.userId;
   var savedItems = await Saved.findOne({ itemId, userId });
-  let count;
+  let count, output, item, items;
   if (userId) {
     const customer = new Customer(userId);
     count = await customer.myCarts();
   }
 
   if (savedItems === null) {
-    var output = "mdi-cards-heart-outline";
+    output = "mdi-cards-heart-outline";
   } else {
-    var output = "mdi-cards-heart";
+    output = "mdi-cards-heart";
   }
 
-  const item = await Items.find({ itemId: `${itemId}` });
-  const items = await Items.find();
+  item = await Items.find({ itemId: `${itemId}` });
+  items = await Items.find();
   res.render("details", { item, items, count, output, userId });
 });
 
@@ -372,75 +371,32 @@ app.get("/help", (req, res) => {
   res.render("help");
 });
 
-app.get("/account", (req, res) => {
+app.get("/account", async (req, res) => {
   const userId = req.session.userId;
-  const name = req.session.username;
-
-  if (req.session.username) {
-    const query = `SELECT * FROM users WHERE id = '${userId}'`;
-    const query1 = `SELECT SUM(quantity) as total FROM cart
-                    WHERE userId = '${userId}'`;
-    conn.all(query, (err, result) => {
-      if (err) {
-        throw err;
-      } else {
-        conn.all(query1, (error, carts) => {
-          if (error) {
-            throw error;
-          } else {
-            res.render("account", {
-              result,
-              name,
-              userId,
-              carts,
-            });
-          }
-        });
-      }
-      //  res.render("account", { result, name, userId });
-    });
+  if (userId) {
+    const user = await Users.find({ userId });
+    console.log(user);
+    res.render("account", { user });
   } else {
     res.redirect("/login");
   }
-
-  // res.render("account", {});
 });
 
-app.get("/orders", (req, res) => {
+app.get("/orders", async (req, res) => {
   const name = req.session.username;
   const userId = req.session.userId;
-  const random = Math.random() * 10000000000000;
-  const orderId = Math.floor(random);
-  const date = new Date();
-  const dataFormatted = date.toLocaleDateString();
 
-  const selectQuery = `SELECT * FROM cart WHERE userId = '${userId}'`;
-
-  try {
-    conn.all(selectQuery, (err, carts) => {
-      if (err) {
-        throw err;
-      } else {
-        Object.keys(carts).forEach((key) => {
-          const cart = carts[key];
-          const insertQuery = `INSERT INTO orders(itemId, orderId, userId, date, quantity, variety)
-                             VALUES(${cart.itemId}, '${orderId}', ${userId}, '${dataFormatted}', ${cart.quantity}, '${cart.variety}')`;
-          conn.run(insertQuery, [], (err) => {
-            if (err) {
-              throw err;
-            } else {
-              console.log("Inserted!");
-            }
-          });
-        });
-      }
-    });
-  } catch (error) {
-  } finally {
+  if (userId) {
+    const customer = new Customer(userId);
+    const carts = await customer.placeOrder();
     res.redirect("/my-orders");
+  } else {
+    res.redirect("/login");
   }
+});
 
-  // console.log(dataFormatted);
+app.get("/payment", (req, res) => {
+  res.render("payment");
 });
 
 app.post("/dashboard", async (req, res) => {
@@ -507,8 +463,6 @@ app.get("/cart", async (req, res) => {
   } else {
     res.redirect("/login");
   }
-
-  // const name = "Steve";
 });
 
 app.post("/cart-one", async (req, res) => {
@@ -537,13 +491,12 @@ app.post("/cart-one", async (req, res) => {
             },
           },
           {
-            $match: { userId: 6 },
+            $match: { userId },
           },
         ])
         .toArray(function (err, cart) {
           if (err) throw err;
 
-          console.log(cart);
           res.render("cart1", { cart, count, items });
           db.close();
         });
@@ -622,45 +575,50 @@ app.get("/saved", async (req, res) => {
   }
 });
 
-app.get("/cat", async (req, res) => {
-  const name = req.session.username;
-  const userId = req.session.userId;
-  const query = `SELECT SUM(I.price) AS totalPrice, SUM(quantity) as total
-                 FROM cart C
-                 JOIN item I
-                 ON C.itemId = I.id
-                 WHERE C.userId = '${userId}'`;
-
-  const query1 = `SELECT SUM(quantity) as total FROM cart
-                  WHERE userId = '${userId}'`;
-
-  if (req.session.username) {
-    await conn.all(query, async (err, results) => {
-      if (err) {
-        throw err;
-      } else {
-        res.render("cartSum", {
-          name,
-          results,
-          err,
-        });
-
-        console.log(results);
-      }
-    });
-  } else {
-    res.redirect("/login");
-  }
-});
-
 app.get("/my-carts", (req, res) => {
   res.render("cart1");
 });
 
 app.get("/my-orders", async (req, res) => {
-  const items = await Items.find();
+  const name = req.session.username;
+  const email = req.session.email;
+  const userId = req.session.userId;
   if (req.session.username) {
-    res.render("order", { items });
+    const customer = new Customer(userId);
+    let count, check;
+    count = await customer.myCarts();
+    const items = await Items.find();
+    // }
+    MongoClient.connect(url, (error, db) => {
+      if (error) throw error;
+      var dbo = db.db("nyankie");
+      dbo
+        .collection("orders")
+        .aggregate([
+          {
+            $lookup: {
+              from: "items",
+              localField: "itemId",
+              foreignField: "itemId",
+              as: "orderdetails",
+            },
+          },
+          {
+            $match: { userId },
+          },
+        ])
+        .toArray((err, orders) => {
+          if (err) throw err;
+          if (orders === null) {
+            check = false;
+          } else {
+            check = true;
+          }
+          console.log(orders);
+          res.render("order", { orders, count, userId, items, check });
+          db.close();
+        });
+    });
   } else {
     res.redirect("/login");
   }

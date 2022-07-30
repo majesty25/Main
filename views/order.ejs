@@ -15,28 +15,27 @@
     <div id="main-container">
       <div id="orders">
         <!-- const sum = carts[key]; -->
-
+        <% if (orders.length === 0){%>
         <div id="container-head">You have not placed any order</div>
-
+        <%}else{%>
         <div id="container-head">My orders</div>
-
-        <%# Object.keys(orders).forEach(key => { const order = orders[key]; %>
-
+        <%} %> <% for (let i in orders){ let order = orders[i]; let ORDERS =
+        order.orderdetails; for (let k in ORDERS){ let ORDER = ORDERS[k]%>
         <div class="order">
           <div id="order-head">
-            <span id="ID">ID:<%#order.orderId%></span>
-            <span id="date"><%#order.date%></span>
+            <span id="ID">ID:<%=order.orderId%></span>
+            <span id="date"><%=order.date%></span>
           </div>
           <div id="order">
             <div id="order-det">
               <div id="order-img">
-                <img id="IMG" src="../font/<%#order.pic%>" alt="" srcset="" />
+                <img id="IMG" src="../font/<%=ORDER.pic%>" alt="" srcset="" />
               </div>
               <div id="sec1">
-                <div id="name"><%#order.name%></div>
+                <div id="name"><%=ORDER.name%></div>
                 <div id="others">
-                  <span id="qty">X<%#order.quantity%></span>
-                  <span id="vty"><%#order.variety%></span>
+                  <span id="vty"><%=order.variety%></span>
+                  <span id="qty">X<%=order.quantity%></span>
                 </div>
               </div>
             </div>
@@ -46,13 +45,12 @@
             </div>
           </div>
         </div>
-        <%## }) %>
+        <%} } %>
       </div>
 
-
-      <%- include("viewed") %> 
+      <%- include("viewed") %>
     </div>
 
-    <%# include("footer") %>
+    <%- include("footer") %>
   </body>
 </html>

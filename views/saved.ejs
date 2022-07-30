@@ -16,18 +16,18 @@
 <body>
     <%- include("header")%>
     <%- include("loader") %>
-    <%#Object.keys(carts).forEach(key => { const sum =
-    carts[key]; if (sum.total == null){ %>
-    <h3>Your cart is empty!</h3>
-    <%# } else{ %>
 
+    <% if (cart.length === 0){%>
+    <h3>Your wish list is empty!</h3>
+    <%}else{%>
+    <h3>Your wish list</h3>
+    <%} %>
 
     <span id="cart-num">
-      
+
     </span>
     <div id="main-container">
         <div id="carts">
-            <%#Object.keys(results).forEach(key=>{ const cart = results[key];%>
 
             <% for (i in cart){ 
           let CART = cart[i];
@@ -50,7 +50,7 @@
                         <div id="add">
                             <form onsubmit="shew()" id="view" action="/add-cart" method="post">
                                 <input type="hidden" name="id" value="<%=CART.itemId%>" />
-                                <button id="view" class="view" type="submit">                                   
+                                <button id="view" class="view" type="submit">
                                     Add to cart
                                 </button>
                             </form>
@@ -63,7 +63,7 @@
                     <form onsubmit="shew()" id="view" action="/det" method="post">
                         <input type="hidden" name="id" value="<%=CART.itemId%>" />
                         <button id="view" class="view" type="submit">
-                            
+
                             BUY NOW
                         </button>
                     </form>
@@ -72,7 +72,7 @@
                         <form onsubmit="shew()" action="/save" method="post">
                             <input type="hidden" name="id" value="<%=CART.itemId%>" />
                             <button id="remove-btn" type="submit">
-                              
+
                                 Remove
                             </button>
                         </form>
@@ -87,66 +87,22 @@
 
             <%# }) %>
         </div>
-        <div id="cart-summary">
-            <span id="cart-summary-head">Cart's summary</span>
-            <span id="price-summary">
-                <div id="price-label">Price(2 items)</div>
-                <div id="price-info">GH₵ 2783</div>
-            </span>
 
-            <span id="price-summary">
-                <div id="price-label">Delivery fee</div>
-                <div id="price-info">GHS 32.00</div>
-            </span>
-
-            <span id="price-summary">
-                <div id="price-label">Prepaid</div>
-                <div id="price-info">GHS 00.00</div>
-            </span>
-
-            <span id="price-summary">
-                <div id="total-label">Total</div>
-                <div id="price-total">GHS 2883</div>
-            </span>
-
-            <div id="del-address-head">Delivery address</div>
-            <div id="del-address">Cape Coast, UCC, Casford hall, room 54</div>
-            <form onsubmit="shew()" action="/account" method="get">
-                <button id="address-btn" type="submit">Procede</button>
-            </form>
-        </div>
     </div>
 
-
-
+    <% if(cart.length > 0){%>
     <span id="checkout-sec">
-
-        <div id="total">
-            <div>Total</div>
-            <% 
-      var counter = 0;
-      for (x in cart){
-        let CART_DET = cart[x];
-        let PRICES = CART_DET.cartdetails;
-        
-        for(y in PRICES){
-          let price = PRICES[y];
-          counter = counter + (price.price * CART_DET.quantity);         
-        }
-       
-      } %>
-            <div><b>GH₵ <%=counter.toFixed(2)%> </b></div>
-            %>
-
-        </div>
         <div id="checkout">
             <form onsubmit="shew()" id="" action="/cart-one" method="post">
-                <button id="checkout-btn" type="submit">Checkout</button>
+                <button id="checkout-btn" type="submit">ADD ALL TO CART</button>
             </form>
         </div>
     </span>
+    <%} %>
 
-    <%- include("viewed") %> 
+
+
+    <%- include("viewed") %>
 
     </div>
 

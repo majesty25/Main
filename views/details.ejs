@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/details.css" />
     <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
-    <!-- <link rel="stylesheet" href="../css/home.css" /> -->
     <link rel="stylesheet" href="../css/header.css" />
     <title>Document</title>
   </head>
@@ -33,7 +32,7 @@
             alt=""
             srcset=""
           />
-          <img id="small-pic" src="../font/5.jpg" alt="" srcset="" />
+          <!-- <img id="small-pic" src="../font/5.jpg" alt="" srcset="" /> -->
           <img id="small-pic" src="../font/7.jpg" alt="" srcset="" />
           <img id="small-pic" src="../font/2.jpg" alt="" srcset="" />
           <img id="small-pic" src="../font/9.jpg" alt="" srcset="" />
@@ -50,6 +49,7 @@
           <div id="buttons">
             <form action="/add-cart" method="post">
               <input type="hidden" name="id" value="<%=ITEM.itemId%>" />
+              <input id="var" type="hidden" name="" value="">
               <button class="add buy-btn" type="submit">ADD TO CART</button>
             </form>
 
@@ -74,41 +74,41 @@
                   class="radio-input"
                   type="radio"
                   name="color"
-                  id=""
-                  value=""
+                  id="color1"
+                  value="1"
                   required
                 />
-                <label class="radio-label" for="">red</label>
+                <label onclick="selectVariety()" class="radio-label" for="color1">red</label>
 
                 <input
                   class="radio-input"
                   type="radio"
                   name="color"
-                  id=""
-                  value=""
+                  id="color2"
+                  value="2"
                   required
                 />
-                <label class="radio-label" for="">black</label>
+                <label onclick="selectVariety()" class="radio-label" for="color2">black</label>
 
                 <input
                   class="radio-input"
                   type="radio"
                   name="color"
-                  id=""
-                  value=""
+                  id="color3"
+                  value="3"
                   required
                 />
-                <label class="radio-label" for="">blue</label>
+                <label onclick="selectVariety()" class="radio-label" for="color3">blue</label>
 
                 <input
                   class="radio-input"
                   type="radio"
                   name="color"
-                  id=""
-                  value=""
+                  id="color4"
+                  value="4"
                   required
                 />
-                <label class="radio-label" for="">white</label>
+                <label onclick="selectVariety()" class="radio-label" for="color4">white</label>
               </div>
             </div>
 
@@ -117,7 +117,7 @@
                 style="font-size: 19px"
                 class="mdi mdi-rotate-0 mdi-calendar-month-outline"
               ></em>
-              Delivery from <%= ITEM.shipping %> , 10 - 15 days
+              Delivery from <%= ITEM.location %> , 10 - 15 days
             </div>
           </div>
 
@@ -136,9 +136,9 @@
                 <div id="like">
                   <em class="mdi mdi-thumb-up-outline"></em>23
                 </div>
-                <div id="dislike">
+                <!-- <div id="dislike">
                   <em class="mdi mdi-thumb-down-outline"></em>3
-                </div>
+                </div> -->
               </div>
 
               <button class="seller-btn follow">Follow</button>
@@ -217,22 +217,23 @@
       </div>
     </div>
 
-
-
-
-
-  
-
-
-    <%- include("viewed") %>
-    <%- include("viewed") %>
-    <%- include("viewed") %>
+    <%- include("viewed") %> <%- include("viewed") %> <%- include("viewed") %>
     <%- include("footer") %>
     <script>
       const mainPic = document.querySelector("#main-pic");
       const smallPics = document.querySelector(".small-pic");
       function changePic() {
         mainPic.src = "../font/6.jpg";
+      }
+
+      function selectVariety(){
+        const variety = document.querySelector("#var");
+        
+        const color = document.getElementsByName("color").value;
+        variety.value = color
+        
+        console.log(variety.value, color)
+
       }
     </script>
     <script src="../js/scroll.js"></script>

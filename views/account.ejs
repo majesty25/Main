@@ -1,401 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/base.css" />
-  <link rel="stylesheet" href="../css/header.css" />
-  <link rel="stylesheet" href="../css/home.css" />
-  <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
-  <link rel="stylesheet" href="../material-icons/css/materialdesignicons.min.css" media="all" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
+    <link
+      rel="stylesheet"
+      href="../material-icons/css/materialdesignicons.min.css"
+      media="all"
+    />
     <title>Document</title>
 
     <style>
-* {
-    box-sizing: border-box;
-}
+      * {
+        box-sizing: border-box;
+      }
 
-body {
-    background-color: #e9e6e6;
-    margin: 0px;
-    padding: 0%;
-}
+      body {
+        background-color: #e9e6e6;
+        margin: 0px;
+        padding: 0%;
+      }
 
-a {
-    text-decoration: none;
-    color: rgb(255, 1, 81);
-}
+      a {
+        text-decoration: none;
+        color: rgb(255, 1, 81);
+      }
 
-#refer-address{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+      #refer-address {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
 
-}
+      #regForm {
+        background-color: #ffffff;
+        margin: 10px auto;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        padding: 40px;
+        width: 70%;
+        min-width: 300px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
 
-#regForm {
-    background-color: #ffffff;
-    margin: 10px auto;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 40px;
-    width: 70%;   
-    min-width: 300px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-}
+      h1 {
+        text-align: center;
+      }
 
-h1 {
-    text-align: center;
-}
+      #input,
+      select {
+        outline: none;
+        padding: 10px;
+        width: 100%;
+        font-size: 14px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        border: 1px solid #aaaaaa;
+      }
 
-#input, select{
-    outline: none;
-    padding: 10px;
-    width: 100%;
-    font-size: 14px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    border: 1px solid #aaaaaa;
-}
+      #Region {
+        width: 100%;
+        height: 45px;
+        font-size: 17px;
+      }
 
+      #save-btn {
+      }
 
-#Region {
-    width: 100%;
-    height: 45px;
-    font-size: 17px;
-}
+      /* Mark input boxes that gets an error on validation: */
+      #input.invalid {
+        background-color: rgb(255, 241, 241);
+      }
 
-#save-btn{}
-
-/* Mark input boxes that gets an error on validation: */
-#input.invalid {
-    background-color: rgb(255, 241, 241);
-}
-
-/* Hide all steps by default: */
-/*.tab {
+      /* Hide all steps by default: */
+      /*.tab {
     display: none;
 }*/
 
-#button {
-    background-color: rgb(255, 1, 81);
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 17px;
-    font-family: Raleway;
-    margin-top: 30px;
-    cursor: pointer;
-}
+      #button {
+        background-color: rgb(255, 1, 81);
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 17px;
+        font-family: Raleway;
+        margin-top: 30px;
+        cursor: pointer;
+      }
 
-#button:hover {
-    opacity: 0.8;
-}
+      #button:hover {
+        opacity: 0.8;
+      }
 
-#prevBtn {
-    background-color: #bbbbbb;
-}
+      #prevBtn {
+        background-color: #bbbbbb;
+      }
 
-/* Make circles that indicate the steps of the form: */
-.step {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbbbbb;
-    border: none;
-    border-radius: 50%;
-    display: inline-block;
-    opacity: 0.5;
-}
+      /* Make circles that indicate the steps of the form: */
+      .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+      }
 
-.step.active {
-    opacity: 1;
-}
+      .step.active {
+        opacity: 1;
+      }
 
-/* Mark the steps that are finished and valid: */
-.step.finish {
-    background-color: rgb(255, 1, 81);
-}
+      /* Mark the steps that are finished and valid: */
+      .step.finish {
+        background-color: rgb(255, 1, 81);
+      }
 
-@media screen and (max-width: 600px) {
-    #regForm {
-        width: 100%;
-        padding: 20px;
-        margin-top: 20px;
-    }
-}
-</style>
-</head>
-<body>
-    <% const countries = [
-  "Afghanistan",
-  "Albania",
-  "Algeria",
-  "Andorra",
-  "Angola",
-  "Anguilla",
-  "Antigua & Barbuda",
-  "Argentina",
-  "Armenia",
-  "Aruba",
-  "Australia",
-  "Austria",
-  "Azerbaijan",
-  "Bahamas",
-  "Bahrain",
-  "Bangladesh",
-  "Barbados",
-  "Belarus",
-  "Belgium",
-  "Belize",
-  "Benin",
-  "Bermuda",
-  "Bhutan",
-  "Bolivia",
-  "Bosnia & Herzegovina",
-  "Botswana",
-  "Brazil",
-  "British Virgin Islands",
-  "Brunei",
-  "Bulgaria",
-  "Burkina Faso",
-  "Burundi",
-  "Cambodia",
-  "Cameroon",
-  "Canada",
-  "Cape Verde",
-  "Cayman Islands",
-  "Central Arfrican Republic",
-  "Chad",
-  "Chile",
-  "China",
-  "Colombia",
-  "Congo",
-  "Cook Islands",
-  "Costa Rica",
-  "Cote D Ivoire",
-  "Croatia",
-  "Cuba",
-  "Curacao",
-  "Cyprus",
-  "Czech Republic",
-  "Denmark",
-  "Djibouti",
-  "Dominica",
-  "Dominican Republic",
-  "Ecuador",
-  "Egypt",
-  "El Salvador",
-  "Equatorial Guinea",
-  "Eritrea",
-  "Estonia",
-  "Ethiopia",
-  "Falkland Islands",
-  "Faroe Islands",
-  "Fiji",
-  "Finland",
-  "France",
-  "French Polynesia",
-  "French West Indies",
-  "Gabon",
-  "Gambia",
-  "Georgia",
-  "Germany",
-  "Ghana",
-  "Gibraltar",
-  "Greece",
-  "Greenland",
-  "Grenada",
-  "Guam",
-  "Guatemala",
-  "Guernsey",
-  "Guinea",
-  "Guinea Bissau",
-  "Guyana",
-  "Haiti",
-  "Honduras",
-  "Hong Kong",
-  "Hungary",
-  "Iceland",
-  "India",
-  "Indonesia",
-  "Iran",
-  "Iraq",
-  "Ireland",
-  "Isle of Man",
-  "Israel",
-  "Italy",
-  "Jamaica",
-  "Japan",
-  "Jersey",
-  "Jordan",
-  "Kazakhstan",
-  "Kenya",
-  "Kiribati",
-  "Kosovo",
-  "Kuwait",
-  "Kyrgyzstan",
-  "Laos",
-  "Latvia",
-  "Lebanon",
-  "Lesotho",
-  "Liberia",
-  "Libya",
-  "Liechtenstein",
-  "Lithuania",
-  "Luxembourg",
-  "Macau",
-  "Macedonia",
-  "Madagascar",
-  "Malawi",
-  "Malaysia",
-  "Maldives",
-  "Mali",
-  "Malta",
-  "Marshall Islands",
-  "Mauritania",
-  "Mauritius",
-  "Mexico",
-  "Micronesia",
-  "Moldova",
-  "Monaco",
-  "Mongolia",
-  "Montenegro",
-  "Montserrat",
-  "Morocco",
-  "Mozambique",
-  "Myanmar",
-  "Namibia",
-  "Nauro",
-  "Nepal",
-  "Netherlands",
-  "Netherlands Antilles",
-  "New Caledonia",
-  "New Zealand",
-  "Nicaragua",
-  "Niger",
-  "Nigeria",
-  "North Korea",
-  "Norway",
-  "Oman",
-  "Pakistan",
-  "Palau",
-  "Palestine",
-  "Panama",
-  "Papua New Guinea",
-  "Paraguay",
-  "Peru",
-  "Philippines",
-  "Poland",
-  "Portugal",
-  "Puerto Rico",
-  "Qatar",
-  "Reunion",
-  "Romania",
-  "Russia",
-  "Rwanda",
-  "Saint Pierre & Miquelon",
-  "Samoa",
-  "San Marino",
-  "Sao Tome and Principe",
-  "Saudi Arabia",
-  "Senegal",
-  "Serbia",
-  "Seychelles",
-  "Sierra Leone",
-  "Singapore",
-  "Slovakia",
-  "Slovenia",
-  "Solomon Islands",
-  "Somalia",
-  "South Africa",
-  "South Korea",
-  "South Sudan",
-  "Spain",
-  "Sri Lanka",
-  "St Kitts & Nevis",
-  "St Lucia",
-  "St Vincent",
-  "Sudan",
-  "Suriname",
-  "Swaziland",
-  "Sweden",
-  "Switzerland",
-  "Syria",
-  "Taiwan",
-  "Tajikistan",
-  "Tanzania",
-  "Thailand",
-  "Timor L'Este",
-  "Togo",
-  "Tonga",
-  "Trinidad & Tobago",
-  "Tunisia",
-  "Turkey",
-  "Turkmenistan",
-  "Turks & Caicos",
-  "Tuvalu",
-  "Uganda",
-  "Ukraine",
-  "United Arab Emirates",
-  "United Kingdom",
-  "United States of America",
-  "Uruguay",
-  "Uzbekistan",
-  "Vanuatu",
-  "Vatican City",
-  "Venezuela",
-  "Vietnam",
-  "Virgin Islands (US)",
-  "Yemen",
-  "Zambia",
-  "Zimbabwe",
-]; %> 
+      @media screen and (max-width: 600px) {
+        #regForm {
+          width: 100%;
+          padding: 20px;
+          margin-top: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <%# const countries = [ "Afghanistan", "Albania", "Algeria", "Andorra",
+    "Angola", "Anguilla", "Antigua & Barbuda", "Argentina", "Armenia", "Aruba",
+    "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh",
+    "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bermuda", "Bhutan",
+    "Bolivia", "Bosnia & Herzegovina", "Botswana", "Brazil", "British Virgin
+    Islands", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia",
+    "Cameroon", "Canada", "Cape Verde", "Cayman Islands", "Central Arfrican
+    Republic", "Chad", "Chile", "China", "Colombia", "Congo", "Cook Islands",
+    "Costa Rica", "Cote D Ivoire", "Croatia", "Cuba", "Curacao", "Cyprus",
+    "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic",
+    "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea",
+    "Estonia", "Ethiopia", "Falkland Islands", "Faroe Islands", "Fiji",
+    "Finland", "France", "French Polynesia", "French West Indies", "Gabon",
+    "Gambia", "Georgia", "Germany", "Ghana", "Gibraltar", "Greece", "Greenland",
+    "Grenada", "Guam", "Guatemala", "Guernsey", "Guinea", "Guinea Bissau",
+    "Guyana", "Haiti", "Honduras", "Hong Kong", "Hungary", "Iceland", "India",
+    "Indonesia", "Iran", "Iraq", "Ireland", "Isle of Man", "Israel", "Italy",
+    "Jamaica", "Japan", "Jersey", "Jordan", "Kazakhstan", "Kenya", "Kiribati",
+    "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho",
+    "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Macau",
+    "Macedonia", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali",
+    "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico",
+    "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Montserrat",
+    "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauro", "Nepal",
+    "Netherlands", "Netherlands Antilles", "New Caledonia", "New Zealand",
+    "Nicaragua", "Niger", "Nigeria", "North Korea", "Norway", "Oman",
+    "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay",
+    "Peru", "Philippines", "Poland", "Portugal", "Puerto Rico", "Qatar",
+    "Reunion", "Romania", "Russia", "Rwanda", "Saint Pierre & Miquelon",
+    "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal",
+    "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia",
+    "Solomon Islands", "Somalia", "South Africa", "South Korea", "South Sudan",
+    "Spain", "Sri Lanka", "St Kitts & Nevis", "St Lucia", "St Vincent", "Sudan",
+    "Suriname", "Swaziland", "Sweden", "Switzerland", "Syria", "Taiwan",
+    "Tajikistan", "Tanzania", "Thailand", "Timor L'Este", "Togo", "Tonga",
+    "Trinidad & Tobago", "Tunisia", "Turkey", "Turkmenistan", "Turks & Caicos",
+    "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom",
+    "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican
+    City", "Venezuela", "Vietnam", "Virgin Islands (US)", "Yemen", "Zambia",
+    "Zimbabwe", ]; %> <%- include("header")%> <%- include("loader") %> <%
+    Object.keys(user).forEach(key => { const row = user[key]; %>
 
-    <%- include("header")%>
-    <%- include("loader") %> 
+    <form id="regForm" action="/login" method="post">
+      <h1>My account info</h1>
 
-    <% Object.keys(result).forEach(key => { const row = result[key]; %>
-
-            <form id="regForm" action="/login" method="post">
-        <h1>My account info</h1>
-
-        <div class="tab">Name:
-            <p><input id="input" placeholder="First name..." oninput="this.className = ''" name="fname" value="<%=row.firstName%>"></p>
-            <p><input id="input" placeholder="Last name..." oninput="this.className = ''" name="lname" value="<%=row.lastName%>"></p>
-        </div>
-        <div class="tab">Contact Info:
-            <p><input id="input" placeholder="E-mail..." oninput="this.className = ''" name="email" value="<%=row.email%>"></p>
-            <p><input id="input" placeholder="Phone..." oninput="this.className = ''" name="phone" value="<%=row.phone%>"></p>
-        </div>
-        <div class="tab">Address:
-            <!-- <p><input placeholder="Regoin" oninput="this.className = ''" name="region"></p> -->
-           <p> <select name="regin" id="Region" oninput="this.className = ''">
-               <option value="" disabled selected>Select your country</option>
-               <% for (i in countries){%>
-                 <option value="<%=countries[i]%>"><%=countries[i]%></option>
-               <%} %> 
- 
-            </select></p>
-            <p><input id="input" placeholder="City" oninput="this.className = ''" name="city" value="<%=row.city%>"></p>
-            <p><input id="input" placeholder="Residential address" oninput="this.className = ''" name="address" value="<%=row.resAddress%>"></p>
-            <!-- <p><input placeholder="Residential address" oninput="this.className = ''" name="yyyy"></p> -->
-        </div>
-        <div class="tab">Change password:
-            <p><input id="input" placeholder="Enter old pasword..." oninput="this.className = ''" name="password" type="password"></p>
-            <p><input id="input" placeholder="Enter new password..." oninput="this.className = ''" name="pword" type="password"></p>
-            <input id="save-btn" name="signup" type="submit" value="Submit changes">
-        </div>
-        <div style="overflow:auto;">
-        
-        </div>
-
+      <div class="tab">
+        Name:
+        <p>
+          <input
+            id="input"
+            placeholder="First name..."
+            oninput="this.className = ''"
+            name="fname"
+            value="<%=row.firstName%>"
+          />
+        </p>
+        <p>
+          <input
+            id="input"
+            placeholder="Last name..."
+            oninput="this.className = ''"
+            name="lname"
+            value="<%=row.lastName%>"
+          />
+        </p>
+      </div>
+      <div class="tab">
+        Contact Info:
+        <p>
+          <input
+            id="input"
+            placeholder="E-mail..."
+            oninput="this.className = ''"
+            name="email"
+            value="<%=row.email%>"
+          />
+        </p>
+        <p>
+          <input
+            id="input"
+            placeholder="Phone..."
+            oninput="this.className = ''"
+            name="phone"
+            value="<%=row.phone%>"
+          />
+        </p>
+      </div>
+      <div class="tab">
+        Address:
+        <!-- <p><input placeholder="Regoin" oninput="this.className = ''" name="region"></p> -->
+        <p>
+          <select name="regin" id="Region" oninput="this.className = ''">
+            <option value="" disabled selected>Select your country</option>
+            <%# for (i in countries){%>
+            <option value="<%#countries[i]%>"><%#countries[i]%></option>
+            <%#} %>
+          </select>
+        </p>
+        <p>
+          <input
+            id="input"
+            placeholder="City"
+            oninput="this.className = ''"
+            name="city"
+            value="<%=row.city%>"
+          />
+        </p>
+        <p>
+          <input
+            id="input"
+            placeholder="Residential address"
+            oninput="this.className = ''"
+            name="address"
+            value="<%=row.resAddress%>"
+          />
+        </p>
+        <!-- <p><input placeholder="Residential address" oninput="this.className = ''" name="yyyy"></p> -->
+      </div>
+      <div class="tab">
+        Change password:
+        <p>
+          <input
+            id="input"
+            placeholder="Enter old pasword..."
+            oninput="this.className = ''"
+            name="password"
+            type="password"
+          />
+        </p>
+        <p>
+          <input
+            id="input"
+            placeholder="Enter new password..."
+            oninput="this.className = ''"
+            name="pword"
+            type="password"
+          />
+        </p>
+        <input
+          id="save-btn"
+          name="signup"
+          type="submit"
+          value="Submit changes"
+        />
+      </div>
+      <div style="overflow: auto"></div>
     </form>
 
     <% }) %>
-
-</body>
+  </body>
 </html>
-

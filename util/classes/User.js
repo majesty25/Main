@@ -1,4 +1,5 @@
 const Cart = require("../../database/cart");
+const Order = require("../../database/order");
 const Items = require("../../database/items");
 const Saved = require("../../database/saved");
 const Users = require("../../database/users");
@@ -175,7 +176,35 @@ class Customer {
     console.log("hello");
   }
 
-  placeOrder() {}
+  async placeOrder() {
+    const random = Math.random() * 10000000000000;
+    const orderId = Math.floor(random);
+    const date = new Date();
+    const dateFormatted = date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "numeric", //or short
+      year: "numeric",
+    });
+    let carts;
+    let cart;
+    try {
+      carts = await Cart.find({ userId: this.userId });
+      for (let i in carts) {
+        cart = carts[i];
+        Order.insertMany({
+          orderId,
+          itemId: cart.itemId,
+          quantity: cart.quantity,
+          userId: cart.userId,
+          variety: cart.variety,
+          date: dateFormatted,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
 }
 
 module.exports = Customer;

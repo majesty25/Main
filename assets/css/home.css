@@ -363,9 +363,9 @@
 .percent-off {
   float: right;
   /* text-decoration: none; */
-  background-color: orangered;
+  background-color: rgb(189, 67, 83);
   color: white;
-  padding: 3px 6px;
+  padding: 0px 0px;
 }
 
 #star {
@@ -601,11 +601,12 @@
   }
 
   #demo {
-    width: 100%;
+    width: 96%;
     margin-left: 0%;
     /* overflow-x: scroll; */
     flex-wrap: wrap;
     flex-direction: row;
+    padding: 2%;
     justify-content: space-around;
   }
 

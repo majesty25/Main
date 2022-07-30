@@ -1,170 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/viewed.css" />
+    <link rel="stylesheet" href="../css/header.css" />
+    <link rel="stylesheet" href="../css/items.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
+    <title>Document</title>
+  </head>
 
-  <link rel="stylesheet" href="../css/base.css" />
-  <link rel="stylesheet" href="../css/viewed.css" />
-  <link rel="stylesheet" href="../css/header.css" />
-  <link rel="stylesheet" href="../css/items.css" />
-  <link rel="stylesheet" href="../css/cart.css" />
-  <title>Document</title>
-</head>
+  <body>
+    <%- include("header")%> <%- include("loader") %>
 
-<body>
-  <%- include("header")%>
-  <%- include("loader") %>
-  <%#Object.keys(carts).forEach(key => { const sum =
-    carts[key]; if (sum.total == null){ %>
-  <h3>Your cart is empty!</h3>
-  <%# } else{ %>
-
-
-  <span id="cart-num">
-    <%#Object.keys(carts).forEach(key => { const sum = carts[key]; if
-      (sum.total == null){ %> <%# }else if (sum.total == 1){ %>
-    Cart(<%#sum.total%> item) <%# }else{ %> Cart(<%#sum.total%> items) <%# } %>
-    <%# })%>
-  </span>
-  <div id="main-container">
-    <div id="carts">
-      <%#Object.keys(results).forEach(key=>{ const cart = results[key];%>
-
-      <% for (i in cart){ 
-          let CART = cart[i];
-          let cartDetail = CART.cartdetails;
-          for (j in cartDetail){
-            let actualCart = cartDetail[j];
+    <span id="cart-num">
+      <% if (cart.length === 0){%>
+      <h3>Your cart is empty!</h3>
+      <%}else{%> My cart <%}%>
+    </span>
+    <div id="main-container">
+      <div id="carts">
+        <% for (i in cart){ let CART = cart[i]; let cartDetail =
+        CART.cartdetails; for (j in cartDetail){ let actualCart = cartDetail[j];
         %>
 
-      <span id="cart-item">
-        <div id="cart-sec-1">
-          <span id="cart-img">
-            <img class="cart-img" src="../font/<%= actualCart.pic %> " alt="" srcset="" />
-          </span>
-          <span id="cart-det">
-            <div id="name-price">
-              <span id="name"><%= actualCart.name %></span>
-              <span id="price">GH₵ <%= actualCart.price.toFixed(2) %></span>
+        <span id="cart-item">
+          <div id="cart-sec-1">
+            <span id="cart-img">
+              <img
+                class="cart-img"
+                src="../font/<%= actualCart.pic %> "
+                alt=""
+                srcset=""
+              />
+            </span>
+            <span id="cart-det">
+              <div id="name-price">
+                <span id="name"><%= actualCart.name %></span>
+                <span id="price">GH₵ <%= actualCart.price.toFixed(2) %></span>
+              </div>
+              <div id="add">
+                <form onsubmit="shew()" action="/decrease-cart" method="post">
+                  <input type="hidden" name="id" value="<%=CART.itemId%>" />
+                  <button id="qty" class="qty dec" onclick="decreaseQuantity()">
+                    -
+                  </button>
+                </form>
 
-            </div>
-            <div id="add">
-              <form onsubmit="shew()" action="/decrease-cart" method="post">
-                <input type="hidden" name="id" value="<%=CART.itemId%>" />
-                <button id="qty" class="qty dec" onclick="decreaseQuantity()">
-                  -
-                </button>
-              </form>
-
-              <button id="qt" class="count"><%=CART.quantity%></button>
-              <form onsubmit="shew()" action="/increase-cart" method="post">
-                <input type="hidden" name="id" value="<%=CART.itemId%>" />
-                <button type="submit" id="qty" class="qty inc" onclick="increaseQuantity()">
-                  +
-                </button>
-              </form>
-            </div>
-          </span>
-        </div>
-        <div id="cart-sec-2">
-
-
-          <form onsubmit="shew()" id="view" action="/det" method="post">
-            <input type="hidden" name="id" value="<%=CART.itemId%>" />
-            <button id="view" class="view" type="submit">
-              <i style="font-size: 18px; margin-right: 5px" class="mdi mdi-eye-outline">
-              </i>
-              view
-            </button>
-          </form>
-
-          <span id="remove">
-            <form onsubmit="shew()" action="/delete-cart" method="post">
+                <button id="qt" class="count"><%=CART.quantity%></button>
+                <form onsubmit="shew()" action="/increase-cart" method="post">
+                  <input type="hidden" name="id" value="<%=CART.itemId%>" />
+                  <button
+                    type="submit"
+                    id="qty"
+                    class="qty inc"
+                    onclick="increaseQuantity()"
+                  >
+                    +
+                  </button>
+                </form>
+              </div>
+            </span>
+          </div>
+          <div id="cart-sec-2">
+            <form onsubmit="shew()" id="view" action="/det" method="post">
               <input type="hidden" name="id" value="<%=CART.itemId%>" />
-              <button id="remove-btn" type="submit">
-                <i style="font-size: 18px" class="mdi mdi-cart-remove"></i>
-                Remove
+              <button id="view" class="view" type="submit">
+                <i
+                  style="font-size: 18px; margin-right: 5px"
+                  class="mdi mdi-eye-outline"
+                >
+                </i>
+                view
               </button>
             </form>
-          </span>
-        </div>
-      </span>
 
-      <%}}
-    %>
+            <span id="remove">
+              <form onsubmit="shew()" action="/delete-cart" method="post">
+                <input type="hidden" name="id" value="<%=CART.itemId%>" />
+                <button id="remove-btn" type="submit">
+                  <i style="font-size: 18px" class="mdi mdi-delete"></i>
+                  Delete
+                </button>
+              </form>
+            </span>
+          </div>
+        </span>
 
-
-
-      <%# }) %>
+        <%}} %>
+      </div>
     </div>
-    <div id="cart-summary">
-      <span id="cart-summary-head">Cart's summary</span>
-      <span id="price-summary">
-        <div id="price-label">Price(2 items)</div>
-        <div id="price-info">GH₵ 2783</div>
-      </span>
 
-      <span id="price-summary">
-        <div id="price-label">Delivery fee</div>
-        <div id="price-info">GHS 32.00</div>
-      </span>
+    <% if (cart.length > 0){%>
+    <span id="checkout-sec">
+      <div id="total">
+        <div>Total</div>
+        <% var counter = 0; for (x in cart){ let CART_DET = cart[x]; let PRICES
+        = CART_DET.cartdetails; for(y in PRICES){ let price = PRICES[y]; counter
+        = counter + (price.price * CART_DET.quantity); } } %>
+        <div><b>GH₵ <%=counter.toFixed(2)%> </b></div>
+        %>
+      </div>
+      <div id="checkout">
+        <form onsubmit="shew()" id="" action="/cart-one" method="post">
+          <button id="checkout-btn" type="submit">Checkout</button>
+        </form>
+      </div>
+    </span>
+    <%} %> <%- include("viewed") %> <%- include("footer") %>
+  </body>
 
-      <span id="price-summary">
-        <div id="price-label">Prepaid</div>
-        <div id="price-info">GHS 00.00</div>
-      </span>
-
-      <span id="price-summary">
-        <div id="total-label">Total</div>
-        <div id="price-total">GHS 2883</div>
-      </span>
-
-      <div id="del-address-head">Delivery address</div>
-      <div id="del-address">Cape Coast, UCC, Casford hall, room 54</div>
-      <form onsubmit="shew()" action="/account" method="get">
-        <button id="address-btn" type="submit">Procede</button>
-      </form>
-    </div>
-  </div>
-
-
-
-  <span id="checkout-sec">
-
-    <div id="total">
-      <div>Total</div>
-      <% 
-      var counter = 0;
-      for (x in cart){
-        let CART_DET = cart[x];
-        let PRICES = CART_DET.cartdetails;
-        
-        for(y in PRICES){
-          let price = PRICES[y];
-          counter = counter + (price.price * CART_DET.quantity);         
-        }
-       
-      } %>
-      <div><b>GH₵ <%=counter.toFixed(2)%> </b></div>
-      %>
-
-    </div>
-    <div id="checkout">
-      <form onsubmit="shew()" id="" action="/cart-one" method="post">
-        <button id="checkout-btn" type="submit">Checkout</button>
-      </form>
-    </div>
-  </span>
-  <%- include("viewed") %>
-  <%- include("footer") %>
-
-</body>
-
-
-<script src="../js/search.js"></script>
-<script src="../js/scroll.js"></script>
-
+  <script src="../js/search.js"></script>
+  <script src="../js/scroll.js"></script>
 </html>
