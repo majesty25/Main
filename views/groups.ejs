@@ -1,0 +1,18 @@
+<div id="demo">
+    <div id="weekly-deal">Weakly deal</div>
+    <div class="groups">
+        <% for (i in groups){
+            let group = groups[i]
+        let pic = group.pictures%>
+        <div id="group">
+            <div id="group-head"><%- group.name %> </div>
+            <button id="group-container">
+                <% for (i in pic){%>
+                <img id="group-img" src="../font/<%- pic[i] %> " alt="" srcset="">
+                <%} %>
+
+            </button>
+        </div>
+        <%} %>
+    </div>
+</div>

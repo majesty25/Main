@@ -5,6 +5,7 @@
   margin-left: 7.5%;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   background-color: white;
   border-radius: 10px;
   padding: 5px;
@@ -52,6 +53,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  flex-wrap: wrap;
   /* margin-left: 3%; */
 }
 
@@ -98,6 +100,7 @@
   color: orangered;
 }
 
+
 .buy {
   margin-left: 30px;
   background-color: rgba(255, 68, 0, 0.8);
@@ -120,6 +123,12 @@
   flex-direction: row;
   margin-top: 10px;
   align-items: center;
+}
+
+#msg{
+  color: red;
+  font-size: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #var {
@@ -325,39 +334,126 @@
   font-size: 15px;
 }
 
-@media screen and (min-width: 881px) {
+#CONTAINER{
+  width: 85.8%;
+  margin-left: 7.5%;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 1000px) {
+  #pics{
+    width: 48%;
+  }
+
+  #desc{
+    width: 45%;
+  }
+
+  #pic-desc-container{
+    width: 94%;
+    margin-left: 3%;
+
+  }
+}
+
+/* @media screen and (min-width: 881px) {
   #desc {
+    width: 40%;
     margin-left: 5%;
   }
-}
+
+  #pics{
+    width: 58%;
+  }
+} */
 
 @media screen and (max-width: 880px) {
-  #pic-desc-container {
-    width: 98%;
-    margin-left: 0%;
-  }
+  /* #pic-desc-container {
+    width: 94%; 
+    margin-left: 3%;
+  } */
 
   #review-spec {
-    width: 98%;
-    margin-left: 0%;
+    width: 96%;
+    margin-left: 2%;
     justify-content: space-evenly;
+  }
+
+    #desc {
+    width: 40%;
+    margin-left: 5%;
+  }
+
+  #pics{
+    width: 58%;
   }
 }
 
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 780px) {
   #pic-desc-container {
+    width: 100%;
     flex-direction: column;
+    margin-left: 0%;
+    padding: 0%;
+    padding-bottom: 5px;
+    
   }
 
   #pics {
-    width: 98%;
+    width: 93%;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
   }
 
-  #desc {
+  #main-pic-container{
+    width: 80%;
+  }
+
+  #small-pics-container{
+    flex-direction: column;
+    width: 14%;
+  }
+
+  #small-pic{
     width: 100%;
   }
 
-  #review-spec {
+  #desc {
+    width: 94%;
+  }
+
+    #review{
+    width: 47%;
+  }
+
+  #spec{
+    width: 47%;
+  }
+
+  #spec-head{
+    font-size: 15px;
+  }
+
+  #review-head{
+    font-size: 15px;
+  }
+
+}
+
+
+@media screen and (max-width: 580px) {
+  #pics{
+    flex-direction: column;
+  }
+
+  #small-pics-container{
+    flex-direction: row;
+  }
+
+    #review-spec {
     width: 100%;
     flex-direction: column;
 
@@ -366,10 +462,9 @@
 
   #review {
     width: 95%;
-    padding: 2.5%;
-    /* display: none; */
-    /* justify-content: space-evenly; */
+    padding: 2.5%;   
   }
+
 
   .reviews {
     /* justify-content: space-around; */

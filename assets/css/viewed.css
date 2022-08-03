@@ -1,9 +1,9 @@
-#CONTAINER{
+/* #CONTAINER{
   width: 80%;
   margin-left: 10%;
   margin-top: 0.5em;
   margin-bottom: 1em;
-}
+} */
 
 #viewed-main-container {
   width: 100%;
@@ -126,8 +126,15 @@
   font-weight: bold;
 }
 
+@media screen and (max-width: 1000px) {
+  #CONTAINER{
+    width: 96%;
+    margin-left: 2%;
+  }
+}
 
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 900px) {
      #CONTAINER{
     width: 100%;
     margin-left: 0%;
@@ -144,7 +151,35 @@
   }
 
   #viewed-item {
-    max-width: 40%;
-    min-width: 40%;
+    max-width: 20%;
+    min-width: 20%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+    #viewed-item {
+    max-width: 25%;
+    min-width: 25%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+    #viewed-item {
+    max-width: 28%;
+    min-width: 28%;
+  }
+
+  @media screen and (max-width: 500px) {
+    #viewed-item {
+    max-width: 35%;
+    min-width: 35%;
+  }
+}
+}
+
+@media screen and (max-width: 400px) {
+    #viewed-item {
+    max-width: 50%;
+    min-width: 50%;
   }
 }

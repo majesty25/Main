@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/groups.css" />
     <link rel="stylesheet" href="../font-awsome-icons/css/all.css" />
-    <link rel="icon" href="../font/others/icon.png" type="image/x-icon" />
+    <link rel="icon" href="../font/others/new.png" type="image/x-icon" />
     <link
       rel="stylesheet"
       href="../material-icons/css/materialdesignicons.min.css"
@@ -106,60 +107,11 @@
       </div>
       <!-- <div id="demo" class="demo"> -->
 
-      <div id="demo">
-        <div id="weekly-deal">
-          <div>Flash sales</div>
-          <div id="flash-small" style="color: red; margin-left: 10px">
-            <%- include("flash2") %>
-          </div>
-        </div>
 
-        <div id="items-container">
-          <div id="CONTAINER-BIG">
-            <div id="flash"><%- include('flash3')%></div>
-            <!-- <img style="width: 30%; height: 100%;" src="../font/others/new.png" alt="" srcset=""> -->
-            <button id="view-all">VIEW ALL</button>
-          </div>
-          <div id="CONTAINER">
-            <% Object.keys(items).forEach(key => { var row = items[key]; %>
-            <div id="item-category">
-              <form onsubmit="shew()" action="/detail" method="post">
-                <input type="hidden" name="id" value="<%=row.id%>" />
-                <button id="img-con1">
-                  <img
-                    id="item-category-img"
-                    src="../font/<%=row.pic%>"
-                    alt=""
-                    srcset=""
-                  />
-                </button>
-              </form>
-              <div id="item-name"><%=row.name%></div>
-            </div>
 
-            <%})%>
-          </div>
-          <div id="CONTAINER">
-            <% Object.keys(items2).forEach(key => { var row = items2[key]; %>
-            <div id="item-category">
-              <form onsubmit="shew()" action="/detail" method="post">
-                <input type="hidden" name="id" value="<%=row.id%>" />
-                <button id="img-con1">
-                  <img
-                    id="item-category-img"
-                    src="../font/<%=row.pic%>"
-                    alt=""
-                    srcset=""
-                  />
-                </button>
-              </form>
-              <div id="item-name"><%=row.name%></div>
-            </div>
-
-            <%})%>
-          </div>
-        </div>
-      </div>
+      <%# include("groups") %> 
+      <%- include("banargroup") %> 
+      <%- include("groups") %> 
 
       <div id="demo">
         <div id="weekly-deal">
@@ -259,10 +211,41 @@
           </form>
           <div id="item-name"><%=row.name%></div>
           <div id="prices">
-            <div id="new-price">GH₵ <%=row.price.toFixed(2)%></div>
+            <div id="new-price">GH ₵ <%=row.price.toFixed(2)%></div>
+
+            
+          </div>
+
+          <div id="percent-off">
+           
+            <% if (row.off <= 0) { %> <% }else{ %>
+            <div id="old-price">GH ₵ <%=oldPriceRounded%></div>
+            <% } %>
 
             <% if (row.off <= 0) { %> <% }else{ %>
-            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+            <span class="percent-off">-<%=row.off%>%</span>
+            <% } %>
+          </div>
+        </div>
+
+        <%})%> <% Object.keys(ITEMS).forEach(key => { var row =
+        ITEMS[key].toJSON(); const percentOff = (row.off/100)*row.price; const
+        oldPriceWhole = Math.round((row.price + percentOff) * (10**2)); const
+        oldPriceRounded = oldPriceWhole / (10**2); const total = (row.rate) * 5;
+        const rate = Math.round((row.stars / total) * 5); %>
+        <div id="item">
+          <form onsubmit="shew()" action="/det" method="post">
+            <input type="hidden" name="id" value="<%=row.itemId%>" />
+            <button id="image-btn">
+              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+            </button>
+          </form>
+          <div id="item-name"><%=row.name%></div>
+          <div id="prices">
+            <div id="new-price">GH ₵ <%=row.price.toFixed(2)%></div>
+
+            <% if (row.off <= 0) { %> <% }else{ %>
+            <div id="old-price">GH ₵ <%=oldPriceRounded%></div>
             <% } %>
           </div>
 
@@ -292,43 +275,10 @@
           </form>
           <div id="item-name"><%=row.name%></div>
           <div id="prices">
-            <div id="new-price">GH₵ <%=row.price.toFixed(2)%></div>
+            <div id="new-price">GH ₵ <%=row.price.toFixed(2)%></div>
 
             <% if (row.off <= 0) { %> <% }else{ %>
-            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
-            <% } %>
-          </div>
-
-          <div id="percent-off">
-            <div id="star">
-              <%for(let i = 0; i < rate; i++){ %>&starf;<%}%><%for(let i = 0; i
-              < (5 - rate); i++){ %>&star;<%}%>(<%=row.rate%>)
-            </div>
-
-            <% if (row.off <= 0) { %> <% }else{ %>
-            <span class="percent-off">-<%=row.off%>%</span>
-            <% } %>
-          </div>
-        </div>
-
-        <%})%> <% Object.keys(ITEMS).forEach(key => { var row =
-        ITEMS[key].toJSON(); const percentOff = (row.off/100)*row.price; const
-        oldPriceWhole = Math.round((row.price + percentOff) * (10**2)); const
-        oldPriceRounded = oldPriceWhole / (10**2); const total = (row.rate) * 5;
-        const rate = Math.round((row.stars / total) * 5); %>
-        <div id="item">
-          <form onsubmit="shew()" action="/det" method="post">
-            <input type="hidden" name="id" value="<%=row.itemId%>" />
-            <button id="image-btn">
-              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
-            </button>
-          </form>
-          <div id="item-name"><%=row.name%></div>
-          <div id="prices">
-            <div id="new-price">GH₵ <%=row.price.toFixed(2)%></div>
-
-            <% if (row.off <= 0) { %> <% }else{ %>
-            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+            <div id="old-price">GH ₵ <%=oldPriceRounded%></div>
             <% } %>
           </div>
 
@@ -425,6 +375,9 @@
         </form>
       </div>
 
+      <%- include("groups") %> 
+
+
       <div id="demo">
         <div id="weekly-deal">Top picks</div>
 
@@ -445,12 +398,12 @@
           </form>
           <div id="item-name"><%=row.name%></div>
           <div id="prices">
-            <div id="new-price">GH₵ <%=row.price%></div>
+            <div id="new-price">GH ₵ <%=row.price%></div>
 
             <% if (row.off <= 0) { %>
             <!-- <div id="old-price"></div> -->
             <% }else{ %>
-            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+            <div id="old-price">GH ₵ <%=oldPriceRounded%></div>
             <% } %>
           </div>
 
@@ -482,12 +435,12 @@
           </form>
           <div id="item-name"><%=row.name%></div>
           <div id="prices">
-            <div id="new-price">GH₵ <%=row.price%></div>
+            <div id="new-price">GH ₵ <%=row.price%></div>
 
             <% if (row.off <= 0) { %>
             <!-- <div id="old-price"></div> -->
             <% }else{ %>
-            <div id="old-price">GH₵ <%=oldPriceRounded%></div>
+            <div id="old-price">GH ₵ <%=oldPriceRounded%></div>
             <% } %>
           </div>
 

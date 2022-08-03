@@ -11,6 +11,7 @@ const Items = require("./database/items");
 const Saved = require("./database/saved");
 const Cart = require("./database/cart");
 const Customer = require("./util/classes/User");
+const groups = require("./util/data/groupData");
 const uid = require("./util/classes/uid");
 const Users = require("./database/users");
 // var url ="mongodb+srv://STEPHENNYANKSON:tvvq8KSYSuN4vWXi@cluster0.j5vgn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -148,6 +149,7 @@ app.get("/", async (req, res) => {
     items,
     items2,
     count,
+    groups
   });
 });
 
@@ -279,13 +281,15 @@ app.post("/detail", async (req, res) => {
 
 app.post("/add-cart", async (req, res) => {
   const Id = req.body.id;
+  let variety = req.body.variety
+  // console.log(variety)
   const userId = req.session.userId;
   const customer = new Customer(userId);
   const item = await Cart.findOne({ itemId: Id, userId });
   console.log(item);
   if (item === null) {
     console.log("Null");
-    customer.addCart(Id, 1, "red");
+    customer.addCart(Id, 1, variety);
   } else {
     console.log("Not null");
   }

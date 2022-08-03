@@ -1,0 +1,63 @@
+      <div id="demo">
+        <div id="weekly-deal">
+          <!-- <div>Flash sales</div> -->
+          <div id="flash-small" style="color: red; margin-left: 10px">
+            <%- include("flash2") %>
+          </div>
+        </div>
+
+        <div id="items-container">
+          <div id="CONTAINER-BIG">
+            <div id="banar">
+              <div id="banar-header">FREE SHIPPING</div>
+              <div id="banar-text">Get items as often as you need-shipped free on any order size!</div>
+              
+            </div>
+            
+            <div id="banar-container">              
+              <img id="banar-img" src="../font/62a88d5ce7f0b.png" alt="" srcset="">
+              <!-- <button id="view-all">VIEW ALLkjdiuw weiuiw weuwhq wieuhirweq hhfeiuewr fuiwe</button> -->
+              <div id="view-all">SHOP NOW and enjoy deals up to 70% off</div>
+            </div>
+            
+          </div>
+          <div id="CONTAINER">
+            <% Object.keys(items).forEach(key => { var row = items[key]; %>
+            <div class="item-category">
+              <form onsubmit="shew()" action="/detail" method="post">
+                <input type="hidden" name="id" value="<%=row.id%>" />
+                <button id="img-con1">
+                  <img
+                    id="item-category-img"
+                    src="../font/<%=row.pic%>"
+                    alt=""
+                    srcset=""
+                  />
+                </button>
+              </form>
+              <div id="item-name"><%=row.name%></div>
+            </div>
+
+            <%})%>
+          </div>
+          <div id="CONTAINER">
+            <% Object.keys(items2).forEach(key => { var row = items2[key]; %>
+            <div class="item-category">
+              <form onsubmit="shew()" action="/detail" method="post">
+                <input type="hidden" name="id" value="<%=row.id%>" />
+                <button id="img-con1">
+                  <img
+                    id="item-category-img"
+                    src="../font/<%=row.pic%>"
+                    alt=""
+                    srcset=""
+                  />
+                </button>
+              </form>
+              <div id="item-name"><%=row.name%></div>
+            </div>
+
+            <%})%>
+          </div>
+        </div>
+      </div>
