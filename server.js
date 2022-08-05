@@ -149,14 +149,9 @@ app.get("/", async (req, res) => {
     items,
     items2,
     count,
-    groups
+    groups,
   });
 });
-
-let user = {
-  name: "John",
-  age: 32,
-};
 
 app.post("/", async (req, res) => {
   const name = req.session.username;
@@ -168,27 +163,27 @@ app.post("/", async (req, res) => {
   const itNameLast = itNameArr[itNameArr.length - 1];
   const itNameFirst = itNameArr[0];
 
-  const query1 = `SELECT SUM(quantity) as total FROM cart
-                  WHERE userId = '${userId}'`;
-
-  conn.all(query1, [], (ERR, carts) => {
-    // console.log(carts)
-    conn.all(
-      `SELECT * FROM item WHERE 
-    (category = '${item}') OR name LIKE '%${item}%' OR name LIKE '%${itNameFirst}%' OR name LIKE '%${itNameLast}%'`,
-      async (err, result) => {
-        if (err) throw err;
-        console.log(result);
-        res.render("category", {
-          result,
-          name,
-          id,
-          email,
-          carts,
-        });
-      }
-    );
+  let count;
+  if (userId) {
+    const customer = new Customer(userId);
+    count = await customer.myCarts();
+  }
+  const ITEMS = await Items.find({
+    name: /All/,
   });
+
+  res.render("category", {
+    ITEMS,
+    userId,
+    id,
+    email,
+    item,
+    items,
+    items2,
+    count,
+    groups,
+  });
+ 
 });
 
 app.post("/det", async (req, res) => {
@@ -281,7 +276,7 @@ app.post("/detail", async (req, res) => {
 
 app.post("/add-cart", async (req, res) => {
   const Id = req.body.id;
-  let variety = req.body.variety
+  let variety = req.body.variety;
   // console.log(variety)
   const userId = req.session.userId;
   const customer = new Customer(userId);
