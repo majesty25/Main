@@ -68,6 +68,15 @@
         outline: none;
       }
 
+        select {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        outline: none;
+      }
+
       label {
         margin-bottom: 10px;
         display: block;
@@ -163,12 +172,21 @@
 
                      <div class="col-50">
                     <label for="state">Category</label>
-                    <input
+                    <select name="category" id="state">
+                      <option value="" disabled selected>----Select one----</option>
+                      <option value="">Men's Fassion</option>
+                      <option value="">Men's Fassion</option>
+                      <option value="">Men's Fassion</option>
+                      <option value="">Men's Fassion</option>
+                      <option value="">Men's Fassion</option>
+                      <option value="">Men's Fassion</option>
+                    </select>
+                    <!-- <input
                       type="text"
                       id="state"
                       name="category"
                       placeholder="Beverages"
-                    />
+                    /> -->
                   </div>
                   <div class="col-50">
                     <label for="zip">Price</label>

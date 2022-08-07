@@ -75,59 +75,59 @@ const item = [
   // },
 ];
 
-const items = [
-  {
-    id: 1,
-    name: "name 1",
-    price: 336.0,
-    pic: "lap4.jpg",
-  },
-  {
-    id: 1,
-    name: "name 2",
-    price: 136.0,
-    pic: "shu1.jpg",
-  },
-  {
-    id: 1,
-    name: "name 3",
-    price: 876.0,
-    pic: "56.jpg",
-  },
-  {
-    id: 1,
-    name: "name 1",
-    price: 336,
-    pic: "51.jpg",
-  },
-];
+// const items = [
+//   {
+//     id: 1,
+//     name: "name 1",
+//     price: 336.0,
+//     pic: "lap4.jpg",
+//   },
+//   {
+//     id: 1,
+//     name: "name 2",
+//     price: 136.0,
+//     pic: "shu1.jpg",
+//   },
+//   {
+//     id: 1,
+//     name: "name 3",
+//     price: 876.0,
+//     pic: "56.jpg",
+//   },
+//   {
+//     id: 1,
+//     name: "name 1",
+//     price: 336,
+//     pic: "51.jpg",
+//   },
+// ];
 
-const items2 = [
-  {
-    id: 1,
-    name: "name 1",
-    price: 336.0,
-    pic: "shu2.jpg",
-  },
-  {
-    id: 1,
-    name: "name 2",
-    price: 136.0,
-    pic: "45.jpg",
-  },
-  {
-    id: 1,
-    name: "name 3",
-    price: 876.0,
-    pic: "54.jpg",
-  },
-  {
-    id: 1,
-    name: "name 1",
-    price: 336,
-    pic: "53.jpg",
-  },
-];
+// const items2 = [
+//   {
+//     id: 1,
+//     name: "name 1",
+//     price: 336.0,
+//     pic: "shu2.jpg",
+//   },
+//   {
+//     id: 1,
+//     name: "name 2",
+//     price: 136.0,
+//     pic: "45.jpg",
+//   },
+//   {
+//     id: 1,
+//     name: "name 3",
+//     price: 876.0,
+//     pic: "54.jpg",
+//   },
+//   {
+//     id: 1,
+//     name: "name 1",
+//     price: 336,
+//     pic: "53.jpg",
+//   },
+// ];
 
 app.get("/", async (req, res) => {
   const isUser = req.session.username;
@@ -140,6 +140,8 @@ app.get("/", async (req, res) => {
     count = await customer.myCarts();
   }
   const ITEMS = await Items.find();
+  const items = await Items.find().limit(4);
+  const items2 = await Items.find().limit(4);
   res.render("home", {
     ITEMS,
     userId,
@@ -169,7 +171,7 @@ app.post("/", async (req, res) => {
     count = await customer.myCarts();
   }
   const ITEMS = await Items.find({
-    name: /All/,
+    name: /t\w*f/s,
   });
 
   res.render("category", {
@@ -183,7 +185,6 @@ app.post("/", async (req, res) => {
     count,
     groups,
   });
- 
 });
 
 app.post("/det", async (req, res) => {
