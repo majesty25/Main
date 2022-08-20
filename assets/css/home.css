@@ -613,6 +613,12 @@
     font-size: 14px;
   }
 
+  #item-price{
+    font-weight: normal;
+    font-size: 12px;
+    
+  }
+
   #con {
     width: 22%;
     margin: 4%;

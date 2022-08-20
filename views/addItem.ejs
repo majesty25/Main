@@ -68,6 +68,23 @@
         outline: none;
       }
 
+      textarea{
+        width: 100%;
+        height: 10em;
+        resize: none;
+        outline: none;
+      }
+
+      
+      input[type="file"] {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        outline: none;
+      }
+
         select {
         width: 100%;
         margin-bottom: 20px;
@@ -89,7 +106,7 @@
       }
 
       .btn {
-        background-color: #04aa6d;
+        background-color: #aa0436;
         color: white;
         padding: 12px;
         margin: 10px 0;
@@ -101,7 +118,7 @@
       }
 
       .btn:hover {
-        background-color: #45a049;
+        background-color: #e9650d;
       }
 
       a {
@@ -120,7 +137,7 @@
       /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
       @media (max-width: 800px) {
         .row {
-          flex-direction: column-reverse;
+          flex-direction: column;
         }
         .col-25 {
           margin-bottom: 20px;
@@ -172,21 +189,19 @@
 
                      <div class="col-50">
                     <label for="state">Category</label>
-                    <select name="category" id="state">
+                    <select name="category" id="state" required>
                       <option value="" disabled selected>----Select one----</option>
-                      <option value="">Men's Fassion</option>
-                      <option value="">Men's Fassion</option>
-                      <option value="">Men's Fassion</option>
-                      <option value="">Men's Fassion</option>
-                      <option value="">Men's Fassion</option>
-                      <option value="">Men's Fassion</option>
+                      <option value="Men's Fassion">Men's Fassion</option>
+                      <option value="Women's Fassion">Women's Fassion</option>
+                      <option value="Kid's Fassion">Kid's Fassion</option>
+                      <option value="Kitchen">Kitchen</option>
+                      <option value="Supermarket">Supermarket</option>
+                      <option value="Phones & Accessories">Phones & Accessories</option>
+                      <option value="Computers">Computers</option>
+                      <option value="Home & Office">Home & Office</option>
+                      <option value="Others">Others</option>
                     </select>
-                    <!-- <input
-                      type="text"
-                      id="state"
-                      name="category"
-                      placeholder="Beverages"
-                    /> -->
+                   
                   </div>
                   <div class="col-50">
                     <label for="zip">Price</label>
@@ -240,13 +255,27 @@
 
               <div class="col-50">
                 <h3>Payment</h3>
-                <label for="fname">Accepted Cards</label>
-                <div class="icon-container">
-                  <i class="fa fa-cc-visa" style="color: navy"></i>
-                  <i class="fa fa-cc-amex" style="color: blue"></i>
-                  <i class="fa fa-cc-mastercard" style="color: red"></i>
-                  <i class="fa fa-cc-discover" style="color: orange"></i>
-                </div>
+               <div class="col-50">
+                    <label for="state">Mian picture</label>
+                    <input
+                      type="file"
+                      id="state"
+                      name="name"
+                      placeholder="Coffe"
+                    />
+                  </div>
+
+                  <div class="col-50">
+                    <label for="state">Other pictures</label>
+                    <input
+                      type="file"
+                      id="state"
+                      name="name"
+                      placeholder="Coffe"
+                    />
+                  </div>
+
+                
                 <label for="cname">Description</label>
                 <textarea
                   type="text"
@@ -254,63 +283,13 @@
                   name="description"
                   placeholder="Here goes the detailed description of the item"
                 ></textarea>
-                <!-- <label for="ccnum">Credit card number</label>
-                <input
-                  type="text"
-                  id="ccnum"
-                  name="cardnumber"
-                  placeholder="1111-2222-3333-4444"
-                />
-                <label for="expmonth">Exp Month</label>
-                <input
-                  type="text"
-                  id="expmonth"
-                  name="expmonth"
-                  placeholder="September"
-                />
-                <div class="row">
-                  <div class="col-50">
-                    <label for="expyear">Exp Year</label>
-                    <input
-                      type="text"
-                      id="expyear"
-                      name="expyear"
-                      placeholder="2018"
-                    />
-                  </div>
-                  <div class="col-50">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" name="cvv" placeholder="352" />
-                  </div>
-                </div>
+               
+            <input type="submit" value="Save" class="btn" />
               </div>
-            </div>
-            <label>
-              <input type="checkbox" checked="checked" name="sameadr" />
-              Shipping address same as billing
-            </label> -->
-            <input type="submit" value="Continue to checkout" class="btn" />
           </form>
         </div>
       </div>
-      <!-- <div class="col-25">
-        <div class="container">
-          <h4>
-            Cart
-            <span class="price" style="color: black"
-              ><i class="fa fa-shopping-cart"></i> <b>4</b></span
-            >
-          </h4>
-          <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-          <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-          <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-          <p><a href="#">Product 4</a> <span class="price">$2</span></p>
-          <hr />
-          <p>
-            Total <span class="price" style="color: black"><b>$30</b></span>
-          </p>
-        </div>
-      </div> -->
+     
     </div>
   </body>
 </html>

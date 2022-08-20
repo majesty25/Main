@@ -67,67 +67,10 @@ const item = [
     price: 876.0,
     pic: "56.jpg",
   },
-  // {
-  //   id: 1,
-  //   name: "name 1",
-  //   price: 336,
-  //   pic: "51.jpg",
-  // },
+  
 ];
 
-// const items = [
-//   {
-//     id: 1,
-//     name: "name 1",
-//     price: 336.0,
-//     pic: "lap4.jpg",
-//   },
-//   {
-//     id: 1,
-//     name: "name 2",
-//     price: 136.0,
-//     pic: "shu1.jpg",
-//   },
-//   {
-//     id: 1,
-//     name: "name 3",
-//     price: 876.0,
-//     pic: "56.jpg",
-//   },
-//   {
-//     id: 1,
-//     name: "name 1",
-//     price: 336,
-//     pic: "51.jpg",
-//   },
-// ];
 
-// const items2 = [
-//   {
-//     id: 1,
-//     name: "name 1",
-//     price: 336.0,
-//     pic: "shu2.jpg",
-//   },
-//   {
-//     id: 1,
-//     name: "name 2",
-//     price: 136.0,
-//     pic: "45.jpg",
-//   },
-//   {
-//     id: 1,
-//     name: "name 3",
-//     price: 876.0,
-//     pic: "54.jpg",
-//   },
-//   {
-//     id: 1,
-//     name: "name 1",
-//     price: 336,
-//     pic: "53.jpg",
-//   },
-// ];
 
 app.get("/", async (req, res) => {
   const isUser = req.session.username;
@@ -140,8 +83,38 @@ app.get("/", async (req, res) => {
     count = await customer.myCarts();
   }
   const ITEMS = await Items.find();
+  // const ITEM = await Items.find();
+
   const items = await Items.find().limit(4);
   const items2 = await Items.find().limit(4);
+
+  let m = [] 
+
+  for (i in ITEMS){
+    let x = ITEMS[i]
+    let y = x.name
+    let z = x.price
+    let id = x.itemId
+    let category = x.category
+    let location = x.location
+    let obj = {
+      name : y,
+      price: z,
+      id,
+      category,
+      location
+    }
+    m.push(obj)    
+  }
+
+  
+
+
+  console.table(m)
+
+
+  // console.table(ITEM);
+  // console.log(ITEM)
   res.render("home", {
     ITEMS,
     userId,
@@ -170,8 +143,8 @@ app.post("/", async (req, res) => {
     const customer = new Customer(userId);
     count = await customer.myCarts();
   }
-  const ITEMS = await Items.find({
-    name: /t\w*f/s,
+  const ITEMS = await Items.find({$or: [
+    {category: new RegExp(item, "i")}, {name: new RegExp(itNameFirst, "i")}, {name: new RegExp(itNameLast, "i")}]
   });
 
   res.render("category", {
@@ -179,9 +152,6 @@ app.post("/", async (req, res) => {
     userId,
     id,
     email,
-    item,
-    items,
-    items2,
     count,
     groups,
   });
@@ -190,6 +160,14 @@ app.post("/", async (req, res) => {
 app.post("/det", async (req, res) => {
   const itemId = req.body.id;
   const userId = req.session.userId;
+   const today1 = new Date();
+  const today2 = new Date();
+  const currentDay1 = today1.getDate();
+  const currentDay2 = today2.getDate();
+  today1.setDate(currentDay1 + 5);
+  today2.setDate(currentDay2 + 10);
+  const startDate = `${today1.toDateString().slice(0, 10)}`;
+  const endDate = `${today2.toDateString().slice(0, 10)}`;
   var savedItems = await Saved.findOne({ itemId, userId });
   let count, output, item, items;
   if (userId) {
@@ -205,75 +183,9 @@ app.post("/det", async (req, res) => {
 
   item = await Items.find({ itemId: `${itemId}` });
   items = await Items.find();
-  res.render("details", { item, items, count, output, userId });
+  res.render("details", { item, items, count, output, userId, startDate, endDate });
 });
 
-app.post("/detail", async (req, res) => {
-  const id = await req.body.id;
-  const name = req.session.username;
-  const userId = req.session.userId;
-  const address = req.session.address;
-  const email = req.session.email;
-  const today1 = new Date();
-  const today2 = new Date();
-  const currentDay1 = today1.getDate();
-  const currentDay2 = today2.getDate();
-  today1.setDate(currentDay1 + 3);
-  today2.setDate(currentDay2 + 8);
-  const startDate = `${today1.toDateString().slice(0, 10)}`;
-  const endDate = `${today2.toDateString().slice(0, 10)}`;
-  const shcema = Joi.object({
-    ID: Joi.number().integer().required(),
-  });
-
-  const result = await Items.find({ _id: req.body.id });
-  console.log(result);
-
-  const spec = ["red", "blue"];
-  // const keyFeat = data.specifications.split(",");
-  const keyFeat = ["Fbrication: leather"];
-  // const otherPics = data.otherpics.split(", ");
-  const otherPics = ["5.jpg"];
-
-  Object.keys(result).forEach((key) => {
-    let data = result[key].toJSON();
-    // let variety = data.varieties.split(",");
-    let variety = ["red", "blue"];
-    console.log(variety);
-    if (variety == "default") {
-      res.render("detail", {
-        result,
-        id,
-        spec,
-        keyFeat,
-        otherPics,
-        startDate,
-        endDate,
-        // carts,
-        address,
-        items,
-        email,
-        name,
-      });
-    } else {
-      res.render("detail", {
-        variety,
-        result,
-        id,
-        spec,
-        keyFeat,
-        otherPics,
-        startDate,
-        endDate,
-        // carts,
-        address,
-        items,
-        email,
-        name,
-      });
-    }
-  });
-});
 
 app.post("/add-cart", async (req, res) => {
   const Id = req.body.id;
@@ -530,7 +442,7 @@ app.post("/save", async (req, res) => {
     }
 
     const item = await Items.find({ itemId: `${itemId}` });
-    res.render("details", { item, items, count, output, userId });
+    res.render("details", { item, items, count, output, userId });z
   } else {
     res.redirect("/login");
   }
@@ -626,6 +538,7 @@ app.get("/my-orders", async (req, res) => {
 
 app.get("/add-item", (req, res) => {
   res.render("addItem");
+  
 });
 
 app.post("/add-item", (req, res) => {

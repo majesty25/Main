@@ -5,14 +5,23 @@
             let group = groups[i]
         let pic = group.pictures%>
         <div id="group">
-            <div id="group-head"><%- group.name %> </div>
-            <button id="group-container">
+            <!-- <div id="group-head"><%# group.name %> </div> -->
+            <div id="group-container">
+
                 <% for (i in pic){%>
-                <img id="group-img" src="../font/<%- pic[i] %> " alt="" srcset="">
+                <!-- <div id="img-container"> -->
+                    <button id="group-img-btn">
+                        <img id="group-img" src="../font/<%- pic[i] %> " alt="" srcset="">
+                    </button>
+                    <!-- <div>name</div> -->
+                <!-- </div> -->
+
+
                 <%} %>
 
-            </button>
+            </div>
         </div>
         <%} %>
     </div>
 </div>
+

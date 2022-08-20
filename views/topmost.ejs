@@ -1,106 +1,15 @@
 <div id="topmost-section">
   <div class="category">
-    <div id="cat-head">
+    <div class="cat-head">
       <i
         style="font-size: 24px"
         class="mdi mdi-96px mdi-rotate-0 mdi-view-list"
       ></i>
       <span> CATEGORIES</span>
     </div>
-    <form action="/" method="post" onsubmit="shew()">
-      <input type="hidden" name="cat" value="1" />
-      <button id="cat">
-        <i
-          style="font-size: 20px"
-          class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
-        ></i>
-        Men's Fassion
-      </button>
-    </form>
-    <form action="/" method="post" onsubmit="shew()">
-      <input type="hidden" name="cat" value="2" />
-      <button type="submit" id="cat">
-        <i
-          style="font-size: 20px"
-          class="mdi mdi-96px mdi-rotate-0 mdi-food-takeout-box-outline"
-        ></i
-        >women's Fassion
-      </button>
-    </form>
 
-    <form action="/" method="post" onsubmit="shew()">
-      <input type="hidden" name="cat" value="3" />
-      <button id="cat">
-        <i
-          style="font-size: 20px"
-          class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
-        ></i
-        >Kids
-      </button>
-    </form>
+    <%- include("categoryNav") %> 
 
-    <form action="/" method="post" onsubmit="shew()">
-      <input type="hidden" name="cat" value="3" />
-      <button id="cat">
-        <i
-          style="font-size: 20px"
-          class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
-        ></i
-        >Kitchen
-      </button>
-    </form>
-
-    <form action="/" method="post" onsubmit="shew()">
-      <input type="hidden" name="cat" value="3" />
-      <button id="cat">
-        <i
-          style="font-size: 20px"
-          class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
-        ></i
-        >Supermarket
-      </button>
-    </form>
-
-    <form action="/" method="post" onsubmit="shew()">
-      <input type="hidden" name="cat" value="3" />
-      <button id="cat">
-        <i
-          style="font-size: 20px"
-          class="mdi mdi-96px mdi-rotate-0 mdi-cellphone"
-        ></i
-        >Phones & Accessories
-      </button>
-    </form>
-
-    <form action="/" method="post" onsubmit="shew()">
-      <input type="hidden" name="cat" value="4" />
-      <button id="cat">
-        <i
-          style="font-size: 20px"
-          class="mdi mdi-96px mdi-rotate-0 mdi-desktop-mac"
-        ></i
-        >Computers
-      </button>
-    </form>
-
-    <form action="/" method="post" onsubmit="shew()">
-      <input type="hidden" name="cat" value="5" />
-      <button id="cat">
-        <i
-          style="font-size: 20px"
-          class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"
-        ></i
-        >Home & Office
-      </button>
-    </form>
-
-    <form action="/" method="post" onsubmit="shew()">
-      <input type="hidden" name="cat" value="6" />
-      <button id="cat">
-        <i style="font-size: 20px" class="mdi mdi-alpha-o-box-outline"></i
-        >Others
-      </button>
-    </form>
   </div>
   <div id="grid">
     <div id="long-bar">
@@ -130,7 +39,6 @@
           <em class="mdi mdi-chevron-right-circle"></em>
         </button>
         <div id="super-deals">
-
           <% Object.keys(items2).forEach(key => { var row = items2[key]; %>
           <div id="item-category">
             <form onsubmit="shew()" action="/detail" method="post">
@@ -190,7 +98,7 @@
               <div id="flash-prices-discount">
                 <div id="flash-prices">
                   <div id="flash-new-price">GH₵ 23.00</div>
-                  <div id="flash-old-price">GH₵ 45.00</div>
+                  <!-- <div id="flash-old-price">GH₵ 45.00</div> -->
                 </div>
                 <div id="flash-discount">-45%</div>
               </div>
@@ -218,7 +126,7 @@
               <div id="flash-prices-discount">
                 <div id="flash-prices">
                   <div id="flash-new-price">GH₵ 23.00</div>
-                  <div id="flash-old-price">GH₵ 45.00</div>
+                  <!-- <div id="flash-old-price">GH₵ 45.00</div> -->
                 </div>
                 <div id="flash-discount">-45%</div>
               </div>

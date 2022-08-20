@@ -1,4 +1,4 @@
-.groups{
+.groups {
     width: 98%;
     background-color: rgba(192, 192, 192, 0.342);
     display: inline-flex;
@@ -8,20 +8,20 @@
     margin-bottom: 10px;
 }
 
-#group{
-    width: 32%;
+#group {
+    width: 24%;
     background-color: white;
     margin-bottom: 5px;
     border-radius: 4px;
 }
 
-#group-head{
+#group-head {
     font-size: 14px;
     font-weight: bold;
     text-align: center;
 }
 
-#group-container{
+#group-container {
     width: 100%;
     padding: 5px;
     border: none;
@@ -30,84 +30,105 @@
     justify-content: space-around;
 }
 
-#group-img{
-    /* width: 23%; */
-    height: 4em;
+#img-container {
+    width: 32%;
+
 }
 
-@media screen and (max-width: 1250px){
-    .groups{
+#group-img-btn {
+    width: 100%;
+    /* background-image: url('../font/shu1.jpg'); */
+    background-size: 100% 100%;
+    background-color: white;
+
+    /* height: 16vh; */
+    border: none;
+}
+
+#group-img {
+
+    width: 100%;
+    /* height: 4.5em; */
+}
+
+@media screen and (max-width: 1250px) {
+    .groups {
         width: 100%;
     }
 
-    #group{
-        width: 32%;
+    #group {
+        width: 24%;
     }
 
-    #group-img{
-        height: 4.3em;
+    #group-img {
+        /* height: 4.3em; */
     }
 
-    .last{
+    .last {
         display: none;
     }
 }
 
 
 
-@media screen and (max-width: 1000px){
-    .groups{
+@media screen and (max-width: 1000px) {
+    .groups {
         width: 100%;
     }
 
-     #group{
+    #group {
         width: 48.5%;
     }
 
-    #group-img{
-        height: 3.8em;
-    } 
+    #group-img {
+        /* height: 3.8em; */
+    }
 
-    .last{
+    .last {
         display: block;
     }
 }
 
-@media screen and (max-width: 750px){
-    .groups{
+@media screen and (max-width: 750px) {
+    .groups {
         width: 100%;
     }
 
-     /* #group{
+    /* #group{
         width: 48.5%;
     } */
 
-    #group-img{
-        height: 3.5em;
-    } 
+    #group-img {
+        /* height: 3.5em; */
+    }
 
-    .last{
+    .last {
         display: none;
     }
 }
 
 @media screen and (max-width: 550px) {
-    #group{
+    #group {
         width: 100%;
         border-radius: 0px;
         margin-bottom: 10px;
     }
 
-    #group-img{
-        /* width: 20%; */
-        height: 3.5em;
+    #img-container {
+        width: 25%;
     }
 
-    .groups{
+
+    #group-img {
+        /* width: 20%; */
+        /* height: 3.8em; */
+    }
+
+    .groups {
         background-color: white;
     }
 
-    .last{
+    .last {
         display: block;
     }
 

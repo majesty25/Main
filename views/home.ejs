@@ -107,11 +107,8 @@
       </div>
       <!-- <div id="demo" class="demo"> -->
 
-
-
-      <%# include("groups") %> 
-      <%- include("banargroup") %> 
-      <%- include("groups") %> 
+      <%# include("groups") %> <%- include("banargroup") %> <%-
+      include("groups") %>
 
       <div id="demo">
         <div id="weekly-deal">
@@ -212,17 +209,12 @@
           <div id="item-name"><%=row.name%></div>
           <div id="prices">
             <div id="new-price">GH ₵ <%=row.price.toFixed(2)%></div>
-
-            
           </div>
 
           <div id="percent-off">
-           
             <% if (row.off <= 0) { %> <% }else{ %>
             <div id="old-price">GH ₵ <%=oldPriceRounded%></div>
-            <% } %>
-
-            <% if (row.off <= 0) { %> <% }else{ %>
+            <% } %> <% if (row.off <= 0) { %> <% }else{ %>
             <span class="percent-off">-<%=row.off%>%</span>
             <% } %>
           </div>
@@ -375,8 +367,7 @@
         </form>
       </div>
 
-      <%- include("groups") %> 
-
+      <%- include("groups") %>
 
       <div id="demo">
         <div id="weekly-deal">Top picks</div>

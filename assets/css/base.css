@@ -94,6 +94,24 @@ li {
 
 #cat-head {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: orange; */
+  background: linear-gradient(to right, orangered, orange, orangered);
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  width: 100%;
+  font-size: 15px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 0%;
+
+}
+
+.cat-head{
+  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
@@ -103,23 +121,26 @@ li {
   width: 100%;
   font-size: 19px;
   padding-top: 2px;
-  padding-bottom: 10px;
-  margin-top: -0px;
-  padding-left: 0%;
+}
+
+.cat-icon{
+  font-size: 20px;
+  margin-right: 0.5em;
+  color: gray;
 }
 
 .sidenav {
   height: 100%;
-  width: 0;
+  width: 0%;
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   top: 0;
   left: 0;
   background-color: rgb(255, 255, 255);
   overflow-y: scroll;
   overflow-x: hidden;
-  transition: 0.1s;
-  padding-top: 30px;
+  transition: 0.5s;
+  padding-top: 0px;
   margin-bottom: 70px;
   margin-top: 0px;
 }
@@ -133,7 +154,7 @@ li {
 #greeting {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px silver solid;
+  /* border-bottom: 1px silver solid; */
   padding-bottom: 10px;
   /* align-items: center; */
 }
@@ -141,8 +162,8 @@ li {
 #user-greeting {
   font-size: 15px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: bold;
-  margin-left: 5%;
+  /* font-weight: bold; */
+  margin-left: 1%;
   margin-top: 5px;
 }
 
@@ -160,6 +181,9 @@ li {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin-left: 100%;
+  /* font-weight: bold; */
+  color: rgb(255, 255, 255);
 }
 
 .sidenav a:hover {
@@ -242,7 +266,7 @@ li {
   /* background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226)); */
 }
 
-#info-box{
+#info-box {
   height: 2.3em;
   width: 32%;
   display: inline-flex;
@@ -252,13 +276,13 @@ li {
   background-color: rgba(214, 211, 211, 0.356);
 }
 
-#info-icon{
+#info-icon {
   color: orangered;
   font-size: 25px;
   margin-right: 5px;
 }
 
-#info-text{
+#info-text {
   font-size: 16px;
   font-weight: bold;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -348,7 +372,7 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-   background: linear-gradient(to right,rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
+  background: linear-gradient(to right, rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
   padding: 1%;
 }
 
@@ -468,7 +492,7 @@ li {
   text-decoration: line-through;
 }
 
-#flash-discount {  
+#flash-discount {
   border-top-left-radius: 7px;
   border-bottom-right-radius: 3px;
   font-size: 12px;
@@ -482,7 +506,7 @@ li {
     display: none;
   }
 
-  #grid{
+  #grid {
     width: 100%
   }
 }
@@ -529,12 +553,13 @@ li {
     /* display: none; */
   }
 
+  /* 
   #cat-head {
     font-size: 15px;
     margin-top: 10px;
     padding-left: 5%;
     color: orangered;
-  }
+  } */
 
   #cat {
     padding-left: 5%;
@@ -562,15 +587,14 @@ li {
     padding: 0em;
     border-radius: 0px;
     margin-left: 0%;
-    background: linear-gradient(to bottom,rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
+    background: linear-gradient(to bottom, rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
   }
 
   #super-deals {
     margin-bottom: 1em;
   }
 
-  #view-more {
-  }
+  #view-more {}
 
   #long-bar {
     /* display: none; */
@@ -581,7 +605,7 @@ li {
 
   }
 
-  #info-box{
+  #info-box {
     width: 96%;
     height: 30px;
     padding: 2%;
@@ -591,6 +615,6 @@ li {
   #big-right {
     /* display: none; */
     width: 98%;
-    background: linear-gradient(to bottom,rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
+    background: linear-gradient(to bottom, rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
   }
 }
