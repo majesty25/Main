@@ -60,11 +60,19 @@
 </header>
 
 <div id="pop" onmouseover="showAccount()" onmouseout="hideAccount()">
+
+  <form onsubmit="shew()" action="/account" method="get">
+    <button type="submit" id="user-btn">
+      <i style="margin-right: 5px" class="mdi mdi-wallet-outline"></i> Prepaid: 0.00
+    </button>
+  </form>
+
   <form onsubmit="shew()" action="/account" method="get">
     <button type="submit" id="user-btn">
       <i style="margin-right: 5px" class="mdi mdi-account-outline"></i> Account
     </button>
   </form>
+
   <form onsubmit="shew()" action="/my-orders" method="get">
     <button id="user-btn">
       <i style="margin-right: 5px" class="mdi mdi-cart-arrow-down"></i> My

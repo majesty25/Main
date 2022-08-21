@@ -39,6 +39,10 @@ sup {
   /* margin-bottom: -0.3em; */
 }
 
+button{
+  outline: none;
+}
+
 #open-nav {
   margin: 10px;
   margin-left: -10px;
@@ -92,13 +96,18 @@ li {
   list-style: none;
 }
 
+a{
+  outline: none;
+}
+
 #cat-head {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  /* background-color: orange; */
-  background: linear-gradient(to right, orangered, orange, orangered);
+  /* justify-content: center; */
+  background-color: rgb(255, 255, 255);
+  border-bottom: 1px silver solid;
+  /* background: linear-gradient(to right, orangered, orange, orangered); */
   color: white;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
@@ -139,7 +148,7 @@ li {
   background-color: rgb(255, 255, 255);
   overflow-y: scroll;
   overflow-x: hidden;
-  transition: 0.5s;
+  transition: 0.1s;
   padding-top: 0px;
   margin-bottom: 70px;
   margin-top: 0px;
@@ -183,7 +192,7 @@ li {
   justify-content: space-between;
   margin-left: 100%;
   /* font-weight: bold; */
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
 }
 
 .sidenav a:hover {
@@ -193,7 +202,7 @@ li {
 .sidenav .closebtn {
   position: absolute;
   top: 0;
-  right: 50px;
+  right: 10px;
   font-size: 36px;
   margin-left: 20px;
 }
@@ -240,12 +249,17 @@ li {
 }
 
 #search {
-  width: 1.6em;
+  /* width: 1.6em; */
+  padding-left: 6px;
+  padding-right: 6px;
   height: auto;
   background-color: rgba(255, 68, 0, 0.727);
   color: white;
   border: none;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #grid {
@@ -297,7 +311,7 @@ li {
 
 #big-left {
   width: 40%;
-  /* padding: 1em; */
+  padding-bottom: 5px;
   border-radius: 0px;
   background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226));
   /* background-color: rgba(218, 28, 107, 0.959); */
@@ -411,6 +425,7 @@ li {
   margin-top: 0.5em;
   border-radius: 5px;
   display: flex;
+  padding-bottom: 5px;
   flex-direction: column;
   background-color: white;
 }
@@ -493,12 +508,12 @@ li {
 }
 
 #flash-discount {
-  border-top-left-radius: 7px;
-  border-bottom-right-radius: 3px;
-  font-size: 12px;
-  color: white;
+  /* border-top-left-radius: 7px;
+  border-bottom-right-radius: 3px; */
+  font-size: 14px;
+  color: orangered;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: sienna;
+  background-color: rgb(255, 255, 255);
 }
 
 @media screen and (max-width: 1000px) {
@@ -597,8 +612,8 @@ li {
   #view-more {}
 
   #long-bar {
-    /* display: none; */
-    display: flex;
+    display: none;
+    /* display: flex; */
     flex-direction: column;
     width: 100%;
     height: auto;
@@ -616,5 +631,11 @@ li {
     /* display: none; */
     width: 98%;
     background: linear-gradient(to bottom, rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
+  }
+
+  #item-price{
+    font-size: 16px;
+    font-weight: normal;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
 }

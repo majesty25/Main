@@ -73,10 +73,11 @@ a{
 }
 
 #pop{
-  width: 120px;
+  width: auto;
   height: auto;
   background-color: red;
   position: fixed;
+  padding: 5px;
   right: 1%;
   top: 7%;
   display: none;

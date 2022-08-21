@@ -41,8 +41,8 @@
         <div id="super-deals">
           <% Object.keys(items2).forEach(key => { var row = items2[key]; %>
           <div id="item-category">
-            <form onsubmit="shew()" action="/detail" method="post">
-              <input type="hidden" name="id" value="<%=row.id%>" />
+            <form onsubmit="shew()" action="/det" method="post">
+              <input type="hidden" name="id" value="<%=row.itemId%>" />
               <button id="img-con1">
                 <img
                   id="item-category-img"

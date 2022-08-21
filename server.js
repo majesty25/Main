@@ -90,7 +90,7 @@ app.get("/", async (req, res) => {
 
   let m = [] 
 
-  for (i in ITEMS){
+  for (let i in ITEMS){
     let x = ITEMS[i]
     let y = x.name
     let z = x.price
@@ -160,7 +160,7 @@ app.post("/", async (req, res) => {
 app.post("/det", async (req, res) => {
   const itemId = req.body.id;
   const userId = req.session.userId;
-   const today1 = new Date();
+  const today1 = new Date();
   const today2 = new Date();
   const currentDay1 = today1.getDate();
   const currentDay2 = today2.getDate();
@@ -426,6 +426,14 @@ app.post("/save", async (req, res) => {
   if (req.session.userId) {
     const userId = req.session.userId;
     const itemId = req.body.id;
+    const today1 = new Date();
+    const today2 = new Date();
+    const currentDay1 = today1.getDate();
+    const currentDay2 = today2.getDate();
+    today1.setDate(currentDay1 + 5);
+    today2.setDate(currentDay2 + 10);
+    const startDate = `${today1.toDateString().slice(0, 10)}`;
+    const endDate = `${today2.toDateString().slice(0, 10)}`;
     var savedItems = await Saved.findOne({ itemId, userId });
     const items = await Items.find();
     let count;
@@ -442,7 +450,15 @@ app.post("/save", async (req, res) => {
     }
 
     const item = await Items.find({ itemId: `${itemId}` });
-    res.render("details", { item, items, count, output, userId });z
+    res.render("details", {
+      item,
+      items,
+      count,
+      output,
+      userId,
+      startDate,
+      endDate,
+    });
   } else {
     res.redirect("/login");
   }

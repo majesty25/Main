@@ -262,6 +262,7 @@
 
 #image-btn {
   width: 100%;
+  outline: none;
   min-height: 160px;
   border: none;
   padding: 0px;
@@ -614,7 +615,7 @@
   }
 
   #item-price{
-    font-weight: normal;
+    /* font-weight: normal; */
     font-size: 12px;
     
   }
@@ -702,7 +703,7 @@
 
   #new-price {
     font-size: 14px;
-    font-weight: normal;
+    /* font-weight: normal; */
     margin-right: 10px;
   }
 

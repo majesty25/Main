@@ -17,11 +17,20 @@ summary{
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: orangered;
-    margin: 10px ;
+    /* margin-left: 2%; */
 }
 
 #content{
-    width: 100%;
+    width: 98%;
     display: flex;
-    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18px;
+    margin-left: 2%;
+}
+
+@media screen and (max-width: 600px) {
+    #container{
+        width: 100%;
+        margin: 0%;
+    }
 }
