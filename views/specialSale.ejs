@@ -1,0 +1,58 @@
+<div id="big-right">
+
+        <div id="bottom">
+          <div id="bottom-head">
+            <div id="flash-sale-lable">Flash sales</div>
+            <div id="flash-sale-timmer"><%- include("flash2") %></div>
+          </div>
+          <div class="bottom-container">
+            <% for (i in item){ let flashItem = item[i]; %>
+            <div id="flash-items">
+              <button id="flash-pic">
+                <img
+                  id="flash-img"
+                  src="../font/<%=flashItem.pic%>"
+                  alt=""
+                  srcset=""
+                />
+              </button>
+              <div id="flash-prices-discount">
+                <div id="flash-prices">
+                  <div id="flash-new-price">GH₵ 23.00</div>
+                  <!-- <div id="flash-old-price">GH₵ 45.00</div> -->
+                </div>
+                <!-- <div id="flash-discount">-45%</div> -->
+              </div>
+            </div>
+            <%} %>
+          </div>
+        </div>
+
+        <div id="bottom">
+          <div id="bottom-head">
+            <div id="flash-sale-lable">Special offer</div>
+            <!-- <div id="flash-sale-timmer"></div> -->
+          </div>
+          <div class="bottom-container">
+            <% for (i in item){ let flashItem = item[i]; %>
+            <div id="flash-items">
+              <button id="flash-pic">
+                <img
+                  id="flash-img"
+                  src="../font/<%=flashItem.pic%>"
+                  alt=""
+                  srcset=""
+                />
+              </button>
+              <div id="flash-prices-discount">
+                <div id="flash-prices">
+                  <div id="flash-new-price">GH₵ 23.00</div>
+                  <!-- <div id="flash-old-price">GH₵ 45.00</div> -->
+                </div>
+                <div id="flash-discount">-45%</div>
+              </div>
+            </div>
+            <%} %>
+          </div>
+        </div>
+      </div>

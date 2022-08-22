@@ -31,6 +31,8 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+app.use(cookieParser());
 app.set("view engine", "ejs");
 app.use(cookieParser());
 
@@ -61,19 +63,18 @@ const item = [
     price: 136.0,
     pic: "shu1.jpg",
   },
-  {
-    id: 1,
-    name: "name 3",
-    price: 876.0,
-    pic: "56.jpg",
-  },
-  
+  // {
+  //   id: 1,
+  //   name: "name 3",
+  //   price: 876.0,
+  //   pic: "56.jpg",
+  // },
 ];
 
-
-
 app.get("/", async (req, res) => {
-  const isUser = req.session.username;
+  let cookies = req.cookies;
+  req.session.userId = cookies.id;
+  req.session.email = cookies.email;  
   const id = req.session.ID;
   const userId = req.session.userId;
   const email = req.session.email;
@@ -81,40 +82,32 @@ app.get("/", async (req, res) => {
   if (userId) {
     const customer = new Customer(userId);
     count = await customer.myCarts();
+    var isUser = await req.session.userId;
   }
   const ITEMS = await Items.find();
-  // const ITEM = await Items.find();
-
   const items = await Items.find().limit(4);
   const items2 = await Items.find().limit(4);
 
-  let m = [] 
+  let m = [];
 
-  for (let i in ITEMS){
-    let x = ITEMS[i]
-    let y = x.name
-    let z = x.price
-    let id = x.itemId
-    let category = x.category
-    let location = x.location
+  for (let i in ITEMS) {
+    let x = ITEMS[i];
+    let y = x.name;
+    let z = x.price;
+    let id = x.itemId;
+    let category = x.category;
+    let location = x.location;
     let obj = {
-      name : y,
+      name: y,
       price: z,
       id,
       category,
-      location
-    }
-    m.push(obj)    
+      location,
+    };
+    m.push(obj);
   }
+  console.table(m);
 
-  
-
-
-  console.table(m)
-
-
-  // console.table(ITEM);
-  // console.log(ITEM)
   res.render("home", {
     ITEMS,
     userId,
@@ -143,8 +136,12 @@ app.post("/", async (req, res) => {
     const customer = new Customer(userId);
     count = await customer.myCarts();
   }
-  const ITEMS = await Items.find({$or: [
-    {category: new RegExp(item, "i")}, {name: new RegExp(itNameFirst, "i")}, {name: new RegExp(itNameLast, "i")}]
+  const ITEMS = await Items.find({
+    $or: [
+      { category: new RegExp(item, "i") },
+      { name: new RegExp(itNameFirst, "i") },
+      { name: new RegExp(itNameLast, "i") },
+    ],
   });
 
   res.render("category", {
@@ -152,6 +149,56 @@ app.post("/", async (req, res) => {
     userId,
     id,
     email,
+    count,
+    groups,
+  });
+});
+
+app.get("/food/:id", async (req, res) => {
+  const isUser = req.session.username;
+  const id = req.session.ID;
+  const ID = req.params.id;
+  const userId = req.session.userId;
+  const email = req.session.email;
+  let count;
+  console.log(ID);
+  if (userId) {
+    const customer = new Customer(userId);
+    count = await customer.myCarts();
+  }
+  // const ITEMS = await Items.find({ itemId: ID });
+  const ITEMS = await Items.find();
+  const items = await Items.find().limit(4);
+  const items2 = await Items.find().limit(4);
+
+  let m = [];
+
+  for (let i in ITEMS) {
+    let x = ITEMS[i];
+    let y = x.name;
+    let z = x.price;
+    let id = x.itemId;
+    let category = x.category;
+    let location = x.location;
+    let obj = {
+      name: y,
+      price: z,
+      id,
+      category,
+      location,
+    };
+    m.push(obj);
+  }
+  console.table(m);
+
+  res.render("food", {
+    ITEMS,
+    userId,
+    id,
+    email,
+    item,
+    items,
+    items2,
     count,
     groups,
   });
@@ -183,9 +230,16 @@ app.post("/det", async (req, res) => {
 
   item = await Items.find({ itemId: `${itemId}` });
   items = await Items.find();
-  res.render("details", { item, items, count, output, userId, startDate, endDate });
+  res.render("details", {
+    item,
+    items,
+    count,
+    output,
+    userId,
+    startDate,
+    endDate,
+  });
 });
-
 
 app.post("/add-cart", async (req, res) => {
   const Id = req.body.id;
@@ -273,6 +327,8 @@ app.get("/signup", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
+  res.clearCookie("id");
+  res.clearCookie("email");
   req.session.destroy((err) => {
     if (err) throw err;
     res.redirect("/");
@@ -295,10 +351,10 @@ app.get("/account", async (req, res) => {
 });
 
 app.get("/orders", async (req, res) => {
-  const name = req.session.username;
+  // const isUser = req.session.userId;
   const userId = req.session.userId;
 
-  if (userId) {
+  if (req.session.userId) {
     const customer = new Customer(userId);
     const carts = await customer.placeOrder();
     res.redirect("/my-orders");
@@ -315,6 +371,8 @@ app.post("/dashboard", async (req, res) => {
   const body = req.body;
   const email = body.email;
   const password = body.password;
+  let today = new Date();
+  let currentDay = today.getDate();
   const customer = new Customer(email);
   const msg = await customer.login(password);
   if (msg[1] === true) {
@@ -323,6 +381,18 @@ app.post("/dashboard", async (req, res) => {
       const USER = user[i];
       req.session.userId = USER.userId;
       req.session.email = USER.email;
+      let userID = USER.userId;
+      let userEmail = USER.email;
+      res.cookie("email", userEmail, {
+        httpOnly: true,
+        maxAge: 900000000000,
+        // signed: true,
+      });
+      res.cookie("id", userID, {
+        httpOnly: true,
+        maxAge: 900000000000,
+      });
+
       req.session.username = USER.firstName + " " + USER.lastName;
     }
   } else {
@@ -339,10 +409,10 @@ app.get("/dashboard", (req, res) => {
 });
 
 app.get("/cart", async (req, res) => {
-  const name = req.session.username;
+  const isUser = req.session.userId;
   const email = req.session.email;
   const userId = req.session.userId;
-  if (req.session.username) {
+  if (isUser) {
     const customer = new Customer(userId);
     let count;
     count = await customer.myCarts();
@@ -378,11 +448,11 @@ app.get("/cart", async (req, res) => {
 });
 
 app.post("/cart-one", async (req, res) => {
-  const name = req.session.username;
+  const isUser = req.session.userId;
   const email = req.session.email;
   const userId = req.session.userId;
 
-  if (req.session.username) {
+  if (isUser) {
     const customer = new Customer(userId);
     let count;
     count = await customer.myCarts();
@@ -466,8 +536,8 @@ app.post("/save", async (req, res) => {
 
 app.get("/saved", async (req, res) => {
   const userId = req.session.userId;
-  if (req.session.username) {
-    const customer = new Customer(userId);
+  if (req.session.userId) {
+    // const customer = new Customer(userId);
     let count;
     const items = await Items.find();
     if (userId) {
@@ -508,10 +578,10 @@ app.get("/my-carts", (req, res) => {
 });
 
 app.get("/my-orders", async (req, res) => {
-  const name = req.session.username;
-  const email = req.session.email;
-  const userId = req.session.userId;
-  if (req.session.username) {
+  const isUser  = req.session.userId;
+  const userId  = req.session.userId;
+  const email = req.session.email; 
+  if (isUser) {
     const customer = new Customer(userId);
     let count, check;
     count = await customer.myCarts();
@@ -554,7 +624,6 @@ app.get("/my-orders", async (req, res) => {
 
 app.get("/add-item", (req, res) => {
   res.render("addItem");
-  
 });
 
 app.post("/add-item", (req, res) => {

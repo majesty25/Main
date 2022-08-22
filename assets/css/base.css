@@ -39,7 +39,7 @@ sup {
   /* margin-bottom: -0.3em; */
 }
 
-button{
+button {
   outline: none;
 }
 
@@ -96,7 +96,7 @@ li {
   list-style: none;
 }
 
-a{
+a {
   outline: none;
 }
 
@@ -116,10 +116,9 @@ a{
   padding-top: 20px;
   padding-bottom: 10px;
   padding-left: 0%;
-
 }
 
-.cat-head{
+.cat-head {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -132,7 +131,7 @@ a{
   padding-top: 2px;
 }
 
-.cat-icon{
+.cat-icon {
   font-size: 20px;
   margin-right: 0.5em;
   color: gray;
@@ -249,14 +248,14 @@ a{
 }
 
 #search {
-  /* width: 1.6em; */
-  padding-left: 6px;
-  padding-right: 6px;
-  height: auto;
+  width: 1.4em;
+  /* padding-left: 6px;
+  padding-right: 6px; */
+  height: 1.4em;
   background-color: rgba(255, 68, 0, 0.727);
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -299,22 +298,30 @@ a{
 #info-text {
   font-size: 16px;
   font-weight: bold;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #big-container {
   width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: stretch;
+  justify-content: space-around;
+  background-color: white;
+  /* background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226)); */
 }
 
 #big-left {
-  width: 40%;
-  padding-bottom: 5px;
+  width: 54%;
+  padding-left: 1%;
+  /* padding-bottom: 5px; */
   border-radius: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
   background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226));
-  /* background-color: rgba(218, 28, 107, 0.959); */
+  /* background-color: rgba(255, 255, 255, 0.959); */
 }
 
 #message {
@@ -326,7 +333,7 @@ a{
   margin-bottom: 1em;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   /* background-color: rgba(235, 11, 104, 0.678); */
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 #welcome-message {
@@ -338,8 +345,8 @@ a{
 }
 
 #view-more {
-  width: 92%;
-  margin-left: 4%;
+  width: 100%;
+  /* margin-left: 4%; */
   height: 2.4em;
   border: none;
   display: flex;
@@ -348,16 +355,16 @@ a{
   justify-content: center;
   color: white;
   /* border-radius: 5px; */
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  /* border-top-left-radius: 5px;
+  border-top-right-radius: 5px; */
   margin-bottom: 0em;
   background-color: rgb(250, 212, 154);
 }
 
 #super-deals {
-  width: 92%;
+  width: 100%;
   height: auto;
-  margin-left: 4%;
+  /* margin-left: 4%; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -365,8 +372,8 @@ a{
   /* border-radius: 5px; */
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  padding-top: 0.5em;
-  padding-bottom: 0.2em;
+  /* padding-top: 0.5em;
+  padding-bottom: 0.2em; */
   background-color: white;
 }
 
@@ -381,29 +388,36 @@ a{
 }
 
 #big-right {
-  width: 59%;
+  width: 43%;
   height: auto;
   display: flex;
+  align-items: stretch;
   flex-direction: column;
   justify-content: space-between;
-  background: linear-gradient(to right, rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
+  background: linear-gradient(
+    to right,
+    rgb(216, 143, 226),
+    rgba(218, 28, 107),
+    rgb(216, 143, 226)
+  );
   padding: 1%;
 }
 
 #top {
   width: 100%;
-  height: 10em;
-  /* display: flex; */
-  display: none;
+  /* height: 10em; */
+  display: flex;
+  /* display: none; */
   flex-direction: row;
+  align-items: stretch;
   justify-content: space-between;
   /* background-color: white; */
 }
 
 .top {
-  /* width: 49%; */
-  height: 10em;
-  border-radius: 5px;
+  /* width: 100%; */
+  /* height: 11em; */
+  /* border-radius: 5px; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -411,8 +425,10 @@ a{
 }
 
 .top-left {
-  width: 60%;
-  background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226));
+  width: 100%;
+  background-color: white;
+  padding: 5px;
+  /* background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226)); */
 }
 
 .top-right {
@@ -444,8 +460,7 @@ a{
 
 #flash-sale-lable {
   font-size: 18px;
-  font-family: candara, "Segoe UI", Tahoma, Geneva,
-    Verdana, sans-serif;
+  font-family: candara, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-weight: bold;
 }
 
@@ -522,7 +537,7 @@ a{
   }
 
   #grid {
-    width: 100%
+    width: 100%;
   }
 }
 
@@ -595,6 +610,8 @@ a{
 
   #big-container {
     flex-direction: column;
+    background-color: white;
+    padding: 0%;
   }
 
   #big-left {
@@ -602,14 +619,15 @@ a{
     padding: 0em;
     border-radius: 0px;
     margin-left: 0%;
-    background: linear-gradient(to bottom, rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
+    /* background: linear-gradient(to bottom, rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226)); */
   }
 
   #super-deals {
-    margin-bottom: 1em;
+    /* margin-bottom: 1em; */
   }
 
-  #view-more {}
+  #view-more {
+  }
 
   #long-bar {
     display: none;
@@ -617,7 +635,6 @@ a{
     flex-direction: column;
     width: 100%;
     height: auto;
-
   }
 
   #info-box {
@@ -629,13 +646,15 @@ a{
 
   #big-right {
     /* display: none; */
-    width: 98%;
-    background: linear-gradient(to bottom, rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
+    width: 100%;
+    padding: 0%;
+    background-color: white;
+    /* background: linear-gradient(to bottom, rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226)); */
   }
 
-  #item-price{
+  #item-price {
     font-size: 16px;
     font-weight: normal;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 }

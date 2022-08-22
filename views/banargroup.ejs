@@ -1,11 +1,4 @@
 <div id="demo">
-  <div id="weekly-deal">
-    <!-- <div>Flash sales</div> -->
-    <div id="flash-small" style="color: red; margin-left: 10px">
-      <%- include("flash2") %>
-    </div>
-  </div>
-
   <div id="items-container">
     <div id="CONTAINER-BIG">
       <div id="banar">
@@ -43,7 +36,7 @@
     <div id="CONTAINER">
       <% Object.keys(items2).forEach(key => { var row = items2[key]; %>
       <div class="item-category">
-        <form onsubmit="shew()" action="/detail" method="post">
+        <form onsubmit="shew()" action="/det" method="post">
           <input type="hidden" name="id" value="<%=row.itemId%>" />
           <button id="img-con1">
             <img

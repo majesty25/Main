@@ -1,0 +1,267 @@
+#grid {
+  width: 73%;
+  display: flex;
+  flex-direction: column;
+}
+
+#long-bar {
+  width: 100%;
+  height: 3em;
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+  margin-bottom: 0.5em;
+  background-color: rgb(255, 255, 255);
+  /* background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226)); */
+}
+
+#info-box {
+  height: 2.3em;
+  width: 32%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: rgba(214, 211, 211, 0.356);
+}
+
+#info-icon {
+  color: orangered;
+  font-size: 25px;
+  margin-right: 5px;
+}
+
+#info-text {
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#big-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-around;
+  background-color: white;
+  /* background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226)); */
+}
+
+#big-left {
+  width: 54%;
+  padding-left: 1%;
+  /* padding-bottom: 5px; */
+  border-radius: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+    background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226));
+  /* background-color: rgba(255, 255, 255, 0.959); */
+}
+
+#message {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  margin-bottom: 1em;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* background-color: rgba(235, 11, 104, 0.678); */
+  /* border-radius: 5px; */
+}
+
+#welcome-message {
+  font-size: 15px;
+}
+
+#discount-message {
+  font-size: 13px;
+}
+
+#view-more {
+  width: 100%;
+  /* margin-left: 4%; */
+  height: 2.4em;
+  border: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  /* border-radius: 5px; */
+  /* border-top-left-radius: 5px;
+  border-top-right-radius: 5px; */
+  margin-bottom: 0em;
+  background-color: rgb(250, 212, 154);
+}
+
+#super-deals {
+  width: 100%;
+  height: auto;
+  /* margin-left: 4%; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  /* border-radius: 5px; */
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  /* padding-top: 0.5em;
+  padding-bottom: 0.2em; */
+  background-color: white;
+}
+
+#super-deal-price {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-right: 0px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+}
+
+#big-right {
+  width: 43%;
+  height: auto;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(to right, rgb(216, 143, 226), rgba(218, 28, 107), rgb(216, 143, 226));
+  padding: 1%;
+}
+
+#top {
+  width: 100%;
+  /* height: 10em; */
+  display: flex;
+  /* display: none; */
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  /* background-color: white; */
+}
+
+.top {
+  /* width: 100%; */
+  /* height: 11em; */
+  /* border-radius: 5px; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgb(255, 255, 255);
+}
+
+.top-left {
+  width: 100%;
+  background-color: white;
+  padding: 5px;
+  /* background: linear-gradient(to right, rgba(218, 28, 107), rgb(216, 143, 226)); */
+}
+
+.top-right {
+  width: 38%;
+}
+
+#bottom {
+  width: 100%;
+  height: auto;
+  margin-top: 0.5em;
+  border-radius: 5px;
+  display: flex;
+  padding-bottom: 5px;
+  flex-direction: column;
+  background-color: white;
+}
+
+#bottom-head {
+  width: 100%;
+  height: 2em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  justify-content: space-around;
+  /* background-color: blue; */
+}
+
+
+
+#flash-sale-lable {
+  font-size: 18px;
+  font-family: candara, "Segoe UI", Tahoma, Geneva,
+    Verdana, sans-serif;
+  font-weight: bold;
+}
+
+#flash-sale-timmer {
+  font-size: 17px;
+  font-weight: bold;
+  color: orangered;
+}
+
+.bottom-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#flash-items {
+  width: 32%;
+  display: flex;
+  border: none;
+  background-color: white;
+  flex-direction: column;
+}
+
+#flash-pic {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: none;
+  background-color: white;
+}
+
+#flash-img {
+  width: 90%;
+}
+
+#flash-prices-discount {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 0.3em;
+}
+
+#flash-prices {
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#flash-new-price {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#flash-old-price {
+  font-size: 12px;
+  color: silver;
+  text-decoration: line-through;
+}
+
+#flash-discount {
+  /* border-top-left-radius: 7px;
+  border-bottom-right-radius: 3px; */
+  font-size: 14px;
+  color: orangered;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(255, 255, 255);
+}
