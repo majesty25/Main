@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/food.css" />   
@@ -21,7 +22,7 @@
     <title>Document</title>
   </head>
 
-  <body oncontextmenu="return false">
+  <body oncontextmenu="return false" style="background-color: orangered;">
     <div id="header-container"><%- include('header') %></div>
 
     <!-- MAIN CONTAINER: THIS CONTAIN ALL THE BODY CONTENT -->
@@ -414,7 +415,7 @@
               <!-- <div id="bbb">
             <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
           </div>           -->
-              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+              <img id="item-img" src="../font/1.jpg" data-src="../font/<%=row.pic%>" alt="" srcset="" />
             </button>
           </form>
           <div id="item-name"><%=row.name%></div>
@@ -450,3 +451,4 @@
 </html>
 
 <script src="../js/slideshow.js"></script>
+<script src="../js/demo.js"></script>

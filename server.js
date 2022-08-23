@@ -154,7 +154,7 @@ app.post("/", async (req, res) => {
   });
 });
 
-app.get("/food/:id", async (req, res) => {
+app.get("/food", async (req, res) => {
   const isUser = req.session.username;
   const id = req.session.ID;
   const ID = req.params.id;
@@ -171,25 +171,35 @@ app.get("/food/:id", async (req, res) => {
   const items = await Items.find().limit(4);
   const items2 = await Items.find().limit(4);
 
-  let m = [];
+  res.render("food", {
+    ITEMS,
+    userId,
+    id,
+    email,
+    item,
+    items,
+    items2,
+    count,
+    groups,
+  });
+});
 
-  for (let i in ITEMS) {
-    let x = ITEMS[i];
-    let y = x.name;
-    let z = x.price;
-    let id = x.itemId;
-    let category = x.category;
-    let location = x.location;
-    let obj = {
-      name: y,
-      price: z,
-      id,
-      category,
-      location,
-    };
-    m.push(obj);
+app.get("/food/:id", async (req, res) => {
+  const isUser = req.session.username;
+  const id = req.session.ID;
+  const ID = req.params.id;
+  const userId = req.session.userId;
+  const email = req.session.email;
+  let count;
+  console.log(ID);
+  if (userId) {
+    const customer = new Customer(userId);
+    count = await customer.myCarts();
   }
-  console.table(m);
+  // const ITEMS = await Items.find({ itemId: ID });
+  const ITEMS = await Items.find();
+  const items = await Items.find().limit(4);
+  const items2 = await Items.find().limit(4);
 
   res.render("food", {
     ITEMS,

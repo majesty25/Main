@@ -602,7 +602,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 680px) {
     #item{
         width: 45%;
     }
@@ -666,6 +666,7 @@
     flex-direction: row;
     padding: 2%;
     justify-content: space-around;
+    /* background-color: orangered; */
   }
 
   #item {
