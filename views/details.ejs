@@ -101,7 +101,8 @@
         <div id="bottom-container">
           <div id="var-del">
             <div id="msg"></div>
-            <div id="varieties">
+            <%# if(ITEM.varieties === ""){%>
+                          <div id="varieties">
               <div id="var">Color:</div>
               <div class="radio">
                 <input
@@ -149,6 +150,8 @@
                 <label class="radio-label" for="color4">white</label>
               </div>
             </div>
+              <%#} %> 
+
 
             <div id="delivery">
               <em

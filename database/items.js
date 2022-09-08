@@ -33,8 +33,9 @@ const items = new mongoose.Schema(
     location: {
       type: String,
     },
+    varieties: {}
   },
-  { _id: false }
+  // { _id: false }
 );
 
 const Item = connection.model("Item", items);

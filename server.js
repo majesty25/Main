@@ -136,6 +136,7 @@ app.post("/", async (req, res) => {
     const customer = new Customer(userId);
     count = await customer.myCarts();
   }
+  
   const ITEMS = await Items.find({
     $or: [
       { category: new RegExp(item, "i") },
@@ -489,7 +490,7 @@ app.post("/cart-one", async (req, res) => {
         .toArray(function (err, cart) {
           if (err) throw err;
 
-          res.render("cart1", { cart, count, items });
+          res.render("cart1", { cart, count, items, userId });
           db.close();
         });
     });
@@ -514,7 +515,7 @@ app.post("/save", async (req, res) => {
     today2.setDate(currentDay2 + 10);
     const startDate = `${today1.toDateString().slice(0, 10)}`;
     const endDate = `${today2.toDateString().slice(0, 10)}`;
-    var savedItems = await Saved.findOne({ itemId, userId });
+    let savedItems = await Saved.findOne({ itemId, userId });
     const items = await Items.find();
     let count;
     if (userId) {

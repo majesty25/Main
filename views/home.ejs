@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <script src="../js/demo.js"></script> -->
     <link rel="stylesheet" href="../css/base.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/home.css" />
@@ -200,11 +201,11 @@
         Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
-        <div id="item">
+        <div id="item" class="item">
           <form onsubmit="shew()" action="/det" method="post">
             <input type="hidden" name="id" value="<%=row.itemId%>" />
             <button id="image-btn">
-              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+              <img class="img" id="item-img" src="../font/others/1.png" data-src="../font/<%=row.pic%>" alt="" srcset="" />
             </button>
           </form>
           <div id="item-name"><%=row.name%></div>
@@ -226,11 +227,11 @@
         oldPriceWhole = Math.round((row.price + percentOff) * (10**2)); const
         oldPriceRounded = oldPriceWhole / (10**2); const total = (row.rate) * 5;
         const rate = Math.round((row.stars / total) * 5); %>
-        <div id="item">
+        <div id="item" class="item">
           <form onsubmit="shew()" action="/det" method="post">
             <input type="hidden" name="id" value="<%=row.itemId%>" />
             <button id="image-btn">
-              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+              <img class="img" id="item-img" src="../font/others/1.png" data-src="../font/<%=row.pic%>" alt="" srcset="" />
             </button>
           </form>
           <div id="item-name"><%=row.name%></div>
@@ -259,11 +260,11 @@
         oldPriceWhole = Math.round((row.price + percentOff) * (10**2)); const
         oldPriceRounded = oldPriceWhole / (10**2); const total = (row.rate) * 5;
         const rate = Math.round((row.stars / total) * 5); %>
-        <div id="item">
+        <div id="item" class="item">
           <form onsubmit="shew()" action="/det" method="post">
             <input type="hidden" name="id" value="<%=row.itemId%>" />
             <button id="image-btn">
-              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+              <img class="img" id="item-img" src="../font/others/1.png" data-src="../font/<%=row.pic%>" alt="" srcset="" />
             </button>
           </form>
           <div id="item-name"><%=row.name%></div>
@@ -378,14 +379,14 @@
         Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
-        <div id="item">
+        <div id="item" class="item">
           <form onsubmit="shew()" action="/det" method="post">
             <input type="hidden" name="id" value="<%=row.itemId%>" />
             <button id="image-btn">
               <!-- <div id="bbb">
             <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
           </div>           -->
-              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+              <img class="img" id="item-img" src="../font/others/1.png" data-src="<%=row.pic%>" alt="" srcset="" />
             </button>
           </form>
           <div id="item-name"><%=row.name%></div>
@@ -415,14 +416,14 @@
         Math.round((row.price + percentOff) * (10**2)); const oldPriceRounded =
         oldPriceWhole / (10**2); const total = (row.rate) * 5; const rate =
         Math.round((row.stars / total) * 5); %>
-        <div id="item">
+        <div id="item" class="item">
           <form onsubmit="shew()" action="/det" method="post">
             <input type="hidden" name="id" value="<%=row.itemId%>" />
             <button id="image-btn">
               <!-- <div id="bbb">
             <i style="font-size: 100px" class="mdi mdi-96px mdi-rotate-0 mdi-tshirt-crew-outline"></i>
           </div>           -->
-              <img id="item-img" src="../font/<%=row.pic%>" alt="" srcset="" />
+              <img class="img" id="item-img" src="../font/others/1.png" data-src="../font/<%=row.pic%>" alt="" srcset="" />
             </button>
           </form>
           <div id="item-name"><%=row.name%></div>
@@ -458,3 +459,4 @@
 </html>
 
 <script src="../js/slideshow.js"></script>
+<script src="../js/demo.js"></script>

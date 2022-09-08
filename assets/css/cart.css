@@ -156,6 +156,7 @@
 
 .cart-img {
   width: 70%;
+  height: 100%;
 }
 
 #cart-det {
@@ -434,6 +435,11 @@ h3{
   justify-content: center;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
+}
+
+#CONTAINER {
+  width: 75%;
+  margin-left: 12.5%;
 }
 
 @media screen and (max-width: 1200px) {
