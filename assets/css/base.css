@@ -7,6 +7,10 @@ body {
   /* background-color: rgba(233, 21, 6, 0.212); */
 }
 
+.m{
+  overflow-x: hidden;
+}
+
 header {
   width: 100%;
   height: auto;
@@ -23,8 +27,8 @@ header {
 #category {
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
-  margin-bottom: 600px;
+  /* justify-content: stretch; */
+  /* margin-bottom: 600px; */
 }
 
 sup {
@@ -101,7 +105,7 @@ a {
   outline: none;
 }
 
-#cat-head {
+#cat-headm {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -117,6 +121,13 @@ a {
   padding-top: 20px;
   padding-bottom: 10px;
   padding-left: 0%;
+}
+
+.category-head{
+  background-color: silver;
+  color: red;
+  font-size: 28px;
+
 }
 
 .cat-head {
@@ -146,8 +157,8 @@ a {
   top: 0;
   left: 0;
   background-color: rgb(255, 255, 255);
-  overflow-y: scroll;
-  /* overflow-x: hidden; */
+  overflow-y: auto;
+  overflow-x: hidden;
   transition: 0.1s;
   padding-top: 0px;
   margin-bottom: 70px;

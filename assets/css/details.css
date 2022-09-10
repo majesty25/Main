@@ -1,3 +1,7 @@
+#main-container{
+  overflow-x: hidden;
+}
+
 #pic-desc-container {
   width: 85%;
   height: auto;

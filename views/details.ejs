@@ -15,8 +15,8 @@
     <%- include('header')%>
 
     <!-- PICTURE AND DESCRIPTIONS CONTAINER -->
-
-    <% for (key in item){ var ITEM = item[key].toJSON();%>
+    <div id="main-container">
+          <% for (key in item){ var ITEM = item[key].toJSON();%>
 
     <div id="pic-desc-container">
       <div id="pics">
@@ -258,6 +258,9 @@
         </div>
       </div>
     </div>
+    </div>
+
+
 
     <%- include("viewed") %> <%- include("viewed") %> <%- include("viewed") %>
     <%- include("footer") %>
