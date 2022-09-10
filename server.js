@@ -71,55 +71,59 @@ const item = [
   // },
 ];
 
-app.get("/", async (req, res) => {
-  let cookies = req.cookies;
-  req.session.userId = cookies.id;
-  req.session.email = cookies.email;  
-  const id = req.session.ID;
-  const userId = req.session.userId;
-  const email = req.session.email;
-  let count;
-  if (userId) {
-    const customer = new Customer(userId);
-    count = await customer.myCarts();
-    var isUser = await req.session.userId;
-  }
-  const ITEMS = await Items.find();
-  const items = await Items.find().limit(4);
-  const items2 = await Items.find().limit(4);
+app.get("/", (req, res) => {
+  res.send("Heelo")
+})
 
-  let m = [];
+// app.get("/", async (req, res) => {
+//   let cookies = req.cookies;
+//   req.session.userId = cookies.id;
+//   req.session.email = cookies.email;  
+//   const id = req.session.ID;
+//   const userId = req.session.userId;
+//   const email = req.session.email;
+//   let count;
+//   if (userId) {
+//     const customer = new Customer(userId);
+//     count = await customer.myCarts();
+//     var isUser = await req.session.userId;
+//   }
+//   const ITEMS = await Items.find();
+//   const items = await Items.find().limit(4);
+//   const items2 = await Items.find().limit(4);
 
-  for (let i in ITEMS) {
-    let x = ITEMS[i];
-    let y = x.name;
-    let z = x.price;
-    let id = x.itemId;
-    let category = x.category;
-    let location = x.location;
-    let obj = {
-      name: y,
-      price: z,
-      id,
-      category,
-      location,
-    };
-    m.push(obj);
-  }
-  console.table(m);
+//   let m = [];
 
-  res.render("home", {
-    ITEMS,
-    userId,
-    id,
-    email,
-    item,
-    items,
-    items2,
-    count,
-    groups,
-  });
-});
+//   for (let i in ITEMS) {
+//     let x = ITEMS[i];
+//     let y = x.name;
+//     let z = x.price;
+//     let id = x.itemId;
+//     let category = x.category;
+//     let location = x.location;
+//     let obj = {
+//       name: y,
+//       price: z,
+//       id,
+//       category,
+//       location,
+//     };
+//     m.push(obj);
+//   }
+//   console.table(m);
+
+//   res.render("home", {
+//     ITEMS,
+//     userId,
+//     id,
+//     email,
+//     item,
+//     items,
+//     items2,
+//     count,
+//     groups,
+//   });
+// });
 
 app.post("/", async (req, res) => {
   const name = req.session.username;
