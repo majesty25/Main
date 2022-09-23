@@ -23,7 +23,7 @@ app.use(
     extended: false,
   })
 );
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000
 app.use(
   session({
     secret: "secret key",
@@ -642,16 +642,20 @@ app.post("/add-item", (req, res) => {
   const ID = uid();
   const customer = new Customer(userId);
   const item = req.body;
+  const spec = item.spec.split(",")
+  const otherPics = item.otherPics.split(",")
   customer.addItem(
     ID,
     item.name,
     item.description,
     item.pic,
+    otherPics,
     item.price,
     item.discount,
     item.category,
     item.rate,
     item.stars,
+    spec,
     item.location
   );
 

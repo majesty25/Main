@@ -32,6 +32,10 @@
       <%- include("topmost") %>
 
       <div id="demo">
+        <button id="view-more">
+    <label for="">Welcome deal</label>
+    <em class="mdi mdi-chevron-right-circle"></em>
+  </button>
         <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="cat" />
           <div id="">
@@ -116,7 +120,7 @@
         <div id="weekly-deal">
           <div>Top deals</div>
           <%- include('flash2')%>
-          <div>></div>
+          <div></div>
         </div>
         <form onsubmit="shew()" id="con" action="/" method="post">
           <input type="hidden" name="cat" />

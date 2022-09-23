@@ -30,6 +30,7 @@
         type="text"
         name="cat"
         placeholder="I'm looking for..."
+        x-webkit-speech
       />
     </div>
     <input type="submit" value="search" />
@@ -119,15 +120,15 @@
 <div id="subhead">
   <%- include("side-panel")%>
   <div id="logo-small">
-    <a href="/">
+    <a href="/" style="height: 100%;">
       <img style="width: 100%" src="../font/others/log.png" alt="" srcset=""
     /></a>
   </div>
-  <form action="/search" method="get">
+  <form style="width: 2em;" action="/search" method="get">
     <button id="search">
       <em
         class="mdi mdi-rotate- mdi-magnify"
-        style="font-size: 14px; margin-left: 0px"
+        style="font-size: 12px; margin-left: 0px"
       ></em>
     </button>
   </form>

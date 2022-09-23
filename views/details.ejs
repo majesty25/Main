@@ -16,7 +16,11 @@
 
     <!-- PICTURE AND DESCRIPTIONS CONTAINER -->
     <div id="main-container">
-          <% for (key in item){ var ITEM = item[key].toJSON();%>
+          <% for (key in item){ var ITEM = item[key].toJSON();
+            let spec = ITEM.spec;
+            let otherPics = ITEM.otherPics;
+            %>
+
 
     <div id="pic-desc-container">
       <div id="pics">
@@ -24,25 +28,29 @@
           <img id="main-pic" src="../font/<%= ITEM.pic %> " alt="" srcset="" />
         </div>
         <div id="small-pics-container">
-          <img
+          <!-- <img
             onmouseover="changePic()"
             id="small-pic"
             class="small-pic"
             src="../font/6.jpg"
             alt=""
             srcset=""
-          />
-          <!-- <img id="small-pic" src="../font/5.jpg" alt="" srcset="" /> -->
-          <img id="small-pic" src="../font/7.jpg" alt="" srcset="" />
-          <img id="small-pic" src="../font/2.jpg" alt="" srcset="" />
-          <img id="small-pic" src="../font/9.jpg" alt="" srcset="" />
+          /> -->
+          <% for (i  in otherPics){%>
+             <img id="small-pic" src="<%= otherPics[i] %> " alt="" srcset="" onmouseover="changePic()"/>
+              <%} %> 
+          
+          <!-- <img id="small-pic" src="../font/2.jpg" alt="" srcset="" />
+          <img id="small-pic" src="../font/9.jpg" alt="" srcset="" /> -->
         </div>
       </div>
       <div id="desc">
         <div id="top-container">
-          <div id="stars">&starf; &starf; &starf; &starf; &starf;</div>
+          
 
           <div id="name"><%= ITEM.name %></div>
+
+          <div id="stars">&starf; &starf; &starf; &starf; &starf;</div>
 
           <div id="price">GHS <%= ITEM.price.toFixed(2) %></div>
 
@@ -213,7 +221,7 @@
       </div>
     </div>
 
-    <% }%>
+  
 
     <div id="review-spec">
       <div id="review">
@@ -250,17 +258,16 @@
         <div id="spec-head">Other features and specifications</div>
         <div class="specs">
           <ul id="features">
-            <li>OS: windows 10 pro</li>
-            <li>OS: windows 10 pro</li>
-            <li>OS: windows 10 pro</li>
-            <li>OS: windows 10 pro</li>
+            <% for (i  in spec){%>
+              <li><%= spec[i] %> </li>
+              <%} %>        
           </ul>
         </div>
       </div>
     </div>
     </div>
 
-
+  <% }%>
 
     <%- include("viewed") %> <%- include("viewed") %> <%- include("viewed") %>
     <%- include("footer") %>

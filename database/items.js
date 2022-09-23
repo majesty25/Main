@@ -12,8 +12,14 @@ const items = new mongoose.Schema(
     pic: {
       type: String,
     },
+    otherPics: {
+      type: []
+    },
     description: {
       type: String,
+    },
+    spec: {
+      type: [],
     },
     price: {
       type: Number,
@@ -33,8 +39,8 @@ const items = new mongoose.Schema(
     location: {
       type: String,
     },
-    varieties: {}
-  },
+    varieties: [],
+  }
   // { _id: false }
 );
 

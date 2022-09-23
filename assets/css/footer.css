@@ -2,12 +2,13 @@ footer {
   width: 100%;
   background-color: rgb(45, 45, 68);
   height: 100vh;
-  position: relative;
+  position: static;
   bottom: 0;
   float: right;
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  z-index: 0;
 }
 
 #footer-top {

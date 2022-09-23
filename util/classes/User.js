@@ -73,7 +73,7 @@ class Customer {
           },
         })
         .required(),
-      password: Joi.string().pattern(new RegExp("^[A-zA-Z0-M]{3,30}$")).min(4),
+      password: Joi.string().pattern(/^[A-zA-Z0-M]{3,30}$/).min(4),
     });
     const loginValidation = schema.validate(user);
     if (loginValidation.error) {
@@ -95,23 +95,28 @@ class Customer {
     name,
     description,
     pic,
+    otherPics,
     price,
     off,
     category,
     rate,
     stars,
+    spec,
     location
   ) {
+    console.log(spec);
     Items.insertMany({
       itemId,
       name,
       description,
       pic,
+      otherPics,
       price,
       off,
       category,
       rate,
       stars,
+      spec,
       location,
     });
   }
