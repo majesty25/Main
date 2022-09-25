@@ -286,7 +286,7 @@
 
 #item-img {
   /* width: 100%; */
-  height: 10.5em;
+  height: 12.5em;
   border-radius: 0px;
 }
 
@@ -570,12 +570,20 @@
     width: 96%;
     margin-left: 2%;
   }
+
+  #item-img{
+    height: 11em;
+  }
 }
 
 @media screen and (max-width: 1000px) {
   #item {
-    width: 25%;
+    width: 17%;
     /* margin: 4%; */
+  }
+
+  #item-img{
+    height: 10.5em;
   }
 
   /* .demo{
@@ -585,7 +593,11 @@
 
 @media screen and (max-width: 800px) {
   #item {
-    width: 21%;
+    width: 20%;
+  }
+
+  #item-img{
+    height: 10em;
   }
 }
 

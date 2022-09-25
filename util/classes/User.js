@@ -59,34 +59,13 @@ class Customer {
 
   async login(password) {
     const email = this.userId;
-    const user = {
-      email,
-      password,
-    };
 
-    const schema = Joi.object({
-      email: Joi.string()
-        .email({
-          minDomainSegments: 2,
-          tlds: {
-            allow: ["com", "net"],
-          },
-        })
-        .required(),
-      password: Joi.string().pattern(/^[A-zA-Z0-M]{3,30}$/).min(4),
-    });
-    const loginValidation = schema.validate(user);
-    if (loginValidation.error) {
-      var errorMessage = loginValidation.error.details[0].message; // req.session.message = errorMessage;
-      return errorMessage;
+    const user = await Users.exists({ email, password });
+    if (!user) {
+      return false;
     } else {
-      const user = await Users.find({ email, password });
-      if (Object.keys(user).length === 0) {
-        var errorMessage = "email and password do not match";
-        return errorMessage;
-      } else {
-        return [user, true];
-      }
+      const logged = await Users.find({ email, password });
+      return [logged, true];
     }
   }
 

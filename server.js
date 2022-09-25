@@ -14,8 +14,8 @@ const Customer = require("./util/classes/User");
 const groups = require("./util/data/groupData");
 const uid = require("./util/classes/uid");
 const Users = require("./database/users");
-var url ="mongodb+srv://STEPHENNYANKSON:tvvq8KSYSuN4vWXi@cluster0.j5vgn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-// var url = "mongodb://127.0.0.1:27017";
+// var url ="mongodb+srv://STEPHENNYANKSON:tvvq8KSYSuN4vWXi@cluster0.j5vgn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+var url = "mongodb://127.0.0.1:27017";
 
 const conn = new sqlite.Database("./majesty.db");
 app.use(
@@ -23,7 +23,7 @@ app.use(
     extended: false,
   })
 );
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 app.use(
   session({
     secret: "secret key",
@@ -74,7 +74,7 @@ const item = [
 app.get("/", async (req, res) => {
   let cookies = req.cookies;
   req.session.userId = cookies.id;
-  req.session.email = cookies.email;  
+  req.session.email = cookies.email;
   const id = req.session.ID;
   const userId = req.session.userId;
   const email = req.session.email;
@@ -136,7 +136,7 @@ app.post("/", async (req, res) => {
     const customer = new Customer(userId);
     count = await customer.myCarts();
   }
-  
+
   const ITEMS = await Items.find({
     $or: [
       { category: new RegExp(item, "i") },
@@ -266,6 +266,7 @@ app.post("/add-cart", async (req, res) => {
   } else {
     console.log("Not null");
   }
+  // res.render("details", )
 
   res.redirect("/cart");
 });
@@ -388,6 +389,7 @@ app.post("/dashboard", async (req, res) => {
   const msg = await customer.login(password);
   if (msg[1] === true) {
     const user = msg[0];
+    // console.log(user);
     for (let i in user) {
       const USER = user[i];
       req.session.userId = USER.userId;
@@ -406,13 +408,13 @@ app.post("/dashboard", async (req, res) => {
 
       req.session.username = USER.firstName + " " + USER.lastName;
     }
-  } else {
-    const errorMessages = msg;
+    res.redirect("/");
+  } else if (msg === false) {
+    const errorMessages = "Log in failed!";
     res.render("login", { errorMessages });
   }
-  console.log(msg[1]);
 
-  res.redirect("/");
+  // console.log(msg[1]);
 });
 
 app.get("/dashboard", (req, res) => {
@@ -589,9 +591,9 @@ app.get("/my-carts", (req, res) => {
 });
 
 app.get("/my-orders", async (req, res) => {
-  const isUser  = req.session.userId;
-  const userId  = req.session.userId;
-  const email = req.session.email; 
+  const isUser = req.session.userId;
+  const userId = req.session.userId;
+  const email = req.session.email;
   if (isUser) {
     const customer = new Customer(userId);
     let count, check;
@@ -642,8 +644,8 @@ app.post("/add-item", (req, res) => {
   const ID = uid();
   const customer = new Customer(userId);
   const item = req.body;
-  const spec = item.spec.split(",")
-  const otherPics = item.otherPics.split(",")
+  const spec = item.spec.split(",");
+  const otherPics = item.otherPics.split(",");
   customer.addItem(
     ID,
     item.name,
