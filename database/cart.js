@@ -13,6 +13,7 @@ const cart = new mongoose.Schema({
   },
   variety: {
     type: String,
+    default: "default",
   },
 });
 

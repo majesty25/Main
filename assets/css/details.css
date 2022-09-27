@@ -461,6 +461,7 @@
 
   #review-spec {
     width: 100%;
+    margin-left: 0%;
     flex-direction: column;
 
     /* display: none;     */

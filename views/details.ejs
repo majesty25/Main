@@ -16,261 +16,266 @@
 
     <!-- PICTURE AND DESCRIPTIONS CONTAINER -->
     <div id="main-container">
-          <% for (key in item){ var ITEM = item[key].toJSON();
-            let spec = ITEM.spec;
-            let otherPics = ITEM.otherPics;
-            %>
+      <% for (key in item){ var ITEM = item[key].toJSON(); let spec = ITEM.spec;
+      let otherPics = ITEM.otherPics; %>
 
-
-    <div id="pic-desc-container">
-      <div id="pics">
-        <div id="main-pic-container">
-          <img id="main-pic" src="../font/<%= ITEM.pic %> " alt="" srcset="" />
-        </div>
-        <div id="small-pics-container">
-          <img
-            onmouseover="changePic()"
-            id="small-pic"
-            class="small-pic"
-            src="../font/6.jpg"
-            alt=""
-            srcset=""
-          />
-          <!-- <%# for (i  in otherPics){%>
+      <div id="pic-desc-container">
+        <div id="pics">
+          <div id="main-pic-container">
+            <img
+              id="main-pic"
+              src="../font/<%= ITEM.pic %> "
+              alt=""
+              srcset=""
+            />
+          </div>
+          <div id="small-pics-container">
+            <img
+              onmouseover="changePic()"
+              id="small-pic"
+              class="small-pic"
+              src="../font/6.jpg"
+              alt=""
+              srcset=""
+            />
+            <!-- <%# for (i  in otherPics){%>
              <img id="small-pic" src="<%#= otherPics[i] %> " alt="" srcset="" onmouseover="changePic()"/>
               <%#} %>  -->
-          
-          <img id="small-pic" src="../font/2.jpg" alt="" srcset="" />
-          <img id="small-pic" src="../font/9.jpg" alt="" srcset="" />
-        </div>
-      </div>
-      <div id="desc">
-        <div id="top-container">
-          
 
-          <div id="name"><%= ITEM.name %></div>
-
-          <div id="stars">&starf; &starf; &starf; &starf; &starf;</div>
-
-          <div id="price">GHS <%= ITEM.price.toFixed(2) %></div>
-
-          <div id="buttons">
-            <form action="/add-cart" method="post">
-              <input
-                type="hidden"
-                name="id"
-                value="<%=ITEM.itemId%>"
-                required
-              />
-              <input
-                id="var"
-                type=""
-                class="radio-input"
-                name="variety"
-                value=""
-                required
-              />
-              <button
-                onclick="promptToSelect()"
-                class="add buy-btn"
-                type="submit"
-              >
-                ADD TO CART
-              </button>
-            </form>
-
-            <form action="" method="post">
-              <input
-                id="var1"
-                type=""
-                class="radio-input"
-                name=""
-                value=""
-                required
-              />
-              <button
-                onclick="promptToSelect1()"
-                class="buy buy-btn"
-                type="submit"
-                disabled
-              >
-                BUY NOW
-              </button>
-            </form>
-
-            <form action="/save" method="post">
-              <input type="hidden" name="id" value="<%=ITEM.itemId%>" />
-              <button id="save-btn" type="submit">
-                <em class="mdi <%=output%> >"></em>
-              </button>
-            </form>
+            <img id="small-pic" src="../font/2.jpg" alt="" srcset="" />
+            <img id="small-pic" src="../font/9.jpg" alt="" srcset="" />
           </div>
         </div>
-        <div id="bottom-container">
-          <div id="var-del">
-            <div id="msg"></div>
-            <%# if(ITEM.varieties === ""){%>
-                          <div id="varieties">
-              <div id="var">Color:</div>
-              <div class="radio">
-                <input
-                  onchange="selectVariety()"
-                  class="radio-input"
-                  type="radio"
-                  name="color"
-                  id="color1"
-                  value="1"
-                  required
-                />
-                <label class="radio-label" for="color1">red</label>
+        <div id="desc">
+          <div id="top-container">
+            <div id="name"><%= ITEM.name %></div>
+
+            <div id="stars">&starf; &starf; &starf; &starf; &starf;</div>
+
+            <div id="price">GHS <%= ITEM.price.toFixed(2) %></div>
+
+            <div id="buttons">
+              <form action="/add-cart" method="post">
+                <% if (ITEM.varieties.length > 1){%>
 
                 <input
-                  onchange="selectVariety()"
+                  id="var"
+                  type=""
                   class="radio-input"
-                  type="radio"
-                  name="color"
-                  id="color2"
-                  value="2"
+                  name="variety"
+                  value=""
                   required
                 />
-                <label class="radio-label" for="color2">black</label>
+                <%} %>
 
                 <input
-                  onchange="selectVariety()"
-                  class="radio-input"
-                  type="radio"
-                  name="color"
-                  id="color3"
-                  value="7833"
+                  type="hidden"
+                  name="id"
+                  value="<%=ITEM.itemId%>"
                   required
                 />
-                <label class="radio-label" for="color3">blue</label>
+                <button
+                  onclick="promptToSelect()"
+                  class="add buy-btn"
+                  type="submit"
+                >
+                  ADD TO CART
+                </button>
+              </form>
 
+              <form action="" method="post">
                 <input
-                  onchange="selectVariety()"
+                  id="var1"
+                  type=""
                   class="radio-input"
-                  type="radio"
-                  name="color"
-                  id="color4"
-                  value="4kljld"
+                  name=""
+                  value=""
                   required
                 />
-                <label class="radio-label" for="color4">white</label>
-              </div>
-            </div>
-              <%#} %> 
+                <button
+                  onclick="promptToSelect1()"
+                  class="buy buy-btn"
+                  type="submit"
+                  disabled
+                >
+                  BUY NOW
+                </button>
+              </form>
 
-
-            <div id="delivery">
-              <em
-                style="font-size: 19px"
-                class="mdi mdi-rotate-0 mdi-calendar-month-outline"
-              ></em>
-              Delivery from <%= ITEM.location %> , <%= startDate +" - "+ endDate
-              %>
+              <form action="/save" method="post">
+                <input type="hidden" name="id" value="<%=ITEM.itemId%>" />
+                <button id="save-btn" type="submit">
+                  <em class="mdi <%=output%> >"></em>
+                </button>
+              </form>
             </div>
           </div>
+          <div id="bottom-container">
+            <div id="var-del">
+              <div id="msg"></div>
+              <% if(ITEM.varieties.length > 1){%>
+              <div id="varieties">
+                <div id="var">Color:</div>
+                <div class="radio">
+                  <input
+                    onchange="selectVariety()"
+                    class="radio-input"
+                    type="radio"
+                    name="color"
+                    id="color1"
+                    value="1"
+                    required
+                  />
+                  <label class="radio-label" for="color1">red</label>
 
-          <div id="description">
-            <div class="desc">Description:</div>
-            <div class="description"><%= ITEM.description %></div>
-          </div>
+                  <input
+                    onchange="selectVariety()"
+                    class="radio-input"
+                    type="radio"
+                    name="color"
+                    id="color2"
+                    value="2"
+                    required
+                  />
+                  <label class="radio-label" for="color2">black</label>
 
-          <div id="seller-container">
-            <div id="seller">
-              <div id="seller-name">
-                Store - seller
-                <div></div>
-              </div>
-              <div id="react">
-                <div id="like">
-                  <em class="mdi mdi-thumb-up-outline"></em>23
+                  <input
+                    onchange="selectVariety()"
+                    class="radio-input"
+                    type="radio"
+                    name="color"
+                    id="color3"
+                    value="7833"
+                    required
+                  />
+                  <label class="radio-label" for="color3">blue</label>
+
+                  <input
+                    onchange="selectVariety()"
+                    class="radio-input"
+                    type="radio"
+                    name="color"
+                    id="color4"
+                    value="4kljld"
+                    required
+                  />
+                  <label class="radio-label" for="color4">white</label>
                 </div>
-                <!-- <div id="dislike">
+              </div>
+              <%} else{%>
+              <div id="varieties">
+                <label class="radio-label" for="color4"
+                  >No varietiis to choose from</label
+                >
+              </div>
+              <%} %>
+
+              <div id="delivery">
+                <em
+                  style="font-size: 19px"
+                  class="mdi mdi-rotate-0 mdi-calendar-month-outline"
+                ></em>
+                Delivery from <%= ITEM.location %> , <%= startDate +" - "+
+                endDate %>
+              </div>
+            </div>
+
+            <div id="description">
+              <div class="desc">Description:</div>
+              <div class="description"><%= ITEM.description %></div>
+            </div>
+
+            <div id="seller-container">
+              <div id="seller">
+                <div id="seller-name">
+                  Store - seller
+                  <div></div>
+                </div>
+                <div id="react">
+                  <div id="like">
+                    <em class="mdi mdi-thumb-up-outline"></em>23
+                  </div>
+                  <!-- <div id="dislike">
                   <em class="mdi mdi-thumb-down-outline"></em>3
                 </div> -->
+                </div>
+
+                <button class="seller-btn follow">Follow</button>
+                <button class="seller-btn msg">Message</button>
               </div>
 
-              <button class="seller-btn follow">Follow</button>
-              <button class="seller-btn msg">Message</button>
+              <div id="seller-detail">
+                <div id="about">
+                  <div class="about-value">224</div>
+                  <div class="about">followers</div>
+                </div>
+
+                <div id="about">
+                  <div class="about-value sells">23</div>
+                  <div class="about">views</div>
+                </div>
+
+                <div id="about">
+                  <div class="about-value sells">107</div>
+                  <div class="about">sells</div>
+                </div>
+
+                <div id="about">
+                  <div class="about-value">224</div>
+                  <div class="about">followers</div>
+                </div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <div id="seller-detail">
-              <div id="about">
-                <div class="about-value">224</div>
-                <div class="about">followers</div>
-              </div>
-
-              <div id="about">
-                <div class="about-value sells">23</div>
-                <div class="about">views</div>
-              </div>
-
-              <div id="about">
-                <div class="about-value sells">107</div>
-                <div class="about">sells</div>
-              </div>
-
-              <div id="about">
-                <div class="about-value">224</div>
-                <div class="about">followers</div>
-              </div>
+      <div id="review-spec">
+        <div id="review">
+          <div id="review-head">Reviews:</div>
+          <div class="reviews">
+            <div id="review-info">
+              <div id="review-rate">&starf;&starf;&starf;&starf;&starf;</div>
+              <div id="customer-name">Matilda Kyle</div>
             </div>
+            <div id="review-date">26 Aug</div>
+          </div>
+          <div id="comment">This is the only comment I can give so far</div>
+
+          <div class="reviews">
+            <div id="review-info">
+              <div id="review-rate">&starf;&starf;&starf;&starf;&starf;</div>
+              <div id="customer-name">Matilda Kyle</div>
+            </div>
+            <div id="review-date">26 Aug</div>
+          </div>
+          <div id="comment">This is the only comment I can give so far</div>
+
+          <div class="reviews">
+            <div id="review-info">
+              <div id="review-rate">&starf;&starf;&starf;&starf;&starf;</div>
+              <div id="customer-name">Matilda Kyle</div>
+            </div>
+            <div id="review-date">26 Aug</div>
+          </div>
+          <div id="comment">This is the only comment I can give so far</div>
+        </div>
+
+        <div id="spec">
+          <div id="spec-head">Other features and specifications</div>
+          <div class="specs">
+            <ul id="features">
+              <% for (i in spec){%>
+              <li><%= spec[i] %></li>
+              <%} %>
+            </ul>
           </div>
         </div>
       </div>
     </div>
 
-  
-
-    <div id="review-spec">
-      <div id="review">
-        <div id="review-head">Reviews:</div>
-        <div class="reviews">
-          <div id="review-info">
-            <div id="review-rate">&starf;&starf;&starf;&starf;&starf;</div>
-            <div id="customer-name">Matilda Kyle</div>
-          </div>
-          <div id="review-date">26 Aug</div>
-        </div>
-        <div id="comment">This is the only comment I can give so far</div>
-
-        <div class="reviews">
-          <div id="review-info">
-            <div id="review-rate">&starf;&starf;&starf;&starf;&starf;</div>
-            <div id="customer-name">Matilda Kyle</div>
-          </div>
-          <div id="review-date">26 Aug</div>
-        </div>
-        <div id="comment">This is the only comment I can give so far</div>
-
-        <div class="reviews">
-          <div id="review-info">
-            <div id="review-rate">&starf;&starf;&starf;&starf;&starf;</div>
-            <div id="customer-name">Matilda Kyle</div>
-          </div>
-          <div id="review-date">26 Aug</div>
-        </div>
-        <div id="comment">This is the only comment I can give so far</div>
-      </div>
-
-      <div id="spec">
-        <div id="spec-head">Other features and specifications</div>
-        <div class="specs">
-          <ul id="features">
-            <% for (i  in spec){%>
-              <li><%= spec[i] %> </li>
-              <%} %>        
-          </ul>
-        </div>
-      </div>
-    </div>
-    </div>
-
-  <% }%>
-
-    <%- include("viewed") %> <%- include("viewed") %> <%- include("viewed") %>
-    <%- include("footer") %>
+    <% }%> <%- include("viewed") %> <%- include("viewed") %> <%-
+    include("viewed") %> <%- include("footer") %>
     <script>
       const mainPic = document.querySelector("#main-pic");
       const smallPics = document.querySelector(".small-pic");
