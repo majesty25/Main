@@ -14,9 +14,14 @@ const Customer = require("./util/classes/User");
 const groups = require("./util/data/groupData");
 const uid = require("./util/classes/uid");
 const Users = require("./database/users");
+<<<<<<< HEAD
 var nodemailer = require('nodemailer');
-// var url ="mongodb+srv://STEPHENNYANKSON:tvvq8KSYSuN4vWXi@cluster0.j5vgn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+var url ="mongodb+srv://STEPHENNYANKSON:tvvq8KSYSuN4vWXi@cluster0.j5vgn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 var url = "mongodb://127.0.0.1:27017";
+=======
+// var url ="mongodb+srv://STEPHENNYANKSON:tvvq8KSYSuN4vWXi@cluster0.j5vgn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+// var url = "mongodb://127.0.0.1:27017";
+>>>>>>> f7a59c3e07578edc9088fbe8caf3bcbd1b30bb7a
 
 const conn = new sqlite.Database("./majesty.db");
 app.use(
