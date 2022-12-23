@@ -14,6 +14,7 @@ const Customer = require("./util/classes/User");
 const groups = require("./util/data/groupData");
 const uid = require("./util/classes/uid");
 const Users = require("./database/users");
+var nodemailer = require('nodemailer');
 // var url ="mongodb+srv://STEPHENNYANKSON:tvvq8KSYSuN4vWXi@cluster0.j5vgn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 var url = "mongodb://127.0.0.1:27017";
 
@@ -23,7 +24,8 @@ app.use(
     extended: false,
   })
 );
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
+
 app.use(
   session({
     secret: "secret key",
@@ -154,6 +156,10 @@ app.post("/", async (req, res) => {
     groups,
   });
 });
+
+app.get("/error", (req, res)=>{
+  res.render("error");
+})
 
 app.get("/food", async (req, res) => {
   const isUser = req.session.username;
@@ -694,6 +700,31 @@ app.get("/search", (req, res) => {
 
   res.render("search");
 });
+
+app.post('/email', (req, res) =>{
+  const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'nyankson26@gmail.com',
+    pass: 'rimzgwtnurznjffl'
+  }
+});
+
+const mailOptions = {
+  from: 'nyankson26@gmail.com',
+  to: req.body.email,
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
+});
+})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
