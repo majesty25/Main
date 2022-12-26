@@ -17,7 +17,7 @@ const Users = require("./database/users");
 <<<<<<< HEAD
 var nodemailer = require('nodemailer');
 var url ="mongodb+srv://STEPHENNYANKSON:tvvq8KSYSuN4vWXi@cluster0.j5vgn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-var url = "mongodb://127.0.0.1:27017";
+// var url = "mongodb://127.0.0.1:27017";
 =======
 // var url ="mongodb+srv://STEPHENNYANKSON:tvvq8KSYSuN4vWXi@cluster0.j5vgn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 // var url = "mongodb://127.0.0.1:27017";
