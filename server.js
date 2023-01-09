@@ -725,6 +725,7 @@ transporter.sendMail(mailOptions, function(error, info){
     console.log('Email sent: ' + info.response);
   }
 });
+  res.redirect("https//gotoucc.com");
 })
 
 app.listen(port, () => {
